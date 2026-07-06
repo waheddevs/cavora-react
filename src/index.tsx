@@ -1,9 +1,13 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import { App } from "./app/App"
+import App from "./app/App"
 import { store } from "./app/store"
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@emotion/react"
+import theme from "./././app/MaterialTheme/index"
 import "./css/index.css"
+import { BrowserRouter as Router } from "react-router-dom"
 
 const container = document.getElementById("root")
 
@@ -13,9 +17,14 @@ if (container) {
   root.render(
     <StrictMode>
       <Provider store={store}>
-        <App />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <App />
+          </Router>
+        </ThemeProvider>
       </Provider>
-    </StrictMode>,
+    </StrictMode>
   )
 } else {
   throw new Error(
