@@ -10,10 +10,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material"
-import { NavLink } from "react-router-dom"
 import { useState } from "react"
 import moment from "moment"
 import GoldButton from "../ui/GoldButton"
+import NavbarPanel from "./NavbarPanel"
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined"
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined"
 import TravelExploreOutlinedIcon from "@mui/icons-material/TravelExploreOutlined"
@@ -41,7 +41,6 @@ const features = [
 ]
 
 export default function HomeNavbar() {
-  const authMember = null
   const { activeSlide } = useHeroSlider(5000)
   const active = heroSlides[activeSlide]
   const [location, setLocation] = useState("")
@@ -53,51 +52,7 @@ export default function HomeNavbar() {
   return (
     <>
       <div className="home-navbar">
-        <Container maxWidth={false} className="navbar-container">
-          <Stack className="menu">
-            <Box className="logo">
-              <NavLink to={"/"}>
-                <img
-                  src="/icons/logo.svg"
-                  className="brand-logo"
-                  alt="brand-logo"
-                />
-              </NavLink>
-            </Box>
-
-            <Stack className="links">
-              <Box>
-                <NavLink to={"/"} end>
-                  Home
-                </NavLink>
-              </Box>
-              <Box>
-                <NavLink to={"/about"}>About Us</NavLink>
-              </Box>
-              <Box>
-                <NavLink to={"/tour"}>Tours</NavLink>
-              </Box>
-              <Box>
-                <NavLink to={"/blog"}>Blog</NavLink>
-              </Box>
-              {authMember ? (
-                <Box>
-                  <NavLink to={"/user"}>My Page</NavLink>
-                </Box>
-              ) : null}
-              <Box>
-                <NavLink to={"/faq"}>FAQ</NavLink>
-              </Box>
-              <Box>
-                <NavLink to={"/contact"}>Contact</NavLink>
-              </Box>
-            </Stack>
-
-            <Box className="btn">
-              <GoldButton className="login-btn">Login</GoldButton>
-            </Box>
-          </Stack>
-        </Container>
+        <NavbarPanel />
       </div>
       <div className="home-hero">
         {/* Background slideshow */}
@@ -121,23 +76,20 @@ export default function HomeNavbar() {
         <Container maxWidth={false} className="hero-content">
           <Box className="hero-text" key={activeSlide}>
             <Typography className="hero-location">{active.location}</Typography>
-            <Typography className="hero-title">
-              {active.title.split(" ").map((word, i) => (
-                <span key={i}>{word}</span>
-              ))}
-            </Typography>
+            <Typography className="hero-title">{active.title}</Typography>
             <Typography className="hero-subtitle">{active.subtitle}</Typography>
           </Box>
-
-          <Stack className="hero-features" direction="row">
-            {features.map((f) => (
-              <Box key={f.label} className="hero-feature">
-                {f.icon}
-                <span>{f.label}</span>
-              </Box>
-            ))}
-          </Stack>
         </Container>
+
+        {/* Feature badges (static, above the search bar) */}
+        <Stack className="hero-features" direction="row">
+          {features.map((f) => (
+            <Box key={f.label} className="hero-feature">
+              {f.icon}
+              <span>{f.label}</span>
+            </Box>
+          ))}
+        </Stack>
 
         {/* Search bar */}
         <Box className="hero-search">
