@@ -1,5 +1,6 @@
-import { createTheme, ThemeProvider } from "@mui/material"
+import { ThemeProvider } from "@mui/material"
 import { Route, Routes, useLocation } from "react-router-dom"
+import theme from "./MaterialTheme"
 /* SCREENS */
 import AboutPage from "./screens/aboutPage"
 import BlogDetailsPage from "./screens/blogDetailsPage"
@@ -25,17 +26,13 @@ import Footer from "./components/footer"
 /* CSS */
 import "../css/app.css"
 import "../css/navbar.css"
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "'Poppins', sans-serif",
-  },
-})
+import "../css/footer.css"
 
 function App() {
   const location = useLocation()
   return (
     <ThemeProvider theme={theme}>
+      <div className="app-layout">
       {location.pathname === "/about" ? (
         <AboutNavbar />
       ) : location.pathname === "/blog-details" ? (
@@ -71,6 +68,7 @@ function App() {
       </Routes>
 
       <Footer />
+      </div>
     </ThemeProvider>
   )
 }

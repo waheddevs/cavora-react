@@ -42,6 +42,16 @@
   text-align: center;
 }
 
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-layout > .footer {
+  margin-top: auto;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
