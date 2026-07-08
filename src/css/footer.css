@@ -30,7 +30,7 @@
 }
 
 .footer .footer-logo {
-  width: 140px;
+  width: 120px;
   height: auto;
   filter: brightness(1.1);
 }
@@ -109,15 +109,33 @@
 }
 
 .footer .footer-link {
+  position: relative;
+  display: inline-block;
   font-size: 14px;
   color: #aaa;
   text-decoration: none;
-  transition: color 0.2s;
   cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transition: width 0.35s ease;
 }
 
 .footer .footer-link:hover {
   color: var(--gold);
+  transform: translateX(6px);
+}
+
+.footer .footer-link:hover::after {
+  width: 100%;
 }
 
 /* Contact List */

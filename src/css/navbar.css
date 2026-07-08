@@ -40,35 +40,685 @@ a { text-decoration: none; color: inherit; }
 =========================== */
 
 .home-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   width: 100%;
-  height: 773px;
+  padding: 16px 0;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom, #ffffff 95px, transparent 95px);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.home-navbar .navbar-container {
-  margin: 25px 55px;
-  height: 642px;
+/* Shared navbar panel layout (used by every page navbar) */
+.navbar-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.home-navbar .navbar-container .menu {
-  height: 50px;
+.navbar-container .menu {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-container .menu .logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar-container .menu .brand-logo {
+  width: 120px;
+  height: 26px;
+}
+
+.navbar-container .menu .links {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.navbar-container .menu .links a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  transition: color 0.28s ease;
+}
+
+/* Hover + active (current page) → brand gold */
+.navbar-container .menu .links a:hover,
+.navbar-container .menu .links a.active {
+  color: var(--gold);
+}
+
+.navbar-container .menu .btn {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Home navbar links are white (over the hero image) */
+.home-navbar .links a {
+  color: #fff;
+}
+
+.home-navbar .btn .login-btn {
+  background-color: transparent;
+  border: 1.4px solid rgba(255, 255, 255, 0.65);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 6px 26px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  transition: color 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+.home-navbar .btn .login-btn:hover {
+  border-color: #ffb300;
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.38);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   ABOUT NAVBAR (solid white bar)
+=========================== */
+
+.about-navbar {
+  width: 100%;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+}
+
+/* About navbar links are dark (on the white bar) */
+.about-navbar .links a {
+  color: var(--dark);
+}
+
+/* About Login button — gold outline pill */
+.about-navbar .btn .login-btn {
+  background-color: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+  border-radius: 24px;
+  padding: 6px 26px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  transition: color 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+.about-navbar .btn .login-btn:hover {
+  border-color: var(--gold);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   PAGE HERO / BREADCRUMB
+=========================== */
+
+.page-hero {
+  background: #ffffff;
+  text-align: center;
+  padding: 56px 24px 66px;
+}
+
+.page-hero .page-hero-tagline {
+  font-family: 'Dancing Script', cursive;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.page-hero .page-hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 18px;
+}
+
+.page-hero .page-hero-crumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+}
+
+.page-hero .page-hero-crumb .crumb-link {
+  color: var(--gold);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.page-hero .page-hero-crumb .crumb-link:hover {
+  color: var(--gold-dark);
+}
+
+.page-hero .page-hero-crumb .crumb-sep {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+.page-hero .page-hero-crumb .crumb-current {
+  color: var(--text-light);
+}
+
+@media (max-width: 600px) {
+  .page-hero .page-hero-title {
+    font-size: 34px;
+  }
+}
+
+/* ===========================
+   HOME HERO
+=========================== */
+
+@font-face {
+  font-family: 'Dancing Script';
+  src: url('../../public/fonts/dancing-script-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.home-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.home-navbar .navbar-container .menu .brand-logo {
-  width: 140px;
+/* Background slideshow */
+.home-hero .hero-slides {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.home-hero .hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1);
+  z-index: 0;
+  transition: opacity 1.8s ease-in-out, transform 8s ease-out;
+  will-change: opacity, transform;
+}
+
+.home-hero .hero-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home-hero .hero-slide.active {
+  opacity: 1;
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.home-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 20, 25, 0.35) 0%,
+    rgba(15, 20, 25, 0.45) 45%,
+    rgba(15, 20, 25, 0.7) 100%
+  );
+}
+
+/* Centered content */
+.home-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 90px 24px 170px;
+}
+
+.home-hero .hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-hero .hero-text .hero-location,
+.home-hero .hero-text .hero-title,
+.home-hero .hero-text .hero-subtitle {
+  animation: hero-blur-in 1s ease both;
+}
+
+.home-hero .hero-text .hero-location {
+  animation-delay: 0.05s;
+}
+
+.home-hero .hero-text .hero-title {
+  animation-delay: 0.18s;
+}
+
+.home-hero .hero-text .hero-subtitle {
+  animation-delay: 0.34s;
+}
+
+@keyframes hero-blur-in {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+.home-hero .hero-location {
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.home-hero .hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.5px;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
+}
+
+.home-hero .hero-title span {
+  display: block;
+}
+
+.home-hero .hero-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 640px;
+  margin-bottom: 40px;
+}
+
+.home-hero .hero-features {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+.home-hero .hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.home-hero .hero-feature .feature-icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Search bar */
+.home-hero .hero-search {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 980px;
+  max-width: calc(100% - 48px);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+}
+
+.home-hero .hero-search .search-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 2px 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.home-hero .hero-search .field-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #9a9a9a;
+  text-transform: uppercase;
+}
+
+.home-hero .hero-search .field-input,
+.home-hero .hero-search .field-select,
+.home-hero .hero-search .field-date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  padding: 0;
+}
+
+.home-hero .hero-search .field-input input::placeholder {
+  color: #b5b5b5;
+  opacity: 1;
+}
+
+.home-hero .hero-search .field-date {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+}
+
+.home-hero .hero-search .field-date.placeholder {
+  color: #b5b5b5;
+}
+
+.home-hero .hero-search .field-select .MuiSelect-select {
+  padding: 0 22px 0 0;
+  background: transparent;
+}
+
+.home-hero .hero-search .field-select .MuiSvgIcon-root {
+  color: #555;
+}
+
+.home-hero .hero-search .field-divider {
+  height: 28px;
+  align-self: center;
+  border-color: #ececec;
+}
+
+.home-hero .hero-search .search-filter {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--gold);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.home-hero .hero-search .search-filter .MuiSvgIcon-root {
+  font-size: 20px;
+}
+
+.home-hero .hero-search .search-filter:hover {
+  background: var(--gold-dark);
+}
+
+.home-hero .hero-search .search-submit {
+  height: 38px;
+  padding: 0 20px;
+  border-radius: 9px;
+  border: none;
+  font-size: 13px;
+  background: var(--gold);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.home-hero .hero-search .search-submit::before {
+  display: none;
+}
+
+.home-hero .hero-search .search-submit:hover {
+  border: none;
+  background: var(--gold-dark);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .home-hero .hero-title {
+    font-size: 56px;
+  }
+
+  .home-hero .hero-features {
+    flex-wrap: wrap;
+    gap: 18px 28px;
+  }
+
+  .home-hero .hero-search {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    width: calc(100% - 48px);
+    margin: -70px auto 48px;
+  }
+
+  .home-hero .hero-search .field-divider {
+    display: none;
+  }
+
+  .home-hero .hero-search .search-field {
+    flex: 1 1 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-hero .hero-title {
+    font-size: 42px;
+  }
+
+  .home-hero .hero-search .search-field {
+    flex: 1 1 100%;
+  }
+}
+
+/* Select dropdown menus (portaled) */
+.hero-select-menu {
+  border-radius: 12px !important;
+  margin-top: 6px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14) !important;
+}
+
+.hero-select-menu .MuiMenuItem-root {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #444;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.hero-select-menu .MuiMenuItem-root:hover {
+  background-color: rgba(255, 179, 0, 0.12);
+  color: var(--gold-dark);
+}
+
+.hero-select-menu .MuiMenuItem-root.Mui-selected {
+  background-color: rgba(255, 179, 0, 0.18);
+  color: var(--gold-dark);
+}
+
+.hero-select-menu .MuiMenuItem-root.Mui-selected:hover {
+  background-color: rgba(255, 179, 0, 0.26);
+}
+
+/* Themed date picker (portaled) */
+.date-popover-paper {
+  margin-top: 8px;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18) !important;
+}
+
+.calendar {
+  width: 288px;
+  padding: 14px 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.calendar .calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.calendar .calendar-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.calendar .calendar-nav {
+  display: flex;
+  gap: 2px;
+}
+
+.calendar .cal-nav-btn {
+  width: 30px;
   height: 30px;
+  color: #666;
+  transition: color 0.2s, background-color 0.2s;
 }
 
-.home-navbar .navbar-container .menu .links {
-  min-width: 700px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.calendar .cal-nav-btn:hover {
+  color: var(--gold-dark);
+  background-color: rgba(255, 179, 0, 0.12);
 }
+
+.calendar .cal-nav-btn .MuiSvgIcon-root {
+  font-size: 20px;
+}
+
+.calendar .calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.calendar .calendar-weekdays span {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9a9a9a;
+  padding: 4px 0;
+}
+
+.calendar .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar .cal-day {
+  height: 34px;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.calendar .cal-day:hover {
+  background-color: rgba(255, 179, 0, 0.15);
+  color: var(--gold-dark);
+}
+
+.calendar .cal-day.muted {
+  color: #cfcfcf;
+}
+
+.calendar .cal-day.today {
+  border: 1.5px solid var(--gold);
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.calendar .cal-day.selected {
+  background-color: var(--gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+.calendar .cal-day.selected:hover {
+  background-color: var(--gold-dark);
+  color: #fff;
+}
+
+.calendar .calendar-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.calendar .cal-action {
+  border: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold-dark);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.calendar .cal-action:hover {
+  background-color: rgba(255, 179, 0, 0.12);
+}
+
