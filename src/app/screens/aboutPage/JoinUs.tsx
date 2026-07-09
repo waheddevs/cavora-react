@@ -3,13 +3,14 @@ import FacebookIcon from "@mui/icons-material/Facebook"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import YouTubeIcon from "@mui/icons-material/YouTube"
 import TwitterIcon from "@mui/icons-material/Twitter"
+import { joinSocials } from "../../../js/About"
 
-const socials = [
-  { icon: <FacebookIcon />, label: "Facebook" },
-  { icon: <InstagramIcon />, label: "Instagram" },
-  { icon: <YouTubeIcon />, label: "YouTube" },
-  { icon: <TwitterIcon />, label: "Twitter" },
-]
+const icons: Record<string, JSX.Element> = {
+  Facebook: <FacebookIcon />,
+  Instagram: <InstagramIcon />,
+  YouTube: <YouTubeIcon />,
+  Twitter: <TwitterIcon />,
+}
 
 export default function JoinUs() {
   return (
@@ -26,15 +27,15 @@ export default function JoinUs() {
         </Typography>
 
         <Box className="join-socials">
-          {socials.map((social) => (
+          {joinSocials.map((label) => (
             <button
               type="button"
               className="join-social"
-              key={social.label}
-              aria-label={social.label}
+              key={label}
+              aria-label={label}
             >
-              {social.icon}
-              <span>{social.label}</span>
+              {icons[label]}
+              <span>{label}</span>
             </button>
           ))}
         </Box>

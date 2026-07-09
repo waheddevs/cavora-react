@@ -1,18 +1,5 @@
 import { Box, Container, Typography } from "@mui/material"
-
-interface GalleryImage {
-  img: string
-  alt: string
-  tall?: boolean
-}
-
-const images: GalleryImage[] = [
-  { img: "/img/home-page-img/hero.jpg", alt: "Snowy peaks above the clouds", tall: true },
-  { img: "/img/home-page-img/gallery-1.jpg", alt: "Aerial view of Rome" },
-  { img: "/img/home-page-img/gallery-2.jpg", alt: "Taj Mahal through an archway" },
-  { img: "/img/home-page-img/tour-safari.jpg", alt: "Wooden boat on an alpine lake" },
-  { img: "/img/home-page-img/tour-santorini.jpg", alt: "Pyramids of Giza" },
-]
+import { galleryImages as images } from "../../../js/Home"
 
 export default function TravelGallery() {
   return (

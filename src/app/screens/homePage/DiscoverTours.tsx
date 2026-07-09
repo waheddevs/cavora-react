@@ -6,55 +6,7 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-
-interface Tour {
-  img: string
-  badge: string | null
-  location: string
-  days: string
-  title: string
-  rating: number
-  price: string
-}
-
-const tours: Tour[] = [
-  {
-    img: "/img/home-page-img/tour-bali.jpg",
-    badge: "Featured",
-    location: "Bali, Indonesia",
-    days: "7 Days",
-    title: "Bali Paradise Escape",
-    rating: 4.5,
-    price: "899",
-  },
-  {
-    img: "/img/home-page-img/tour-rome.jpg",
-    badge: "Popular",
-    location: "Rome, Italy",
-    days: "5 Days",
-    title: "Roman Holiday Classic",
-    rating: 4.0,
-    price: "749",
-  },
-  {
-    img: "/img/home-page-img/tour-tokyo.jpg",
-    badge: "New",
-    location: "Tokyo, Japan",
-    days: "10 Days",
-    title: "Japan Cherry Blossom",
-    rating: 5.0,
-    price: "1,299",
-  },
-  {
-    img: "/img/home-page-img/tour-santorini.jpg",
-    badge: null,
-    location: "Santorini, Greece",
-    days: "6 Days",
-    title: "Greek Island Hopping",
-    rating: 4.7,
-    price: "999",
-  },
-]
+import { discoverTours as tours } from "../../../js/Home"
 
 function renderStars(rating: number) {
   const stars = []

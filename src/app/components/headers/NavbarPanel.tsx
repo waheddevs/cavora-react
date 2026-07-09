@@ -13,7 +13,11 @@ export default function NavbarPanel() {
       <Stack className="menu">
         <Box className="logo">
           <NavLink to={"/"}>
-            <img src="/icons/logo.svg" className="brand-logo" alt="brand-logo" />
+            <img
+              src="/icons/logo.svg"
+              className="brand-logo"
+              alt="brand-logo"
+            />
           </NavLink>
         </Box>
 
@@ -24,13 +28,13 @@ export default function NavbarPanel() {
             </NavLink>
           </Box>
           <Box>
-            <NavLink to={"/about"}>About Us</NavLink>
-          </Box>
-          <Box>
             <NavLink to={"/tour"}>Tours</NavLink>
           </Box>
           <Box>
             <NavLink to={"/blog"}>Blog</NavLink>
+          </Box>
+          <Box>
+            <NavLink to={"/about"}>About Us</NavLink>
           </Box>
           {authMember ? (
             <Box>

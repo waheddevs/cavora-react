@@ -23,6 +23,7 @@ import UserNavbar from "./components/headers/UserNavbar"
 import HomeNavbar from "./components/headers/HomeNavber"
 import OtherNavbar from "./components/headers/OtherNavbar"
 import Footer from "./components/footer"
+import ScrollToTop from "./components/ScrollToTop"
 /* CSS */
 import "../css/app.css"
 import "../css/navbar.css"
@@ -32,6 +33,7 @@ function App() {
   const location = useLocation()
   return (
     <ThemeProvider theme={theme}>
+      <ScrollToTop />
       <div className="app-layout">
       {location.pathname === "/about" ? (
         <AboutNavbar />

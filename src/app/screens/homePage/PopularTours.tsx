@@ -3,42 +3,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-
-interface Tour {
-  img: string
-  location: string
-  days: string
-  title: string
-  rating: number
-  price: string
-}
-
-const tours: Tour[] = [
-  {
-    img: "/img/home-page-img/tour-safari.jpg",
-    location: "Safari, Kenya",
-    days: "8 Days",
-    title: "African Safari Adventure",
-    rating: 4.6,
-    price: "1,499",
-  },
-  {
-    img: "/img/home-page-img/tour-maldives.jpg",
-    location: "Maldives",
-    days: "5 Days",
-    title: "Maldives Luxury Retreat",
-    rating: 5.0,
-    price: "2,199",
-  },
-  {
-    img: "/img/home-page-img/tour-kyoto.jpg",
-    location: "Kyoto, Japan",
-    days: "9 Days",
-    title: "Ancient Kyoto Journey",
-    rating: 4.2,
-    price: "1,099",
-  },
-]
+import { popularTours as tours } from "../../../js/Home"
 
 function renderStars(rating: number) {
   const stars = []

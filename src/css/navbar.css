@@ -149,7 +149,7 @@ a { text-decoration: none; color: inherit; }
   padding: 32px 0 20px;
   display: flex;
   justify-content: center;
-  background: #ffffff;
+  background: var(--bg-light);
 }
 
 /* About navbar links are dark (on the white bar) */
@@ -182,7 +182,7 @@ a { text-decoration: none; color: inherit; }
 =========================== */
 
 .page-hero {
-  background: #ffffff;
+  background: var(--bg-light);
   text-align: center;
   padding: 56px 24px 66px;
 }
@@ -249,7 +249,7 @@ a { text-decoration: none; color: inherit; }
   padding: 32px 0 20px;
   display: flex;
   justify-content: center;
-  background: #ffffff;
+  background: var(--bg-light);
 }
 
 /* Blog navbar links are dark (on the white bar) */
@@ -279,7 +279,7 @@ a { text-decoration: none; color: inherit; }
 
 /* Blog page header */
 .blog-hero {
-  background: #ffffff;
+  background: var(--bg-light);
 }
 
 /* ===========================

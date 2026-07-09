@@ -1,24 +1,7 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-
-const steps = [
-  {
-    number: "01",
-    title: "Find Your Destination",
-    text: "Browse our extensive collection of tours and destinations. Filter by type, duration, or budget to find your perfect trip.",
-  },
-  {
-    number: "02",
-    title: "Book & Customise",
-    text: "Select your dates, group size and any add-ons. Our team will tailor the itinerary to match your preferences.",
-  },
-  {
-    number: "03",
-    title: "Enjoy Your Journey",
-    text: "Pack your bags and go! We handle everything from transfers to accommodation so you can focus on the experience.",
-  },
-]
+import { steps } from "../../../js/About"
 
 export default function Steps() {
   return (

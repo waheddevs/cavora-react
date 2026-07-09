@@ -1,8 +1,8 @@
 import { Box } from "@mui/material"
 import SendRoundedIcon from "@mui/icons-material/SendRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { featuredPosts } from "../../../js/Blog"
 import Categories from "./Categories"
+import FeaturedPost from "./FeaturedPost"
 
 interface Props {
   activeCategory: string
@@ -17,21 +17,7 @@ export default function BlogSidebar({
     <aside className="blog-sidebar">
       <Categories active={activeCategory} onSelect={onSelectCategory} />
 
-      {/* Featured Post */}
-      <div className="sidebar-widget">
-        <h3 className="widget-title">Featured Post</h3>
-        <div className="feat-list">
-          {featuredPosts.map((post) => (
-            <div className="feat-item" key={post.title}>
-              <img src={post.img} alt={post.title} />
-              <div className="feat-info">
-                <h4>{post.title}</h4>
-                <span>{post.date}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <FeaturedPost />
 
       {/* Subscribe */}
       <Box className="subscribe-widget">

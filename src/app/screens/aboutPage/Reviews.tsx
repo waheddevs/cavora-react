@@ -3,34 +3,7 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-
-interface Review {
-  text: string
-  name: string
-  location: string
-  rating: number
-}
-
-const reviews: Review[] = [
-  {
-    text: "An absolutely unforgettable experience. The team handled everything perfectly — from accommodation to guided tours. I couldn't have asked for better service.",
-    name: "Sarah Mitchell",
-    location: "New York, USA",
-    rating: 5,
-  },
-  {
-    text: "Cavora turned my dream trip to Japan into reality. Every detail was thoughtfully planned. The cherry blossom tour was magical — I will definitely book with them again!",
-    name: "James Carter",
-    location: "London, UK",
-    rating: 5,
-  },
-  {
-    text: "The safari experience in Kenya exceeded all expectations. Our guide was incredibly knowledgeable and the whole trip felt personal and wonderfully organised.",
-    name: "Amara Osei",
-    location: "Toronto, Canada",
-    rating: 4.5,
-  },
-]
+import { reviews } from "../../../js/About"
 
 function renderStars(rating: number) {
   const stars = []

@@ -2,29 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
-
-const team = [
-  {
-    img: "/img/about-us-img/team-daniel.jpg",
-    name: "Daniel Reeves",
-    role: "Founder & CEO",
-  },
-  {
-    img: "/img/about-us-img/team-priya.jpg",
-    name: "Priya Sharma",
-    role: "Head of Operations",
-  },
-  {
-    img: "/img/about-us-img/team-marco.jpg",
-    name: "Marco Bellini",
-    role: "Senior Tour Guide",
-  },
-  {
-    img: "/img/about-us-img/team-aisha.jpg",
-    name: "Aisha Okonkwo",
-    role: "Client Experience",
-  },
-]
+import { team } from "../../../js/About"
 
 export default function Team() {
   return (
