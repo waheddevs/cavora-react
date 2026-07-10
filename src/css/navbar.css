@@ -283,6 +283,48 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ===========================
+   TOUR NAVBAR (solid bar)
+=========================== */
+
+.tour-navbar {
+  width: 100%;
+  padding: 32px 0 20px;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-light);
+}
+
+/* Tour navbar links are dark (on the light bar) */
+.tour-navbar .links a {
+  color: var(--dark);
+}
+
+/* Tour Login button — gold outline pill */
+.tour-navbar .btn .login-btn {
+  background-color: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+  border-radius: 24px;
+  padding: 6px 26px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  transition: color 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+.tour-navbar .btn .login-btn:hover {
+  border-color: var(--gold);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Tour page header */
+.tour-hero {
+  background: var(--bg-light);
+}
+
+/* ===========================
    HOME HERO
 =========================== */
 

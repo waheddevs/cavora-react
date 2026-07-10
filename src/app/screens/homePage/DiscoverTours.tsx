@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import GoldButton from "../../components/ui/GoldButton"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
@@ -6,7 +7,14 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { discoverTours as tours } from "../../../js/Home"
+import { tours as allTours } from "../../../js/TourSingle"
+import type { Tour } from "../tourSinglePage/types"
+
+/* 4 featured tours for the home page (diverse destinations) */
+const featuredIds = [1, 13, 17, 24]
+const tours = featuredIds
+  .map((id) => allTours.find((t) => t.id === id))
+  .filter((t): t is Tour => Boolean(t))
 
 function renderStars(rating: number) {
   const stars = []
@@ -23,6 +31,8 @@ function renderStars(rating: number) {
 }
 
 export default function DiscoverTours() {
+  const navigate = useNavigate()
+
   return (
     <section className="discover-tours">
       <Container maxWidth={false} className="discover-container">
@@ -35,6 +45,7 @@ export default function DiscoverTours() {
           <GoldButton
             className="view-all-btn"
             endIcon={<ArrowForwardRoundedIcon />}
+            onClick={() => navigate("/tour")}
           >
             View All Tours
           </GoldButton>
@@ -43,15 +54,25 @@ export default function DiscoverTours() {
         {/* Tour cards */}
         <Box className="tours-grid">
           {tours.map((tour) => (
-            <Box className="tour-card" key={tour.title}>
+            <Box
+              className="tour-card"
+              key={tour.id}
+              onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <Box className="tour-media">
-                <img src={tour.img} alt={tour.title} className="tour-img" />
-                {tour.badge && (
-                  <span className={`tour-badge ${tour.badge.toLowerCase()}`}>
-                    {tour.badge}
-                  </span>
-                )}
-                <button type="button" className="tour-fav" aria-label="Save to wishlist">
+                <img
+                  src={tour.images[0]}
+                  alt={tour.title}
+                  className="tour-img"
+                />
+                <span className="tour-badge">{tour.type}</span>
+                <button
+                  type="button"
+                  className="tour-fav"
+                  aria-label="Save to wishlist"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <FavoriteBorderRoundedIcon />
                 </button>
               </Box>
@@ -73,11 +94,13 @@ export default function DiscoverTours() {
                 <Box className="tour-foot">
                   <Box className="tour-rating">
                     {renderStars(tour.rating)}
-                    <span className="rating-value">({tour.rating.toFixed(1)})</span>
+                    <span className="rating-value">
+                      ({tour.rating.toFixed(1)})
+                    </span>
                   </Box>
                   <Box className="tour-price">
                     <span>From </span>
-                    <strong>${tour.price}</strong>
+                    <strong>${tour.price.toLocaleString()}</strong>
                   </Box>
                 </Box>
               </Box>

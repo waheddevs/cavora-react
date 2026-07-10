@@ -1,0 +1,565 @@
+/* ===========================
+   TOUR PAGE / LAYOUT
+=========================== */
+
+.tour-page {
+  background: #ffffff;
+  padding: 50px 0 80px;
+}
+
+.tour-page .tour-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.tour-top-anchor {
+  scroll-margin-top: 20px;
+}
+
+.tour-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.tour-layout.collapsed {
+  grid-template-columns: 1fr;
+}
+
+.tour-empty {
+  text-align: center;
+  padding: 70px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: var(--text-light);
+}
+
+/* ===========================
+   TOP BAR (sort / count / toggle)
+=========================== */
+
+.tour-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.tour-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.filters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-light);
+  border: 1px solid #e5e5e5;
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--dark);
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.filters-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.filters-toggle svg {
+  font-size: 18px;
+}
+
+.tours-found {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.tours-found strong {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.tour-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tour-sort label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  color: var(--text-light);
+}
+
+.tour-sort select {
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.tour-sort select:focus {
+  border-color: var(--gold);
+}
+
+/* ===========================
+   FILTER SIDEBAR
+=========================== */
+
+.tour-filters {
+  position: sticky;
+  top: 20px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 24px 22px;
+}
+
+.tour-filters .tf-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.tour-filters .tf-head h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.tour-filters .tf-clear {
+  background: none;
+  border: none;
+  color: var(--gold-dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tour-filters .tf-clear:hover {
+  text-decoration: underline;
+}
+
+.tour-filters .tf-group {
+  margin-bottom: 22px;
+}
+
+.tour-filters .tf-group h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.tour-filters .tf-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tour-filters .tf-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tour-filters .tf-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tour-filters .tf-list input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.tour-filters .tf-list em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text-light);
+  background: var(--bg-light);
+  border-radius: 6px;
+  padding: 1px 8px;
+}
+
+/* Price slider (MUI, gold) */
+.tour-filters .MuiSlider-root {
+  color: var(--gold);
+}
+
+.tour-filters .tf-price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.tour-filters .tf-apply {
+  width: 100%;
+  background: var(--gold);
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.25s ease;
+}
+
+.tour-filters .tf-apply:hover {
+  background: var(--gold-dark);
+}
+
+/* ===========================
+   TOUR CARD GRID
+=========================== */
+
+.tour-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  animation: tour-fade 0.4s ease;
+}
+
+@keyframes tour-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.tour-card .tc-media {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tour-card .tc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.tour-card:hover .tc-media img {
+  transform: scale(1.06);
+}
+
+.tour-card .tc-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--gold);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+.tour-card .tc-fav {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.tour-card .tc-fav:hover,
+.tour-card .tc-fav.active {
+  color: var(--gold);
+  background: #ffffff;
+}
+
+.tour-card .tc-fav svg {
+  font-size: 18px;
+}
+
+.tour-card .tc-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 20px 20px;
+}
+
+.tour-card .tc-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.tour-card .tc-rating svg {
+  font-size: 16px;
+  color: #dddddd;
+}
+
+.tour-card .tc-rating svg.on {
+  color: var(--gold);
+}
+
+.tour-card .tc-rating span {
+  margin-left: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.tour-card .tc-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dark);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.tour-card .tc-title:hover {
+  color: var(--gold-dark);
+}
+
+.tour-card .tc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.tour-card .tc-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.tour-card .tc-meta svg {
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.tour-card .tc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #eeeeee;
+}
+
+.tour-card .tc-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tour-card .tc-price small {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11.5px;
+  color: var(--text-light);
+}
+
+.tour-card .tc-price strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.tour-card .tc-price span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11.5px;
+  color: var(--text-light);
+}
+
+.tour-card .tc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tour-card .tc-btn:hover {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.tour-card .tc-btn svg {
+  font-size: 15px;
+}
+
+/* ===========================
+   PAGINATION
+=========================== */
+
+.tour-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.tour-pagination .tp-btn {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+  color: var(--dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.tour-pagination .tp-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.tour-pagination .tp-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+}
+
+.tour-pagination .tp-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tour-pagination .tp-btn.arrow svg {
+  font-size: 20px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1100px) {
+  .tour-layout {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .tour-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .tour-layout,
+  .tour-layout.collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-filters {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .tour-page .tour-container {
+    padding: 0 24px;
+  }
+
+  .tour-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

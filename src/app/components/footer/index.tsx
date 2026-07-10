@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom"
 const quickLinks = [
   { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
-  { label: "Tour Packages", path: "/tour" },
+  { label: "Tours", path: "/tour" },
   { label: "Blog", path: "/blog" },
   { label: "FAQ", path: "/faq" },
   { label: "Contact", path: "/contact" },
@@ -28,10 +28,16 @@ const tourTypes = [
 ]
 
 const contactInfo = [
-  { icon: <LocationOnIcon className="contact-icon" />, text: "123 Travel Street, Soul 10001" },
+  {
+    icon: <LocationOnIcon className="contact-icon" />,
+    text: "123 Travel Street, Soul 10001",
+  },
   { icon: <PhoneIcon className="contact-icon" />, text: "+8210 1234-5678" },
   { icon: <EmailIcon className="contact-icon" />, text: "info@cavora.com" },
-  { icon: <AccessTimeIcon className="contact-icon" />, text: "Mon-Fri: 9am – 6pm" },
+  {
+    icon: <AccessTimeIcon className="contact-icon" />,
+    text: "Mon-Fri: 9am – 6pm",
+  },
 ]
 
 export default function Footer() {
@@ -42,23 +48,43 @@ export default function Footer() {
           {/* Brand Column */}
           <Box className="footer-brand">
             <NavLink to="/">
-              <img src="/icons/logo.svg" alt="cavora logo" className="footer-logo" />
+              <img
+                src="/icons/logo.svg"
+                alt="cavora logo"
+                className="footer-logo"
+              />
             </NavLink>
             <Typography className="footer-desc">
-              Your trusted partner for extraordinary travel experiences around the globe.
-              Adventure awaits at every destination.
+              Your trusted partner for extraordinary travel experiences around
+              the globe. Adventure awaits at every destination.
             </Typography>
             <Stack className="footer-socials">
-              <button type="button" aria-label="Facebook" className="social-link">
+              <button
+                type="button"
+                aria-label="Facebook"
+                className="social-link"
+              >
                 <FacebookIcon />
               </button>
-              <button type="button" aria-label="Twitter" className="social-link">
+              <button
+                type="button"
+                aria-label="Twitter"
+                className="social-link"
+              >
                 <TwitterIcon />
               </button>
-              <button type="button" aria-label="Instagram" className="social-link">
+              <button
+                type="button"
+                aria-label="Instagram"
+                className="social-link"
+              >
                 <InstagramIcon />
               </button>
-              <button type="button" aria-label="YouTube" className="social-link">
+              <button
+                type="button"
+                aria-label="YouTube"
+                className="social-link"
+              >
                 <YouTubeIcon />
               </button>
             </Stack>
@@ -69,7 +95,7 @@ export default function Footer() {
             <Typography className="footer-col-title">Quick Links</Typography>
             <Divider className="footer-divider" />
             <ul className="footer-list">
-              {quickLinks.map((link) => (
+              {quickLinks.map(link => (
                 <li key={link.label}>
                   <NavLink to={link.path} className="footer-link">
                     {link.label}
@@ -84,7 +110,7 @@ export default function Footer() {
             <Typography className="footer-col-title">Tour Types</Typography>
             <Divider className="footer-divider" />
             <ul className="footer-list">
-              {tourTypes.map((type) => (
+              {tourTypes.map(type => (
                 <li key={type}>
                   <span className="footer-link">{type}</span>
                 </li>

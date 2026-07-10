@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Box, Container, Typography } from "@mui/material"
-import CountUp from "./CountUp"
+import CountUp from "../../components/CountUp"
 import { stats } from "../../../js/About"
 
 export default function Statistics() {
