@@ -4,10 +4,8 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CountUp from "../../components/CountUp"
-import type { Tour } from "./types"
-
-/* Plausible star distribution (5★ → 1★) for the review bars */
-const distribution = [78, 15, 4, 2, 1]
+import { ratingDistribution as distribution } from "js/TourSingle"
+import type { Tour } from "app/libs/types"
 
 export default function IncludeRate({ tour }: { tour: Tour }) {
   const [run, setRun] = useState(false)

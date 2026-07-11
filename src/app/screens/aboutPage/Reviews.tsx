@@ -3,7 +3,7 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { reviews } from "../../../js/About"
+import { reviews } from "js/About"
 
 function renderStars(rating: number) {
   const stars = []
@@ -40,17 +40,17 @@ export default function Reviews() {
               <FormatQuoteRoundedIcon className="review-quote" />
               <Typography className="review-text">{review.text}</Typography>
 
-              <div className="review-divider" />
+              <Box className="review-divider" />
 
               <Box className="review-foot">
                 <Box className="review-author">
-                  <div className="author-avatar">
+                  <Box className="author-avatar">
                     <PersonRoundedIcon />
-                  </div>
-                  <div className="author-info">
+                  </Box>
+                  <Box className="author-info">
                     <strong>{review.name}</strong>
                     <span>{review.location}</span>
-                  </div>
+                  </Box>
                 </Box>
                 <Box className="review-stars">{renderStars(review.rating)}</Box>
               </Box>

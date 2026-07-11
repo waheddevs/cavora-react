@@ -10,8 +10,8 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded"
 import SailingRoundedIcon from "@mui/icons-material/SailingRounded"
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
-import { weekDays, buildMonthGrid } from "../../../js/HomeNavbar"
-import type { Tour } from "./types"
+import { weekDays, buildMonthGrid } from "js/HomeNavbar"
+import type { Tour } from "app/libs/types"
 
 export default function OrderBar({ tour }: { tour: Tour }) {
   const [date, setDate] = useState("")

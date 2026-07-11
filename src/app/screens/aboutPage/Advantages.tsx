@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import RouteRoundedIcon from "@mui/icons-material/RouteRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import MapRoundedIcon from "@mui/icons-material/MapRounded"
-import { advantages } from "../../../js/About"
+import { advantages } from "js/About"
 
 const icons: Record<string, JSX.Element> = {
   route: <RouteRoundedIcon />,
@@ -28,7 +28,7 @@ export default function Advantages() {
         <Box className="adv-grid">
           {advantages.map((adv) => (
             <Box className="adv-card" key={adv.title}>
-              <div className="adv-icon">{icons[adv.icon]}</div>
+              <Box className="adv-icon">{icons[adv.icon]}</Box>
               <Typography className="adv-card-title">{adv.title}</Typography>
               <Typography className="adv-card-text">{adv.text}</Typography>
             </Box>

@@ -5,8 +5,8 @@ import Itinerary from "./Itinerary"
 import IncludeRate from "./IncludeRate"
 import OrderBar from "./OrderBar"
 import RelatedTours from "./RelatedTours"
-import { getTourById } from "../../../js/TourSingle"
-import "../../../css/tour-single.css"
+import { getTourById } from "js/TourSingle"
+import "css/tourSingle.css"
 
 export default function TourSinglePage() {
   const [params] = useSearchParams()

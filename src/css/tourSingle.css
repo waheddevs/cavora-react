@@ -1,0 +1,943 @@
+/* ===========================
+   TOUR SINGLE NAVBAR
+=========================== */
+
+.tour-single-navbar {
+  width: 100%;
+  padding: 32px 0 20px;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-light);
+}
+
+.tour-single-navbar .links a {
+  color: var(--dark);
+}
+
+.tour-single-navbar .btn .login-btn {
+  background-color: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+  border-radius: 24px;
+  padding: 6px 26px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  transition: color 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+.tour-single-navbar .btn .login-btn:hover {
+  border-color: var(--gold);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.page-hero.tour-single-hero {
+  background: var(--bg-light);
+}
+
+/* ===========================
+   PAGE / LAYOUT
+=========================== */
+
+.tour-single-page {
+  background: #ffffff;
+  padding: 60px 0 90px;
+}
+
+.tour-single-page .ts-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.ts-layout {
+  display: grid;
+  grid-template-columns: 1fr 370px;
+  gap: 40px;
+  align-items: start;
+}
+
+.ts-main,
+.ts-about {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.ts-card {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 28px 30px;
+}
+
+.ts-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.ts-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--text-light);
+}
+
+.ts-empty {
+  text-align: center;
+  padding: 80px 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+}
+
+.ts-empty a {
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.ts-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--gold);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+/* ===========================
+   GALLERY
+=========================== */
+
+.ts-gallery-main {
+  position: relative;
+  height: 430px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ts-gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: ts-gallery-fade 0.5s ease;
+}
+
+/* Smooth fade + subtle zoom when the main image changes */
+@keyframes ts-gallery-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.ts-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ts-thumb {
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  transition: border-color 0.25s ease;
+}
+
+.ts-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ts-thumb.active {
+  border-color: var(--gold);
+}
+
+/* ===========================
+   META BAR
+=========================== */
+
+.ts-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: var(--bg-light);
+  border-radius: 14px;
+  padding: 20px 24px;
+}
+
+.ts-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ts-meta-item svg {
+  color: var(--gold);
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.ts-meta-item > span {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.ts-meta-item small {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+/* ===========================
+   OVERVIEW / TITLE / HIGHLIGHTS
+=========================== */
+
+.ts-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.ts-title-mark {
+  width: 5px;
+  height: 26px;
+  border-radius: 3px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.ts-rating-inline {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 20px;
+}
+
+.ts-rating-inline svg {
+  font-size: 18px;
+  color: #dddddd;
+}
+
+.ts-rating-inline svg.on {
+  color: var(--gold);
+}
+
+.ts-rating-inline span {
+  margin-left: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  color: var(--text-light);
+}
+
+.ts-highlights {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+}
+
+.ts-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.ts-highlights li svg {
+  color: var(--gold);
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ===========================
+   ITINERARY
+=========================== */
+
+.ts-itinerary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ts-day {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ts-day-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ts-day-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  color: var(--gold-dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.ts-day.open .ts-day-num {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.ts-day-title {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.ts-day-chevron {
+  color: #b3b3b3;
+  transition: transform 0.3s ease, color 0.25s ease;
+}
+
+.ts-day.open .ts-day-chevron {
+  transform: rotate(180deg);
+  color: var(--gold-dark);
+}
+
+.ts-day-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.ts-day.open .ts-day-body {
+  max-height: 220px;
+}
+
+.ts-day-body p {
+  padding: 0 16px 16px 64px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
+/* ===========================
+   WHAT'S INCLUDED
+=========================== */
+
+.ts-include-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 30px;
+}
+
+.ts-include {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ts-include li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.ts-include li svg {
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.ts-include li .inc {
+  color: #2ecc71;
+}
+
+.ts-include li .exc {
+  color: #e74c3c;
+}
+
+/* ===========================
+   GUEST REVIEWS
+=========================== */
+
+.ts-reviews {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 34px;
+  align-items: center;
+}
+
+.ts-review-score {
+  text-align: center;
+}
+
+.ts-review-score strong {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--dark);
+}
+
+.ts-review-stars {
+  margin: 8px 0;
+}
+
+.ts-review-stars svg {
+  font-size: 20px;
+  color: #dddddd;
+}
+
+.ts-review-stars svg.on {
+  color: var(--gold);
+}
+
+.ts-review-score span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.ts-review-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ts-review-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ts-bar-label {
+  width: 52px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.ts-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ts-bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ts-bar-pct {
+  width: 38px;
+  text-align: right;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+/* ===========================
+   ORDER BAR (sticky)
+=========================== */
+
+.ts-order {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ts-order-card {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+}
+
+.ts-order-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 18px;
+}
+
+.ts-order-price small {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.ts-order-price strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.ts-old {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: var(--text-light);
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.ts-order-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-light);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.ts-order-rating svg {
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.ts-field {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.ts-field > span {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.ts-date-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+  text-align: left;
+  transition: border-color 0.25s ease;
+}
+
+.ts-date-btn svg {
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.ts-date-btn .ph {
+  color: var(--text-light);
+}
+
+.ts-date-btn:hover {
+  border-color: var(--gold);
+}
+
+.ts-counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.ts-counter button {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: none;
+  background: var(--bg-light);
+  color: var(--dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.ts-counter button:hover {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.ts-counter strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: var(--dark);
+}
+
+.ts-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid #eeeeee;
+  margin-top: 4px;
+}
+
+.ts-total span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.ts-total strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.ts-book,
+.ts-enquiry {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 24px;
+  padding: 13px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ts-book {
+  background: var(--gold);
+  color: #ffffff;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.ts-book:hover {
+  background: var(--gold-dark);
+}
+
+.ts-enquiry {
+  background: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+}
+
+.ts-enquiry:hover {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.ts-book svg,
+.ts-enquiry svg {
+  font-size: 19px;
+}
+
+.ts-help {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-light);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.ts-help-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--gold);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ts-help small {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.ts-help strong {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: var(--dark);
+}
+
+/* ===========================
+   RELATED TOURS
+=========================== */
+
+.ts-related {
+  margin-top: 70px;
+}
+
+.ts-related-head {
+  margin-bottom: 36px;
+}
+
+.ts-related-head .ts-related-tagline {
+  text-align: left;
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.ts-related-head .ts-related-title {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.ts-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.ts-related-card {
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ts-related-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.ts-related-media {
+  position: relative;
+  height: 210px;
+}
+
+.ts-related-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ts-related-body {
+  padding: 20px;
+}
+
+.ts-related-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.ts-related-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+.ts-related-meta svg {
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.ts-related-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.ts-related-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 14px;
+}
+
+.ts-related-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.ts-related-rating svg {
+  color: var(--gold);
+  font-size: 17px;
+}
+
+.ts-related-price {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.ts-related-price small {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.ts-related-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.4px solid var(--gold);
+  color: var(--gold-dark);
+  border-radius: 24px;
+  padding: 9px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ts-related-btn:hover {
+  background: var(--gold);
+  color: #ffffff;
+}
+
+.ts-related-btn svg {
+  font-size: 16px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 992px) {
+  .ts-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ts-order {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .ts-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ts-highlights,
+  .ts-include-grid,
+  .ts-reviews {
+    grid-template-columns: 1fr;
+  }
+
+  .ts-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .tour-single-page .ts-container {
+    padding: 0 24px;
+  }
+
+  .ts-gallery-main {
+    height: 280px;
+  }
+
+  .ts-card {
+    padding: 22px 20px;
+  }
+}

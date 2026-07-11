@@ -9,7 +9,7 @@ import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import type { Tour } from "../tourSinglePage/types"
+import type { Tour } from "app/libs/types"
 
 function renderStars(rating: number) {
   const stars = []

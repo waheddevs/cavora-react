@@ -1,8 +1,8 @@
 import { Box, MenuItem, Select } from "@mui/material"
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
-import { sortOptions } from "./filters"
-import type { SortKey } from "./filters"
+import { sortOptions } from "app/libs/filter/filters"
+import type { SortKey } from "app/libs/filter/filters"
 
 interface Props {
   count: number

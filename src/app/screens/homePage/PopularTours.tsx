@@ -1,9 +1,17 @@
 import { Box, Container, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { popularTours as tours } from "../../../js/Home"
+import { tours as allTours } from "js/TourSingle"
+import { popularTourIds } from "js/Home"
+import type { Tour } from "app/libs/types"
+
+/* 3 popular picks — real tours looked up by id (Paris, Fuji, Zermatt) */
+const tours = popularTourIds
+  .map((id) => allTours.find((t) => t.id === id))
+  .filter((t): t is Tour => Boolean(t))
 
 function renderStars(rating: number) {
   const stars = []
@@ -20,6 +28,8 @@ function renderStars(rating: number) {
 }
 
 export default function PopularTours() {
+  const navigate = useNavigate()
+
   return (
     <section className="popular-tours">
       <Container maxWidth={false} className="popular-container">
@@ -35,9 +45,18 @@ export default function PopularTours() {
         {/* Horizontal tour cards */}
         <Box className="popular-grid">
           {tours.map((tour) => (
-            <Box className="popular-card" key={tour.title}>
+            <Box
+              className="popular-card"
+              key={tour.id}
+              onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <Box className="popular-media">
-                <img src={tour.img} alt={tour.title} className="popular-img" />
+                <img
+                  src={tour.images[0]}
+                  alt={tour.title}
+                  className="popular-img"
+                />
               </Box>
 
               <Box className="popular-body">
@@ -63,7 +82,7 @@ export default function PopularTours() {
                   </Box>
                   <Box className="popular-price">
                     <span>From </span>
-                    <strong>${tour.price}</strong>
+                    <strong>${tour.price.toLocaleString()}</strong>
                   </Box>
                 </Box>
               </Box>

@@ -7,12 +7,12 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { tours as allTours } from "../../../js/TourSingle"
-import type { Tour } from "../tourSinglePage/types"
+import { tours as allTours } from "js/TourSingle"
+import { featuredTourIds } from "js/Home"
+import type { Tour } from "app/libs/types"
 
 /* 4 featured tours for the home page (diverse destinations) */
-const featuredIds = [1, 13, 17, 24]
-const tours = featuredIds
+const tours = featuredTourIds
   .map((id) => allTours.find((t) => t.id === id))
   .filter((t): t is Tour => Boolean(t))
 

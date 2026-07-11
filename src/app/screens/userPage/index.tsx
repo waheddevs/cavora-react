@@ -1,3 +1,5 @@
+import { Box } from "@mui/material"
+
 export default function UserPage() {
-  return <div>User Page</div>
+  return <Box>User Page</Box>
 }

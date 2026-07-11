@@ -1,3 +1,5 @@
+import { Box } from "@mui/material"
+
 export default function UserNavbar() {
-  return <div>UserNavbar</div>
+  return <Box>UserNavbar</Box>
 }

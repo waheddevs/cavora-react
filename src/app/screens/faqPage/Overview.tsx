@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
-import { overviewFaqs as items } from "../../../js/Faq"
+import { overviewFaqs as items } from "js/Faq"
 
 export default function Overview() {
   const [open, setOpen] = useState<number | null>(null)

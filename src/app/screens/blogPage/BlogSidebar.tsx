@@ -21,9 +21,9 @@ export default function BlogSidebar({
 
       {/* Subscribe */}
       <Box className="subscribe-widget">
-        <div className="sub-icon">
+        <Box className="sub-icon">
           <SendRoundedIcon />
-        </div>
+        </Box>
         <h3>Explore new horizons with Cavora!</h3>
         <p>Get travel tips and inspiration delivered to your inbox weekly.</p>
         <form className="sub-form" onSubmit={(e) => e.preventDefault()}>

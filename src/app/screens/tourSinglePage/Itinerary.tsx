@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
-import type { Tour } from "./types"
+import type { Tour } from "app/libs/types"
 
 export default function Itinerary({ tour }: { tour: Tour }) {
   const [open, setOpen] = useState<number | null>(0)

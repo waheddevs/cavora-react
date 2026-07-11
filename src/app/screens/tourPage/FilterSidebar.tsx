@@ -1,24 +1,35 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Box, Slider } from "@mui/material"
-import { tours } from "../../../js/TourSingle"
+import { tours } from "js/TourSingle"
 import {
   durationBuckets,
   ratingOptions,
   tourTypes,
   makeDefaultFilters,
-} from "./filters"
-import type { TourFilters } from "./filters"
+} from "app/libs/filter/filters"
+import type { TourFilters } from "app/libs/filter/filters"
 
 interface Props {
   priceMin: number
   priceMax: number
+  initialFilters?: TourFilters
   onApply: (f: TourFilters) => void
 }
 
-export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
+export default function FilterSidebar({
+  priceMin,
+  priceMax,
+  initialFilters,
+  onApply,
+}: Props) {
   const [draft, setDraft] = useState<TourFilters>(
-    makeDefaultFilters(priceMin, priceMax),
+    initialFilters ?? makeDefaultFilters(priceMin, priceMax),
   )
+
+  // Keep the sidebar in sync when the initial filters change (e.g. URL type param)
+  useEffect(() => {
+    if (initialFilters) setDraft(initialFilters)
+  }, [initialFilters])
 
   const destinations = useMemo(() => {
     const counts: Record<string, number> = {}

@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material"
-import { galleryImages as images } from "../../../js/Home"
+import { galleryImages as images } from "js/Home"
 
 export default function TravelGallery() {
   return (

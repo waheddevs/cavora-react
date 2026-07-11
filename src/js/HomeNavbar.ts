@@ -4,8 +4,17 @@ import moment from "moment"
 /* Weekday headers (Monday-first) for the hero date picker */
 export const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
 
+/* Trust badges shown under the hero title.
+   "icon" maps to a component in HomeNavber.tsx */
+export const features = [
+  { label: "Safety", icon: "safety" },
+  { label: "Homologated", icon: "homologated" },
+  { label: "Tourism", icon: "tourism" },
+  { label: "Connected Pay", icon: "pay" },
+]
+
 /* Build a 6x7 grid of moment days covering the given month */
-export function buildMonthGrid(monthMoment) {
+export function buildMonthGrid(monthMoment: moment.Moment) {
   const gridStart = monthMoment.clone().startOf("month").startOf("isoWeek")
   const days = []
   for (let i = 0; i < 42; i++) {

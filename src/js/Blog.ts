@@ -1,10 +1,12 @@
 /* Blog data — shared by the blog list and blog details pages */
 
+import type { Post } from "app/libs/types"
+
 /* ===========================
    POSTS
 =========================== */
 
-export const posts = [
+export const posts: Post[] = [
   {
     id: 1,
     img: "/img/blog-img/post-1.jpg",

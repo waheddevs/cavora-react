@@ -6,7 +6,7 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded"
 import TerrainRoundedIcon from "@mui/icons-material/TerrainRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
-import type { Tour } from "./types"
+import type { Tour } from "app/libs/types"
 
 export default function AboutTour({ tour }: { tour: Tour }) {
   const [active, setActive] = useState(0)

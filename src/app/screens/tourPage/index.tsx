@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react"
+import { useSearchParams } from "react-router-dom"
 import { Box, Container } from "@mui/material"
 import SortBar from "./SortBar"
 import FilterSidebar from "./FilterSidebar"
 import TourCard from "./TourCard"
 import TourPagination from "./TourPagination"
-import { tours } from "../../../js/TourSingle"
-import { filterTours, sortTours, makeDefaultFilters } from "./filters"
-import type { TourFilters, SortKey } from "./filters"
-import type { Tour } from "../tourSinglePage/types"
-import "../../../css/tour.css"
+import { tours } from "js/TourSingle"
+import { filterTours, sortTours, makeDefaultFilters, tourTypes } from "app/libs/filter/filters"
+import type { TourFilters, SortKey } from "app/libs/filter/filters"
+import type { Tour } from "app/libs/types"
+import "css/tour.css"
 
 const PER_PAGE = 9
 
@@ -23,10 +24,25 @@ export default function TourPage() {
     [allTours],
   )
 
-  const [filters, setFilters] = useState<TourFilters>(() =>
-    makeDefaultFilters(priceMin, priceMax),
-  )
+  const [searchParams] = useSearchParams()
+  const typeParam = searchParams.get("type")
+
+  // Build initial filters, pre-selecting a tour type from the URL (?type=Adventure)
+  const initialFilters = useMemo(() => {
+    const base = makeDefaultFilters(priceMin, priceMax)
+    if (typeParam && tourTypes.includes(typeParam)) {
+      base.types = [typeParam]
+    }
+    return base
+  }, [priceMin, priceMax, typeParam])
+
+  const [filters, setFilters] = useState<TourFilters>(initialFilters)
   const [sort, setSort] = useState<SortKey>("default")
+
+  // Re-apply when the URL type param changes (e.g. clicking a footer tour type)
+  useEffect(() => {
+    setFilters(initialFilters)
+  }, [initialFilters])
   const [page, setPage] = useState(1)
   const [showFilters, setShowFilters] = useState(true)
   const topRef = useRef<HTMLDivElement>(null)
@@ -65,6 +81,7 @@ export default function TourPage() {
             <FilterSidebar
               priceMin={priceMin}
               priceMax={priceMax}
+              initialFilters={initialFilters}
               onApply={setFilters}
             />
           )}

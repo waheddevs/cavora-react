@@ -3,7 +3,7 @@ import GoldButton from "../../components/ui/GoldButton"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { storyFeatures as features } from "../../../js/About"
+import { storyFeatures as features } from "js/About"
 
 export default function OurStory() {
   return (
@@ -48,21 +48,21 @@ export default function OurStory() {
           {/* Right: image + badge */}
           <Box className="story-media">
             <Box className="story-inner">
-              <div className="story-ring" />
-              <div className="story-image">
+              <Box className="story-ring" />
+              <Box className="story-image">
                 <img
                   src="/img/about-us-img/about-intro.jpg"
                   alt="Travellers hiking in the mountains"
                 />
-              </div>
+              </Box>
               <Box className="story-badge">
-                <div className="badge-icon">
+                <Box className="badge-icon">
                   <WorkspacePremiumRoundedIcon />
-                </div>
-                <div className="badge-text">
+                </Box>
+                <Box className="badge-text">
                   <strong>Award Winning</strong>
                   <span>Travel Agency</span>
-                </div>
+                </Box>
               </Box>
             </Box>
           </Box>

@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material"
 import Overview from "./Overview"
 import Payment from "./Payment"
 import Safety from "./Safety"
-import "../../../css/faq.css"
+import "css/faq.css"
 
 export default function FaqPage() {
   return (

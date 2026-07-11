@@ -7,8 +7,8 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import BlogSidebar from "../blogPage/BlogSidebar"
-import { getPostById, getArticleBody, comments } from "../../../js/BlogDetails"
-import "../../../css/blog.css"
+import { getPostById, getArticleBody, comments } from "js/BlogDetails"
+import "css/blog.css"
 
 export default function BlogDetailsPage() {
   const [params] = useSearchParams()

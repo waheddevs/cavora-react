@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
-import { team } from "../../../js/About"
+import { team } from "js/About"
 
 export default function Team() {
   return (
@@ -21,9 +21,9 @@ export default function Team() {
         <Box className="team-grid">
           {team.map((member) => (
             <Box className="team-card" key={member.name}>
-              <div className="team-avatar">
+              <Box className="team-avatar">
                 <img src={member.img} alt={member.name} />
-              </div>
+              </Box>
               <Typography className="team-name">{member.name}</Typography>
               <Typography className="team-role">{member.role}</Typography>
 

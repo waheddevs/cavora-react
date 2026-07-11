@@ -1,12 +1,14 @@
 /* Blog details data — lookup, tags, article body and comments for the single post page */
 
 import { posts } from "./Blog"
+import type { Post, ArticleBlock } from "app/libs/types"
 
 /* ===========================
    LOOKUP
 =========================== */
 
-export const getPostById = (id) => posts.find((post) => post.id === Number(id))
+export const getPostById = (id: number | string) =>
+  posts.find((post) => post.id === Number(id))
 
 /* ===========================
    ARTICLE BODY (templated blocks)
@@ -14,7 +16,7 @@ export const getPostById = (id) => posts.find((post) => post.id === Number(id))
    title / excerpt / category feed the copy so each reads tailored.
 =========================== */
 
-export const getArticleBody = (post) => [
+export const getArticleBody = (post: Post): ArticleBlock[] => [
   {
     type: "paragraph",
     text: `${post.excerpt.replace(/\.{3}$/, "").trim()} What follows is a closer look at why this ${post.category.toLowerCase()} story stayed with us long after the journey ended, and what you can take from it before planning your own trip.`,

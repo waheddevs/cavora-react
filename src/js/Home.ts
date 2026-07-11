@@ -1,35 +1,15 @@
 /* Home page data — shared across the home page sections */
 
 /* ===========================
-   POPULAR TOURS
+   FEATURED / POPULAR TOUR IDS
+   (looked up from TourSingle.ts by id)
 =========================== */
 
-export const popularTours = [
-  {
-    img: "/img/home-page-img/tour-safari.jpg",
-    location: "Safari, Kenya",
-    days: "8 Days",
-    title: "African Safari Adventure",
-    rating: 4.6,
-    price: "1,499",
-  },
-  {
-    img: "/img/home-page-img/tour-maldives.jpg",
-    location: "Maldives",
-    days: "5 Days",
-    title: "Maldives Luxury Retreat",
-    rating: 5.0,
-    price: "2,199",
-  },
-  {
-    img: "/img/home-page-img/tour-kyoto.jpg",
-    location: "Kyoto, Japan",
-    days: "9 Days",
-    title: "Ancient Kyoto Journey",
-    rating: 4.2,
-    price: "1,099",
-  },
-]
+/* 4 featured tours for the "Discover Tours" section (diverse destinations) */
+export const featuredTourIds: number[] = [1, 13, 17, 24]
+
+/* 3 popular picks for the "Popular Tours" section (Paris, Fuji, Zermatt) */
+export const popularTourIds: number[] = [5, 19, 25]
 
 /* ===========================
    TRAVEL GALLERY

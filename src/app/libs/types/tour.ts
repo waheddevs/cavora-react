@@ -1,3 +1,5 @@
+/* Tour domain types — shared by tourPage, tourSinglePage and homePage */
+
 export interface TourItineraryDay {
   title: string
   text: string

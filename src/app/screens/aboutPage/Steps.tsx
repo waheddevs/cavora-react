@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { steps } from "../../../js/About"
+import { steps } from "js/About"
 
 export default function Steps() {
   return (
@@ -21,10 +21,10 @@ export default function Steps() {
               {steps.map((step) => (
                 <Box className="step-item" key={step.number}>
                   <span className="step-number">{step.number}</span>
-                  <div className="step-body">
+                  <Box className="step-body">
                     <Typography className="step-title">{step.title}</Typography>
                     <Typography className="step-text">{step.text}</Typography>
-                  </div>
+                  </Box>
                 </Box>
               ))}
             </Box>

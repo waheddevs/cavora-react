@@ -1,12 +1,12 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
-import App from "./app/App"
-import { store } from "./app/store"
+import App from "app/App"
+import { store } from "app/store"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@emotion/react"
-import theme from "./././app/MaterialTheme/index"
-import "./css/index.css"
+import theme from "app/MaterialTheme"
+import "css/index.css"
 import { BrowserRouter as Router } from "react-router-dom"
 
 const container = document.getElementById("root")

@@ -1,4 +1,8 @@
-import type { Tour } from "../tourSinglePage/types"
+import type { Tour } from "../types"
+
+/* ===========================
+   FILTER & SORT TYPES
+=========================== */
 
 export interface TourFilters {
   destinations: string[]
@@ -15,6 +19,10 @@ export type SortKey =
   | "rating"
   | "days-asc"
   | "days-desc"
+
+/* ===========================
+   FILTER OPTION LISTS
+=========================== */
 
 export const sortOptions: { value: SortKey; label: string }[] = [
   { value: "default", label: "Default" },
@@ -40,6 +48,10 @@ export const ratingOptions = [
 
 export const tourTypes = ["Adventure", "Cultural", "Beach", "Nature", "City"]
 
+/* ===========================
+   FILTER HELPERS
+=========================== */
+
 const dayNum = (days: string) => parseInt(days, 10) || 0
 
 const bucketOf = (days: string) => {
@@ -59,6 +71,10 @@ export const makeDefaultFilters = (
   types: [],
   minRating: 0,
 })
+
+/* ===========================
+   FILTER & SORT LOGIC
+=========================== */
 
 export function filterTours(tours: Tour[], f: TourFilters): Tour[] {
   return tours.filter((t) => {

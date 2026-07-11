@@ -8,30 +8,19 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import PinterestIcon from "@mui/icons-material/Pinterest"
-
-interface Post {
-  id: number
-  img: string
-  date: string
-  readTime: string
-  comments: number
-  title: string
-  excerpt: string
-  author: string
-  authorImg: string
-}
+import type { Post } from "app/libs/types"
 
 export default function BlogCard({ post }: { post: Post }) {
   const navigate = useNavigate()
   return (
     <Box className="blog-card">
-      <div className="blog-card-main">
-        <div className="blog-card-media">
+      <Box className="blog-card-main">
+        <Box className="blog-card-media">
           <img src={post.img} alt={post.title} />
-        </div>
+        </Box>
 
-        <div className="blog-card-body">
-          <div className="blog-meta">
+        <Box className="blog-card-body">
+          <Box className="blog-meta">
             <span className="meta">
               <CalendarMonthOutlinedIcon />
               {post.date}
@@ -44,7 +33,7 @@ export default function BlogCard({ post }: { post: Post }) {
               <ChatBubbleOutlineRoundedIcon />
               {post.comments} Comments
             </span>
-          </div>
+          </Box>
 
           <Typography className="blog-card-title">{post.title}</Typography>
           <Typography className="blog-card-excerpt">{post.excerpt}</Typography>
@@ -56,11 +45,11 @@ export default function BlogCard({ post }: { post: Post }) {
           >
             Read More
           </GoldButton>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      <div className="blog-card-footer">
-        <div className="blog-author">
+      <Box className="blog-card-footer">
+        <Box className="blog-author">
           <img
             src={post.authorImg}
             alt={post.author}
@@ -69,9 +58,9 @@ export default function BlogCard({ post }: { post: Post }) {
           <span>
             By <strong>{post.author}</strong>
           </span>
-        </div>
+        </Box>
 
-        <div className="blog-card-socials">
+        <Box className="blog-card-socials">
           <button type="button" aria-label="Share on Facebook">
             <FacebookIcon />
           </button>
@@ -81,8 +70,8 @@ export default function BlogCard({ post }: { post: Post }) {
           <button type="button" aria-label="Share on Pinterest">
             <PinterestIcon />
           </button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Box>
   )
 }

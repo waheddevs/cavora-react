@@ -3,7 +3,7 @@ import { Box } from "@mui/material"
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded"
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded"
 import BlogCard from "./BlogCard"
-import { posts } from "../../../js/Blog"
+import { posts } from "js/Blog"
 
 const POSTS_PER_PAGE = 4
 
@@ -31,12 +31,12 @@ export default function BlogList({ category }: { category: string }) {
   }
 
   return (
-    <div className="blog-list">
-      <div className="blog-cards" key={`${category}-${page}`}>
+    <Box className="blog-list">
+      <Box className="blog-cards" key={`${category}-${page}`}>
         {visiblePosts.map((post) => (
           <BlogCard key={post.id} post={post} />
         ))}
-      </div>
+      </Box>
 
       {/* Pagination */}
       {totalPages > 1 && (
@@ -73,6 +73,6 @@ export default function BlogList({ category }: { category: string }) {
           </button>
         </Box>
       )}
-    </div>
+    </Box>
   )
 }

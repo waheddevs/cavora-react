@@ -1,5 +1,6 @@
+import { Box } from "@mui/material"
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded"
-import { posts, categories } from "../../../js/Blog"
+import { posts, categories } from "js/Blog"
 
 interface Props {
   active: string
@@ -11,7 +12,7 @@ export default function Categories({ active, onSelect }: Props) {
     posts.filter((post) => post.category === label).length
 
   return (
-    <div className="sidebar-widget">
+    <Box className="sidebar-widget">
       <h3 className="widget-title">Categories</h3>
       <ul className="cat-list">
         <li
@@ -35,6 +36,6 @@ export default function Categories({ active, onSelect }: Props) {
           </li>
         ))}
       </ul>
-    </div>
+    </Box>
   )
 }
