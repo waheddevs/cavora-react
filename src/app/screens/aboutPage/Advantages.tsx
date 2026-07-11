@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import RouteRoundedIcon from "@mui/icons-material/RouteRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import MapRoundedIcon from "@mui/icons-material/MapRounded"
-import { advantages } from "js/About"
+import { advantages } from "ts/About"
 
 const icons: Record<string, JSX.Element> = {
   route: <RouteRoundedIcon />,

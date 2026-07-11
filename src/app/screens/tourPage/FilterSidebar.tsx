@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { Box, Slider } from "@mui/material"
-import { tours } from "js/TourSingle"
+import { tours } from "ts/TourSingle"
 import {
   durationBuckets,
   ratingOptions,

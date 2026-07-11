@@ -4,7 +4,7 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded"
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
 import SupportScene from "./SupportScene"
-import { contactInfo } from "js/Contact"
+import { contactInfo } from "ts/Contact"
 
 const icons: Record<string, JSX.Element> = {
   location: <LocationOnRoundedIcon />,

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Box, Container, Typography } from "@mui/material"
 import CountUp from "../../components/CountUp"
-import { stats } from "js/About"
+import { stats } from "ts/About"
 
 export default function Statistics() {
   const [run, setRun] = useState(false)

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
-import { paymentFaqs as items } from "js/Faq"
+import { paymentFaqs as items } from "ts/Faq"
 
 export default function Payment() {
   const [open, setOpen] = useState<number | null>(null)

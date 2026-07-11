@@ -4,7 +4,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { getRelatedTours } from "js/TourSingle"
+import { getRelatedTours } from "ts/TourSingle"
 import type { Tour } from "app/libs/types"
 
 export default function RelatedTours({ currentId }: { currentId: number }) {

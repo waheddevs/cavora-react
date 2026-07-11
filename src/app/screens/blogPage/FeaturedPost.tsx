@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
-import { featuredPosts } from "js/Blog"
+import { featuredPosts } from "ts/Blog"
 
 export default function FeaturedPost() {
   const navigate = useNavigate()

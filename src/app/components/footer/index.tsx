@@ -8,7 +8,7 @@ import PhoneIcon from "@mui/icons-material/Phone"
 import EmailIcon from "@mui/icons-material/Email"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import { NavLink } from "react-router-dom"
-import { quickLinks, tourTypes, contactInfo } from "js/Footer"
+import { quickLinks, tourTypes, contactInfo } from "ts/Footer"
 
 /* Map contactInfo icon keys (from Footer.ts) to MUI icon components */
 const contactIcons: Record<string, JSX.Element> = {

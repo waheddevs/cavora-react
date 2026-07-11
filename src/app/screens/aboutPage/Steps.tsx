@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { steps } from "js/About"
+import { steps } from "ts/About"
 
 export default function Steps() {
   return (

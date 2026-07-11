@@ -4,7 +4,7 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CountUp from "../../components/CountUp"
-import { ratingDistribution as distribution } from "js/TourSingle"
+import { ratingDistribution as distribution } from "ts/TourSingle"
 import type { Tour } from "app/libs/types"
 
 export default function IncludeRate({ tour }: { tour: Tour }) {

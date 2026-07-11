@@ -3,7 +3,7 @@ import { Box } from "@mui/material"
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded"
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded"
 import BlogCard from "./BlogCard"
-import { posts } from "js/Blog"
+import { posts } from "ts/Blog"
 
 const POSTS_PER_PAGE = 4
 

@@ -93,7 +93,40 @@ a { text-decoration: none; color: inherit; }
 .navbar-container .menu .btn {
   flex: 1;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 22px;
+}
+
+/* Secondary "Login" link — no border, same radius as other buttons,
+   cream background on hover. Dark by default; white over the home hero. */
+.navbar-container .menu .btn .navbar-login-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--dark);
+  padding: 7px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.28s ease, background-color 0.28s ease;
+}
+
+.navbar-container .menu .btn .navbar-login-link:hover,
+.navbar-container .menu .btn .navbar-login-link.active {
+  color: var(--gold-dark);
+  background-color: var(--bg-light);
+}
+
+.home-navbar .menu .btn .navbar-login-link {
+  color: #ffffff;
+}
+
+/* Primary "Sign Up" button — brand fill, white text, standard radius */
+.navbar-container .menu .btn .login-btn {
+  background-color: var(--gold);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
 }
 
 /* ===========================
@@ -101,43 +134,38 @@ a { text-decoration: none; color: inherit; }
 =========================== */
 
 .home-navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 20;
   width: 100%;
-  padding: 32px 0 20px;
+  padding: 26px 0;
   display: flex;
   justify-content: center;
+  /* Top state: original translucent glass look */
   background: rgba(255, 255, 255, 0.08);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.35s ease, padding 0.35s ease,
+    box-shadow 0.35s ease, border-color 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Scrolled state: solid blurred dark bar */
+.home-navbar.scrolled {
+  padding: 14px 0;
+  background: rgba(16, 18, 24, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
 }
 
 /* Home navbar links are white (over the hero image) */
 .home-navbar .links a {
   color: #fff;
-}
-
-.home-navbar .btn .login-btn {
-  background-color: transparent;
-  border: 1.4px solid rgba(255, 255, 255, 0.65);
-  color: #ffffff;
-  border-radius: 24px;
-  padding: 6px 26px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
-}
-
-.home-navbar .btn .login-btn:hover {
-  border-color: #ffb300;
-  color: #ffffff;
-  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.38);
-  transform: translateY(-2px);
 }
 
 /* ===========================
@@ -146,7 +174,7 @@ a { text-decoration: none; color: inherit; }
 
 .about-navbar {
   width: 100%;
-  padding: 32px 0 20px;
+  padding: 26px 0;
   display: flex;
   justify-content: center;
   background: var(--bg-light);
@@ -155,26 +183,6 @@ a { text-decoration: none; color: inherit; }
 /* About navbar links are dark (on the white bar) */
 .about-navbar .links a {
   color: var(--dark);
-}
-
-/* About Login button — gold outline pill */
-.about-navbar .btn .login-btn {
-  background-color: transparent;
-  border: 1.4px solid var(--gold);
-  color: var(--gold-dark);
-  border-radius: 24px;
-  padding: 6px 26px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
-}
-
-.about-navbar .btn .login-btn:hover {
-  border-color: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
-  transform: translateY(-2px);
 }
 
 /* ===========================
@@ -246,7 +254,7 @@ a { text-decoration: none; color: inherit; }
 
 .blog-navbar {
   width: 100%;
-  padding: 32px 0 20px;
+  padding: 26px 0;
   display: flex;
   justify-content: center;
   background: var(--bg-light);
@@ -255,26 +263,6 @@ a { text-decoration: none; color: inherit; }
 /* Blog navbar links are dark (on the white bar) */
 .blog-navbar .links a {
   color: var(--dark);
-}
-
-/* Blog Login button — gold outline pill */
-.blog-navbar .btn .login-btn {
-  background-color: transparent;
-  border: 1.4px solid var(--gold);
-  color: var(--gold-dark);
-  border-radius: 24px;
-  padding: 6px 26px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
-}
-
-.blog-navbar .btn .login-btn:hover {
-  border-color: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
-  transform: translateY(-2px);
 }
 
 /* Blog page header */
@@ -288,7 +276,7 @@ a { text-decoration: none; color: inherit; }
 
 .tour-navbar {
   width: 100%;
-  padding: 32px 0 20px;
+  padding: 26px 0;
   display: flex;
   justify-content: center;
   background: var(--bg-light);
@@ -297,26 +285,6 @@ a { text-decoration: none; color: inherit; }
 /* Tour navbar links are dark (on the light bar) */
 .tour-navbar .links a {
   color: var(--dark);
-}
-
-/* Tour Login button — gold outline pill */
-.tour-navbar .btn .login-btn {
-  background-color: transparent;
-  border: 1.4px solid var(--gold);
-  color: var(--gold-dark);
-  border-radius: 24px;
-  padding: 6px 26px;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
-}
-
-.tour-navbar .btn .login-btn:hover {
-  border-color: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 8px 22px rgba(255, 179, 0, 0.35);
-  transform: translateY(-2px);
 }
 
 /* Tour page header */

@@ -94,3 +94,18 @@ export function useHeroSlider(intervalMs = 5000) {
 
   return { activeSlide, setActiveSlide }
 }
+
+/* True once the page is scrolled past `threshold` px.
+   Drives the scroll-aware navbar (transparent → solid). */
+export function useScrolled(threshold = 40) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > threshold)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [threshold])
+
+  return scrolled
+}

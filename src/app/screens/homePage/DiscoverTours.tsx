@@ -7,8 +7,8 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { tours as allTours } from "js/TourSingle"
-import { featuredTourIds } from "js/Home"
+import { tours as allTours } from "ts/TourSingle"
+import { featuredTourIds } from "ts/Home"
 import type { Tour } from "app/libs/types"
 
 /* 4 featured tours for the home page (diverse destinations) */

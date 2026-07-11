@@ -50,7 +50,15 @@ export default function NavbarPanel() {
         </Stack>
 
         <Box className="btn">
-          <GoldButton className="login-btn">Login</GoldButton>
+          <NavLink to="/login" className="navbar-login-link">
+            Login
+          </NavLink>
+          <GoldButton
+            className="login-btn"
+            {...({ component: NavLink, to: "/signup" } as object)}
+          >
+            Sign up
+          </GoldButton>
         </Box>
       </Stack>
     </Container>

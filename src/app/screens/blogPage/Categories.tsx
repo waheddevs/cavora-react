@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded"
-import { posts, categories } from "js/Blog"
+import { posts, categories } from "ts/Blog"
 
 interface Props {
   active: string

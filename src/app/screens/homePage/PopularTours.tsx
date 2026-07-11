@@ -4,8 +4,8 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { tours as allTours } from "js/TourSingle"
-import { popularTourIds } from "js/Home"
+import { tours as allTours } from "ts/TourSingle"
+import { popularTourIds } from "ts/Home"
 import type { Tour } from "app/libs/types"
 
 /* 3 popular picks — real tours looked up by id (Paris, Fuji, Zermatt) */

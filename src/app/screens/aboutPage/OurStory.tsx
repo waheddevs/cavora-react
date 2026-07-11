@@ -3,7 +3,7 @@ import GoldButton from "../../components/ui/GoldButton"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { storyFeatures as features } from "js/About"
+import { storyFeatures as features } from "ts/About"
 
 export default function OurStory() {
   return (

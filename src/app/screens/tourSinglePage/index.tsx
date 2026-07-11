@@ -5,7 +5,7 @@ import Itinerary from "./Itinerary"
 import IncludeRate from "./IncludeRate"
 import OrderBar from "./OrderBar"
 import RelatedTours from "./RelatedTours"
-import { getTourById } from "js/TourSingle"
+import { getTourById } from "ts/TourSingle"
 import "css/tourSingle.css"
 
 export default function TourSinglePage() {

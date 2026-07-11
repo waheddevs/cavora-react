@@ -3,7 +3,7 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { reviews } from "js/About"
+import { reviews } from "ts/About"
 
 function renderStars(rating: number) {
   const stars = []

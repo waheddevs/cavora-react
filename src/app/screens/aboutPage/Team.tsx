@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
-import { team } from "js/About"
+import { team } from "ts/About"
 
 export default function Team() {
   return (

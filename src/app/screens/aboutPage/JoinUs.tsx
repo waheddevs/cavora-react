@@ -3,7 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import YouTubeIcon from "@mui/icons-material/YouTube"
 import TwitterIcon from "@mui/icons-material/Twitter"
-import { joinSocials } from "js/About"
+import { joinSocials } from "ts/About"
 
 const icons: Record<string, JSX.Element> = {
   Facebook: <FacebookIcon />,

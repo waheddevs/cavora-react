@@ -30,7 +30,8 @@ import {
   features,
   buildMonthGrid,
   useHeroSlider,
-} from "js/HomeNavbar"
+  useScrolled,
+} from "ts/HomeNavbar"
 
 const selectMenuProps = { classes: { paper: "hero-select-menu" } }
 
@@ -44,6 +45,7 @@ const featureIcons: Record<string, JSX.Element> = {
 
 export default function HomeNavbar() {
   const { activeSlide } = useHeroSlider(5000)
+  const scrolled = useScrolled(40)
   const active = heroSlides[activeSlide]
   const [location, setLocation] = useState("")
   const [tourType, setTourType] = useState("")
@@ -53,7 +55,7 @@ export default function HomeNavbar() {
   const [viewMonth, setViewMonth] = useState(moment())
   return (
     <>
-      <Box className="home-navbar">
+      <Box className={`home-navbar${scrolled ? " scrolled" : ""}`}>
         <NavbarPanel />
       </Box>
       <Box className="home-hero">
