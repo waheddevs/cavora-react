@@ -1,3 +1,4 @@
+import { Box } from "@mui/material"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
 import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded"
 import CallRoundedIcon from "@mui/icons-material/CallRounded"
@@ -10,7 +11,7 @@ import MailRoundedIcon from "@mui/icons-material/MailRounded"
  */
 export default function SupportScene() {
   return (
-    <div className="support-scene">
+    <Box className="support-scene">
       {/* Pulsing call rings */}
       <span className="ring ring-1" />
       <span className="ring ring-2" />
@@ -20,10 +21,10 @@ export default function SupportScene() {
       <span className="orbit" />
 
       {/* Central agent */}
-      <div className="agent">
+      <Box className="agent">
         <HeadsetMicRoundedIcon />
         <span className="agent-status" />
-      </div>
+      </Box>
 
       {/* Floating message bubbles */}
       <span className="bubble bubble-1">
@@ -35,6 +36,6 @@ export default function SupportScene() {
       <span className="bubble bubble-3">
         <MailRoundedIcon />
       </span>
-    </div>
+    </Box>
   )
 }

@@ -10,11 +10,11 @@ export default function TourSingleNavbar() {
 
   return (
     <>
-      <div className="tour-single-navbar">
+      <Box className="tour-single-navbar">
         <NavbarPanel />
-      </div>
+      </Box>
 
-      <div className="page-hero tour-single-hero">
+      <Box className="page-hero tour-single-hero">
         <Typography className="page-hero-tagline">Adventure Awaits</Typography>
         <Typography className="page-hero-title">
           {tour ? tour.title : "Tour"}
@@ -30,7 +30,7 @@ export default function TourSingleNavbar() {
           <ChevronRightRoundedIcon className="crumb-sep" />
           <span className="crumb-current">{tour ? tour.title : "Details"}</span>
         </Box>
-      </div>
+      </Box>
     </>
   )
 }

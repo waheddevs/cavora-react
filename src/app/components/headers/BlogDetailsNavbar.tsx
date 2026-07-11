@@ -6,12 +6,12 @@ import NavbarPanel from "./NavbarPanel"
 export default function BlogDetailsNavbar() {
   return (
     <>
-      <div className="blog-navbar">
+      <Box className="blog-navbar">
         <NavbarPanel />
-      </div>
+      </Box>
 
       {/* Page header / breadcrumb */}
-      <div className="page-hero blog-hero">
+      <Box className="page-hero blog-hero">
         <Typography className="page-hero-tagline">Travel Stories</Typography>
         <Typography className="page-hero-title">Blog Details</Typography>
         <Box className="page-hero-crumb">
@@ -25,7 +25,7 @@ export default function BlogDetailsNavbar() {
           <ChevronRightRoundedIcon className="crumb-sep" />
           <span className="crumb-current">Details</span>
         </Box>
-      </div>
+      </Box>
     </>
   )
 }

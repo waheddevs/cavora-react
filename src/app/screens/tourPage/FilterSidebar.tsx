@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { Slider } from "@mui/material"
+import { Box, Slider } from "@mui/material"
 import { tours } from "../../../js/TourSingle"
 import {
   durationBuckets,
@@ -47,15 +47,15 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
 
   return (
     <aside className="tour-filters">
-      <div className="tf-head">
+      <Box className="tf-head">
         <h3>Filters</h3>
         <button type="button" className="tf-clear" onClick={clearAll}>
           Clear all
         </button>
-      </div>
+      </Box>
 
       {/* Destination */}
-      <div className="tf-group">
+      <Box className="tf-group">
         <h4>Destination</h4>
         <ul className="tf-list">
           {destinations.map((d) => (
@@ -72,10 +72,10 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
 
       {/* Price Range */}
-      <div className="tf-group">
+      <Box className="tf-group">
         <h4>Price Range</h4>
         <Slider
           className="tf-slider"
@@ -87,14 +87,14 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
           }
           valueLabelDisplay="auto"
         />
-        <div className="tf-price-labels">
+        <Box className="tf-price-labels">
           <span>${draft.price[0].toLocaleString()}</span>
           <span>${draft.price[1].toLocaleString()}</span>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {/* Duration */}
-      <div className="tf-group">
+      <Box className="tf-group">
         <h4>Duration</h4>
         <ul className="tf-list">
           {durationBuckets.map((b) => (
@@ -110,10 +110,10 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
 
       {/* Tour Type */}
-      <div className="tf-group">
+      <Box className="tf-group">
         <h4>Tour Type</h4>
         <ul className="tf-list">
           {tourTypes.map((t) => (
@@ -129,10 +129,10 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
 
       {/* Min Rating */}
-      <div className="tf-group">
+      <Box className="tf-group">
         <h4>Min Rating</h4>
         <ul className="tf-list">
           {ratingOptions.map((r) => (
@@ -149,7 +149,7 @@ export default function FilterSidebar({ priceMin, priceMax, onApply }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
 
       <button type="button" className="tf-apply" onClick={() => onApply(draft)}>
         Apply Filters

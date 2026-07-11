@@ -23,20 +23,20 @@ export default function OrderBar({ tour }: { tour: Tour }) {
 
   return (
     <aside className="ts-order">
-      <div className="ts-order-card">
-        <div className="ts-order-price">
-          <div>
+      <Box className="ts-order-card">
+        <Box className="ts-order-price">
+          <Box>
             <small>From</small>
             <strong>${tour.price.toLocaleString()}</strong>
             <span className="ts-old">${tour.oldPrice.toLocaleString()}</span>
-          </div>
+          </Box>
           <span className="ts-order-rating">
             <StarRoundedIcon />
             {tour.rating.toFixed(1)}
           </span>
-        </div>
+        </Box>
 
-        <div className="ts-field">
+        <Box className="ts-field">
           <span>Check-in Date</span>
           <button
             type="button"
@@ -48,11 +48,11 @@ export default function OrderBar({ tour }: { tour: Tour }) {
               {date ? moment(date).format("DD MMM YYYY") : "Select a date"}
             </span>
           </button>
-        </div>
+        </Box>
 
-        <div className="ts-field">
+        <Box className="ts-field">
           <span>Guests</span>
-          <div className="ts-counter">
+          <Box className="ts-counter">
             <button
               type="button"
               aria-label="Decrease guests"
@@ -68,13 +68,13 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             >
               <AddRoundedIcon />
             </button>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
-        <div className="ts-total">
+        <Box className="ts-total">
           <span>Total Price</span>
           <strong>${total.toLocaleString()}</strong>
-        </div>
+        </Box>
 
         <button type="button" className="ts-book">
           <SailingRoundedIcon />
@@ -84,17 +84,17 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           <MailOutlineRoundedIcon />
           Send Enquiry
         </button>
-      </div>
+      </Box>
 
-      <div className="ts-help">
-        <div className="ts-help-icon">
+      <Box className="ts-help">
+        <Box className="ts-help-icon">
           <HeadsetMicRoundedIcon />
-        </div>
-        <div>
+        </Box>
+        <Box>
           <small>Need Help? Call us</small>
           <strong>+8210 1234-5678</strong>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {/* Themed date picker (same as the home hero search) */}
       <Popover

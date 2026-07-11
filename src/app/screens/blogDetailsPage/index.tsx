@@ -17,30 +17,30 @@ export default function BlogDetailsPage() {
 
   if (!post) {
     return (
-      <div className="blog-details-page">
+      <Box className="blog-details-page">
         <Container maxWidth={false} className="blog-container">
           <p className="details-empty">
             Post not found. <NavLink to="/blog">Back to Blog</NavLink>
           </p>
         </Container>
-      </div>
+      </Box>
     )
   }
 
   const body = getArticleBody(post)
 
   return (
-    <div className="blog-details-page">
+    <Box className="blog-details-page">
       <Container maxWidth={false} className="blog-container">
-        <div className="blog-layout">
+        <Box className="blog-layout">
           {/* Article */}
           <article className="details-main">
-            <div className="details-hero">
+            <Box className="details-hero">
               <img src={post.img} alt={post.title} />
               <span className="details-badge">{post.category}</span>
-            </div>
+            </Box>
 
-            <div className="blog-meta">
+            <Box className="blog-meta">
               <span className="meta">
                 <CalendarMonthOutlinedIcon />
                 {post.date}
@@ -53,11 +53,11 @@ export default function BlogDetailsPage() {
                 <ChatBubbleOutlineRoundedIcon />
                 {post.comments} Comments
               </span>
-            </div>
+            </Box>
 
             <Typography className="details-title">{post.title}</Typography>
 
-            <div className="details-body">
+            <Box className="details-body">
               {body.map((block, i) => {
                 if (block.type === "heading") {
                   return <h3 key={i}>{block.text}</h3>
@@ -85,40 +85,40 @@ export default function BlogDetailsPage() {
                 }
                 return <p key={i}>{block.text}</p>
               })}
-            </div>
+            </Box>
 
             {/* Author box */}
             <Box className="details-author">
               <img src={post.authorImg} alt={post.author} />
-              <div className="details-author-info">
+              <Box className="details-author-info">
                 <span className="details-author-label">Written by</span>
                 <h4>{post.author}</h4>
                 <p>
                   Travel writer and photographer sharing honest stories from the
                   road — one destination, and one unexpected detour, at a time.
                 </p>
-              </div>
+              </Box>
             </Box>
 
             {/* Comments */}
-            <div className="details-comments">
+            <Box className="details-comments">
               <h3 className="details-section-title">
                 {comments.length} Comments
               </h3>
-              <div className="comment-list">
+              <Box className="comment-list">
                 {comments.map((c) => (
-                  <div className="comment-item" key={c.id}>
+                  <Box className="comment-item" key={c.id}>
                     <img src={c.avatar} alt={c.name} />
-                    <div className="comment-body">
-                      <div className="comment-head">
+                    <Box className="comment-body">
+                      <Box className="comment-head">
                         <h5>{c.name}</h5>
                         <span>{c.date}</span>
-                      </div>
+                      </Box>
                       <p>{c.text}</p>
-                    </div>
-                  </div>
+                    </Box>
+                  </Box>
                 ))}
-              </div>
+              </Box>
 
               {/* Comment form */}
               <h3 className="details-section-title">Leave a Comment</h3>
@@ -126,14 +126,14 @@ export default function BlogDetailsPage() {
                 className="comment-form"
                 onSubmit={(e) => e.preventDefault()}
               >
-                <div className="comment-form-row">
+                <Box className="comment-form-row">
                   <input type="text" placeholder="Your name" aria-label="Your name" />
                   <input
                     type="email"
                     placeholder="Your email"
                     aria-label="Your email"
                   />
-                </div>
+                </Box>
                 <textarea
                   rows={5}
                   placeholder="Write your comment..."
@@ -144,7 +144,7 @@ export default function BlogDetailsPage() {
                   <ArrowForwardRoundedIcon />
                 </button>
               </form>
-            </div>
+            </Box>
           </article>
 
           {/* Sidebar (reused) */}
@@ -152,8 +152,8 @@ export default function BlogDetailsPage() {
             activeCategory="All Posts"
             onSelectCategory={() => navigate("/blog")}
           />
-        </div>
+        </Box>
       </Container>
-    </div>
+    </Box>
   )
 }

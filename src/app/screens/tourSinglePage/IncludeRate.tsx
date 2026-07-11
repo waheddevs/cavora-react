@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { Box } from "@mui/material"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
@@ -32,9 +33,9 @@ export default function IncludeRate({ tour }: { tour: Tour }) {
   return (
     <>
       {/* What's included */}
-      <div className="ts-card">
+      <Box className="ts-card">
         <h3 className="ts-heading">What's Included</h3>
-        <div className="ts-include-grid">
+        <Box className="ts-include-grid">
           <ul className="ts-include">
             {tour.included.map((item) => (
               <li key={item}>
@@ -51,49 +52,49 @@ export default function IncludeRate({ tour }: { tour: Tour }) {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {/* Guest reviews */}
-      <div className="ts-card">
+      <Box className="ts-card">
         <h3 className="ts-heading">Guest Reviews</h3>
-        <div className="ts-reviews" ref={reviewsRef}>
-          <div className="ts-review-score">
+        <Box className="ts-reviews" ref={reviewsRef}>
+          <Box className="ts-review-score">
             <strong>{tour.rating.toFixed(1)}</strong>
-            <div className="ts-review-stars">
+            <Box className="ts-review-stars">
               {Array.from({ length: 5 }).map((_, i) => (
                 <StarRoundedIcon
-                  key={i} 
+                  key={i}
                   className={i < Math.round(tour.rating) ? "on" : ""}
                 />
               ))}
-            </div>
+            </Box>
             <span>
               Based on <CountUp end={tour.reviews} run={run} /> reviews
             </span>
-          </div>
+          </Box>
 
-          <div className="ts-review-bars">
+          <Box className="ts-review-bars">
             {distribution.map((pct, i) => (
-              <div className="ts-review-bar" key={i}>
+              <Box className="ts-review-bar" key={i}>
                 <span className="ts-bar-label">{5 - i} star</span>
-                <div className="ts-bar-track">
-                  <div
+                <Box className="ts-bar-track">
+                  <Box
                     className="ts-bar-fill"
                     style={{
                       width: run ? `${pct}%` : "0%",
                       transitionDelay: `${i * 0.12}s`,
                     }}
                   />
-                </div>
+                </Box>
                 <span className="ts-bar-pct">
                   <CountUp end={pct} run={run} />%
                 </span>
-              </div>
+              </Box>
             ))}
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </>
   )
 }

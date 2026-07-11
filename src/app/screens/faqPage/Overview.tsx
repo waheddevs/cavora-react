@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import { overviewFaqs as items } from "../../../js/Faq"
 
@@ -8,9 +9,9 @@ export default function Overview() {
   return (
     <section className="faq-section">
       <h2 className="faq-section-title">Overview</h2>
-      <div className="faq-list">
+      <Box className="faq-list">
         {items.map((item, i) => (
-          <div className={`faq-item${open === i ? " open" : ""}`} key={item.q}>
+          <Box className={`faq-item${open === i ? " open" : ""}`} key={item.q}>
             <button
               type="button"
               className="faq-question"
@@ -19,12 +20,12 @@ export default function Overview() {
               <span>{item.q}</span>
               <ExpandMoreRoundedIcon className="faq-chevron" />
             </button>
-            <div className="faq-answer">
+            <Box className="faq-answer">
               <p>{item.a}</p>
-            </div>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
+      </Box>
     </section>
   )
 }

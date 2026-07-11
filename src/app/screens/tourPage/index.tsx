@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Container } from "@mui/material"
+import { Box, Container } from "@mui/material"
 import SortBar from "./SortBar"
 import FilterSidebar from "./FilterSidebar"
 import TourCard from "./TourCard"
@@ -49,9 +49,9 @@ export default function TourPage() {
   }, [filters, sort])
 
   return (
-    <div className="tour-page">
+    <Box className="tour-page">
       <Container maxWidth={false} className="tour-container">
-        <div ref={topRef} className="tour-top-anchor" />
+        <Box ref={topRef} className="tour-top-anchor" />
         <SortBar
           count={filtered.length}
           showFilters={showFilters}
@@ -60,7 +60,7 @@ export default function TourPage() {
           onSortChange={setSort}
         />
 
-        <div className={`tour-layout${showFilters ? "" : " collapsed"}`}>
+        <Box className={`tour-layout${showFilters ? "" : " collapsed"}`}>
           {showFilters && (
             <FilterSidebar
               priceMin={priceMin}
@@ -69,13 +69,13 @@ export default function TourPage() {
             />
           )}
 
-          <div className="tour-main">
+          <Box className="tour-main">
             {paged.length ? (
-              <div className="tour-grid" key={`${page}-${sort}`}>
+              <Box className="tour-grid" key={`${page}-${sort}`}>
                 {paged.map((tour) => (
                   <TourCard key={tour.id} tour={tour} />
                 ))}
-              </div>
+              </Box>
             ) : (
               <p className="tour-empty">
                 No tours match your filters. Try adjusting them.
@@ -87,9 +87,9 @@ export default function TourPage() {
               totalPages={totalPages}
               onChange={goToPage}
             />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Container>
-    </div>
+    </Box>
   )
 }

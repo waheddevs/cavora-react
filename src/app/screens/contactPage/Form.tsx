@@ -19,48 +19,48 @@ export default function Form() {
           className="contact-form"
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="form-row">
-            <div className="form-field">
+          <Box className="form-row">
+            <Box className="form-field">
               <label>Full Name</label>
               <input type="text" placeholder="John Doe" aria-label="Full name" />
-            </div>
-            <div className="form-field">
+            </Box>
+            <Box className="form-field">
               <label>Email Address</label>
               <input
                 type="email"
                 placeholder="john@example.com"
                 aria-label="Email address"
               />
-            </div>
-          </div>
+            </Box>
+          </Box>
 
-          <div className="form-row">
-            <div className="form-field">
+          <Box className="form-row">
+            <Box className="form-field">
               <label>Phone Number</label>
               <input
                 type="tel"
                 placeholder="(209) 555-0104"
                 aria-label="Phone number"
               />
-            </div>
-            <div className="form-field">
+            </Box>
+            <Box className="form-field">
               <label>Subject</label>
               <input
                 type="text"
                 placeholder="Tour enquiry"
                 aria-label="Subject"
               />
-            </div>
-          </div>
+            </Box>
+          </Box>
 
-          <div className="form-field">
+          <Box className="form-field">
             <label>Message</label>
             <textarea
               rows={6}
               placeholder="Tell us about your dream trip..."
               aria-label="Message"
             />
-          </div>
+          </Box>
 
           <button type="submit" className="form-submit">
             Send Message

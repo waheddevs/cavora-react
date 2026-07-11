@@ -33,11 +33,11 @@ export default function GetInTouch() {
             <Box className="info-list">
               {contactInfo.map((item) => (
                 <Box className="info-item" key={item.label}>
-                  <div className="info-icon">{icons[item.icon]}</div>
-                  <div className="info-body">
+                  <Box className="info-icon">{icons[item.icon]}</Box>
+                  <Box className="info-body">
                     <span className="info-label">{item.label}</span>
                     <strong className="info-value">{item.value}</strong>
-                  </div>
+                  </Box>
                 </Box>
               ))}
             </Box>
@@ -47,17 +47,17 @@ export default function GetInTouch() {
           <Box className="contact-media">
             <span className="media-blob" />
             <span className="media-dots" />
-            <div className="media-frame">
+            <Box className="media-frame">
               <SupportScene />
-            </div>
+            </Box>
             <Box className="media-badge">
-              <div className="badge-ic">
+              <Box className="badge-ic">
                 <HeadsetMicRoundedIcon />
-              </div>
-              <div className="badge-tx">
+              </Box>
+              <Box className="badge-tx">
                 <strong>24/7 Support</strong>
                 <span>We reply within 24 hours</span>
-              </div>
+              </Box>
             </Box>
           </Box>
         </Box>

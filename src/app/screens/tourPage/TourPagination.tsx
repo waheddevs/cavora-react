@@ -1,3 +1,4 @@
+import { Box } from "@mui/material"
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded"
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded"
 
@@ -11,7 +12,7 @@ export default function TourPagination({ page, totalPages, onChange }: Props) {
   if (totalPages <= 1) return null
 
   return (
-    <div className="tour-pagination">
+    <Box className="tour-pagination">
       <button
         type="button"
         className="tp-btn arrow"
@@ -42,6 +43,6 @@ export default function TourPagination({ page, totalPages, onChange }: Props) {
       >
         <ChevronRightRoundedIcon />
       </button>
-    </div>
+    </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Box, Container } from "@mui/material"
 import { NavLink, useSearchParams } from "react-router-dom"
 import AboutTour from "./AboutTour"
 import Itinerary from "./Itinerary"
@@ -14,30 +14,30 @@ export default function TourSinglePage() {
 
   if (!tour) {
     return (
-      <div className="tour-single-page">
+      <Box className="tour-single-page">
         <Container maxWidth={false} className="ts-container">
           <p className="ts-empty">
             Tour not found. <NavLink to="/tour">Back to Tours</NavLink>
           </p>
         </Container>
-      </div>
+      </Box>
     )
   }
 
   return (
-    <div className="tour-single-page">
+    <Box className="tour-single-page">
       <Container maxWidth={false} className="ts-container">
-        <div className="ts-layout">
-          <div className="ts-main">
+        <Box className="ts-layout">
+          <Box className="ts-main">
             <AboutTour tour={tour} />
             <Itinerary tour={tour} />
             <IncludeRate tour={tour} />
-          </div>
+          </Box>
           <OrderBar tour={tour} />
-        </div>
+        </Box>
 
         <RelatedTours currentId={tour.id} />
       </Container>
-    </div>
+    </Box>
   )
 }

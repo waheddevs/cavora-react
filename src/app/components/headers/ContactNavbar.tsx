@@ -6,12 +6,12 @@ import NavbarPanel from "./NavbarPanel"
 export default function ContactNavbar() {
   return (
     <>
-      <div className="contact-navbar">
+      <Box className="contact-navbar">
         <NavbarPanel />
-      </div>
+      </Box>
 
       {/* Page header / breadcrumb */}
-      <div className="page-hero contact-hero">
+      <Box className="page-hero contact-hero">
         <Typography className="page-hero-tagline">Get in Touch</Typography>
         <Typography className="page-hero-title">Contact us</Typography>
         <Box className="page-hero-crumb">
@@ -21,7 +21,7 @@ export default function ContactNavbar() {
           <ChevronRightRoundedIcon className="crumb-sep" />
           <span className="crumb-current">Contact us</span>
         </Box>
-      </div>
+      </Box>
     </>
   )
 }

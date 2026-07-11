@@ -12,14 +12,14 @@ export default function AboutTour({ tour }: { tour: Tour }) {
   const [active, setActive] = useState(0)
 
   return (
-    <div className="ts-about">
+    <Box className="ts-about">
       {/* Gallery */}
-      <div className="ts-gallery">
-        <div className="ts-gallery-main">
+      <Box className="ts-gallery">
+        <Box className="ts-gallery-main">
           <img src={tour.images[active]} alt={tour.title} key={active} />
           <span className="ts-badge">{tour.type}</span>
-        </div>
-        <div className="ts-thumbs">
+        </Box>
+        <Box className="ts-thumbs">
           {tour.images.map((img, i) => (
             <button
               type="button"
@@ -30,8 +30,8 @@ export default function AboutTour({ tour }: { tour: Tour }) {
               <img src={img} alt={`${tour.title} ${i + 1}`} />
             </button>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {/* Meta bar */}
       <Box className="ts-meta">
@@ -66,12 +66,12 @@ export default function AboutTour({ tour }: { tour: Tour }) {
       </Box>
 
       {/* Overview */}
-      <div className="ts-card">
+      <Box className="ts-card">
         <Typography className="ts-title">
           <span className="ts-title-mark" />
           {tour.title}
         </Typography>
-        <div className="ts-rating-inline">
+        <Box className="ts-rating-inline">
           {Array.from({ length: 5 }).map((_, i) => (
             <StarRoundedIcon
               key={i}
@@ -81,13 +81,13 @@ export default function AboutTour({ tour }: { tour: Tour }) {
           <span>
             {tour.rating.toFixed(1)} ({tour.reviews} reviews)
           </span>
-        </div>
+        </Box>
         <h3 className="ts-heading">Overview</h3>
         <p className="ts-text">{tour.overview}</p>
-      </div>
+      </Box>
 
       {/* Highlights */}
-      <div className="ts-card">
+      <Box className="ts-card">
         <h3 className="ts-heading">Tour Highlights</h3>
         <ul className="ts-highlights">
           {tour.highlights.map((h) => (
@@ -97,7 +97,7 @@ export default function AboutTour({ tour }: { tour: Tour }) {
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

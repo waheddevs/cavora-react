@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Typography } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
@@ -13,24 +13,26 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
 
   return (
     <section className="ts-related">
-      <div className="ts-related-head">
-        <Typography className="ts-related-tagline">You Might Also Like</Typography>
+      <Box className="ts-related-head">
+        <Typography className="ts-related-tagline">
+          You Might Also Like
+        </Typography>
         <Typography className="ts-related-title">Related Tours</Typography>
-      </div>
+      </Box>
 
-      <div className="ts-related-grid">
+      <Box className="ts-related-grid">
         {related.map((tour) => (
-          <div
+          <Box
             className="ts-related-card"
             key={tour.id}
             onClick={() => navigate(`/tour-single?id=${tour.id}`)}
           >
-            <div className="ts-related-media">
+            <Box className="ts-related-media">
               <img src={tour.images[0]} alt={tour.title} />
               <span className="ts-badge">{tour.type}</span>
-            </div>
-            <div className="ts-related-body">
-              <div className="ts-related-meta">
+            </Box>
+            <Box className="ts-related-body">
+              <Box className="ts-related-meta">
                 <span>
                   <LocationOnRoundedIcon />
                   {tour.location}
@@ -39,9 +41,9 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
                   <AccessTimeRoundedIcon />
                   {tour.days}
                 </span>
-              </div>
+              </Box>
               <Typography className="ts-related-name">{tour.title}</Typography>
-              <div className="ts-related-foot">
+              <Box className="ts-related-foot">
                 <span className="ts-related-rating">
                   <StarRoundedIcon />
                   {tour.rating.toFixed(1)}
@@ -49,7 +51,7 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
                 <span className="ts-related-price">
                   <small>From</small> ${tour.price.toLocaleString()}
                 </span>
-              </div>
+              </Box>
               <button
                 type="button"
                 className="ts-related-btn"
@@ -58,10 +60,10 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
                 View Now
                 <ArrowForwardRoundedIcon />
               </button>
-            </div>
-          </div>
+            </Box>
+          </Box>
         ))}
-      </div>
+      </Box>
     </section>
   )
 }

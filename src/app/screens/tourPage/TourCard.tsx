@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Box } from "@mui/material"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded"
@@ -28,8 +29,8 @@ export default function TourCard({ tour }: { tour: Tour }) {
   const open = () => navigate(`/tour-single?id=${tour.id}`)
 
   return (
-    <div className="tour-card">
-      <div className="tc-media" onClick={open}>
+    <Box className="tour-card" onClick={open} style={{ cursor: "pointer" }}>
+      <Box className="tc-media">
         <img src={tour.images[0]} alt={tour.title} />
         <span className="tc-badge">{tour.type}</span>
         <button
@@ -43,21 +44,19 @@ export default function TourCard({ tour }: { tour: Tour }) {
         >
           {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
         </button>
-      </div>
+      </Box>
 
-      <div className="tc-body">
-        <div className="tc-rating">
+      <Box className="tc-body">
+        <Box className="tc-rating">
           {renderStars(tour.rating)}
           <span>
             {tour.rating.toFixed(1)} ({tour.reviews} reviews)
           </span>
-        </div>
+        </Box>
 
-        <h3 className="tc-title" onClick={open}>
-          {tour.title}
-        </h3>
+        <h3 className="tc-title">{tour.title}</h3>
 
-        <div className="tc-meta">
+        <Box className="tc-meta">
           <span>
             <LocationOnRoundedIcon />
             {tour.location}
@@ -70,20 +69,20 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <GroupsRoundedIcon />
             {tour.group}
           </span>
-        </div>
+        </Box>
 
-        <div className="tc-foot">
-          <div className="tc-price">
+        <Box className="tc-foot">
+          <Box className="tc-price">
             <small>From</small>
             <strong>${tour.price.toLocaleString()}</strong>
             <span>/person</span>
-          </div>
+          </Box>
           <button type="button" className="tc-btn" onClick={open}>
             View Tour
             <ArrowForwardRoundedIcon />
           </button>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }

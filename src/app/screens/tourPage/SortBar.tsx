@@ -1,4 +1,6 @@
+import { Box, MenuItem, Select } from "@mui/material"
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded"
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
 import { sortOptions } from "./filters"
 import type { SortKey } from "./filters"
 
@@ -18,8 +20,8 @@ export default function SortBar({
   onSortChange,
 }: Props) {
   return (
-    <div className="tour-topbar">
-      <div className="tour-topbar-left">
+    <Box className="tour-topbar">
+      <Box className="tour-topbar-left">
         <button type="button" className="filters-toggle" onClick={onToggleFilters}>
           <TuneRoundedIcon />
           {showFilters ? "Hide Filters" : "Show Filters"}
@@ -27,22 +29,30 @@ export default function SortBar({
         <span className="tours-found">
           <strong>{count}</strong> Tours Found
         </span>
-      </div>
+      </Box>
 
-      <div className="tour-sort">
-        <label htmlFor="tour-sort">Sort by:</label>
-        <select
-          id="tour-sort"
+      <Box className="tour-sort">
+        <span className="sort-label">Sort by:</span>
+        <Select
+          className="tour-sort-select"
           value={sort}
           onChange={(e) => onSortChange(e.target.value as SortKey)}
+          variant="standard"
+          disableUnderline
+          IconComponent={KeyboardArrowDownRoundedIcon}
+          MenuProps={{
+            classes: { paper: "tour-sort-menu" },
+            anchorOrigin: { vertical: "bottom", horizontal: "right" },
+            transformOrigin: { vertical: "top", horizontal: "right" },
+          }}
         >
           {sortOptions.map((o) => (
-            <option key={o.value} value={o.value}>
+            <MenuItem key={o.value} value={o.value}>
               {o.label}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </div>
-    </div>
+        </Select>
+      </Box>
+    </Box>
   )
 }

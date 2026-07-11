@@ -6,12 +6,12 @@ import NavbarPanel from "./NavbarPanel"
 export default function FaqNavbar() {
   return (
     <>
-      <div className="faq-navbar">
+      <Box className="faq-navbar">
         <NavbarPanel />
-      </div>
+      </Box>
 
       {/* Page header / breadcrumb */}
-      <div className="page-hero faq-hero">
+      <Box className="page-hero faq-hero">
         <Typography className="page-hero-tagline">Help Center</Typography>
         <Typography className="page-hero-title">
           Frequently Asked Questions
@@ -23,7 +23,7 @@ export default function FaqNavbar() {
           <ChevronRightRoundedIcon className="crumb-sep" />
           <span className="crumb-current">FAQ</span>
         </Box>
-      </div>
+      </Box>
     </>
   )
 }
