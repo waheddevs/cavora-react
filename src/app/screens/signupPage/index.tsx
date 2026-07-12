@@ -87,7 +87,7 @@ export default function SignupPage() {
                   type="text"
                   className={errors.firstName ? "has-error" : ""}
                   value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={e => setFirstName(e.target.value)}
                   aria-label="First name"
                 />
                 {errors.firstName && (
@@ -101,7 +101,7 @@ export default function SignupPage() {
                   type="text"
                   className={errors.lastName ? "has-error" : ""}
                   value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={e => setLastName(e.target.value)}
                   aria-label="Last name"
                 />
                 {errors.lastName && (
@@ -117,7 +117,7 @@ export default function SignupPage() {
                 type="email"
                 className={errors.email ? "has-error" : ""}
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 aria-label="Email"
               />
               {errors.email && (
@@ -137,7 +137,7 @@ export default function SignupPage() {
                 type="text"
                 className={errors.username ? "has-error" : ""}
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={e => setUsername(e.target.value)}
                 aria-label="Username"
               />
               {errors.username && (
@@ -155,7 +155,7 @@ export default function SignupPage() {
                 type="password"
                 className={errors.password ? "has-error" : ""}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 aria-label="Password"
               />
               {errors.password && (
@@ -164,7 +164,7 @@ export default function SignupPage() {
             </Box>
 
             <button type="submit" className="auth-submit">
-              Join
+              Sign Up
             </button>
           </Box>
 

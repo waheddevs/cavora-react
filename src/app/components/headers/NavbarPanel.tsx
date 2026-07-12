@@ -1,5 +1,6 @@
 import { Box, Container, Stack } from "@mui/material"
 import { NavLink } from "react-router-dom"
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import GoldButton from "../ui/GoldButton"
 
 /**
@@ -36,11 +37,6 @@ export default function NavbarPanel() {
           <Box>
             <NavLink to={"/about"}>About Us</NavLink>
           </Box>
-          {authMember ? (
-            <Box>
-              <NavLink to={"/user"}>My Page</NavLink>
-            </Box>
-          ) : null}
           <Box>
             <NavLink to={"/faq"}>FAQ</NavLink>
           </Box>
@@ -50,15 +46,28 @@ export default function NavbarPanel() {
         </Stack>
 
         <Box className="btn">
-          <NavLink to="/login" className="navbar-login-link">
-            Login
-          </NavLink>
-          <GoldButton
-            className="login-btn"
-            {...({ component: NavLink, to: "/signup" } as object)}
-          >
-            Sign up
-          </GoldButton>
+          {authMember ? (
+            /* Signed in — link to the account page */
+            <NavLink
+              to="/user"
+              className="navbar-user-icon"
+              aria-label="My account"
+            >
+              <PersonRoundedIcon />
+            </NavLink>
+          ) : (
+            <>
+              <NavLink to="/login" className="navbar-login-link">
+                Login
+              </NavLink>
+              <GoldButton
+                className="login-btn"
+                {...({ component: NavLink, to: "/signup" } as object)}
+              >
+                Sign up
+              </GoldButton>
+            </>
+          )}
         </Box>
       </Stack>
     </Container>

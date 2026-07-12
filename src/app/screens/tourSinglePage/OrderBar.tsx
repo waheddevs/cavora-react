@@ -8,9 +8,11 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
 import AddRoundedIcon from "@mui/icons-material/AddRounded"
 import SailingRoundedIcon from "@mui/icons-material/SailingRounded"
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded"
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
 import { weekDays, buildMonthGrid } from "ts/HomeNavbar"
+import { isWishlisted, toggleWishlist } from "ts/wishlist"
 import type { Tour } from "app/libs/types"
 
 export default function OrderBar({ tour }: { tour: Tour }) {
@@ -18,6 +20,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
   const [guests, setGuests] = useState(1)
   const [calAnchor, setCalAnchor] = useState<HTMLElement | null>(null)
   const [viewMonth, setViewMonth] = useState(moment())
+  const [saved, setSaved] = useState(() => isWishlisted(tour.id))
 
   const total = tour.price * guests
 
@@ -80,9 +83,13 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           <SailingRoundedIcon />
           Book Now
         </button>
-        <button type="button" className="ts-enquiry">
-          <MailOutlineRoundedIcon />
-          Send Enquiry
+        <button
+          type="button"
+          className={`ts-wishlist${saved ? " saved" : ""}`}
+          onClick={() => setSaved(toggleWishlist(tour.id))}
+        >
+          {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
+          {saved ? "Saved to Wishlist" : "Add to Wishlist"}
         </button>
       </Box>
 

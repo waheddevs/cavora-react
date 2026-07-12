@@ -96,14 +96,14 @@ export default function LoginPage() {
             </Box>
 
             <button type="submit" className="auth-submit">
-              Login
+              Log In
             </button>
           </Box>
 
           <Box className="auth-switch">
             Don't have an account?{" "}
             <Link to="/signup" className="auth-link">
-              Join
+              Sign Up
             </Link>
           </Box>
         </Box>

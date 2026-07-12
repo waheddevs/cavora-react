@@ -665,7 +665,7 @@
 }
 
 .ts-book,
-.ts-enquiry {
+.ts-wishlist {
   width: 100%;
   display: flex;
   align-items: center;
@@ -691,19 +691,31 @@
   background: var(--gold-dark);
 }
 
-.ts-enquiry {
+.ts-wishlist {
   background: transparent;
   border: 1.4px solid var(--gold);
   color: var(--gold-dark);
 }
 
-.ts-enquiry:hover {
+.ts-wishlist:hover {
   background: var(--gold);
   color: #ffffff;
 }
 
+/* Saved state — filled gold with a solid heart */
+.ts-wishlist.saved {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #ffffff;
+}
+
+.ts-wishlist.saved:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+}
+
 .ts-book svg,
-.ts-enquiry svg {
+.ts-wishlist svg {
   font-size: 19px;
 }
 

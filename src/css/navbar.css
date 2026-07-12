@@ -129,6 +129,34 @@ a { text-decoration: none; color: inherit; }
   border-radius: 8px;
 }
 
+/* Disable the GoldButton left-to-right fill overlay in the navbar */
+.navbar-container .menu .btn .login-btn::before {
+  display: none;
+}
+
+.navbar-container .menu .btn .login-btn:hover {
+  background-color: var(--gold-dark);
+}
+
+/* Signed-in account icon (shown instead of Login/Sign up) */
+.navbar-container .menu .btn .navbar-user-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--gold);
+  color: #ffffff;
+}
+
+.navbar-container .menu .btn .navbar-user-icon:hover {
+  background-color: var(--gold-dark);
+}
+
+.navbar-container .menu .btn .navbar-user-icon svg {
+  font-size: 24px;
+}
+
 /* ===========================
    HOME NAVBAR
 =========================== */
@@ -182,6 +210,23 @@ a { text-decoration: none; color: inherit; }
 
 /* About navbar links are dark (on the white bar) */
 .about-navbar .links a {
+  color: var(--dark);
+}
+
+/* ===========================
+   USER NAVBAR (solid light bar)
+=========================== */
+
+.user-navbar {
+  width: 100%;
+  padding: 26px 0;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-light);
+}
+
+/* User navbar links are dark (on the light bar) */
+.user-navbar .links a {
   color: var(--dark);
 }
 
