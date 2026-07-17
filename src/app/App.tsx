@@ -22,7 +22,7 @@ import TourSingleNavbar from "./components/headers/TourSingleNavbar"
 import Footer from "./components/footer"
 import ScrollToTop from "./components/ScrollToTop"
 /* CSS */
-import "css/app.css"
+import "css/App.css"
 import "css/navbar.css"
 import "css/footer.css"
 
