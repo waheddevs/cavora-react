@@ -1,8 +1,11 @@
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import { currentUser } from "ts/User"
 
 export default function Settings() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -12,9 +15,9 @@ export default function Settings() {
     location: currentUser.location,
   })
 
-  const handleChange = (key: keyof typeof form) => (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => setForm({ ...form, [key]: e.target.value })
+  const handleChange =
+    (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
+      setForm({ ...form, [key]: e.target.value })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -22,12 +25,15 @@ export default function Settings() {
     console.log("Profile updated", form)
   }
 
+  const handleLogout = () => {
+    /* Static — no backend yet. */
+    navigate("/login")
+  }
+
   return (
     <Box className="user-panel">
-      <Typography className="user-panel-title">Account Settings</Typography>
-      <Typography className="user-panel-subtitle">
-        Update your personal information.
-      </Typography>
+      <h2 className="user-panel-title">Account Settings</h2>
+      <p className="user-panel-subtitle">Update your personal information.</p>
 
       <Box
         component="form"
@@ -95,6 +101,21 @@ export default function Settings() {
 
         <button type="submit" className="settings-submit">
           Save Changes
+        </button>
+      </Box>
+
+      <Box className="settings-divider" />
+
+      <Box className="settings-danger-zone">
+        <Box>
+          <h3 className="settings-danger-title">Log Out</h3>
+          <p className="settings-danger-subtitle">
+            Sign out of your Cavora account on this device.
+          </p>
+        </Box>
+        <button type="button" className="danger-button" onClick={handleLogout}>
+          <LogoutRoundedIcon />
+          Log Out
         </button>
       </Box>
     </Box>

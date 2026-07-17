@@ -1,46 +1,44 @@
 import { Box } from "@mui/material"
 import { useState } from "react"
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
 import LuggageRoundedIcon from "@mui/icons-material/LuggageRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded"
-import ProfileCard from "./ProfileCard"
+import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded"
+import Sidebar from "./Sidebar"
+import type { UserTab } from "./Sidebar"
+import Settings from "./Settings"
 import MyBookings from "./MyBookings"
 import Wishlist from "./Wishlist"
-import Settings from "./Settings"
+import Support from "./Support"
 import "css/user.css"
 
-type Tab = "bookings" | "wishlist" | "settings"
-
-const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
+const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
+  { key: "profile", label: "Profile", icon: <AccountCircleRoundedIcon /> },
   { key: "bookings", label: "My Bookings", icon: <LuggageRoundedIcon /> },
   { key: "wishlist", label: "Wishlist", icon: <FavoriteRoundedIcon /> },
-  { key: "settings", label: "Settings", icon: <SettingsRoundedIcon /> },
+  { key: "support", label: "Support", icon: <SupportAgentRoundedIcon /> },
 ]
 
 export default function UserPage() {
-  const [active, setActive] = useState<Tab>("bookings")
+  const [active, setActive] = useState<UserTab>("profile")
 
   return (
     <Box className="user-page">
       <Box className="user-container">
-        <ProfileCard />
+        <Box className="user-shell">
+          <Box className="user-shell-banner" />
 
-        <Box className="user-tabs">
-          {tabs.map((t) => (
-            <button
-              key={t.key}
-              className={`user-tab ${active === t.key ? "active" : ""}`}
-              onClick={() => setActive(t.key)}
-            >
-              {t.icon}
-              {t.label}
-            </button>
-          ))}
+          <Box className="user-shell-body">
+            <Sidebar active={active} onChange={setActive} tabs={tabs} />
+
+            <Box className="user-content">
+              {active === "profile" && <Settings />}
+              {active === "bookings" && <MyBookings />}
+              {active === "wishlist" && <Wishlist />}
+              {active === "support" && <Support />}
+            </Box>
+          </Box>
         </Box>
-
-        {active === "bookings" && <MyBookings />}
-        {active === "wishlist" && <Wishlist />}
-        {active === "settings" && <Settings />}
       </Box>
     </Box>
   )

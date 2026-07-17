@@ -3,189 +3,155 @@
 =========================== */
 
 .user-page {
-  background: var(--bg-light);
   min-height: 70vh;
   padding: 40px 0 80px;
+  background: var(--bg-light);
 }
 
 .user-container {
   max-width: 1080px;
-  margin: 0 auto;
   padding: 0 24px;
+  margin: 0 auto;
 }
 
 /* ===========================
-   PROFILE CARD
+   SHELL (banner + sidebar + content)
 =========================== */
 
-.profile-card {
-  background: var(--white);
-  border-radius: var(--radius);
+.user-shell {
   overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--white);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
-.profile-banner {
-  height: 120px;
+.user-shell-banner {
+  height: 92px;
   background: linear-gradient(120deg, #ffce6b, var(--gold));
 }
 
-.profile-body {
+.user-shell-body {
   display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  padding: 0 32px 28px;
-  margin-top: -46px;
-  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.profile-avatar {
-  width: 116px;
-  height: 116px;
-  border-radius: 50%;
-  border: 4px solid var(--white);
-  overflow: hidden;
-  background: var(--bg-light);
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.user-sidebar {
   flex-shrink: 0;
+  width: 250px;
+  padding: 0 24px 28px;
+  border-right: 1px solid #f0f0f0;
+  text-align: center;
 }
 
-.profile-avatar img {
+.user-sidebar-avatar {
+  overflow: hidden;
+  width: 92px;
+  height: 92px;
+  margin: -46px auto 14px;
+  border: 4px solid var(--white);
+  border-radius: 50%;
+  background: var(--bg-light);
+}
+
+.user-sidebar-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.profile-info {
-  flex: 1;
-  min-width: 200px;
-  padding-bottom: 4px;
+.user-sidebar-handle {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-light);
 }
 
-.profile-name {
+.user-sidebar-name {
+  margin-top: 4px;
+  margin-bottom: 22px;
   font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: var(--dark);
 }
 
-.profile-email {
-  font-size: 14px;
-  color: var(--text-light);
-  margin-bottom: 10px;
-}
-
-.profile-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.profile-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13.5px;
-  color: var(--text);
-}
-
-.profile-meta-item svg {
-  font-size: 18px;
-  color: var(--gold);
-}
-
-.profile-stats {
-  display: flex;
-  gap: 14px;
-  padding-bottom: 6px;
-}
-
-.profile-stat {
+.user-sidebar-nav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-width: 82px;
-  padding: 12px 10px;
-  background: var(--bg-light);
-  border-radius: 10px;
+  gap: 4px;
 }
 
-.profile-stat strong {
-  font-family: "Poppins", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--dark);
-}
-
-.profile-stat span {
-  font-size: 12px;
-  color: var(--text-light);
-}
-
-/* ===========================
-   TABS
-=========================== */
-
-.user-tabs {
+.user-sidebar-link {
   display: flex;
-  gap: 8px;
-  margin: 24px 0;
-  flex-wrap: wrap;
-}
-
-.user-tab {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding: 11px 16px;
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 9px;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--text);
-  background: var(--white);
-  border: 1px solid #ececec;
-  border-radius: 10px;
-  padding: 11px 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease,
+  text-align: left;
+  background: transparent;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
     border-color 0.2s ease;
+  cursor: pointer;
 }
 
-.user-tab svg {
+.user-sidebar-link svg {
   font-size: 19px;
+  color: var(--text-light);
+  transition: color 0.2s ease;
 }
 
-.user-tab:hover {
-  border-color: var(--gold);
+.user-sidebar-link:hover {
+  background: var(--bg-light);
+}
+
+.user-sidebar-link.active {
+  border-left-color: var(--gold);
   color: var(--gold-dark);
+  background: rgba(255, 179, 0, 0.1);
 }
 
-.user-tab.active {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--white);
+.user-sidebar-link.active svg {
+  color: var(--gold);
 }
 
 /* ===========================
    SHARED PANEL
 =========================== */
 
+.user-content {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 34px 36px;
+}
+
 .user-panel {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 28px 32px 34px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
 
 .user-panel-title {
   font-family: "Poppins", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
   color: var(--dark);
 }
 
 .user-panel-subtitle {
-  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 32px;
+  font-size: 12px;
+  font-weight: 300;
   color: var(--text-light);
-  margin-bottom: 22px;
 }
 
 /* ===========================
@@ -202,9 +168,9 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  padding: 14px;
   border: 1px solid #eee;
   border-radius: 12px;
-  padding: 14px;
   transition: box-shadow 0.2s ease;
 }
 
@@ -214,11 +180,11 @@
 
 .booking-image {
   position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
   width: 132px;
   height: 96px;
   border-radius: 10px;
-  overflow: hidden;
-  flex-shrink: 0;
 }
 
 .booking-image img {
@@ -231,10 +197,10 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  font-size: 11px;
-  font-weight: 600;
   padding: 3px 9px;
   border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--white);
 }
 
@@ -252,11 +218,11 @@
 }
 
 .booking-title {
+  margin-bottom: 8px;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: var(--dark);
-  margin-bottom: 8px;
 }
 
 .booking-meta {
@@ -282,8 +248,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 8px;
   flex-shrink: 0;
+  gap: 8px;
 }
 
 .booking-total {
@@ -294,18 +260,20 @@
 }
 
 .booking-link {
+  padding: 6px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
   color: var(--gold-dark);
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  padding: 6px 14px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .booking-link:hover {
-  background: var(--gold);
   color: var(--white);
+  background: var(--gold);
 }
 
 /* ===========================
@@ -313,9 +281,9 @@
 =========================== */
 
 .wishlist-empty {
+  padding: 24px 0;
   font-size: 14px;
   color: var(--text-light);
-  padding: 24px 0;
 }
 
 .wishlist-grid {
@@ -325,9 +293,9 @@
 }
 
 .wishlist-card {
+  overflow: hidden;
   border: 1px solid #eee;
   border-radius: 12px;
-  overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 
@@ -350,17 +318,17 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 34px;
-  height: 34px;
   display: grid;
   place-items: center;
+  width: 34px;
+  height: 34px;
   border: none;
   border-radius: 50%;
-  background: var(--white);
   color: #e5484d;
-  cursor: pointer;
+  background: var(--white);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .wishlist-remove:hover {
@@ -379,10 +347,10 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
+  margin-bottom: 8px;
   font-size: 13px;
   font-weight: 600;
   color: var(--dark);
-  margin-bottom: 8px;
 }
 
 .wishlist-rating svg {
@@ -391,26 +359,26 @@
 }
 
 .wishlist-rating span {
-  color: var(--text-light);
   font-weight: 400;
+  color: var(--text-light);
 }
 
 .wishlist-title {
+  margin-bottom: 6px;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
-  color: var(--dark);
   line-height: 1.35;
-  margin-bottom: 6px;
+  color: var(--dark);
 }
 
 .wishlist-location {
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-bottom: 14px;
   font-size: 13px;
   color: var(--text-light);
-  margin-bottom: 14px;
 }
 
 .wishlist-location svg {
@@ -420,8 +388,8 @@
 
 .wishlist-footer {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .wishlist-price {
@@ -438,18 +406,20 @@
 }
 
 .wishlist-link {
+  padding: 6px 16px;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 500;
   color: var(--gold-dark);
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  padding: 6px 16px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .wishlist-link:hover {
-  background: var(--gold);
   color: var(--white);
+  background: var(--gold);
 }
 
 /* ===========================
@@ -469,8 +439,8 @@
 }
 
 .settings-form .form-field {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 7px;
 }
@@ -482,14 +452,14 @@
 }
 
 .settings-form input {
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  color: var(--dark);
   padding: 11px 14px;
   border: 1px solid #dcdcdc;
   border-radius: 9px;
-  outline: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: var(--dark);
   transition: border-color 0.2s ease;
+  outline: none;
 }
 
 .settings-form input:focus {
@@ -498,20 +468,152 @@
 
 .settings-submit {
   align-self: flex-start;
+  padding: 11px 28px;
+  border: none;
+  border-radius: 9px;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: var(--white);
   background: var(--gold);
-  border: none;
-  border-radius: 9px;
-  padding: 11px 28px;
-  cursor: pointer;
   transition: background-color 0.2s ease;
+  cursor: pointer;
 }
 
 .settings-submit:hover {
   background: var(--gold-dark);
+}
+
+.settings-divider {
+  height: 1px;
+  max-width: 640px;
+  margin: 28px 0 22px;
+  background: #eee;
+}
+
+.settings-danger-zone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 640px;
+}
+
+.settings-danger-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.settings-danger-subtitle {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.danger-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 9.5px 22.5px;
+  border: 1.5px solid var(--danger);
+  border-radius: 9px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--danger);
+  background: var(--white);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.danger-button svg {
+  font-size: 18px;
+}
+
+.danger-button:hover {
+  border-color: transparent;
+  color: var(--white);
+  background: var(--danger);
+}
+
+/* ===========================
+   SUPPORT
+=========================== */
+
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.support-card {
+  padding: 22px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.support-card:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.support-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  color: var(--gold-dark);
+  background: var(--bg-light);
+}
+
+.support-icon svg {
+  font-size: 21px;
+}
+
+.support-card-title {
+  margin-bottom: 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.support-card-text {
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.support-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+.support-link:hover {
+  text-decoration: underline;
+}
+
+.support-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.support-contact svg {
+  font-size: 18px;
+  color: var(--gold);
 }
 
 /* ===========================
@@ -519,10 +621,24 @@
 =========================== */
 
 @media (max-width: 720px) {
-  .profile-body {
+  .user-shell-body {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+  }
+
+  .user-sidebar {
+    width: 100%;
+    padding: 0 24px 22px;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .user-content {
+    padding: 26px 24px 30px;
+  }
+
+  .settings-danger-zone {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .booking-card {
@@ -536,9 +652,9 @@
   }
 
   .booking-side {
-    align-items: stretch;
     flex-direction: row;
     justify-content: space-between;
+    align-items: stretch;
   }
 
   .settings-row {

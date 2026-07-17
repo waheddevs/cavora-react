@@ -2,7 +2,7 @@
    Static only; bookings reuse the shared Tour catalogue. Wishlist lives in ts/wishlist. */
 
 import type { Tour } from "app/libs/types"
-import { getTourById } from "ts/TourSingle"
+import { getTourById } from "./TourSingle"
 
 export interface UserProfile {
   firstName: string

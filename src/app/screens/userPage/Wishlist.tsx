@@ -10,10 +10,8 @@ export default function Wishlist() {
 
   return (
     <Box className="user-panel">
-      <Typography className="user-panel-title">Wishlist</Typography>
-      <Typography className="user-panel-subtitle">
-        Tours you've saved for later.
-      </Typography>
+      <h2 className="user-panel-title">Wishlist</h2>
+      <p className="user-panel-subtitle">Tours you've saved for later.</p>
 
       {wishlist.length === 0 && (
         <Typography className="wishlist-empty">
@@ -22,7 +20,7 @@ export default function Wishlist() {
       )}
 
       <Box className="wishlist-grid">
-        {wishlist.map((tour) => (
+        {wishlist.map(tour => (
           <Box className="wishlist-card" key={tour.id}>
             <Box className="wishlist-image">
               <img src={tour.images[0]} alt={tour.title} />

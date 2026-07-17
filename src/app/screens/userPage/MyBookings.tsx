@@ -8,13 +8,13 @@ import { bookings } from "ts/User"
 export default function MyBookings() {
   return (
     <Box className="user-panel">
-      <Typography className="user-panel-title">My Bookings</Typography>
-      <Typography className="user-panel-subtitle">
+      <h2 className="user-panel-title">My Bookings</h2>
+      <p className="user-panel-subtitle">
         Your upcoming adventures and past journeys.
-      </Typography>
+      </p>
 
       <Box className="booking-list">
-        {bookings.map((b) => (
+        {bookings.map(b => (
           <Box className="booking-card" key={b.id}>
             <Box className="booking-image">
               <img src={b.tour.images[0]} alt={b.tour.title} />

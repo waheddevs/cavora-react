@@ -2,15 +2,19 @@
    RESET & BASE STYLES
 =========================== */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  --gold: #FFB300;
-  --gold-dark: #E6A200;
+  --gold: #ffb300;
+  --gold-dark: #e6a200;
+  --danger: #e5484d;
+  --danger-dark: #c93a3e;
   --white: #ffffff;
   --dark: #1a1a1a;
   --text: #444;
@@ -22,12 +26,15 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background: #11678a;
   color: var(--dark);
 }
 
-a { text-decoration: none; color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 .container {
   max-width: 1300px;
@@ -78,7 +85,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .navbar-container .menu .links a {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 400;
   transition: color 0.28s ease;
@@ -101,14 +108,16 @@ a { text-decoration: none; color: inherit; }
 /* Secondary "Login" link — no border, same radius as other buttons,
    cream background on hover. Dark by default; white over the home hero. */
 .navbar-container .menu .btn .navbar-login-link {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: var(--dark);
   padding: 7px 20px;
   border-radius: 8px;
   cursor: pointer;
-  transition: color 0.28s ease, background-color 0.28s ease;
+  transition:
+    color 0.28s ease,
+    background-color 0.28s ease;
 }
 
 .navbar-container .menu .btn .navbar-login-link:hover,
@@ -176,9 +185,13 @@ a { text-decoration: none; color: inherit; }
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  transition: background 0.35s ease, padding 0.35s ease,
-    box-shadow 0.35s ease, border-color 0.35s ease,
-    -webkit-backdrop-filter 0.35s ease, backdrop-filter 0.35s ease;
+  transition:
+    background 0.35s ease,
+    padding 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    backdrop-filter 0.35s ease;
 }
 
 /* Scrolled state: solid blurred dark bar */
@@ -241,7 +254,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .page-hero .page-hero-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -250,7 +263,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .page-hero .page-hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
@@ -263,7 +276,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
 }
 
@@ -342,8 +355,8 @@ a { text-decoration: none; color: inherit; }
 =========================== */
 
 @font-face {
-  font-family: 'Dancing Script';
-  src: url('../../public/fonts/dancing-script-700.woff2') format('woff2');
+  font-family: "Dancing Script";
+  src: url("../../public/fonts/dancing-script-700.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -372,7 +385,9 @@ a { text-decoration: none; color: inherit; }
   opacity: 0;
   transform: scale(1);
   z-index: 0;
-  transition: opacity 1.8s ease-in-out, transform 8s ease-out;
+  transition:
+    opacity 1.8s ease-in-out,
+    transform 8s ease-out;
   will-change: opacity, transform;
 }
 
@@ -454,7 +469,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .home-hero .hero-location {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 36px;
   font-weight: 700;
   line-height: 1;
@@ -462,7 +477,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .home-hero .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 84px;
   font-weight: 700;
   line-height: 1.02;
@@ -471,7 +486,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .home-hero .hero-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.6;
@@ -497,7 +512,7 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #fff;
@@ -537,7 +552,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .home-hero .hero-search .field-label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -548,7 +563,7 @@ a { text-decoration: none; color: inherit; }
 .home-hero .hero-search .field-input,
 .home-hero .hero-search .field-select,
 .home-hero .hero-search .field-date {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: #333;
@@ -680,10 +695,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-select-menu .MuiMenuItem-root {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: #444;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .hero-select-menu .MuiMenuItem-root:hover {
@@ -710,7 +727,7 @@ a { text-decoration: none; color: inherit; }
 .calendar {
   width: 288px;
   padding: 14px 16px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .calendar .calendar-head {
@@ -721,7 +738,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .calendar .calendar-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: #222;
@@ -736,7 +753,9 @@ a { text-decoration: none; color: inherit; }
   width: 30px;
   height: 30px;
   color: #666;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
 }
 
 .calendar .cal-nav-btn:hover {
@@ -773,11 +792,13 @@ a { text-decoration: none; color: inherit; }
   border: none;
   background: transparent;
   border-radius: 50%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: #333;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .calendar .cal-day:hover {
@@ -817,7 +838,7 @@ a { text-decoration: none; color: inherit; }
 .calendar .cal-action {
   border: none;
   background: transparent;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 500;
   color: var(--gold-dark);
