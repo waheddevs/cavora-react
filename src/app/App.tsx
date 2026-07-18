@@ -13,6 +13,7 @@ import UserPage from "./screens/userPage"
 import HomePage from "./screens/homePage"
 import LoginPage from "./screens/loginPage"
 import SignupPage from "./screens/signupPage"
+import PaymentPage from "./screens/paymentPage"
 /* COMMON */
 import PageHero from "./components/headers/PageHero"
 import { pageHeroes } from "./components/headers/pageHeroConfig"
@@ -27,7 +28,7 @@ import "css/navbar.css"
 import "css/footer.css"
 
 /* Standalone routes that render without the shared navbar and footer. */
-const authRoutes = ["/login", "/signup"]
+const authRoutes = ["/login", "/signup", "/payment"]
 
 function App() {
   const { pathname } = useLocation()
@@ -60,6 +61,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/blog-details" element={<BlogDetailsPage />} />
           <Route path="/blog" element={<BlogPage />} />

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import moment from "moment"
+import { useNavigate } from "react-router-dom"
 import { Box, IconButton, Popover, Typography } from "@mui/material"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
@@ -16,13 +17,24 @@ import { isWishlisted, toggleWishlist } from "ts/wishlist"
 import type { Tour } from "app/libs/types"
 
 export default function OrderBar({ tour }: { tour: Tour }) {
+  const navigate = useNavigate()
   const [date, setDate] = useState("")
   const [guests, setGuests] = useState(1)
   const [calAnchor, setCalAnchor] = useState<HTMLElement | null>(null)
   const [viewMonth, setViewMonth] = useState(moment())
   const [saved, setSaved] = useState(() => isWishlisted(tour.id))
+  const [dateError, setDateError] = useState(false)
 
   const total = tour.price * guests
+
+  const handleBookNow = () => {
+    if (!date) {
+      setDateError(true)
+      setCalAnchor(document.getElementById("ts-date-btn"))
+      return
+    }
+    navigate(`/payment?tourId=${tour.id}&date=${date}&guests=${guests}`)
+  }
 
   return (
     <aside className="ts-order">
@@ -42,15 +54,24 @@ export default function OrderBar({ tour }: { tour: Tour }) {
         <Box className="ts-field">
           <span>Check-in Date</span>
           <button
+            id="ts-date-btn"
             type="button"
-            className="ts-date-btn"
-            onClick={(e) => setCalAnchor(e.currentTarget)}
+            className={`ts-date-btn${dateError ? " has-error" : ""}`}
+            onClick={(e) => {
+              setDateError(false)
+              setCalAnchor(e.currentTarget)
+            }}
           >
             <CalendarMonthOutlinedIcon />
             <span className={date ? "" : "ph"}>
               {date ? moment(date).format("DD MMM YYYY") : "Select a date"}
             </span>
           </button>
+          {dateError && (
+            <span className="ts-field-error">
+              Please pick a date before booking
+            </span>
+          )}
         </Box>
 
         <Box className="ts-field">
@@ -79,7 +100,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           <strong>${total.toLocaleString()}</strong>
         </Box>
 
-        <button type="button" className="ts-book">
+        <button type="button" className="ts-book" onClick={handleBookNow}>
           <SailingRoundedIcon />
           Book Now
         </button>
@@ -157,6 +178,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
                   }${isSelected ? " selected" : ""}`}
                   onClick={() => {
                     setDate(day.format("YYYY-MM-DD"))
+                    setDateError(false)
                     setCalAnchor(null)
                   }}
                 >
@@ -183,6 +205,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
               onClick={() => {
                 const today = moment()
                 setDate(today.format("YYYY-MM-DD"))
+                setDateError(false)
                 setViewMonth(today.clone())
                 setCalAnchor(null)
               }}

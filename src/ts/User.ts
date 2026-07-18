@@ -76,3 +76,23 @@ export const bookings: Booking[] = [
 
 /* Number of distinct countries across the user's bookings */
 export const bookedCountries = new Set(bookings.map((b) => b.tour.country)).size
+
+/* Appends a freshly-paid booking to the in-memory list (module singleton,
+   so My Bookings picks it up on the next render — no backend yet). */
+export function addBooking(
+  tour: Tour,
+  date: string,
+  travelers: number,
+  total: number,
+): Booking {
+  const booking: Booking = {
+    id: bookings.length ? Math.max(...bookings.map((b) => b.id)) + 1 : 1,
+    tour,
+    status: "Upcoming",
+    date,
+    travelers,
+    total,
+  }
+  bookings.unshift(booking)
+  return booking
+}

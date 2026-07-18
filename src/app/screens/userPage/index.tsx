@@ -1,5 +1,6 @@
 import { Box } from "@mui/material"
 import { useState } from "react"
+import { useLocation } from "react-router-dom"
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
 import LuggageRoundedIcon from "@mui/icons-material/LuggageRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
@@ -20,7 +21,10 @@ const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
 ]
 
 export default function UserPage() {
-  const [active, setActive] = useState<UserTab>("profile")
+  const location = useLocation()
+  const initialTab =
+    (location.state as { tab?: UserTab } | null)?.tab ?? "profile"
+  const [active, setActive] = useState<UserTab>(initialTab)
 
   return (
     <Box className="user-page">
