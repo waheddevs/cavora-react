@@ -11,6 +11,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest"
 import type { Post } from "app/libs/types"
 
 export default function BlogCard({ post }: { post: Post }) {
+  /* HOOKS */
   const navigate = useNavigate()
   return (
     <Box className="blog-card">

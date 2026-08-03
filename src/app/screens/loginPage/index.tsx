@@ -5,10 +5,12 @@ import { validateLogin, type LoginErrors } from "ts/Login"
 import "css/login.css"
 
 export default function LoginPage() {
+  /* HOOKS */
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState<LoginErrors>({})
 
+  /* HANDLER */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const nextErrors = validateLogin({ email, password })

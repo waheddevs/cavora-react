@@ -5,6 +5,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import { currentUser } from "ts/User"
 
 export default function Settings() {
+  /* HOOKS */
   const navigate = useNavigate()
   const [form, setForm] = useState({
     firstName: currentUser.firstName,
@@ -15,6 +16,7 @@ export default function Settings() {
     location: currentUser.location,
   })
 
+  /* HANDLER */
   const handleChange =
     (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
       setForm({ ...form, [key]: e.target.value })

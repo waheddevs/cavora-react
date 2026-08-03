@@ -28,6 +28,7 @@ function renderStars(rating: number) {
 }
 
 export default function PopularTours() {
+  /* HOOKS */
   const navigate = useNavigate()
 
   return (

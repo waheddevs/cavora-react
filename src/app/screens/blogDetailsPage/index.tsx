@@ -11,6 +11,7 @@ import { getPostById, getArticleBody, comments } from "ts/BlogDetails"
 import "css/blog.css"
 
 export default function BlogDetailsPage() {
+  /* HOOKS */
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const post = getPostById(params.get("id") ?? 1)

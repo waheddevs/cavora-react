@@ -11,7 +11,7 @@ export default function Itinerary({ tour }: { tour: Tour }) {
       <h3 className="ts-heading">Day by Day Itinerary</h3>
       <Box className="ts-itinerary">
         {tour.itinerary.map((day, i) => (
-          <Box className={`ts-day${open === i ? " open" : ""}`} key={day.title}>
+          <Box className={`ts-day${open === i ? "open" : ""}`} key={day.title}>
             <button
               type="button"
               className="ts-day-head"

@@ -23,9 +23,11 @@ function renderStars(rating: number) {
 }
 
 export default function TourCard({ tour }: { tour: Tour }) {
+  /* HOOKS */
   const navigate = useNavigate()
   const [saved, setSaved] = useState(false)
 
+  /* HANDLER */
   const open = () => navigate(`/tour-single?id=${tour.id}`)
 
   return (

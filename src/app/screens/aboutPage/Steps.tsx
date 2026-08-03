@@ -1,9 +1,13 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
+import { useNavigate } from "react-router-dom"
 import { steps } from "ts/About"
 
 export default function Steps() {
+  /* HOOKS */
+  const navigate = useNavigate()
+
   return (
     <section className="steps">
       <Container maxWidth={false} className="steps-container">
@@ -32,6 +36,7 @@ export default function Steps() {
             <GoldButton
               className="steps-btn"
               endIcon={<ArrowForwardRoundedIcon />}
+              onClick={() => navigate("/tour")}
             >
               Start Planning
             </GoldButton>

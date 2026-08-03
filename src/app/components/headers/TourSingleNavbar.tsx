@@ -5,6 +5,7 @@ import { getTourById } from "ts/TourSingle"
 /* Tour single header — the only dynamic page-hero.
    Its title/breadcrumb come from the tour selected via ?id= */
 export default function TourSingleNavbar() {
+  /* HOOKS */
   const [params] = useSearchParams()
   const tour = getTourById(params.get("id") ?? 1)
 

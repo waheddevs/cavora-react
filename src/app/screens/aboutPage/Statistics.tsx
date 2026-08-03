@@ -4,6 +4,7 @@ import CountUp from "../../components/CountUp"
 import { stats } from "ts/About"
 
 export default function Statistics() {
+  /* HOOKS */
   const [run, setRun] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
 

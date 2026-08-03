@@ -21,6 +21,7 @@ const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
 ]
 
 export default function UserPage() {
+  /* HOOKS */
   const location = useLocation()
   const initialTab =
     (location.state as { tab?: UserTab } | null)?.tab ?? "profile"

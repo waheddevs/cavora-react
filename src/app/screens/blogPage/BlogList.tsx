@@ -8,6 +8,7 @@ import { posts } from "ts/Blog"
 const POSTS_PER_PAGE = 4
 
 export default function BlogList({ category }: { category: string }) {
+  /* HOOKS */
   const [page, setPage] = useState(1)
 
   const filtered =
@@ -25,6 +26,7 @@ export default function BlogList({ category }: { category: string }) {
   const start = (page - 1) * POSTS_PER_PAGE
   const visiblePosts = filtered.slice(start, start + POSTS_PER_PAGE)
 
+  /* HANDLER */
   const goToPage = (n: number) => {
     setPage(n)
     window.scrollTo({ top: 0, behavior: "smooth" })

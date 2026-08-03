@@ -35,11 +35,26 @@ export const tours: Tour[] = [
       "Optional yoga and wellness session",
     ],
     itinerary: [
-      { title: "Arrival in Ubud", text: "Welcome transfer, check-in to a jungle villa and an evening walk through Ubud's art market." },
-      { title: "Rice Terraces & Temples", text: "Sunrise at Tegallalang, followed by Tirta Empul and Goa Gajah temple visits." },
-      { title: "Culture & Cuisine", text: "Balinese cooking class, silver-smithing workshop and a traditional dance performance." },
-      { title: "Jungle & Waterfalls", text: "Trek to Tibumana waterfall and a stop at the Sacred Monkey Forest." },
-      { title: "Departure", text: "Morning yoga, farewell breakfast and transfer to the airport." },
+      {
+        title: "Arrival in Ubud",
+        text: "Welcome transfer, check-in to a jungle villa and an evening walk through Ubud's art market.",
+      },
+      {
+        title: "Rice Terraces & Temples",
+        text: "Sunrise at Tegallalang, followed by Tirta Empul and Goa Gajah temple visits.",
+      },
+      {
+        title: "Culture & Cuisine",
+        text: "Balinese cooking class, silver-smithing workshop and a traditional dance performance.",
+      },
+      {
+        title: "Jungle & Waterfalls",
+        text: "Trek to Tibumana waterfall and a stop at the Sacred Monkey Forest.",
+      },
+      {
+        title: "Departure",
+        text: "Morning yoga, farewell breakfast and transfer to the airport.",
+      },
     ],
     included: [
       "4 nights villa accommodation",
@@ -84,10 +99,22 @@ export const tours: Tour[] = [
       "Fresh seafood dinner on Jimbaran Bay",
     ],
     itinerary: [
-      { title: "Arrival & Jimbaran", text: "Transfer to a clifftop resort and a barefoot seafood dinner on Jimbaran Bay." },
-      { title: "Beaches & Surf", text: "Explore Padang Padang and Bingin beaches with an optional surf lesson." },
-      { title: "Temple & Fire Dance", text: "Uluwatu Temple at golden hour followed by the famous Kecak dance." },
-      { title: "Departure", text: "Leisurely morning and transfer to the airport." },
+      {
+        title: "Arrival & Jimbaran",
+        text: "Transfer to a clifftop resort and a barefoot seafood dinner on Jimbaran Bay.",
+      },
+      {
+        title: "Beaches & Surf",
+        text: "Explore Padang Padang and Bingin beaches with an optional surf lesson.",
+      },
+      {
+        title: "Temple & Fire Dance",
+        text: "Uluwatu Temple at golden hour followed by the famous Kecak dance.",
+      },
+      {
+        title: "Departure",
+        text: "Leisurely morning and transfer to the airport.",
+      },
     ],
     included: [
       "3 nights clifftop resort",
@@ -132,9 +159,18 @@ export const tours: Tour[] = [
       "Diamond Beach cliff descent",
     ],
     itinerary: [
-      { title: "Crossing to Nusa Penida", text: "Fast-boat transfer, island check-in and Crystal Bay sunset." },
-      { title: "West Island Wonders", text: "Kelingking Beach, Angel's Billabong and Broken Beach." },
-      { title: "Manta Snorkel & Return", text: "Morning snorkel with manta rays before the boat back to Bali." },
+      {
+        title: "Crossing to Nusa Penida",
+        text: "Fast-boat transfer, island check-in and Crystal Bay sunset.",
+      },
+      {
+        title: "West Island Wonders",
+        text: "Kelingking Beach, Angel's Billabong and Broken Beach.",
+      },
+      {
+        title: "Manta Snorkel & Return",
+        text: "Morning snorkel with manta rays before the boat back to Bali.",
+      },
     ],
     included: [
       "2 nights island bungalow",
@@ -179,9 +215,18 @@ export const tours: Tour[] = [
       "Coffee plantation & Luwak tasting",
     ],
     itinerary: [
-      { title: "Arrival in Kintamani", text: "Transfer to the highlands, caldera viewpoint and an early night before the trek." },
-      { title: "Sunrise Summit", text: "Pre-dawn climb, summit sunrise, then hot springs and a coffee plantation visit." },
-      { title: "Departure", text: "Relaxed breakfast and transfer back to the coast or airport." },
+      {
+        title: "Arrival in Kintamani",
+        text: "Transfer to the highlands, caldera viewpoint and an early night before the trek.",
+      },
+      {
+        title: "Sunrise Summit",
+        text: "Pre-dawn climb, summit sunrise, then hot springs and a coffee plantation visit.",
+      },
+      {
+        title: "Departure",
+        text: "Relaxed breakfast and transfer back to the coast or airport.",
+      },
     ],
     included: [
       "2 nights highland lodge",
@@ -230,11 +275,26 @@ export const tours: Tour[] = [
       "Day trip option to the Palace of Versailles",
     ],
     itinerary: [
-      { title: "Arrival in Paris", text: "Transfer to a central hotel and an orientation stroll along the Champs-Élysées." },
-      { title: "Icons of Paris", text: "Eiffel Tower summit, Trocadéro views and an evening Seine dinner cruise." },
-      { title: "Art & Montmartre", text: "Louvre highlights in the morning, Montmartre and Sacré-Cœur in the afternoon." },
-      { title: "Versailles Day Trip", text: "Explore the palace and its gardens, returning for a final Parisian dinner." },
-      { title: "Departure", text: "Free morning for shopping before your airport transfer." },
+      {
+        title: "Arrival in Paris",
+        text: "Transfer to a central hotel and an orientation stroll along the Champs-Élysées.",
+      },
+      {
+        title: "Icons of Paris",
+        text: "Eiffel Tower summit, Trocadéro views and an evening Seine dinner cruise.",
+      },
+      {
+        title: "Art & Montmartre",
+        text: "Louvre highlights in the morning, Montmartre and Sacré-Cœur in the afternoon.",
+      },
+      {
+        title: "Versailles Day Trip",
+        text: "Explore the palace and its gardens, returning for a final Parisian dinner.",
+      },
+      {
+        title: "Departure",
+        text: "Free morning for shopping before your airport transfer.",
+      },
     ],
     included: [
       "4 nights central hotel",
@@ -279,10 +339,22 @@ export const tours: Tour[] = [
       "Coastal drive to Cannes",
     ],
     itinerary: [
-      { title: "Arrival in Nice", text: "Settle into a seafront hotel and explore the colourful Old Town." },
-      { title: "Monaco & Èze", text: "Visit Monte Carlo, the royal palace and the clifftop village of Èze." },
-      { title: "Cannes & the Coast", text: "Scenic coastal drive to Cannes with beach time and a seafood lunch." },
-      { title: "Departure", text: "Morning by the sea before your transfer to Nice airport." },
+      {
+        title: "Arrival in Nice",
+        text: "Settle into a seafront hotel and explore the colourful Old Town.",
+      },
+      {
+        title: "Monaco & Èze",
+        text: "Visit Monte Carlo, the royal palace and the clifftop village of Èze.",
+      },
+      {
+        title: "Cannes & the Coast",
+        text: "Scenic coastal drive to Cannes with beach time and a seafood lunch.",
+      },
+      {
+        title: "Departure",
+        text: "Morning by the sea before your transfer to Nice airport.",
+      },
     ],
     included: [
       "3 nights seafront hotel",
@@ -327,10 +399,22 @@ export const tours: Tour[] = [
       "Olive oil farm visit",
     ],
     itinerary: [
-      { title: "Arrival in Provence", text: "Transfer to a countryside guesthouse and a welcome dinner of local specialties." },
-      { title: "Lavender & Distillery", text: "Valensole fields at sunrise and a guided distillery tour." },
-      { title: "Villages & Vineyards", text: "Explore Gordes, Sénanque Abbey and a rosé tasting." },
-      { title: "Departure", text: "Morning market visit before your onward transfer." },
+      {
+        title: "Arrival in Provence",
+        text: "Transfer to a countryside guesthouse and a welcome dinner of local specialties.",
+      },
+      {
+        title: "Lavender & Distillery",
+        text: "Valensole fields at sunrise and a guided distillery tour.",
+      },
+      {
+        title: "Villages & Vineyards",
+        text: "Explore Gordes, Sénanque Abbey and a rosé tasting.",
+      },
+      {
+        title: "Departure",
+        text: "Morning market visit before your onward transfer.",
+      },
     ],
     included: [
       "3 nights countryside guesthouse",
@@ -375,9 +459,18 @@ export const tours: Tour[] = [
       "Traditional Normandy dinner",
     ],
     itinerary: [
-      { title: "Arrival in Normandy", text: "Transfer to a hotel near the bay with sunset views of the mount." },
-      { title: "The Abbey & Village", text: "Full guided tour of the abbey, ramparts and an optional guided bay walk." },
-      { title: "Departure", text: "Final morning photos before your return transfer." },
+      {
+        title: "Arrival in Normandy",
+        text: "Transfer to a hotel near the bay with sunset views of the mount.",
+      },
+      {
+        title: "The Abbey & Village",
+        text: "Full guided tour of the abbey, ramparts and an optional guided bay walk.",
+      },
+      {
+        title: "Departure",
+        text: "Final morning photos before your return transfer.",
+      },
     ],
     included: [
       "2 nights hotel near the bay",
@@ -426,10 +519,22 @@ export const tours: Tour[] = [
       "Northern lights hunt (seasonal)",
     ],
     itinerary: [
-      { title: "Arrival in Reykjavík", text: "Transfer to the capital and an evening walk along the harbour." },
-      { title: "The Golden Circle", text: "Þingvellir, Geysir and Gullfoss with a Secret Lagoon soak." },
-      { title: "Craters & Aurora", text: "Kerið crater, lava fields and an evening northern lights hunt." },
-      { title: "Departure", text: "Reykjavík free time before your airport transfer." },
+      {
+        title: "Arrival in Reykjavík",
+        text: "Transfer to the capital and an evening walk along the harbour.",
+      },
+      {
+        title: "The Golden Circle",
+        text: "Þingvellir, Geysir and Gullfoss with a Secret Lagoon soak.",
+      },
+      {
+        title: "Craters & Aurora",
+        text: "Kerið crater, lava fields and an evening northern lights hunt.",
+      },
+      {
+        title: "Departure",
+        text: "Reykjavík free time before your airport transfer.",
+      },
     ],
     included: [
       "3 nights Reykjavík hotel",
@@ -474,9 +579,18 @@ export const tours: Tour[] = [
       "Optional volcano viewpoint",
     ],
     itinerary: [
-      { title: "Arrival & Reykjavík", text: "Airport transfer and an evening in the capital." },
-      { title: "Blue Lagoon Day", text: "A full relaxation day at the lagoon with mask, drink and spa access." },
-      { title: "Departure", text: "Reykjanes drive and volcano viewpoint before departure." },
+      {
+        title: "Arrival & Reykjavík",
+        text: "Airport transfer and an evening in the capital.",
+      },
+      {
+        title: "Blue Lagoon Day",
+        text: "A full relaxation day at the lagoon with mask, drink and spa access.",
+      },
+      {
+        title: "Departure",
+        text: "Reykjanes drive and volcano viewpoint before departure.",
+      },
     ],
     included: [
       "2 nights hotel",
@@ -521,10 +635,22 @@ export const tours: Tour[] = [
       "Vatnajökull glacier scenery",
     ],
     itinerary: [
-      { title: "South Coast Journey", text: "Depart Reykjavík via Seljalandsfoss and Skógafoss waterfalls." },
-      { title: "Glacier Lagoon", text: "Boat cruise at Jökulsárlón and a Diamond Beach walk." },
-      { title: "Skaftafell & Glaciers", text: "Explore Skaftafell's glacier tongues and mountain views." },
-      { title: "Return & Departure", text: "Scenic drive back to Reykjavík for your onward transfer." },
+      {
+        title: "South Coast Journey",
+        text: "Depart Reykjavík via Seljalandsfoss and Skógafoss waterfalls.",
+      },
+      {
+        title: "Glacier Lagoon",
+        text: "Boat cruise at Jökulsárlón and a Diamond Beach walk.",
+      },
+      {
+        title: "Skaftafell & Glaciers",
+        text: "Explore Skaftafell's glacier tongues and mountain views.",
+      },
+      {
+        title: "Return & Departure",
+        text: "Scenic drive back to Reykjavík for your onward transfer.",
+      },
     ],
     included: [
       "3 nights south-coast hotels",
@@ -569,9 +695,18 @@ export const tours: Tour[] = [
       "Coastal village of Vík",
     ],
     itinerary: [
-      { title: "Coast to Vík", text: "Drive the south coast with a stop at Skógafoss waterfall." },
-      { title: "Black Beaches & Cliffs", text: "Reynisfjara, the basalt columns and Dyrhólaey cliffs." },
-      { title: "Departure", text: "Morning coastal views before returning to Reykjavík." },
+      {
+        title: "Coast to Vík",
+        text: "Drive the south coast with a stop at Skógafoss waterfall.",
+      },
+      {
+        title: "Black Beaches & Cliffs",
+        text: "Reynisfjara, the basalt columns and Dyrhólaey cliffs.",
+      },
+      {
+        title: "Departure",
+        text: "Morning coastal views before returning to Reykjavík.",
+      },
     ],
     included: [
       "2 nights coastal hotel",
@@ -620,11 +755,26 @@ export const tours: Tour[] = [
       "Trastevere food & wine evening",
     ],
     itinerary: [
-      { title: "Arrival in Rome", text: "Transfer to a central hotel and an evening walk to the Trevi Fountain." },
-      { title: "Ancient Rome", text: "Colosseum, Roman Forum and Palatine Hill with an expert guide." },
-      { title: "Vatican City", text: "Vatican Museums, Sistine Chapel and St Peter's Basilica." },
-      { title: "Old Rome & Trastevere", text: "Pantheon, Piazza Navona and a Trastevere food tour." },
-      { title: "Departure", text: "Free morning before your airport transfer." },
+      {
+        title: "Arrival in Rome",
+        text: "Transfer to a central hotel and an evening walk to the Trevi Fountain.",
+      },
+      {
+        title: "Ancient Rome",
+        text: "Colosseum, Roman Forum and Palatine Hill with an expert guide.",
+      },
+      {
+        title: "Vatican City",
+        text: "Vatican Museums, Sistine Chapel and St Peter's Basilica.",
+      },
+      {
+        title: "Old Rome & Trastevere",
+        text: "Pantheon, Piazza Navona and a Trastevere food tour.",
+      },
+      {
+        title: "Departure",
+        text: "Free morning before your airport transfer.",
+      },
     ],
     included: [
       "4 nights central hotel",
@@ -669,10 +819,22 @@ export const tours: Tour[] = [
       "Hidden backstreet food tour",
     ],
     itinerary: [
-      { title: "Arrival in Venice", text: "Water-taxi transfer and an evening in St Mark's Square." },
-      { title: "Heart of Venice", text: "St Mark's Basilica, Doge's Palace and a gondola ride." },
-      { title: "Islands of the Lagoon", text: "Boat trip to Murano and Burano with local tastings." },
-      { title: "Departure", text: "Final canal-side espresso before your transfer." },
+      {
+        title: "Arrival in Venice",
+        text: "Water-taxi transfer and an evening in St Mark's Square.",
+      },
+      {
+        title: "Heart of Venice",
+        text: "St Mark's Basilica, Doge's Palace and a gondola ride.",
+      },
+      {
+        title: "Islands of the Lagoon",
+        text: "Boat trip to Murano and Burano with local tastings.",
+      },
+      {
+        title: "Departure",
+        text: "Final canal-side espresso before your transfer.",
+      },
     ],
     included: [
       "3 nights Venice hotel",
@@ -717,10 +879,22 @@ export const tours: Tour[] = [
       "Fresh seafood by the sea",
     ],
     itinerary: [
-      { title: "Arrival on the Coast", text: "Transfer to a cliffside hotel and a sunset aperitivo." },
-      { title: "Positano & Amalfi", text: "Coastal drive through the famous villages with free beach time." },
-      { title: "Boat Day", text: "Private boat trip to hidden coves and swimming spots." },
-      { title: "Departure", text: "Ravello gardens visit before your onward transfer." },
+      {
+        title: "Arrival on the Coast",
+        text: "Transfer to a cliffside hotel and a sunset aperitivo.",
+      },
+      {
+        title: "Positano & Amalfi",
+        text: "Coastal drive through the famous villages with free beach time.",
+      },
+      {
+        title: "Boat Day",
+        text: "Private boat trip to hidden coves and swimming spots.",
+      },
+      {
+        title: "Departure",
+        text: "Ravello gardens visit before your onward transfer.",
+      },
     ],
     included: [
       "3 nights cliffside hotel",
@@ -765,9 +939,18 @@ export const tours: Tour[] = [
       "Swim in a hidden cove",
     ],
     itinerary: [
-      { title: "Arrival & Monterosso", text: "Transfer to the coast and an evening in Monterosso." },
-      { title: "Village Trail Hike", text: "Walk and train-hop through Vernazza, Corniglia and Manarola." },
-      { title: "Departure", text: "Riomaggiore visit before your return transfer." },
+      {
+        title: "Arrival & Monterosso",
+        text: "Transfer to the coast and an evening in Monterosso.",
+      },
+      {
+        title: "Village Trail Hike",
+        text: "Walk and train-hop through Vernazza, Corniglia and Manarola.",
+      },
+      {
+        title: "Departure",
+        text: "Riomaggiore visit before your return transfer.",
+      },
     ],
     included: [
       "2 nights village hotel",
@@ -816,11 +999,26 @@ export const tours: Tour[] = [
       "Day trip option to Nikko or Kamakura",
     ],
     itinerary: [
-      { title: "Arrival in Tokyo", text: "Transfer to a central hotel and an evening in glowing Shinjuku." },
-      { title: "Old & New Tokyo", text: "Senso-ji temple, Asakusa and the Tsukiji market food tour." },
-      { title: "Modern Tokyo", text: "Shibuya, Harajuku and the teamLab digital art museum." },
-      { title: "Day Trip", text: "Excursion to Kamakura's Great Buddha and coastal shrines." },
-      { title: "Departure", text: "Free morning for shopping before your airport transfer." },
+      {
+        title: "Arrival in Tokyo",
+        text: "Transfer to a central hotel and an evening in glowing Shinjuku.",
+      },
+      {
+        title: "Old & New Tokyo",
+        text: "Senso-ji temple, Asakusa and the Tsukiji market food tour.",
+      },
+      {
+        title: "Modern Tokyo",
+        text: "Shibuya, Harajuku and the teamLab digital art museum.",
+      },
+      {
+        title: "Day Trip",
+        text: "Excursion to Kamakura's Great Buddha and coastal shrines.",
+      },
+      {
+        title: "Departure",
+        text: "Free morning for shopping before your airport transfer.",
+      },
     ],
     included: [
       "4 nights central hotel",
@@ -865,10 +1063,22 @@ export const tours: Tour[] = [
       "Traditional tea ceremony",
     ],
     itinerary: [
-      { title: "Arrival in Kyoto", text: "Transfer to a traditional ryokan and an evening in Gion." },
-      { title: "Temples & Torii", text: "Fushimi Inari, Kiyomizu-dera and a tea ceremony." },
-      { title: "Arashiyama", text: "Bamboo grove, the Golden Pavilion and Zen gardens." },
-      { title: "Departure", text: "Morning temple stroll before your onward transfer." },
+      {
+        title: "Arrival in Kyoto",
+        text: "Transfer to a traditional ryokan and an evening in Gion.",
+      },
+      {
+        title: "Temples & Torii",
+        text: "Fushimi Inari, Kiyomizu-dera and a tea ceremony.",
+      },
+      {
+        title: "Arashiyama",
+        text: "Bamboo grove, the Golden Pavilion and Zen gardens.",
+      },
+      {
+        title: "Departure",
+        text: "Morning temple stroll before your onward transfer.",
+      },
     ],
     included: [
       "3 nights ryokan / hotel",
@@ -913,9 +1123,18 @@ export const tours: Tour[] = [
       "Chureito Pagoda Fuji view",
     ],
     itinerary: [
-      { title: "To the Foothills", text: "Travel from Tokyo to a lakeside ryokan with Fuji views." },
-      { title: "Fuji & Hakone", text: "Fifth station, Lake Ashi cruise and the Hakone ropeway." },
-      { title: "Departure", text: "Sunrise Fuji views and an onsen soak before departure." },
+      {
+        title: "To the Foothills",
+        text: "Travel from Tokyo to a lakeside ryokan with Fuji views.",
+      },
+      {
+        title: "Fuji & Hakone",
+        text: "Fifth station, Lake Ashi cruise and the Hakone ropeway.",
+      },
+      {
+        title: "Departure",
+        text: "Sunrise Fuji views and an onsen soak before departure.",
+      },
     ],
     included: [
       "2 nights ryokan with onsen",
@@ -960,9 +1179,18 @@ export const tours: Tour[] = [
       "Optional Universal Studios day",
     ],
     itinerary: [
-      { title: "Arrival in Osaka", text: "Transfer to a central hotel and a Dotonbori food crawl." },
-      { title: "Castle & Markets", text: "Osaka Castle, gardens and Kuromon market tastings." },
-      { title: "Departure", text: "Umeda Sky Building views before your onward transfer." },
+      {
+        title: "Arrival in Osaka",
+        text: "Transfer to a central hotel and a Dotonbori food crawl.",
+      },
+      {
+        title: "Castle & Markets",
+        text: "Osaka Castle, gardens and Kuromon market tastings.",
+      },
+      {
+        title: "Departure",
+        text: "Umeda Sky Building views before your onward transfer.",
+      },
     ],
     included: [
       "2 nights central hotel",
@@ -1011,10 +1239,22 @@ export const tours: Tour[] = [
       "Local island cultural visit",
     ],
     itinerary: [
-      { title: "Arrival in Malé", text: "Speedboat transfer and a tour of the capital's waterfront and market." },
-      { title: "Reefs & Sandbanks", text: "Snorkelling trip and a private sandbank picnic." },
-      { title: "Ocean & Dolphins", text: "Sunset dolphin cruise and a local island visit." },
-      { title: "Departure", text: "Final beach morning before your airport transfer." },
+      {
+        title: "Arrival in Malé",
+        text: "Speedboat transfer and a tour of the capital's waterfront and market.",
+      },
+      {
+        title: "Reefs & Sandbanks",
+        text: "Snorkelling trip and a private sandbank picnic.",
+      },
+      {
+        title: "Ocean & Dolphins",
+        text: "Sunset dolphin cruise and a local island visit.",
+      },
+      {
+        title: "Departure",
+        text: "Final beach morning before your airport transfer.",
+      },
     ],
     included: [
       "3 nights island hotel",
@@ -1059,10 +1299,22 @@ export const tours: Tour[] = [
       "Night fishing trip",
     ],
     itinerary: [
-      { title: "Arrival on Maafushi", text: "Speedboat transfer and an afternoon on the bikini beach." },
-      { title: "Turtles & Reefs", text: "Full-day snorkelling safari to turtle points and coral gardens." },
-      { title: "Sandbank & Barbecue", text: "Sandbank trip and an evening seafood beach barbecue." },
-      { title: "Departure", text: "Morning swim before your transfer to Malé." },
+      {
+        title: "Arrival on Maafushi",
+        text: "Speedboat transfer and an afternoon on the bikini beach.",
+      },
+      {
+        title: "Turtles & Reefs",
+        text: "Full-day snorkelling safari to turtle points and coral gardens.",
+      },
+      {
+        title: "Sandbank & Barbecue",
+        text: "Sandbank trip and an evening seafood beach barbecue.",
+      },
+      {
+        title: "Departure",
+        text: "Morning swim before your transfer to Malé.",
+      },
     ],
     included: [
       "3 nights beach guesthouse",
@@ -1107,11 +1359,26 @@ export const tours: Tour[] = [
       "Private beach & sunset cruise",
     ],
     itinerary: [
-      { title: "Arrival in Baa Atoll", text: "Seaplane transfer to an island lodge and a first reef snorkel." },
-      { title: "Manta Bay", text: "Excursion to Hanifaru Bay to snorkel with manta rays." },
-      { title: "Diving Day", text: "Two guided dives over pristine coral reefs." },
-      { title: "Ocean Safari", text: "Whale shark search and a sunset cruise." },
-      { title: "Departure", text: "Final morning snorkel before your seaplane back." },
+      {
+        title: "Arrival in Baa Atoll",
+        text: "Seaplane transfer to an island lodge and a first reef snorkel.",
+      },
+      {
+        title: "Manta Bay",
+        text: "Excursion to Hanifaru Bay to snorkel with manta rays.",
+      },
+      {
+        title: "Diving Day",
+        text: "Two guided dives over pristine coral reefs.",
+      },
+      {
+        title: "Ocean Safari",
+        text: "Whale shark search and a sunset cruise.",
+      },
+      {
+        title: "Departure",
+        text: "Final morning snorkel before your seaplane back.",
+      },
     ],
     included: [
       "4 nights island lodge",
@@ -1156,11 +1423,26 @@ export const tours: Tour[] = [
       "Overwater spa treatment",
     ],
     itinerary: [
-      { title: "Arrival in Ari Atoll", text: "Seaplane transfer to your overwater villa and a sunset welcome." },
-      { title: "House Reef & Spa", text: "Morning house-reef snorkel and an overwater spa afternoon." },
-      { title: "Whale Shark Safari", text: "Full-day boat safari to snorkel with whale sharks and mantas." },
-      { title: "Island Indulgence", text: "Private beach dining and a sunset champagne sail." },
-      { title: "Departure", text: "Final lagoon swim before your seaplane back to Malé." },
+      {
+        title: "Arrival in Ari Atoll",
+        text: "Seaplane transfer to your overwater villa and a sunset welcome.",
+      },
+      {
+        title: "House Reef & Spa",
+        text: "Morning house-reef snorkel and an overwater spa afternoon.",
+      },
+      {
+        title: "Whale Shark Safari",
+        text: "Full-day boat safari to snorkel with whale sharks and mantas.",
+      },
+      {
+        title: "Island Indulgence",
+        text: "Private beach dining and a sunset champagne sail.",
+      },
+      {
+        title: "Departure",
+        text: "Final lagoon swim before your seaplane back to Malé.",
+      },
     ],
     included: [
       "4 nights overwater villa",
@@ -1209,11 +1491,26 @@ export const tours: Tour[] = [
       "Riffelsee mirror-lake viewpoint",
     ],
     itinerary: [
-      { title: "Arrival in Zermatt", text: "Scenic train to the car-free village and an evening stroll." },
-      { title: "Glacier Paradise", text: "Cable car to the highest station in Europe for glacier views." },
-      { title: "Gornergrat & Hiking", text: "Railway to Gornergrat and a hike past the Riffelsee lake." },
-      { title: "Alpine Trails", text: "A guided lower-valley hike with Matterhorn panoramas." },
-      { title: "Departure", text: "Free morning before your scenic train back." },
+      {
+        title: "Arrival in Zermatt",
+        text: "Scenic train to the car-free village and an evening stroll.",
+      },
+      {
+        title: "Glacier Paradise",
+        text: "Cable car to the highest station in Europe for glacier views.",
+      },
+      {
+        title: "Gornergrat & Hiking",
+        text: "Railway to Gornergrat and a hike past the Riffelsee lake.",
+      },
+      {
+        title: "Alpine Trails",
+        text: "A guided lower-valley hike with Matterhorn panoramas.",
+      },
+      {
+        title: "Departure",
+        text: "Free morning before your scenic train back.",
+      },
     ],
     included: [
       "4 nights alpine hotel",
@@ -1258,9 +1555,18 @@ export const tours: Tour[] = [
       "Views of Eiger, Mönch & Jungfrau",
     ],
     itinerary: [
-      { title: "Arrival in Interlaken", text: "Transfer to a lakeside hotel and a lakeshore evening walk." },
-      { title: "Lakes & Valley", text: "Lake Brienz cruise and the waterfalls of Lauterbrunnen." },
-      { title: "Alpine Heights", text: "Cogwheel train to alpine meadows with optional paragliding." },
+      {
+        title: "Arrival in Interlaken",
+        text: "Transfer to a lakeside hotel and a lakeshore evening walk.",
+      },
+      {
+        title: "Lakes & Valley",
+        text: "Lake Brienz cruise and the waterfalls of Lauterbrunnen.",
+      },
+      {
+        title: "Alpine Heights",
+        text: "Cogwheel train to alpine meadows with optional paragliding.",
+      },
       { title: "Departure", text: "Free morning before your onward transfer." },
     ],
     included: [
@@ -1306,9 +1612,18 @@ export const tours: Tour[] = [
       "Swiss chocolate & watch shopping",
     ],
     itinerary: [
-      { title: "Arrival in Lucerne", text: "Transfer to a central hotel and an old-town walking tour." },
-      { title: "Lake & Mountain", text: "Lake Lucerne cruise and the cogwheel railway up Mount Pilatus." },
-      { title: "Departure", text: "Lion Monument and free time before your transfer." },
+      {
+        title: "Arrival in Lucerne",
+        text: "Transfer to a central hotel and an old-town walking tour.",
+      },
+      {
+        title: "Lake & Mountain",
+        text: "Lake Lucerne cruise and the cogwheel railway up Mount Pilatus.",
+      },
+      {
+        title: "Departure",
+        text: "Lion Monument and free time before your transfer.",
+      },
     ],
     included: [
       "2 nights central hotel",
@@ -1353,10 +1668,22 @@ export const tours: Tour[] = [
       "Alpine village of Mürren",
     ],
     itinerary: [
-      { title: "Arrival in Grindelwald", text: "Transfer to a mountain village hotel with Eiger views." },
-      { title: "Top of Europe", text: "Railway to Jungfraujoch, the Ice Palace and glacier plateau." },
-      { title: "Cliffs & Villages", text: "Grindelwald First cliff walk and the village of Mürren." },
-      { title: "Departure", text: "Free alpine morning before your onward transfer." },
+      {
+        title: "Arrival in Grindelwald",
+        text: "Transfer to a mountain village hotel with Eiger views.",
+      },
+      {
+        title: "Top of Europe",
+        text: "Railway to Jungfraujoch, the Ice Palace and glacier plateau.",
+      },
+      {
+        title: "Cliffs & Villages",
+        text: "Grindelwald First cliff walk and the village of Mürren.",
+      },
+      {
+        title: "Departure",
+        text: "Free alpine morning before your onward transfer.",
+      },
     ],
     included: [
       "3 nights mountain hotel",
@@ -1380,15 +1707,15 @@ export const tours: Tour[] = [
 =========================== */
 
 export const getTourById = (id: number | string) =>
-  tours.find((t) => t.id === Number(id))
+  tours.find(t => t.id === Number(id))
 
 export const getRelatedTours = (id: number | string, count = 3) => {
-  const current = tours.find((t) => t.id === Number(id))
+  const current = tours.find(t => t.id === Number(id))
   const sameCountry = tours.filter(
-    (t) => t.id !== Number(id) && t.country === current?.country,
+    t => t.id !== Number(id) && t.country === current?.country,
   )
   const others = tours.filter(
-    (t) => t.id !== Number(id) && t.country !== current?.country,
+    t => t.id !== Number(id) && t.country !== current?.country,
   )
   return [...sameCountry, ...others].slice(0, count)
 }

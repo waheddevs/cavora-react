@@ -8,6 +8,7 @@ import { getRelatedTours } from "ts/TourSingle"
 import type { Tour } from "app/libs/types"
 
 export default function RelatedTours({ currentId }: { currentId: number }) {
+  /* HOOKS */
   const navigate = useNavigate()
   const related = getRelatedTours(currentId, 3) as Tour[]
 

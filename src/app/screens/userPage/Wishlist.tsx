@@ -6,6 +6,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import { useWishlistTours, removeFromWishlist } from "ts/wishlist"
 
 export default function Wishlist() {
+  /* HOOKS */
   const wishlist = useWishlistTours()
 
   return (

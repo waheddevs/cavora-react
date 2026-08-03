@@ -17,6 +17,7 @@ import { isWishlisted, toggleWishlist } from "ts/wishlist"
 import type { Tour } from "app/libs/types"
 
 export default function OrderBar({ tour }: { tour: Tour }) {
+  /* HOOKS */
   const navigate = useNavigate()
   const [date, setDate] = useState("")
   const [guests, setGuests] = useState(1)
@@ -27,6 +28,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
 
   const total = tour.price * guests
 
+  /* HANDLER */
   const handleBookNow = () => {
     if (!date) {
       setDateError(true)
@@ -57,7 +59,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             id="ts-date-btn"
             type="button"
             className={`ts-date-btn${dateError ? " has-error" : ""}`}
-            onClick={(e) => {
+            onClick={e => {
               setDateError(false)
               setCalAnchor(e.currentTarget)
             }}
@@ -80,7 +82,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             <button
               type="button"
               aria-label="Decrease guests"
-              onClick={() => setGuests((g) => Math.max(1, g - 1))}
+              onClick={() => setGuests(g => Math.max(1, g - 1))}
             >
               <RemoveRoundedIcon />
             </button>
@@ -88,7 +90,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             <button
               type="button"
               aria-label="Increase guests"
-              onClick={() => setGuests((g) => g + 1)}
+              onClick={() => setGuests(g => g + 1)}
             >
               <AddRoundedIcon />
             </button>
@@ -159,13 +161,13 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           </Box>
 
           <Box className="calendar-weekdays">
-            {weekDays.map((d) => (
+            {weekDays.map(d => (
               <span key={d}>{d}</span>
             ))}
           </Box>
 
           <Box className="calendar-grid">
-            {buildMonthGrid(viewMonth).map((day) => {
+            {buildMonthGrid(viewMonth).map(day => {
               const inMonth = day.month() === viewMonth.month()
               const isToday = day.isSame(moment(), "day")
               const isSelected = date && day.isSame(moment(date), "day")

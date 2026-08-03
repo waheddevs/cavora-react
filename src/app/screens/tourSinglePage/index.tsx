@@ -9,6 +9,7 @@ import { getTourById } from "ts/TourSingle"
 import "css/tourSingle.css"
 
 export default function TourSinglePage() {
+  /* HOOKS */
   const [params] = useSearchParams()
   const tour = getTourById(params.get("id") ?? 1)
 

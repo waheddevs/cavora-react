@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom"
  * so without this a new page opens mid-scroll.
  */
 export default function ScrollToTop() {
+  /* HOOKS */
   const { pathname, search } = useLocation()
 
   useEffect(() => {

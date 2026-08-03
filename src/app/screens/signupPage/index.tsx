@@ -5,6 +5,7 @@ import { validateSignup, type SignupErrors } from "ts/Signup"
 import "css/signup.css"
 
 export default function SignupPage() {
+  /* HOOKS */
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -12,6 +13,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState<SignupErrors>({})
 
+  /* HANDLER */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const nextErrors = validateSignup({

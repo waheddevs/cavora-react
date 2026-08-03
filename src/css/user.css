@@ -8,7 +8,7 @@
   background: var(--bg-light);
 }
 
-.user-container {
+.user-page .user-container {
   max-width: 1080px;
   padding: 0 24px;
   margin: 0 auto;
@@ -18,19 +18,19 @@
    SHELL (banner + sidebar + content)
 =========================== */
 
-.user-shell {
+.user-page .user-shell {
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--white);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
-.user-shell-banner {
+.user-page .user-shell-banner {
   height: 92px;
   background: linear-gradient(120deg, #ffce6b, var(--gold));
 }
 
-.user-shell-body {
+.user-page .user-shell-body {
   display: flex;
   align-items: flex-start;
 }
@@ -39,7 +39,7 @@
    SIDEBAR
 =========================== */
 
-.user-sidebar {
+.user-page .user-sidebar {
   flex-shrink: 0;
   width: 250px;
   padding: 0 24px 28px;
@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-.user-sidebar-avatar {
+.user-page .user-sidebar-avatar {
   overflow: hidden;
   width: 92px;
   height: 92px;
@@ -57,19 +57,19 @@
   background: var(--bg-light);
 }
 
-.user-sidebar-avatar img {
+.user-page .user-sidebar-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.user-sidebar-handle {
+.user-page .user-sidebar-handle {
   font-size: 12px;
   font-weight: 300;
   color: var(--text-light);
 }
 
-.user-sidebar-name {
+.user-page .user-sidebar-name {
   margin-top: 4px;
   margin-bottom: 22px;
   font-family: "Poppins", sans-serif;
@@ -78,13 +78,13 @@
   color: var(--dark);
 }
 
-.user-sidebar-nav {
+.user-page .user-sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.user-sidebar-link {
+.user-page .user-sidebar-link {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -105,23 +105,23 @@
   cursor: pointer;
 }
 
-.user-sidebar-link svg {
+.user-page .user-sidebar-link svg {
   font-size: 19px;
   color: var(--text-light);
   transition: color 0.2s ease;
 }
 
-.user-sidebar-link:hover {
+.user-page .user-sidebar-link:hover {
   background: var(--bg-light);
 }
 
-.user-sidebar-link.active {
+.user-page .user-sidebar-link.active {
   border-left-color: var(--gold);
   color: var(--gold-dark);
   background: rgba(255, 179, 0, 0.1);
 }
 
-.user-sidebar-link.active svg {
+.user-page .user-sidebar-link.active svg {
   color: var(--gold);
 }
 
@@ -129,24 +129,24 @@
    SHARED PANEL
 =========================== */
 
-.user-content {
+.user-page .user-content {
   flex: 1;
   min-width: 0;
   padding: 32px 34px 36px;
 }
 
-.user-panel {
+.user-page .user-panel {
   width: 100%;
 }
 
-.user-panel-title {
+.user-page .user-panel-title {
   font-family: "Poppins", sans-serif;
   font-size: 36px;
   font-weight: 700;
   color: var(--dark);
 }
 
-.user-panel-subtitle {
+.user-page .user-panel-subtitle {
   margin-top: 6px;
   margin-bottom: 32px;
   font-size: 12px;
@@ -158,13 +158,13 @@
    BOOKINGS
 =========================== */
 
-.booking-list {
+.user-page .booking-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.booking-card {
+.user-page .booking-card {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -174,11 +174,11 @@
   transition: box-shadow 0.2s ease;
 }
 
-.booking-card:hover {
+.user-page .booking-card:hover {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
 }
 
-.booking-image {
+.user-page .booking-image {
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -187,13 +187,13 @@
   border-radius: 10px;
 }
 
-.booking-image img {
+.user-page .booking-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.booking-status {
+.user-page .booking-status {
   position: absolute;
   top: 8px;
   left: 8px;
@@ -204,20 +204,20 @@
   color: var(--white);
 }
 
-.booking-status--upcoming {
+.user-page .booking-status--upcoming {
   background: #2e9b5b;
 }
 
-.booking-status--completed {
+.user-page .booking-status--completed {
   background: #8a8a8a;
 }
 
-.booking-content {
+.user-page .booking-content {
   flex: 1;
   min-width: 0;
 }
 
-.booking-title {
+.user-page .booking-title {
   margin-bottom: 8px;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
@@ -225,13 +225,13 @@
   color: var(--dark);
 }
 
-.booking-meta {
+.user-page .booking-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 }
 
-.booking-meta span {
+.user-page .booking-meta span {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -239,12 +239,12 @@
   color: var(--text-light);
 }
 
-.booking-meta svg {
+.user-page .booking-meta svg {
   font-size: 17px;
   color: var(--gold);
 }
 
-.booking-side {
+.user-page .booking-side {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -252,14 +252,14 @@
   gap: 8px;
 }
 
-.booking-total {
+.user-page .booking-total {
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: var(--dark);
 }
 
-.booking-link {
+.user-page .booking-link {
   padding: 6px 14px;
   border: 1px solid var(--gold);
   border-radius: 8px;
@@ -271,7 +271,7 @@
     color 0.2s ease;
 }
 
-.booking-link:hover {
+.user-page .booking-link:hover {
   color: var(--white);
   background: var(--gold);
 }
@@ -280,41 +280,41 @@
    WISHLIST
 =========================== */
 
-.wishlist-empty {
+.user-page .wishlist-empty {
   padding: 24px 0;
   font-size: 14px;
   color: var(--text-light);
 }
 
-.wishlist-grid {
+.user-page .wishlist-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 
-.wishlist-card {
+.user-page .wishlist-card {
   overflow: hidden;
   border: 1px solid #eee;
   border-radius: 12px;
   transition: box-shadow 0.2s ease;
 }
 
-.wishlist-card:hover {
+.user-page .wishlist-card:hover {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
-.wishlist-image {
+.user-page .wishlist-image {
   position: relative;
   height: 158px;
 }
 
-.wishlist-image img {
+.user-page .wishlist-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.wishlist-remove {
+.user-page .wishlist-remove {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -331,19 +331,19 @@
   cursor: pointer;
 }
 
-.wishlist-remove:hover {
+.user-page .wishlist-remove:hover {
   transform: scale(1.08);
 }
 
-.wishlist-remove svg {
+.user-page .wishlist-remove svg {
   font-size: 19px;
 }
 
-.wishlist-content {
+.user-page .wishlist-content {
   padding: 14px 16px 18px;
 }
 
-.wishlist-rating {
+.user-page .wishlist-rating {
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -353,17 +353,17 @@
   color: var(--dark);
 }
 
-.wishlist-rating svg {
+.user-page .wishlist-rating svg {
   font-size: 17px;
   color: var(--gold);
 }
 
-.wishlist-rating span {
+.user-page .wishlist-rating span {
   font-weight: 400;
   color: var(--text-light);
 }
 
-.wishlist-title {
+.user-page .wishlist-title {
   margin-bottom: 6px;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
@@ -372,7 +372,7 @@
   color: var(--dark);
 }
 
-.wishlist-location {
+.user-page .wishlist-location {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -381,31 +381,31 @@
   color: var(--text-light);
 }
 
-.wishlist-location svg {
+.user-page .wishlist-location svg {
   font-size: 16px;
   color: var(--gold);
 }
 
-.wishlist-footer {
+.user-page .wishlist-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.wishlist-price {
+.user-page .wishlist-price {
   font-family: "Poppins", sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: var(--dark);
 }
 
-.wishlist-price small {
+.user-page .wishlist-price small {
   font-size: 12px;
   font-weight: 400;
   color: var(--text-light);
 }
 
-.wishlist-link {
+.user-page .wishlist-link {
   padding: 6px 16px;
   border: 1px solid var(--gold);
   border-radius: 8px;
@@ -417,7 +417,7 @@
     color 0.2s ease;
 }
 
-.wishlist-link:hover {
+.user-page .wishlist-link:hover {
   color: var(--white);
   background: var(--gold);
 }
@@ -426,32 +426,32 @@
    SETTINGS FORM
 =========================== */
 
-.settings-form {
+.user-page .settings-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 640px;
 }
 
-.settings-row {
+.user-page .settings-row {
   display: flex;
   gap: 20px;
 }
 
-.settings-form .form-field {
+.user-page .settings-form .form-field {
   display: flex;
   flex: 1;
   flex-direction: column;
   gap: 7px;
 }
 
-.settings-form label {
+.user-page .settings-form label {
   font-size: 13.5px;
   font-weight: 500;
   color: var(--dark);
 }
 
-.settings-form input {
+.user-page .settings-form input {
   padding: 11px 14px;
   border: 1px solid #dcdcdc;
   border-radius: 9px;
@@ -462,11 +462,11 @@
   outline: none;
 }
 
-.settings-form input:focus {
+.user-page .settings-form input:focus {
   border-color: var(--gold);
 }
 
-.settings-submit {
+.user-page .settings-submit {
   align-self: flex-start;
   padding: 11px 28px;
   border: none;
@@ -480,18 +480,18 @@
   cursor: pointer;
 }
 
-.settings-submit:hover {
+.user-page .settings-submit:hover {
   background: var(--gold-dark);
 }
 
-.settings-divider {
+.user-page .settings-divider {
   height: 1px;
   max-width: 640px;
   margin: 28px 0 22px;
   background: #eee;
 }
 
-.settings-danger-zone {
+.user-page .settings-danger-zone {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -500,19 +500,19 @@
   max-width: 640px;
 }
 
-.settings-danger-title {
+.user-page .settings-danger-title {
   font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--dark);
 }
 
-.settings-danger-subtitle {
+.user-page .settings-danger-subtitle {
   font-size: 13px;
   color: var(--text-light);
 }
 
-.danger-button {
+.user-page .danger-button {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -532,11 +532,11 @@
   cursor: pointer;
 }
 
-.danger-button svg {
+.user-page .danger-button svg {
   font-size: 18px;
 }
 
-.danger-button:hover {
+.user-page .danger-button:hover {
   border-color: transparent;
   color: var(--white);
   background: var(--danger);
@@ -546,25 +546,25 @@
    SUPPORT
 =========================== */
 
-.support-grid {
+.user-page .support-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
   margin-bottom: 24px;
 }
 
-.support-card {
+.user-page .support-card {
   padding: 22px;
   border: 1px solid #eee;
   border-radius: 12px;
   transition: box-shadow 0.2s ease;
 }
 
-.support-card:hover {
+.user-page .support-card:hover {
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
 }
 
-.support-icon {
+.user-page .support-icon {
   display: grid;
   place-items: center;
   width: 42px;
@@ -575,11 +575,11 @@
   background: var(--bg-light);
 }
 
-.support-icon svg {
+.user-page .support-icon svg {
   font-size: 21px;
 }
 
-.support-card-title {
+.user-page .support-card .support-card-title {
   margin-bottom: 6px;
   font-family: "Poppins", sans-serif;
   font-size: 15px;
@@ -587,23 +587,23 @@
   color: var(--dark);
 }
 
-.support-card-text {
+.user-page .support-card .support-card-text {
   margin-bottom: 14px;
   font-size: 13px;
   color: var(--text-light);
 }
 
-.support-link {
+.user-page .support-card .support-link {
   font-size: 13px;
   font-weight: 600;
   color: var(--gold-dark);
 }
 
-.support-link:hover {
+.user-page .support-card .support-link:hover {
   text-decoration: underline;
 }
 
-.support-contact {
+.user-page .support-contact {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -611,7 +611,7 @@
   color: var(--text);
 }
 
-.support-contact svg {
+.user-page .support-contact svg {
   font-size: 18px;
   color: var(--gold);
 }
@@ -621,43 +621,43 @@
 =========================== */
 
 @media (max-width: 720px) {
-  .user-shell-body {
+  .user-page .user-shell-body {
     flex-direction: column;
   }
 
-  .user-sidebar {
+  .user-page .user-sidebar {
     width: 100%;
     padding: 0 24px 22px;
     border-right: none;
     border-bottom: 1px solid #f0f0f0;
   }
 
-  .user-content {
+  .user-page .user-content {
     padding: 26px 24px 30px;
   }
 
-  .settings-danger-zone {
+  .user-page .settings-danger-zone {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .booking-card {
+  .user-page .booking-card {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .booking-image {
+  .user-page .booking-image {
     width: 100%;
     height: 160px;
   }
 
-  .booking-side {
+  .user-page .booking-side {
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
   }
 
-  .settings-row {
+  .user-page .settings-row {
     flex-direction: column;
   }
 }

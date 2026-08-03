@@ -31,6 +31,7 @@ import "css/footer.css"
 const authRoutes = ["/login", "/signup", "/payment"]
 
 function App() {
+  /* HOOKS */
   const { pathname } = useLocation()
   const isAuthRoute = authRoutes.includes(pathname)
 

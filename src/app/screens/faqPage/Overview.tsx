@@ -4,6 +4,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import { overviewFaqs as items } from "ts/Faq"
 
 export default function Overview() {
+  /* HOOKS */
   const [open, setOpen] = useState<number | null>(null)
 
   return (

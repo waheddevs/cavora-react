@@ -57,6 +57,7 @@ export function removeFromWishlist(id: number) {
 
 /* Reactive hook — re-renders on any wishlist change (this tab or another) */
 export function useWishlistTours(): Tour[] {
+  /* HOOKS */
   const [items, setItems] = useState<Tour[]>(getWishlistTours)
   useEffect(() => {
     const sync = () => setItems(getWishlistTours())

@@ -31,6 +31,7 @@ function renderStars(rating: number) {
 }
 
 export default function DiscoverTours() {
+  /* HOOKS */
   const navigate = useNavigate()
 
   return (

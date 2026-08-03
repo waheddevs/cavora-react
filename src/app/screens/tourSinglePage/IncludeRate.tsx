@@ -8,6 +8,7 @@ import { ratingDistribution as distribution } from "ts/TourSingle"
 import type { Tour } from "app/libs/types"
 
 export default function IncludeRate({ tour }: { tour: Tour }) {
+  /* HOOKS */
   const [run, setRun] = useState(false)
   const reviewsRef = useRef<HTMLDivElement>(null)
 

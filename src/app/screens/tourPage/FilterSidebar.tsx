@@ -22,6 +22,7 @@ export default function FilterSidebar({
   initialFilters,
   onApply,
 }: Props) {
+  /* HOOKS */
   const [draft, setDraft] = useState<TourFilters>(
     initialFilters ?? makeDefaultFilters(priceMin, priceMax),
   )
@@ -39,6 +40,7 @@ export default function FilterSidebar({
     return Object.entries(counts).map(([name, count]) => ({ name, count }))
   }, [])
 
+  /* HANDLER */
   const toggle = (key: "destinations" | "durations" | "types", value: string) =>
     setDraft((d) => {
       const list = d[key]

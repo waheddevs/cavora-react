@@ -5,6 +5,7 @@ import BlogSidebar from "./BlogSidebar"
 import "css/blog.css"
 
 export default function BlogPage() {
+  /* HOOKS */
   const [activeCategory, setActiveCategory] = useState("All Posts")
 
   return (

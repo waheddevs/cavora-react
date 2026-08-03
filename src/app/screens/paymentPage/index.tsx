@@ -26,6 +26,7 @@ import "css/payment.css"
 const HOLD_SECONDS = 10 * 60
 
 export default function PaymentPage() {
+  /* HOOKS */
   const [params] = useSearchParams()
   const navigate = useNavigate()
 
@@ -81,6 +82,7 @@ export default function PaymentPage() {
   const mm = String(Math.floor(secondsLeft / 60)).padStart(2, "0")
   const ss = String(secondsLeft % 60).padStart(2, "0")
 
+  /* HANDLER */
   const handleClose = () => navigate(`/tour-single?id=${tour.id}`)
 
   const handleSubmit = async (e: React.FormEvent) => {

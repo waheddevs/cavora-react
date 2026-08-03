@@ -9,6 +9,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import type { Tour } from "app/libs/types"
 
 export default function AboutTour({ tour }: { tour: Tour }) {
+  /* HOOKS */
   const [active, setActive] = useState(0)
 
   return (

@@ -4,13 +4,13 @@ import moment from "moment"
 /* Weekday headers (Monday-first) for the hero date picker */
 export const weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
 
-/* Trust badges shown under the hero title.
-   "icon" maps to a component in HomeNavber.tsx */
+/* Trust badges shown beneath the hero actions.
+   "icon" maps to a component in HomeNavbar.tsx. */
 export const features = [
-  { label: "Safety", icon: "safety" },
-  { label: "Homologated", icon: "homologated" },
-  { label: "Tourism", icon: "tourism" },
-  { label: "Connected Pay", icon: "pay" },
+  { label: "Verified Guides", icon: "verified" },
+  { label: "Secure Booking", icon: "secure" },
+  { label: "Curated Tours", icon: "curated" },
+  { label: "24/7 Support", icon: "support" },
 ]
 
 /* Build a 6x7 grid of moment days covering the given month */
@@ -62,26 +62,9 @@ export const heroSlides = [
   },
 ]
 
-/* Options for the hero search bar */
-export const tourTypeOptions = [
-  "Adventure",
-  "Cultural",
-  "Beach",
-  "Hiking",
-  "Cruise",
-  "Honeymoon",
-]
-
-export const peopleOptions = [
-  "1 Adult – 0 Children",
-  "2 Adults – 0 Children",
-  "2 Adults – 1 Child",
-  "2 Adults – 2 Children",
-  "3 Adults – 0 Children",
-]
-
 /* Auto-advancing slideshow for the hero background. */
 export function useHeroSlider(intervalMs = 5000) {
+  /* HOOKS */
   const [activeSlide, setActiveSlide] = useState(0)
 
   useEffect(() => {
@@ -98,6 +81,7 @@ export function useHeroSlider(intervalMs = 5000) {
 /* True once the page is scrolled past `threshold` px.
    Drives the scroll-aware navbar (transparent → solid). */
 export function useScrolled(threshold = 40) {
+  /* HOOKS */
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {

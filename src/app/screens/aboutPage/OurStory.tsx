@@ -3,9 +3,13 @@ import GoldButton from "../../components/ui/GoldButton"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
+import { useNavigate } from "react-router-dom"
 import { storyFeatures as features } from "ts/About"
 
 export default function OurStory() {
+  /* HOOKS */
+  const navigate = useNavigate()
+
   return (
     <section className="our-story">
       <Container maxWidth={false} className="story-container">
@@ -40,6 +44,7 @@ export default function OurStory() {
             <GoldButton
               className="story-btn"
               endIcon={<ArrowForwardRoundedIcon />}
+              onClick={() => navigate("/tour")}
             >
               Explore Tours
             </GoldButton>

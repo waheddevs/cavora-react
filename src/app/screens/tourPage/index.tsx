@@ -15,6 +15,7 @@ const PER_PAGE = 9
 
 export default function TourPage() {
   const allTours = tours as Tour[]
+  /* HOOKS */
   const priceMin = useMemo(
     () => Math.min(...allTours.map((t) => t.price)),
     [allTours],
@@ -47,6 +48,7 @@ export default function TourPage() {
   const [showFilters, setShowFilters] = useState(true)
   const topRef = useRef<HTMLDivElement>(null)
 
+  /* HANDLER */
   const goToPage = (p: number) => {
     setPage(p)
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })

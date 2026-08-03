@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { featuredPosts } from "ts/Blog"
 
 export default function FeaturedPost() {
+  /* HOOKS */
   const navigate = useNavigate()
   return (
     <Box className="sidebar-widget">

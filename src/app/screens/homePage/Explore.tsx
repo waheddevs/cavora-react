@@ -7,6 +7,7 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 const KYOTO_TOUR_ID = 18
 
 export default function Explore() {
+  /* HOOKS */
   const navigate = useNavigate()
 
   return (

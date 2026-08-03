@@ -11,6 +11,7 @@ interface Props {
  * Renders only the number, so surrounding markup / styles stay intact.
  */
 export default function CountUp({ end, run, duration = 1000 }: Props) {
+  /* HOOKS */
   const [value, setValue] = useState(0)
   const done = useRef(false)
 

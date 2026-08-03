@@ -13,7 +13,7 @@ const icons: Record<string, JSX.Element> = {
 }
 
 export default function GetInTouch() {
-  return (
+  return ( 
     <section className="get-in-touch">
       <Container maxWidth={false} className="contact-container">
         <Box className="contact-grid">

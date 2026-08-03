@@ -4,6 +4,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import { paymentFaqs as items } from "ts/Faq"
 
 export default function Payment() {
+  /* HOOKS */
   const [open, setOpen] = useState<number | null>(null)
 
   return (

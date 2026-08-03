@@ -4,6 +4,7 @@ import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
 import { safetyFaqs as items } from "ts/Faq"
 
 export default function Safety() {
+  /* HOOKS */
   const [open, setOpen] = useState<number | null>(null)
 
   return (
