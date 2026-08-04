@@ -1,7 +1,6 @@
 import { Box } from "@mui/material"
-import { currentUser } from "ts/User"
-
-export type UserTab = "profile" | "bookings" | "wishlist" | "support"
+import { UserTab } from "app/hooks/UserHooks/useUserTabs"
+import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 interface SidebarTabItem {
   key: UserTab
@@ -16,26 +15,29 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ active, onChange, tabs }: SidebarProps) {
-  const fullName = `${currentUser.firstName} ${currentUser.lastName}`
+  const { user } = useAuth()
+  const fullName = `${user.firstName} ${user.lastName}`
 
   return (
     <Box className="user-sidebar">
       <Box className="user-sidebar-avatar">
-        <img src={currentUser.avatar} alt={fullName} />
+        <img src={user.avatar} alt={fullName} />
       </Box>
 
-      <p className="user-sidebar-handle">@{currentUser.username}</p>
+      <p className="user-sidebar-handle">@{user.username}</p>
       <h3 className="user-sidebar-name">{fullName}</h3>
 
       <Box component="nav" className="user-sidebar-nav">
-        {tabs.map(t => (
+        {tabs.map(tab => (
           <button
-            key={t.key}
-            className={`user-sidebar-link ${active === t.key ? "active" : ""}`}
-            onClick={() => onChange(t.key)}
+            key={tab.key}
+            className={`user-sidebar-link ${
+              active === tab.key ? "active" : ""
+            }`}
+            onClick={() => onChange(tab.key)}
           >
-            {t.icon}
-            {t.label}
+            {tab.icon}
+            {tab.label}
           </button>
         ))}
       </Box>

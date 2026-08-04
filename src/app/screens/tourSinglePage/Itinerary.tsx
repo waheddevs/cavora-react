@@ -1,21 +1,26 @@
-import { useState } from "react"
 import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
-import type { Tour } from "app/libs/types"
+import { useAccordion } from "app/hooks/CommonHooks/useAccordion"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-export default function Itinerary({ tour }: { tour: Tour }) {
-  const [open, setOpen] = useState<number | null>(0)
+export default function Itinerary() {
+  const { tour } = useTourDetails()
+  const { openIndex, toggleItem } = useAccordion(0)
+  if (!tour) return null
 
   return (
     <Box className="ts-card">
       <h3 className="ts-heading">Day by Day Itinerary</h3>
       <Box className="ts-itinerary">
         {tour.itinerary.map((day, i) => (
-          <Box className={`ts-day${open === i ? "open" : ""}`} key={day.title}>
+          <Box
+            className={`ts-day${openIndex === i ? "open" : ""}`}
+            key={day.title}
+          >
             <button
               type="button"
               className="ts-day-head"
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => toggleItem(i)}
             >
               <span className="ts-day-num">
                 {String(i + 1).padStart(2, "0")}

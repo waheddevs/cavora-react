@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded"
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded"
-import { bookings } from "ts/User"
+import { useBookings } from "app/hooks/CommonHooks/useBookings"
 
 export default function MyBookings() {
+  const { bookings } = useBookings()
+
   return (
     <Box className="user-panel">
       <h2 className="user-panel-title">My Bookings</h2>
@@ -14,39 +16,44 @@ export default function MyBookings() {
       </p>
 
       <Box className="booking-list">
-        {bookings.map(b => (
-          <Box className="booking-card" key={b.id}>
+        {bookings.map(booking => (
+          <Box className="booking-card" key={booking.id}>
             <Box className="booking-image">
-              <img src={b.tour.images[0]} alt={b.tour.title} />
+              <img src={booking.tour.images[0]} alt={booking.tour.title} />
               <span
-                className={`booking-status booking-status--${b.status.toLowerCase()}`}
+                className={`booking-status booking-status--${booking.status.toLowerCase()}`}
               >
-                {b.status}
+                {booking.status}
               </span>
             </Box>
 
             <Box className="booking-content">
-              <Typography className="booking-title">{b.tour.title}</Typography>
+              <Typography className="booking-title">
+                {booking.tour.title}
+              </Typography>
               <Box className="booking-meta">
                 <span>
                   <LocationOnRoundedIcon />
-                  {b.tour.location}
+                  {booking.tour.location}
                 </span>
                 <span>
                   <CalendarMonthRoundedIcon />
-                  {b.date}
+                  {booking.date}
                 </span>
                 <span>
                   <GroupRoundedIcon />
-                  {b.travelers} {b.travelers > 1 ? "Travelers" : "Traveler"}
+                  {booking.travelers}{" "}
+                  {booking.travelers > 1 ? "Travelers" : "Traveler"}
                 </span>
               </Box>
             </Box>
 
             <Box className="booking-side">
-              <Typography className="booking-total">${b.total}</Typography>
+              <Typography className="booking-total">
+                ${booking.total}
+              </Typography>
               <NavLink
-                to={`/tour-single?id=${b.tour.id}`}
+                to={`/tour-single?id=${booking.tour.id}`}
                 className="booking-link"
               >
                 View Tour

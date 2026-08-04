@@ -3,11 +3,10 @@ import { NavLink } from "react-router-dom"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
-import { useWishlistTours, removeFromWishlist } from "ts/wishlist"
+import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 
 export default function Wishlist() {
-  /* HOOKS */
-  const wishlist = useWishlistTours()
+  const { wishlist, removeFromWishlist } = useWishlist()
 
   return (
     <Box className="user-panel">

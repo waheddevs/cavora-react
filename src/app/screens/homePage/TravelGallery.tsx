@@ -1,11 +1,10 @@
 import { Box, Container, Typography } from "@mui/material"
-import { galleryImages as images } from "ts/Home"
+import { galleryImages as images } from "app/data/homeData"
 
 export default function TravelGallery() {
   return (
     <section className="travel-gallery">
       <Container maxWidth={false} className="gallery-container">
-        {/* Section header */}
         <Box className="gallery-head">
           <Typography className="section-tagline">Moments</Typography>
           <Typography className="section-title">Travel Gallery</Typography>
@@ -14,9 +13,8 @@ export default function TravelGallery() {
           </Typography>
         </Box>
 
-        {/* Bento grid */}
         <Box className="gallery-grid">
-          {images.map((item) => (
+          {images.map(item => (
             <Box
               className={`gallery-item${item.tall ? " tall" : ""}`}
               key={item.img}

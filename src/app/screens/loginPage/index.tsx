@@ -1,29 +1,14 @@
 import { Box, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
-import { useState } from "react"
-import { validateLogin, type LoginErrors } from "ts/Login"
+import { useLoginForm } from "app/hooks/LoginHooks/useLoginForm"
 import "css/login.css"
 
 export default function LoginPage() {
-  /* HOOKS */
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState<LoginErrors>({})
-
-  /* HANDLER */
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const nextErrors = validateLogin({ email, password })
-    setErrors(nextErrors)
-    if (Object.keys(nextErrors).length === 0) {
-      /* Static — no backend yet. */
-      console.log("Login submitted", { email, password })
-    }
-  }
+  const { email, setEmail, password, setPassword, errors, handleSubmit } =
+    useLoginForm()
 
   return (
     <Box className="login-page">
-      {/* Left: brand photo */}
       <Box className="auth-visual">
         <img
           src="/img/home-page-img/hero.jpg"
@@ -46,7 +31,6 @@ export default function LoginPage() {
         <span className="visual-credit">Swiss Alps, Zermatt</span>
       </Box>
 
-      {/* Right: form */}
       <Box className="auth-panel">
         <Box className="auth-card">
           <Link to="/" className="mobile-logo">

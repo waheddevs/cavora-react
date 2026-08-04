@@ -1,5 +1,3 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Box } from "@mui/material"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
@@ -9,26 +7,23 @@ import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import type { Tour } from "app/libs/types"
+import { Tour } from "app/types/tour"
+import { useTourCard } from "app/hooks/TourHooks/useTourCard"
 
 function renderStars(rating: number) {
   const stars = []
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) stars.push(<StarRoundedIcon key={i} className="on" />)
-    else if (rating >= i - 0.5)
-      stars.push(<StarHalfRoundedIcon key={i} className="on" />)
-    else stars.push(<StarRoundedIcon key={i} />)
+  for (let starNumber = 1; starNumber <= 5; starNumber++) {
+    if (rating >= starNumber)
+      stars.push(<StarRoundedIcon key={starNumber} className="on" />)
+    else if (rating >= starNumber - 0.5)
+      stars.push(<StarHalfRoundedIcon key={starNumber} className="on" />)
+    else stars.push(<StarRoundedIcon key={starNumber} />)
   }
   return stars
 }
 
 export default function TourCard({ tour }: { tour: Tour }) {
-  /* HOOKS */
-  const navigate = useNavigate()
-  const [saved, setSaved] = useState(false)
-
-  /* HANDLER */
-  const open = () => navigate(`/tour-single?id=${tour.id}`)
+  const { saved, open, toggleSaved } = useTourCard(tour.id)
 
   return (
     <Box className="tour-card" onClick={open} style={{ cursor: "pointer" }}>
@@ -39,10 +34,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
           type="button"
           className={`tc-fav${saved ? " active" : ""}`}
           aria-label="Save to wishlist"
-          onClick={(e) => {
-            e.stopPropagation()
-            setSaved((s) => !s)
-          }}
+          onClick={toggleSaved}
         >
           {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
         </button>

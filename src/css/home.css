@@ -139,7 +139,8 @@
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.discover-tours .tour-fav:hover {
+.discover-tours .tour-fav:hover,
+.discover-tours .tour-fav.active {
   background: var(--gold);
   color: #ffffff;
 }

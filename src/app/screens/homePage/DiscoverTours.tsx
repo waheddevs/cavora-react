@@ -1,43 +1,43 @@
 import { Box, Container, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
 import GoldButton from "../../components/ui/GoldButton"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { tours as allTours } from "ts/TourSingle"
-import { featuredTourIds } from "ts/Home"
-import type { Tour } from "app/libs/types"
+import { tours as allTours } from "app/data/tourData"
+import { featuredTourIds } from "app/data/homeData"
+import { Tour } from "app/types/tour"
+import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
+import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 
-/* 4 featured tours for the home page (diverse destinations) */
 const tours = featuredTourIds
-  .map((id) => allTours.find((t) => t.id === id))
-  .filter((t): t is Tour => Boolean(t))
+  .map(id => allTours.find(tour => tour.id === id))
+  .filter((tour): tour is Tour => Boolean(tour))
 
 function renderStars(rating: number) {
   const stars = []
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) {
-      stars.push(<StarRoundedIcon key={i} className="star" />)
-    } else if (rating >= i - 0.5) {
-      stars.push(<StarHalfRoundedIcon key={i} className="star" />)
+  for (let starNumber = 1; starNumber <= 5; starNumber++) {
+    if (rating >= starNumber) {
+      stars.push(<StarRoundedIcon key={starNumber} className="star" />)
+    } else if (rating >= starNumber - 0.5) {
+      stars.push(<StarHalfRoundedIcon key={starNumber} className="star" />)
     } else {
-      stars.push(<StarRoundedIcon key={i} className="star empty" />)
+      stars.push(<StarRoundedIcon key={starNumber} className="star empty" />)
     }
   }
   return stars
 }
 
 export default function DiscoverTours() {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openTour, openTourList } = useTourNavigation()
+  const { isWishlisted, toggleWishlist } = useWishlist()
 
   return (
     <section className="discover-tours">
       <Container maxWidth={false} className="discover-container">
-        {/* Section header */}
         <Box className="discover-head">
           <Box className="discover-heading">
             <Typography className="section-tagline">What We Offer</Typography>
@@ -46,19 +46,18 @@ export default function DiscoverTours() {
           <GoldButton
             className="view-all-btn"
             endIcon={<ArrowForwardRoundedIcon />}
-            onClick={() => navigate("/tour")}
+            onClick={openTourList}
           >
             View All Tours
           </GoldButton>
         </Box>
 
-        {/* Tour cards */}
         <Box className="tours-grid">
-          {tours.map((tour) => (
+          {tours.map(tour => (
             <Box
               className="tour-card"
               key={tour.id}
-              onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+              onClick={() => openTour(tour.id)}
               style={{ cursor: "pointer" }}
             >
               <Box className="tour-media">
@@ -70,11 +69,18 @@ export default function DiscoverTours() {
                 <span className="tour-badge">{tour.type}</span>
                 <button
                   type="button"
-                  className="tour-fav"
+                  className={`tour-fav${isWishlisted(tour.id) ? " active" : ""}`}
                   aria-label="Save to wishlist"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={event => {
+                    event.stopPropagation()
+                    toggleWishlist(tour.id)
+                  }}
                 >
-                  <FavoriteBorderRoundedIcon />
+                  {isWishlisted(tour.id) ? (
+                    <FavoriteRoundedIcon />
+                  ) : (
+                    <FavoriteBorderRoundedIcon />
+                  )}
                 </button>
               </Box>
 

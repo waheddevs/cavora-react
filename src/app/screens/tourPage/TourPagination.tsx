@@ -1,14 +1,11 @@
 import { Box } from "@mui/material"
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded"
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded"
+import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
-interface Props {
-  page: number
-  totalPages: number
-  onChange: (page: number) => void
-}
+export default function TourPagination() {
+  const { page, totalPages, goToPage } = useTourCatalog()
 
-export default function TourPagination({ page, totalPages, onChange }: Props) {
   if (totalPages <= 1) return null
 
   return (
@@ -17,7 +14,7 @@ export default function TourPagination({ page, totalPages, onChange }: Props) {
         type="button"
         className="tp-btn arrow"
         disabled={page === 1}
-        onClick={() => onChange(page - 1)}
+        onClick={() => goToPage(page - 1)}
         aria-label="Previous page"
       >
         <ChevronLeftRoundedIcon />
@@ -28,7 +25,7 @@ export default function TourPagination({ page, totalPages, onChange }: Props) {
           type="button"
           key={i}
           className={`tp-btn${page === i + 1 ? " active" : ""}`}
-          onClick={() => onChange(i + 1)}
+          onClick={() => goToPage(i + 1)}
         >
           {i + 1}
         </button>
@@ -38,7 +35,7 @@ export default function TourPagination({ page, totalPages, onChange }: Props) {
         type="button"
         className="tp-btn arrow"
         disabled={page === totalPages}
-        onClick={() => onChange(page + 1)}
+        onClick={() => goToPage(page + 1)}
         aria-label="Next page"
       >
         <ChevronRightRoundedIcon />

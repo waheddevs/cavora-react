@@ -19,14 +19,13 @@ export default function BlogSidebar({
 
       <FeaturedPost />
 
-      {/* Subscribe */}
       <Box className="subscribe-widget">
         <Box className="sub-icon">
           <SendRoundedIcon />
         </Box>
         <h3>Explore new horizons with Cavora!</h3>
         <p>Get travel tips and inspiration delivered to your inbox weekly.</p>
-        <form className="sub-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="sub-form" onSubmit={e => e.preventDefault()}>
           <input
             type="email"
             placeholder="Your email address"

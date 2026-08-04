@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Box, Typography } from "@mui/material"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
@@ -6,18 +5,23 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded"
 import TerrainRoundedIcon from "@mui/icons-material/TerrainRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
-import type { Tour } from "app/libs/types"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-export default function AboutTour({ tour }: { tour: Tour }) {
-  /* HOOKS */
-  const [active, setActive] = useState(0)
+export default function AboutTour() {
+  const { tour, gallery } = useTourDetails()
+  if (!tour) return null
+
+  const { activeImageIndex, setActiveImageIndex } = gallery
 
   return (
     <Box className="ts-about">
-      {/* Gallery */}
       <Box className="ts-gallery">
         <Box className="ts-gallery-main">
-          <img src={tour.images[active]} alt={tour.title} key={active} />
+          <img
+            src={tour.images[activeImageIndex]}
+            alt={tour.title}
+            key={activeImageIndex}
+          />
           <span className="ts-badge">{tour.type}</span>
         </Box>
         <Box className="ts-thumbs">
@@ -25,8 +29,8 @@ export default function AboutTour({ tour }: { tour: Tour }) {
             <button
               type="button"
               key={img}
-              className={`ts-thumb${i === active ? " active" : ""}`}
-              onClick={() => setActive(i)}
+              className={`ts-thumb${i === activeImageIndex ? " active" : ""}`}
+              onClick={() => setActiveImageIndex(i)}
             >
               <img src={img} alt={`${tour.title} ${i + 1}`} />
             </button>
@@ -34,7 +38,6 @@ export default function AboutTour({ tour }: { tour: Tour }) {
         </Box>
       </Box>
 
-      {/* Meta bar */}
       <Box className="ts-meta">
         <span className="ts-meta-item">
           <LocationOnRoundedIcon />
@@ -66,7 +69,6 @@ export default function AboutTour({ tour }: { tour: Tour }) {
         </span>
       </Box>
 
-      {/* Overview */}
       <Box className="ts-card">
         <Typography className="ts-title">
           <span className="ts-title-mark" />
@@ -87,14 +89,13 @@ export default function AboutTour({ tour }: { tour: Tour }) {
         <p className="ts-text">{tour.overview}</p>
       </Box>
 
-      {/* Highlights */}
       <Box className="ts-card">
         <h3 className="ts-heading">Tour Highlights</h3>
         <ul className="ts-highlights">
-          {tour.highlights.map((h) => (
-            <li key={h}>
+          {tour.highlights.map(highlight => (
+            <li key={highlight}>
               <CheckCircleRoundedIcon />
-              {h}
+              {highlight}
             </li>
           ))}
         </ul>

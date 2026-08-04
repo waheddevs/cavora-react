@@ -1,16 +1,14 @@
-import { useNavigate } from "react-router-dom"
 import { Box, Typography } from "@mui/material"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { getRelatedTours } from "ts/TourSingle"
-import type { Tour } from "app/libs/types"
+import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-export default function RelatedTours({ currentId }: { currentId: number }) {
-  /* HOOKS */
-  const navigate = useNavigate()
-  const related = getRelatedTours(currentId, 3) as Tour[]
+export default function RelatedTours() {
+  const { openTour } = useTourNavigation()
+  const { relatedTours } = useTourDetails()
 
   return (
     <section className="ts-related">
@@ -22,11 +20,11 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
       </Box>
 
       <Box className="ts-related-grid">
-        {related.map((tour) => (
+        {relatedTours.map(tour => (
           <Box
             className="ts-related-card"
             key={tour.id}
-            onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+            onClick={() => openTour(tour.id)}
           >
             <Box className="ts-related-media">
               <img src={tour.images[0]} alt={tour.title} />
@@ -56,7 +54,7 @@ export default function RelatedTours({ currentId }: { currentId: number }) {
               <button
                 type="button"
                 className="ts-related-btn"
-                onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+                onClick={() => openTour(tour.id)}
               >
                 View Now
                 <ArrowForwardRoundedIcon />

@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
 import GoldButton from "../../components/ui/GoldButton"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
@@ -8,11 +7,11 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import PinterestIcon from "@mui/icons-material/Pinterest"
-import type { Post } from "app/libs/types"
+import { Post } from "app/types/blog"
+import { useBlogNavigation } from "app/hooks/BlogHooks/useBlogNavigation"
 
 export default function BlogCard({ post }: { post: Post }) {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openBlogPost } = useBlogNavigation()
   return (
     <Box className="blog-card">
       <Box className="blog-card-main">
@@ -42,7 +41,7 @@ export default function BlogCard({ post }: { post: Post }) {
           <GoldButton
             className="read-more-btn"
             endIcon={<ArrowForwardRoundedIcon />}
-            onClick={() => navigate(`/blog-details?id=${post.id}`)}
+            onClick={() => openBlogPost(post.id)}
           >
             Read More
           </GoldButton>

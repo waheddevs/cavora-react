@@ -1,12 +1,10 @@
 import { Box } from "@mui/material"
-import { useState } from "react"
-import { useLocation } from "react-router-dom"
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
 import LuggageRoundedIcon from "@mui/icons-material/LuggageRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded"
 import Sidebar from "./Sidebar"
-import type { UserTab } from "./Sidebar"
+import { UserTab, useUserTabs } from "app/hooks/UserHooks/useUserTabs"
 import Settings from "./Settings"
 import MyBookings from "./MyBookings"
 import Wishlist from "./Wishlist"
@@ -21,11 +19,7 @@ const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
 ]
 
 export default function UserPage() {
-  /* HOOKS */
-  const location = useLocation()
-  const initialTab =
-    (location.state as { tab?: UserTab } | null)?.tab ?? "profile"
-  const [active, setActive] = useState<UserTab>(initialTab)
+  const { activeTab, setActiveTab } = useUserTabs()
 
   return (
     <Box className="user-page">
@@ -34,13 +28,13 @@ export default function UserPage() {
           <Box className="user-shell-banner" />
 
           <Box className="user-shell-body">
-            <Sidebar active={active} onChange={setActive} tabs={tabs} />
+            <Sidebar active={activeTab} onChange={setActiveTab} tabs={tabs} />
 
             <Box className="user-content">
-              {active === "profile" && <Settings />}
-              {active === "bookings" && <MyBookings />}
-              {active === "wishlist" && <Wishlist />}
-              {active === "support" && <Support />}
+              {activeTab === "profile" && <Settings />}
+              {activeTab === "bookings" && <MyBookings />}
+              {activeTab === "wishlist" && <Wishlist />}
+              {activeTab === "support" && <Support />}
             </Box>
           </Box>
         </Box>

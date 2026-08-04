@@ -1,7 +1,9 @@
-import { Box, ThemeProvider } from "@mui/material"
-import { Route, Routes, useLocation } from "react-router-dom"
-import theme from "./MaterialTheme"
-/* SCREENS */
+import { Box } from "@mui/material"
+import { Route, Routes } from "react-router-dom"
+import { useAppLayout } from "./hooks/CommonHooks/useAppLayout"
+import { TourCatalogProvider } from "./contexts/TourCatalogContext"
+import { TourDetailsProvider } from "./contexts/TourDetailsContext"
+import { CheckoutProvider } from "./contexts/CheckoutContext"
 import AboutPage from "./screens/aboutPage"
 import BlogDetailsPage from "./screens/blogDetailsPage"
 import BlogPage from "./screens/blogPage"
@@ -14,28 +16,21 @@ import HomePage from "./screens/homePage"
 import LoginPage from "./screens/loginPage"
 import SignupPage from "./screens/signupPage"
 import PaymentPage from "./screens/paymentPage"
-/* COMMON */
 import PageHero from "./components/headers/PageHero"
 import { pageHeroes } from "./components/headers/pageHeroConfig"
 import HomeNavbar from "./components/headers/HomeNavbar"
 import UserNavbar from "./components/headers/UserNavbar"
 import TourSingleNavbar from "./components/headers/TourSingleNavbar"
 import Footer from "./components/footer"
-import ScrollToTop from "./components/ScrollToTop"
-/* CSS */
+import { useScrollToTop } from "./hooks/CommonHooks/useScrollToTop"
 import "css/App.css"
 import "css/navbar.css"
 import "css/footer.css"
 
-/* Standalone routes that render without the shared navbar and footer. */
-const authRoutes = ["/login", "/signup", "/payment"]
-
 function App() {
-  /* HOOKS */
-  const { pathname } = useLocation()
-  const isAuthRoute = authRoutes.includes(pathname)
+  useScrollToTop()
+  const { pathname, isAuthRoute } = useAppLayout()
 
-  /* Pick the header for the current route */
   const renderHeader = () => {
     switch (pathname) {
       case "/":
@@ -53,30 +48,51 @@ function App() {
     }
   }
 
+  const layout = (
+    <>
+      {!isAuthRoute && renderHeader()}
+
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route
+          path="/payment"
+          element={
+            <CheckoutProvider>
+              <PaymentPage />
+            </CheckoutProvider>
+          }
+        />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/blog-details" element={<BlogDetailsPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/faq" element={<FaqPage />} />
+        <Route
+          path="/tour"
+          element={
+            <TourCatalogProvider>
+              <TourPage />
+            </TourCatalogProvider>
+          }
+        />
+        <Route path="/tour-single" element={<TourSinglePage />} />
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+
+      {!isAuthRoute && <Footer />}
+    </>
+  )
+
   return (
-    <ThemeProvider theme={theme}>
-      <ScrollToTop />
-      <Box className="app-layout">
-        {!isAuthRoute && renderHeader()}
-
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/blog-details" element={<BlogDetailsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FaqPage />} />
-          <Route path="/tour" element={<TourPage />} />
-          <Route path="/tour-single" element={<TourSinglePage />} />
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-
-        {!isAuthRoute && <Footer />}
-      </Box>
-    </ThemeProvider>
+    <Box className="app-layout">
+      {pathname === "/tour-single" ? (
+        <TourDetailsProvider>{layout}</TourDetailsProvider>
+      ) : (
+        layout
+      )}
+    </Box>
   )
 }
 

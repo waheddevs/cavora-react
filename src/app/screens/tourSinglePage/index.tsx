@@ -1,17 +1,15 @@
 import { Box, Container } from "@mui/material"
-import { NavLink, useSearchParams } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import AboutTour from "./AboutTour"
 import Itinerary from "./Itinerary"
 import IncludeRate from "./IncludeRate"
 import OrderBar from "./OrderBar"
 import RelatedTours from "./RelatedTours"
-import { getTourById } from "ts/TourSingle"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 import "css/tourSingle.css"
 
 export default function TourSinglePage() {
-  /* HOOKS */
-  const [params] = useSearchParams()
-  const tour = getTourById(params.get("id") ?? 1)
+  const { tour } = useTourDetails()
 
   if (!tour) {
     return (
@@ -30,14 +28,14 @@ export default function TourSinglePage() {
       <Container maxWidth={false} className="ts-container">
         <Box className="ts-layout">
           <Box className="ts-main">
-            <AboutTour tour={tour} />
-            <Itinerary tour={tour} />
-            <IncludeRate tour={tour} />
+            <AboutTour />
+            <Itinerary />
+            <IncludeRate />
           </Box>
-          <OrderBar tour={tour} />
+          <OrderBar />
         </Box>
 
-        <RelatedTours currentId={tour.id} />
+        <RelatedTours />
       </Container>
     </Box>
   )

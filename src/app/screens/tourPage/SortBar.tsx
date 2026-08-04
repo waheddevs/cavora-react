@@ -1,33 +1,27 @@
 import { Box, MenuItem, Select } from "@mui/material"
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
-import { sortOptions } from "app/libs/filter/filters"
-import type { SortKey } from "app/libs/filter/filters"
+import { sortOptions } from "app/data/tourFilterData"
+import { SortKey } from "app/utils/tourFilters"
+import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
-interface Props {
-  count: number
-  showFilters: boolean
-  onToggleFilters: () => void
-  sort: SortKey
-  onSortChange: (key: SortKey) => void
-}
+export default function SortBar() {
+  const { filteredTours, showFilters, toggleFilters, sort, setSort } =
+    useTourCatalog()
 
-export default function SortBar({
-  count,
-  showFilters,
-  onToggleFilters,
-  sort,
-  onSortChange,
-}: Props) {
   return (
     <Box className="tour-topbar">
       <Box className="tour-topbar-left">
-        <button type="button" className="filters-toggle" onClick={onToggleFilters}>
+        <button
+          type="button"
+          className="filters-toggle"
+          onClick={toggleFilters}
+        >
           <TuneRoundedIcon />
           {showFilters ? "Hide Filters" : "Show Filters"}
         </button>
         <span className="tours-found">
-          <strong>{count}</strong> Tours Found
+          <strong>{filteredTours.length}</strong> Tours Found
         </span>
       </Box>
 
@@ -36,7 +30,7 @@ export default function SortBar({
         <Select
           className="tour-sort-select"
           value={sort}
-          onChange={(e) => onSortChange(e.target.value as SortKey)}
+          onChange={event => setSort(event.target.value as SortKey)}
           variant="standard"
           disableUnderline
           IconComponent={KeyboardArrowDownRoundedIcon}
@@ -46,9 +40,9 @@ export default function SortBar({
             transformOrigin: { vertical: "top", horizontal: "right" },
           }}
         >
-          {sortOptions.map((o) => (
-            <MenuItem key={o.value} value={o.value}>
-              {o.label}
+          {sortOptions.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
             </MenuItem>
           ))}
         </Select>

@@ -1,36 +1,10 @@
 import { Box } from "@mui/material"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
-import { currentUser } from "ts/User"
+import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
 
 export default function Settings() {
-  /* HOOKS */
-  const navigate = useNavigate()
-  const [form, setForm] = useState({
-    firstName: currentUser.firstName,
-    lastName: currentUser.lastName,
-    email: currentUser.email,
-    username: currentUser.username,
-    phone: currentUser.phone,
-    location: currentUser.location,
-  })
-
-  /* HANDLER */
-  const handleChange =
-    (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
-      setForm({ ...form, [key]: e.target.value })
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    /* Static — no backend yet. */
-    console.log("Profile updated", form)
-  }
-
-  const handleLogout = () => {
-    /* Static — no backend yet. */
-    navigate("/login")
-  }
+  const { form, handleChange, handleSubmit, handleLogout } =
+    useAccountSettings()
 
   return (
     <Box className="user-panel">

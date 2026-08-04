@@ -3,18 +3,16 @@ import GoldButton from "../../components/ui/GoldButton"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { useNavigate } from "react-router-dom"
-import { storyFeatures as features } from "ts/About"
+import { storyFeatures as features } from "app/data/aboutData"
+import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 
 export default function OurStory() {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openTourList } = useTourNavigation()
 
   return (
     <section className="our-story">
       <Container maxWidth={false} className="story-container">
         <Box className="story-grid">
-          {/* Left: text */}
           <Box className="story-content">
             <Typography className="story-tagline">Our Story</Typography>
             <Typography className="story-title">
@@ -33,10 +31,10 @@ export default function OurStory() {
             </Typography>
 
             <Box className="story-features">
-              {features.map((f) => (
-                <Box className="story-feature" key={f}>
+              {features.map(feature => (
+                <Box className="story-feature" key={feature}>
                   <CheckCircleRoundedIcon className="feature-check" />
-                  <span>{f}</span>
+                  <span>{feature}</span>
                 </Box>
               ))}
             </Box>
@@ -44,13 +42,12 @@ export default function OurStory() {
             <GoldButton
               className="story-btn"
               endIcon={<ArrowForwardRoundedIcon />}
-              onClick={() => navigate("/tour")}
+              onClick={openTourList}
             >
               Explore Tours
             </GoldButton>
           </Box>
 
-          {/* Right: image + badge */}
           <Box className="story-media">
             <Box className="story-inner">
               <Box className="story-ring" />

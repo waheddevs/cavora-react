@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
 import { Box, Container, IconButton, Stack } from "@mui/material"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded"
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
 import GoldButton from "../ui/GoldButton"
+import { useNavbarMenu } from "app/hooks/CommonHooks/useNavbarMenu"
+import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 const navItems = [
   { label: "Home", to: "/", end: true },
@@ -15,30 +16,9 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ]
 
-/** Shared navigation used by every page header. */
 export default function NavbarPanel() {
-  const authMember = null
-  /* HOOKS */
-  const { pathname } = useLocation()
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
-
-  useEffect(() => {
-    if (!menuOpen) return
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false)
-    }
-
-    window.addEventListener("keydown", closeOnEscape)
-    return () => window.removeEventListener("keydown", closeOnEscape)
-  }, [menuOpen])
-
-  /* HANDLER */
-  const closeMenu = () => setMenuOpen(false)
+  const { isAuthenticated } = useAuth()
+  const { menuOpen, closeMenu, toggleMenu } = useNavbarMenu()
 
   return (
     <Container maxWidth={false} disableGutters className="navbar-container">
@@ -51,10 +31,12 @@ export default function NavbarPanel() {
 
         <IconButton
           className="mobile-menu-toggle"
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            menuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={menuOpen}
           aria-controls="primary-navigation"
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={toggleMenu}
         >
           {menuOpen ? <CloseRoundedIcon /> : <MenuRoundedIcon />}
         </IconButton>
@@ -63,8 +45,12 @@ export default function NavbarPanel() {
           id="primary-navigation"
           className={`navbar-collapse${menuOpen ? " open" : ""}`}
         >
-          <Stack component="nav" className="links" aria-label="Primary navigation">
-            {navItems.map((item) => (
+          <Stack
+            component="nav"
+            className="links"
+            aria-label="Primary navigation"
+          >
+            {navItems.map(item => (
               <Box key={item.to}>
                 <NavLink to={item.to} end={item.end} onClick={closeMenu}>
                   {item.label}
@@ -74,7 +60,7 @@ export default function NavbarPanel() {
           </Stack>
 
           <Box className="btn">
-            {authMember ? (
+            {isAuthenticated ? (
               <NavLink
                 to="/user"
                 className="navbar-user-icon"
@@ -95,7 +81,8 @@ export default function NavbarPanel() {
                 <GoldButton
                   className="login-btn"
                   onClick={closeMenu}
-                  {...({ component: NavLink, to: "/signup" } as object)}
+                  component={NavLink}
+                  to="/signup"
                 >
                   Sign up
                 </GoldButton>

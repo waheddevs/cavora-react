@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded"
-import { posts, categories } from "ts/Blog"
+import { posts, categories } from "app/data/blogData"
 
 interface Props {
   active: string
@@ -9,7 +9,7 @@ interface Props {
 
 export default function Categories({ active, onSelect }: Props) {
   const countFor = (label: string) =>
-    posts.filter((post) => post.category === label).length
+    posts.filter(post => post.category === label).length
 
   return (
     <Box className="sidebar-widget">
@@ -25,7 +25,7 @@ export default function Categories({ active, onSelect }: Props) {
           </span>
         </li>
 
-        {categories.map((label) => (
+        {categories.map(label => (
           <li
             key={label}
             className={`cat-item${active === label ? " active" : ""}`}

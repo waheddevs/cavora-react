@@ -55,7 +55,7 @@
 }
 
 .signup-page .visual-logo img {
-  height: 34px;
+  height: 28px;
   width: auto;
   /* gold wordmark → render white on the photo */
   filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));

@@ -2,7 +2,7 @@ import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import App from "app/App"
-import { store } from "app/store"
+import { store } from "app/store/store"
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@emotion/react"
 import theme from "app/MaterialTheme"
@@ -24,7 +24,7 @@ if (container) {
           </Router>
         </ThemeProvider>
       </Provider>
-    </StrictMode>
+    </StrictMode>,
   )
 } else {
   throw new Error(

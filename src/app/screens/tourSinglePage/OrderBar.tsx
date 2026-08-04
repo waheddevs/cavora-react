@@ -1,6 +1,4 @@
-import { useState } from "react"
 import moment from "moment"
-import { useNavigate } from "react-router-dom"
 import { Box, IconButton, Popover, Typography } from "@mui/material"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
@@ -12,31 +10,32 @@ import SailingRoundedIcon from "@mui/icons-material/SailingRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
-import { weekDays, buildMonthGrid } from "ts/HomeNavbar"
-import { isWishlisted, toggleWishlist } from "ts/wishlist"
-import type { Tour } from "app/libs/types"
+import { weekDays, buildMonthGrid } from "app/utils/calendar"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-export default function OrderBar({ tour }: { tour: Tour }) {
-  /* HOOKS */
-  const navigate = useNavigate()
-  const [date, setDate] = useState("")
-  const [guests, setGuests] = useState(1)
-  const [calAnchor, setCalAnchor] = useState<HTMLElement | null>(null)
-  const [viewMonth, setViewMonth] = useState(moment())
-  const [saved, setSaved] = useState(() => isWishlisted(tour.id))
-  const [dateError, setDateError] = useState(false)
-
-  const total = tour.price * guests
-
-  /* HANDLER */
-  const handleBookNow = () => {
-    if (!date) {
-      setDateError(true)
-      setCalAnchor(document.getElementById("ts-date-btn"))
-      return
-    }
-    navigate(`/payment?tourId=${tour.id}&date=${date}&guests=${guests}`)
-  }
+export default function OrderBar() {
+  const { tour, order } = useTourDetails()
+  const {
+    date,
+    guests,
+    calendarAnchor,
+    viewMonth,
+    saved,
+    dateError,
+    total,
+    handleBookNow,
+    openCalendar,
+    closeCalendar,
+    decreaseGuests,
+    increaseGuests,
+    toggleSaved,
+    showPreviousMonth,
+    showNextMonth,
+    selectDate,
+    clearDate,
+    selectToday,
+  } = order
+  if (!tour) return null
 
   return (
     <aside className="ts-order">
@@ -59,10 +58,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             id="ts-date-btn"
             type="button"
             className={`ts-date-btn${dateError ? " has-error" : ""}`}
-            onClick={e => {
-              setDateError(false)
-              setCalAnchor(e.currentTarget)
-            }}
+            onClick={openCalendar}
           >
             <CalendarMonthOutlinedIcon />
             <span className={date ? "" : "ph"}>
@@ -82,7 +78,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             <button
               type="button"
               aria-label="Decrease guests"
-              onClick={() => setGuests(g => Math.max(1, g - 1))}
+              onClick={decreaseGuests}
             >
               <RemoveRoundedIcon />
             </button>
@@ -90,7 +86,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
             <button
               type="button"
               aria-label="Increase guests"
-              onClick={() => setGuests(g => g + 1)}
+              onClick={increaseGuests}
             >
               <AddRoundedIcon />
             </button>
@@ -109,7 +105,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
         <button
           type="button"
           className={`ts-wishlist${saved ? " saved" : ""}`}
-          onClick={() => setSaved(toggleWishlist(tour.id))}
+          onClick={toggleSaved}
         >
           {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
           {saved ? "Saved to Wishlist" : "Add to Wishlist"}
@@ -126,11 +122,10 @@ export default function OrderBar({ tour }: { tour: Tour }) {
         </Box>
       </Box>
 
-      {/* Themed date picker (same as the home hero search) */}
       <Popover
-        open={Boolean(calAnchor)}
-        anchorEl={calAnchor}
-        onClose={() => setCalAnchor(null)}
+        open={Boolean(calendarAnchor)}
+        anchorEl={calendarAnchor}
+        onClose={closeCalendar}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
         classes={{ paper: "date-popover-paper" }}
@@ -144,16 +139,14 @@ export default function OrderBar({ tour }: { tour: Tour }) {
               <IconButton
                 className="cal-nav-btn"
                 aria-label="previous month"
-                onClick={() =>
-                  setViewMonth(viewMonth.clone().subtract(1, "month"))
-                }
+                onClick={showPreviousMonth}
               >
                 <ChevronLeftIcon />
               </IconButton>
               <IconButton
                 className="cal-nav-btn"
                 aria-label="next month"
-                onClick={() => setViewMonth(viewMonth.clone().add(1, "month"))}
+                onClick={showNextMonth}
               >
                 <ChevronRightIcon />
               </IconButton>
@@ -161,8 +154,8 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           </Box>
 
           <Box className="calendar-weekdays">
-            {weekDays.map(d => (
-              <span key={d}>{d}</span>
+            {weekDays.map(dayLabel => (
+              <span key={dayLabel}>{dayLabel}</span>
             ))}
           </Box>
 
@@ -178,11 +171,7 @@ export default function OrderBar({ tour }: { tour: Tour }) {
                   className={`cal-day${inMonth ? "" : " muted"}${
                     isToday ? " today" : ""
                   }${isSelected ? " selected" : ""}`}
-                  onClick={() => {
-                    setDate(day.format("YYYY-MM-DD"))
-                    setDateError(false)
-                    setCalAnchor(null)
-                  }}
+                  onClick={() => selectDate(day)}
                 >
                   {day.date()}
                 </button>
@@ -191,27 +180,10 @@ export default function OrderBar({ tour }: { tour: Tour }) {
           </Box>
 
           <Box className="calendar-foot">
-            <button
-              type="button"
-              className="cal-action"
-              onClick={() => {
-                setDate("")
-                setCalAnchor(null)
-              }}
-            >
+            <button type="button" className="cal-action" onClick={clearDate}>
               Clear
             </button>
-            <button
-              type="button"
-              className="cal-action"
-              onClick={() => {
-                const today = moment()
-                setDate(today.format("YYYY-MM-DD"))
-                setDateError(false)
-                setViewMonth(today.clone())
-                setCalAnchor(null)
-              }}
-            >
+            <button type="button" className="cal-action" onClick={selectToday}>
               Today
             </button>
           </Box>

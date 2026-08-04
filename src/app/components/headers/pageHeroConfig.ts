@@ -1,7 +1,5 @@
-import type { PageHeroProps } from "./PageHero"
+import { PageHeroProps } from "./PageHero"
 
-/* Static page-hero config per route.
-   The dynamic route (/tour-single) lives in TourSingleNavbar.tsx. */
 export const pageHeroes: Record<string, PageHeroProps> = {
   "/about": {
     navbarClass: "about-navbar",

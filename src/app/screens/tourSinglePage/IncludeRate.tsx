@@ -1,42 +1,25 @@
-import { useEffect, useRef, useState } from "react"
 import { Box } from "@mui/material"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CountUp from "../../components/CountUp"
-import { ratingDistribution as distribution } from "ts/TourSingle"
-import type { Tour } from "app/libs/types"
+import { ratingDistribution as distribution } from "app/data/tourData"
+import { useInViewOnce } from "app/hooks/CommonHooks/useInViewOnce"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-export default function IncludeRate({ tour }: { tour: Tour }) {
-  /* HOOKS */
-  const [run, setRun] = useState(false)
-  const reviewsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const node = reviewsRef.current
-    if (!node) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRun(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.4 },
-    )
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
+export default function IncludeRate() {
+  const { tour } = useTourDetails()
+  const { hasEntered: run, targetRef: reviewsRef } =
+    useInViewOnce<HTMLDivElement>(0.4)
+  if (!tour) return null
 
   return (
     <>
-      {/* What's included */}
       <Box className="ts-card">
         <h3 className="ts-heading">What's Included</h3>
         <Box className="ts-include-grid">
           <ul className="ts-include">
-            {tour.included.map((item) => (
+            {tour.included.map(item => (
               <li key={item}>
                 <CheckCircleRoundedIcon className="inc" />
                 {item}
@@ -44,7 +27,7 @@ export default function IncludeRate({ tour }: { tour: Tour }) {
             ))}
           </ul>
           <ul className="ts-include">
-            {tour.notIncluded.map((item) => (
+            {tour.notIncluded.map(item => (
               <li key={item}>
                 <CancelRoundedIcon className="exc" />
                 {item}
@@ -54,7 +37,6 @@ export default function IncludeRate({ tour }: { tour: Tour }) {
         </Box>
       </Box>
 
-      {/* Guest reviews */}
       <Box className="ts-card">
         <h3 className="ts-heading">Guest Reviews</h3>
         <Box className="ts-reviews" ref={reviewsRef}>

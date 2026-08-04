@@ -1,44 +1,26 @@
 import { Box, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
-import { useState } from "react"
-import { validateSignup, type SignupErrors } from "ts/Signup"
+import { useSignupForm } from "app/hooks/SignupHooks/useSignupForm"
 import "css/signup.css"
 
 export default function SignupPage() {
-  /* HOOKS */
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState<SignupErrors>({})
-
-  /* HANDLER */
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const nextErrors = validateSignup({
-      firstName,
-      lastName,
-      email,
-      username,
-      password,
-    })
-    setErrors(nextErrors)
-    if (Object.keys(nextErrors).length === 0) {
-      /* Static — no backend yet. */
-      console.log("Signup submitted", {
-        firstName,
-        lastName,
-        email,
-        username,
-        password,
-      })
-    }
-  }
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    errors,
+    handleSubmit,
+  } = useSignupForm()
 
   return (
     <Box className="signup-page">
-      {/* Left: brand photo */}
       <Box className="auth-visual">
         <img
           src="/img/home-page-img/spotlight-machu-picchu.jpg"
@@ -61,7 +43,6 @@ export default function SignupPage() {
         <span className="visual-credit">Machu Picchu, Peru</span>
       </Box>
 
-      {/* Right: form */}
       <Box className="auth-panel">
         <Box className="auth-card">
           <Link to="/" className="mobile-logo">

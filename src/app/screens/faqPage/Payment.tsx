@@ -1,22 +1,24 @@
-import { useState } from "react"
 import { Box } from "@mui/material"
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded"
-import { paymentFaqs as items } from "ts/Faq"
+import { paymentFaqs as items } from "app/data/faqData"
+import { useAccordion } from "app/hooks/CommonHooks/useAccordion"
 
 export default function Payment() {
-  /* HOOKS */
-  const [open, setOpen] = useState<number | null>(null)
+  const { openIndex, toggleItem } = useAccordion()
 
   return (
     <section className="faq-section">
       <h2 className="faq-section-title">Costs and payments</h2>
       <Box className="faq-list">
         {items.map((item, i) => (
-          <Box className={`faq-item${open === i ? " open" : ""}`} key={item.q}>
+          <Box
+            className={`faq-item${openIndex === i ? " open" : ""}`}
+            key={item.q}
+          >
             <button
               type="button"
               className="faq-question"
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => toggleItem(i)}
             >
               <span>{item.q}</span>
               <ExpandMoreRoundedIcon className="faq-chevron" />

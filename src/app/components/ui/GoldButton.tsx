@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles"
-import MuiButton, { ButtonProps } from "@mui/material/Button"
+import MuiButton from "@mui/material/Button"
 
-const GoldButton = styled(MuiButton)<ButtonProps>(() => ({
+const GoldButton = styled(MuiButton)(() => ({
   position: "relative",
   overflow: "hidden",
   border: "1.7px solid #FFB300",
@@ -62,6 +62,6 @@ const GoldButton = styled(MuiButton)<ButtonProps>(() => ({
     color: "#FFD54F",
     backgroundColor: "#ffffff",
   },
-}))
+})) as typeof MuiButton
 
 export default GoldButton

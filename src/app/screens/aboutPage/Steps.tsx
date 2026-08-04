@@ -1,18 +1,16 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { useNavigate } from "react-router-dom"
-import { steps } from "ts/About"
+import { steps } from "app/data/aboutData"
+import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 
 export default function Steps() {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openTourList } = useTourNavigation()
 
   return (
     <section className="steps">
       <Container maxWidth={false} className="steps-container">
         <Box className="steps-grid">
-          {/* Left: text + steps */}
           <Box className="steps-content">
             <Typography className="steps-tagline">How It Works</Typography>
             <Typography className="steps-title">
@@ -22,7 +20,7 @@ export default function Steps() {
             </Typography>
 
             <Box className="steps-list">
-              {steps.map((step) => (
+              {steps.map(step => (
                 <Box className="step-item" key={step.number}>
                   <span className="step-number">{step.number}</span>
                   <Box className="step-body">
@@ -36,13 +34,12 @@ export default function Steps() {
             <GoldButton
               className="steps-btn"
               endIcon={<ArrowForwardRoundedIcon />}
-              onClick={() => navigate("/tour")}
+              onClick={openTourList}
             >
               Start Planning
             </GoldButton>
           </Box>
 
-          {/* Right: image */}
           <Box className="steps-media">
             <img
               src="/img/about-us-img/about-steps.jpg"

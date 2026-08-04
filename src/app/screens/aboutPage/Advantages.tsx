@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import RouteRoundedIcon from "@mui/icons-material/RouteRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import MapRoundedIcon from "@mui/icons-material/MapRounded"
-import { advantages } from "ts/About"
+import { advantages } from "app/data/aboutData"
 
 const icons: Record<string, JSX.Element> = {
   route: <RouteRoundedIcon />,
@@ -14,7 +14,6 @@ export default function Advantages() {
   return (
     <section className="advantages">
       <Container maxWidth={false} className="adv-container">
-        {/* Section header */}
         <Box className="adv-head">
           <Typography className="section-tagline">Our Advantages</Typography>
           <Typography className="section-title">Why Choose Cavora?</Typography>
@@ -24,9 +23,8 @@ export default function Advantages() {
           </Typography>
         </Box>
 
-        {/* Cards */}
         <Box className="adv-grid">
-          {advantages.map((adv) => (
+          {advantages.map(adv => (
             <Box className="adv-card" key={adv.title}>
               <Box className="adv-icon">{icons[adv.icon]}</Box>
               <Typography className="adv-card-title">{adv.title}</Typography>

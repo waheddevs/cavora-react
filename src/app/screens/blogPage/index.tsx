@@ -1,12 +1,11 @@
-import { useState } from "react"
 import { Box, Container } from "@mui/material"
 import BlogList from "./BlogList"
 import BlogSidebar from "./BlogSidebar"
+import { useBlogCategory } from "app/hooks/BlogHooks/useBlogCategory"
 import "css/blog.css"
 
 export default function BlogPage() {
-  /* HOOKS */
-  const [activeCategory, setActiveCategory] = useState("All Posts")
+  const { activeCategory, setActiveCategory } = useBlogCategory()
 
   return (
     <Box className="blog-page">

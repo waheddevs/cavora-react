@@ -17,12 +17,16 @@ export default function Form() {
         <Box
           component="form"
           className="contact-form"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={e => e.preventDefault()}
         >
           <Box className="form-row">
             <Box className="form-field">
               <label>Full Name</label>
-              <input type="text" placeholder="John Doe" aria-label="Full name" />
+              <input
+                type="text"
+                placeholder="John Doe"
+                aria-label="Full name"
+              />
             </Box>
             <Box className="form-field">
               <label>Email Address</label>

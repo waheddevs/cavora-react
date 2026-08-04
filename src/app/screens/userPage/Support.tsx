@@ -25,16 +25,20 @@ export default function Support() {
   return (
     <Box className="user-panel">
       <h2 className="user-panel-title">Support</h2>
-      <p className="user-panel-subtitle">Need a hand? Here's how to reach us.</p>
+      <p className="user-panel-subtitle">
+        Need a hand? Here's how to reach us.
+      </p>
 
       <Box className="support-grid">
-        {options.map(o => (
-          <Box className="support-card" key={o.title}>
-            <Box className="support-icon">{o.icon}</Box>
-            <Typography className="support-card-title">{o.title}</Typography>
-            <Typography className="support-card-text">{o.text}</Typography>
-            <NavLink to={o.to} className="support-link">
-              {o.cta}
+        {options.map(option => (
+          <Box className="support-card" key={option.title}>
+            <Box className="support-icon">{option.icon}</Box>
+            <Typography className="support-card-title">
+              {option.title}
+            </Typography>
+            <Typography className="support-card-text">{option.text}</Typography>
+            <NavLink to={option.to} className="support-link">
+              {option.cta}
             </NavLink>
           </Box>
         ))}

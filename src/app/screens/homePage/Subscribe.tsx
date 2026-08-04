@@ -18,7 +18,7 @@ export default function Subscribe() {
         <Box
           component="form"
           className="subscribe-form"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={e => e.preventDefault()}
         >
           <input
             type="email"

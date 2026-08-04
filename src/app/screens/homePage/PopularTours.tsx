@@ -1,40 +1,37 @@
 import { Box, Container, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { tours as allTours } from "ts/TourSingle"
-import { popularTourIds } from "ts/Home"
-import type { Tour } from "app/libs/types"
+import { tours as allTours } from "app/data/tourData"
+import { popularTourIds } from "app/data/homeData"
+import { Tour } from "app/types/tour"
+import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 
-/* 3 popular picks — real tours looked up by id (Paris, Fuji, Zermatt) */
 const tours = popularTourIds
-  .map((id) => allTours.find((t) => t.id === id))
-  .filter((t): t is Tour => Boolean(t))
+  .map(id => allTours.find(tour => tour.id === id))
+  .filter((tour): tour is Tour => Boolean(tour))
 
 function renderStars(rating: number) {
   const stars = []
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) {
-      stars.push(<StarRoundedIcon key={i} className="star" />)
-    } else if (rating >= i - 0.5) {
-      stars.push(<StarHalfRoundedIcon key={i} className="star" />)
+  for (let starNumber = 1; starNumber <= 5; starNumber++) {
+    if (rating >= starNumber) {
+      stars.push(<StarRoundedIcon key={starNumber} className="star" />)
+    } else if (rating >= starNumber - 0.5) {
+      stars.push(<StarHalfRoundedIcon key={starNumber} className="star" />)
     } else {
-      stars.push(<StarRoundedIcon key={i} className="star empty" />)
+      stars.push(<StarRoundedIcon key={starNumber} className="star empty" />)
     }
   }
   return stars
 }
 
 export default function PopularTours() {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openTour } = useTourNavigation()
 
   return (
     <section className="popular-tours">
       <Container maxWidth={false} className="popular-container">
-        {/* Section header */}
         <Box className="popular-head">
           <Typography className="section-tagline">Top Picks</Typography>
           <Typography className="section-title">Popular Tours</Typography>
@@ -43,13 +40,12 @@ export default function PopularTours() {
           </Typography>
         </Box>
 
-        {/* Horizontal tour cards */}
         <Box className="popular-grid">
-          {tours.map((tour) => (
+          {tours.map(tour => (
             <Box
               className="popular-card"
               key={tour.id}
-              onClick={() => navigate(`/tour-single?id=${tour.id}`)}
+              onClick={() => openTour(tour.id)}
               style={{ cursor: "pointer" }}
             >
               <Box className="popular-media">
@@ -79,7 +75,9 @@ export default function PopularTours() {
                 <Box className="popular-foot">
                   <Box className="popular-rating">
                     {renderStars(tour.rating)}
-                    <span className="rating-value">({tour.rating.toFixed(1)})</span>
+                    <span className="rating-value">
+                      ({tour.rating.toFixed(1)})
+                    </span>
                   </Box>
                   <Box className="popular-price">
                     <span>From </span>

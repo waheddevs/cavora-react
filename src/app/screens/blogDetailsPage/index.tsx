@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from "@mui/material"
-import { NavLink, useNavigate, useSearchParams } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded"
@@ -7,14 +7,12 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import BlogSidebar from "../blogPage/BlogSidebar"
-import { getPostById, getArticleBody, comments } from "ts/BlogDetails"
+import { comments } from "app/data/blogDetailsData"
+import { useBlogDetails } from "app/hooks/BlogHooks/useBlogDetails"
 import "css/blog.css"
 
 export default function BlogDetailsPage() {
-  /* HOOKS */
-  const [params] = useSearchParams()
-  const navigate = useNavigate()
-  const post = getPostById(params.get("id") ?? 1)
+  const { post, body, openBlogList, handleCommentSubmit } = useBlogDetails()
 
   if (!post) {
     return (
@@ -28,13 +26,10 @@ export default function BlogDetailsPage() {
     )
   }
 
-  const body = getArticleBody(post)
-
   return (
     <Box className="blog-details-page">
       <Container maxWidth={false} className="blog-container">
         <Box className="blog-layout">
-          {/* Article */}
           <article className="details-main">
             <Box className="details-hero">
               <img src={post.img} alt={post.title} />
@@ -75,7 +70,7 @@ export default function BlogDetailsPage() {
                 if (block.type === "list") {
                   return (
                     <ul key={i} className="details-list">
-                      {block.items?.map((item) => (
+                      {block.items?.map(item => (
                         <li key={item}>
                           <CheckCircleRoundedIcon />
                           {item}
@@ -88,7 +83,6 @@ export default function BlogDetailsPage() {
               })}
             </Box>
 
-            {/* Author box */}
             <Box className="details-author">
               <img src={post.authorImg} alt={post.author} />
               <Box className="details-author-info">
@@ -101,34 +95,33 @@ export default function BlogDetailsPage() {
               </Box>
             </Box>
 
-            {/* Comments */}
             <Box className="details-comments">
               <h3 className="details-section-title">
                 {comments.length} Comments
               </h3>
               <Box className="comment-list">
-                {comments.map((c) => (
-                  <Box className="comment-item" key={c.id}>
-                    <img src={c.avatar} alt={c.name} />
+                {comments.map(comment => (
+                  <Box className="comment-item" key={comment.id}>
+                    <img src={comment.avatar} alt={comment.name} />
                     <Box className="comment-body">
                       <Box className="comment-head">
-                        <h5>{c.name}</h5>
-                        <span>{c.date}</span>
+                        <h5>{comment.name}</h5>
+                        <span>{comment.date}</span>
                       </Box>
-                      <p>{c.text}</p>
+                      <p>{comment.text}</p>
                     </Box>
                   </Box>
                 ))}
               </Box>
 
-              {/* Comment form */}
               <h3 className="details-section-title">Leave a Comment</h3>
-              <form
-                className="comment-form"
-                onSubmit={(e) => e.preventDefault()}
-              >
+              <form className="comment-form" onSubmit={handleCommentSubmit}>
                 <Box className="comment-form-row">
-                  <input type="text" placeholder="Your name" aria-label="Your name" />
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    aria-label="Your name"
+                  />
                   <input
                     type="email"
                     placeholder="Your email"
@@ -148,10 +141,9 @@ export default function BlogDetailsPage() {
             </Box>
           </article>
 
-          {/* Sidebar (reused) */}
           <BlogSidebar
             activeCategory="All Posts"
-            onSelectCategory={() => navigate("/blog")}
+            onSelectCategory={openBlogList}
           />
         </Box>
       </Container>

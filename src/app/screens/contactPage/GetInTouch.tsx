@@ -4,7 +4,7 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded"
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
 import SupportScene from "./SupportScene"
-import { contactInfo } from "ts/Contact"
+import { contactInfo } from "app/data/contactData"
 
 const icons: Record<string, JSX.Element> = {
   location: <LocationOnRoundedIcon />,
@@ -13,11 +13,10 @@ const icons: Record<string, JSX.Element> = {
 }
 
 export default function GetInTouch() {
-  return ( 
+  return (
     <section className="get-in-touch">
       <Container maxWidth={false} className="contact-container">
         <Box className="contact-grid">
-          {/* Left: intro + info */}
           <Box className="contact-info">
             <Typography className="contact-tagline">Get in Touch</Typography>
             <Typography className="contact-title">
@@ -31,7 +30,7 @@ export default function GetInTouch() {
             </Typography>
 
             <Box className="info-list">
-              {contactInfo.map((item) => (
+              {contactInfo.map(item => (
                 <Box className="info-item" key={item.label}>
                   <Box className="info-icon">{icons[item.icon]}</Box>
                   <Box className="info-body">
@@ -43,7 +42,6 @@ export default function GetInTouch() {
             </Box>
           </Box>
 
-          {/* Right: creative image */}
           <Box className="contact-media">
             <span className="media-blob" />
             <span className="media-dots" />

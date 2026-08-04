@@ -3,7 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import YouTubeIcon from "@mui/icons-material/YouTube"
 import TwitterIcon from "@mui/icons-material/Twitter"
-import { joinSocials } from "ts/About"
+import { joinSocials } from "app/data/aboutData"
 
 const icons: Record<string, JSX.Element> = {
   Facebook: <FacebookIcon />,
@@ -27,7 +27,7 @@ export default function JoinUs() {
         </Typography>
 
         <Box className="join-socials">
-          {joinSocials.map((label) => (
+          {joinSocials.map(label => (
             <button
               type="button"
               className="join-social"

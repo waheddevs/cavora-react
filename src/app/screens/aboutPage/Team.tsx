@@ -2,13 +2,12 @@ import { Box, Container, Typography } from "@mui/material"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
-import { team } from "ts/About"
+import { team } from "app/data/aboutData"
 
 export default function Team() {
   return (
     <section className="team">
       <Container maxWidth={false} className="team-container">
-        {/* Section header */}
         <Box className="team-head">
           <Typography className="section-tagline">Our People</Typography>
           <Typography className="section-title">Meet the Team</Typography>
@@ -17,9 +16,8 @@ export default function Team() {
           </Typography>
         </Box>
 
-        {/* Cards */}
         <Box className="team-grid">
-          {team.map((member) => (
+          {team.map(member => (
             <Box className="team-card" key={member.name}>
               <Box className="team-avatar">
                 <img src={member.img} alt={member.name} />

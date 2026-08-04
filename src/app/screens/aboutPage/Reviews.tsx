@@ -3,17 +3,17 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { reviews } from "ts/About"
+import { reviews } from "app/data/aboutData"
 
 function renderStars(rating: number) {
   const stars = []
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) {
-      stars.push(<StarRoundedIcon key={i} className="star" />)
-    } else if (rating >= i - 0.5) {
-      stars.push(<StarHalfRoundedIcon key={i} className="star" />)
+  for (let starNumber = 1; starNumber <= 5; starNumber++) {
+    if (rating >= starNumber) {
+      stars.push(<StarRoundedIcon key={starNumber} className="star" />)
+    } else if (rating >= starNumber - 0.5) {
+      stars.push(<StarHalfRoundedIcon key={starNumber} className="star" />)
     } else {
-      stars.push(<StarRoundedIcon key={i} className="star empty" />)
+      stars.push(<StarRoundedIcon key={starNumber} className="star empty" />)
     }
   }
   return stars
@@ -23,19 +23,19 @@ export default function Reviews() {
   return (
     <section className="reviews">
       <Container maxWidth={false} className="reviews-container">
-        {/* Section header */}
         <Box className="reviews-head">
           <Typography className="section-tagline">Reviews</Typography>
-          <Typography className="section-title">What Our Clients Say</Typography>
+          <Typography className="section-title">
+            What Our Clients Say
+          </Typography>
           <Typography className="reviews-subtitle">
             Real stories from real travellers who have experienced the Cavora
             difference.
           </Typography>
         </Box>
 
-        {/* Review cards */}
         <Box className="reviews-grid">
-          {reviews.map((review) => (
+          {reviews.map(review => (
             <Box className="review-card" key={review.name}>
               <FormatQuoteRoundedIcon className="review-quote" />
               <Typography className="review-text">{review.text}</Typography>

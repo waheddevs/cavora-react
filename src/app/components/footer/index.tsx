@@ -8,9 +8,8 @@ import PhoneIcon from "@mui/icons-material/Phone"
 import EmailIcon from "@mui/icons-material/Email"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import { NavLink } from "react-router-dom"
-import { quickLinks, tourTypes, contactInfo } from "ts/Footer"
+import { quickLinks, tourTypes, contactInfo } from "app/data/footerData"
 
-/* Map contactInfo icon keys (from Footer.ts) to MUI icon components */
 const contactIcons: Record<string, JSX.Element> = {
   location: <LocationOnIcon className="contact-icon" />,
   phone: <PhoneIcon className="contact-icon" />,
@@ -23,7 +22,6 @@ export default function Footer() {
     <footer className="footer">
       <Container className="footer-container" maxWidth={false}>
         <Stack className="footer-grid">
-          {/* Brand Column */}
           <Box className="footer-brand">
             <NavLink to="/">
               <img
@@ -68,7 +66,6 @@ export default function Footer() {
             </Stack>
           </Box>
 
-          {/* Quick Links */}
           <Box className="footer-col">
             <Typography className="footer-col-title">Quick Links</Typography>
             <Divider className="footer-divider" />
@@ -83,7 +80,6 @@ export default function Footer() {
             </ul>
           </Box>
 
-          {/* Tour Types */}
           <Box className="footer-col">
             <Typography className="footer-col-title">Tour Types</Typography>
             <Divider className="footer-divider" />
@@ -101,13 +97,12 @@ export default function Footer() {
             </ul>
           </Box>
 
-          {/* Contact Us */}
           <Box className="footer-col">
             <Typography className="footer-col-title">Contact Us</Typography>
             <Divider className="footer-divider" />
             <ul className="footer-list contact-list">
-              {contactInfo.map((item, idx) => (
-                <li key={idx} className="contact-item">
+              {contactInfo.map(item => (
+                <li key={`${item.icon}-${item.text}`} className="contact-item">
                   {contactIcons[item.icon]}
                   <span>{item.text}</span>
                 </li>

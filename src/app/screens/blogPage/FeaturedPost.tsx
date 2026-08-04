@@ -1,19 +1,18 @@
 import { Box } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import { featuredPosts } from "ts/Blog"
+import { featuredPosts } from "app/data/blogData"
+import { useBlogNavigation } from "app/hooks/BlogHooks/useBlogNavigation"
 
 export default function FeaturedPost() {
-  /* HOOKS */
-  const navigate = useNavigate()
+  const { openBlogPost } = useBlogNavigation()
   return (
     <Box className="sidebar-widget">
       <h3 className="widget-title">Featured Post</h3>
       <Box className="feat-list">
-        {featuredPosts.map((post) => (
+        {featuredPosts.map(post => (
           <Box
             className="feat-item"
             key={post.id}
-            onClick={() => navigate(`/blog-details?id=${post.id}`)}
+            onClick={() => openBlogPost(post.id)}
           >
             <img src={post.img} alt={post.title} />
             <Box className="feat-info">

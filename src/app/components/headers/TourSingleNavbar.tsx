@@ -1,13 +1,8 @@
-import { useSearchParams } from "react-router-dom"
 import PageHero from "./PageHero"
-import { getTourById } from "ts/TourSingle"
+import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
-/* Tour single header — the only dynamic page-hero.
-   Its title/breadcrumb come from the tour selected via ?id= */
 export default function TourSingleNavbar() {
-  /* HOOKS */
-  const [params] = useSearchParams()
-  const tour = getTourById(params.get("id") ?? 1)
+  const { tour } = useTourDetails()
 
   return (
     <PageHero

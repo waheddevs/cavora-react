@@ -7,9 +7,10 @@ import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined"
 import TravelExploreOutlinedIcon from "@mui/icons-material/TravelExploreOutlined"
 import SupportAgentOutlinedIcon from "@mui/icons-material/SupportAgentOutlined"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { heroSlides, features, useHeroSlider, useScrolled } from "ts/HomeNavbar"
+import { heroFeatures, heroSlides } from "app/data/homeData"
+import { useHeroSlider } from "app/hooks/HomeHooks/useHeroSlider"
+import { useScrolled } from "app/hooks/HomeHooks/useScrolled"
 
-/* Map feature icon keys (from HomeNavbar.ts) to MUI icon components */
 const featureIcons: Record<string, JSX.Element> = {
   verified: <VerifiedOutlinedIcon className="feature-icon" />,
   secure: <ShieldOutlinedIcon className="feature-icon" />,
@@ -18,7 +19,6 @@ const featureIcons: Record<string, JSX.Element> = {
 }
 
 export default function HomeNavbar() {
-  /* HOOKS */
   const { activeSlide } = useHeroSlider(5000)
   const scrolled = useScrolled(40)
   const active = heroSlides[activeSlide]
@@ -29,12 +29,13 @@ export default function HomeNavbar() {
         <NavbarPanel />
       </Box>
       <Box className="home-hero">
-        {/* Background slideshow */}
         <Box className="hero-slides">
-          {heroSlides.map((slide, i) => (
+          {heroSlides.map((slide, slideIndex) => (
             <Box
               key={slide.img}
-              className={`hero-slide${i === activeSlide ? " active" : ""}`}
+              className={`hero-slide${
+                slideIndex === activeSlide ? " active" : ""
+              }`}
             >
               <img
                 src={slide.img}
@@ -46,7 +47,6 @@ export default function HomeNavbar() {
         </Box>
         <Box className="hero-overlay" />
 
-        {/* Centered hero content and primary actions */}
         <Container maxWidth={false} className="hero-content">
           <Box className="hero-text" key={activeSlide}>
             <Typography className="hero-location">{active.location}</Typography>
@@ -58,20 +58,22 @@ export default function HomeNavbar() {
             <GoldButton
               className="hero-primary"
               endIcon={<ArrowForwardRoundedIcon />}
-              {...({ component: NavLink, to: "/tour" } as object)}
+              component={NavLink}
+              to="/tour"
             >
               Explore Tours
             </GoldButton>
             <GoldButton
               className="hero-secondary"
-              {...({ component: NavLink, to: "/contact" } as object)}
+              component={NavLink}
+              to="/contact"
             >
               Plan Your Trip
             </GoldButton>
           </Box>
 
           <Box className="hero-features">
-            {features.map((feature) => (
+            {heroFeatures.map(feature => (
               <Box key={feature.label} className="hero-feature">
                 {featureIcons[feature.icon]}
                 <span>{feature.label}</span>
