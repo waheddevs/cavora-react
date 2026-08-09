@@ -2,29 +2,44 @@ import { Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
-
-const KYOTO_TOUR_ID = 18
+import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
 
 export default function Explore() {
+  /* HOOKS */
   const { openTour } = useTourNavigation()
+  const { spotlight } = useHomeContent()
+
+  /* HANDLERS */
+  const handleExploreTour = () => {
+    if (spotlight?.tour) openTour(spotlight.tour.id)
+  }
 
   return (
-    <section className="explore">
+    <section
+      className="explore"
+      style={
+        spotlight?.imageUrl
+          ? {
+              backgroundImage: `linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)), url('${spotlight.imageUrl}')`,
+            }
+          : undefined
+      }
+    >
       <Container maxWidth={false} className="explore-content">
-        <Typography className="explore-tagline">Hidden Gem</Typography>
+        <Typography className="explore-tagline">
+          {spotlight?.tagline ?? "Hidden Gem"}
+        </Typography>
         <Typography className="explore-title">
-          Explore
-          <br />
-          Ancient Kyoto
+          {spotlight?.title ?? "Explore Ancient Kyoto"}
         </Typography>
         <Typography className="explore-subtitle">
-          Journey to the heart of old Japan. Discover hidden temples, serene
-          bamboo groves, and centuries of timeless tradition.
+          {spotlight?.subtitle ?? "Discover a remarkable journey."}
         </Typography>
         <GoldButton
           className="explore-btn"
           endIcon={<ArrowForwardRoundedIcon />}
-          onClick={() => openTour(KYOTO_TOUR_ID)}
+          onClick={handleExploreTour}
+          disabled={!spotlight?.tour}
         >
           Explore Now
         </GoldButton>

@@ -23,10 +23,15 @@ function renderStars(rating: number) {
 }
 
 export default function TourCard({ tour }: { tour: Tour }) {
-  const { saved, open, toggleSaved } = useTourCard(tour.id)
+  /* HOOKS */
+  const { saved, handleOpen, handleToggleSaved } = useTourCard(tour.id)
 
   return (
-    <Box className="tour-card" onClick={open} style={{ cursor: "pointer" }}>
+    <Box
+      className="tour-card"
+      onClick={handleOpen}
+      style={{ cursor: "pointer" }}
+    >
       <Box className="tc-media">
         <img src={tour.images[0]} alt={tour.title} />
         <span className="tc-badge">{tour.type}</span>
@@ -34,7 +39,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
           type="button"
           className={`tc-fav${saved ? " active" : ""}`}
           aria-label="Save to wishlist"
-          onClick={toggleSaved}
+          onClick={handleToggleSaved}
         >
           {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
         </button>
@@ -71,7 +76,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <strong>${tour.price.toLocaleString()}</strong>
             <span>/person</span>
           </Box>
-          <button type="button" className="tc-btn" onClick={open}>
+          <button type="button" className="tc-btn" onClick={handleOpen}>
             View Tour
             <ArrowForwardRoundedIcon />
           </button>

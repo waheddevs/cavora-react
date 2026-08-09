@@ -4,18 +4,21 @@ import { useSignupForm } from "app/hooks/SignupHooks/useSignupForm"
 import "css/signup.css"
 
 export default function SignupPage() {
+  /* HOOKS */
   const {
     firstName,
-    setFirstName,
     lastName,
-    setLastName,
     email,
-    setEmail,
     username,
-    setUsername,
     password,
-    setPassword,
+    handleFirstNameChange,
+    handleLastNameChange,
+    handleEmailChange,
+    handleUsernameChange,
+    handlePasswordChange,
     errors,
+    submitError,
+    isSubmitting,
     handleSubmit,
   } = useSignupForm()
 
@@ -70,7 +73,7 @@ export default function SignupPage() {
                   type="text"
                   className={errors.firstName ? "has-error" : ""}
                   value={firstName}
-                  onChange={e => setFirstName(e.target.value)}
+                  onChange={handleFirstNameChange}
                   aria-label="First name"
                 />
                 {errors.firstName && (
@@ -84,7 +87,7 @@ export default function SignupPage() {
                   type="text"
                   className={errors.lastName ? "has-error" : ""}
                   value={lastName}
-                  onChange={e => setLastName(e.target.value)}
+                  onChange={handleLastNameChange}
                   aria-label="Last name"
                 />
                 {errors.lastName && (
@@ -100,7 +103,7 @@ export default function SignupPage() {
                 type="email"
                 className={errors.email ? "has-error" : ""}
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 aria-label="Email"
               />
               {errors.email && (
@@ -120,7 +123,7 @@ export default function SignupPage() {
                 type="text"
                 className={errors.username ? "has-error" : ""}
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                onChange={handleUsernameChange}
                 aria-label="Username"
               />
               {errors.username && (
@@ -138,7 +141,7 @@ export default function SignupPage() {
                 type="password"
                 className={errors.password ? "has-error" : ""}
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 aria-label="Password"
               />
               {errors.password && (
@@ -146,8 +149,13 @@ export default function SignupPage() {
               )}
             </Box>
 
-            <button type="submit" className="auth-submit">
-              Sign Up
+            {submitError && <span className="field-error">{submitError}</span>}
+            <button
+              type="submit"
+              className="auth-submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Creating account..." : "Sign Up"}
             </button>
           </Box>
 

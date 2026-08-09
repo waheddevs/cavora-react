@@ -14,13 +14,14 @@ export default function Itinerary() {
       <Box className="ts-itinerary">
         {tour.itinerary.map((day, i) => (
           <Box
-            className={`ts-day${openIndex === i ? "open" : ""}`}
+            className={`ts-day${openIndex === i ? " open" : ""}`}
             key={day.title}
           >
             <button
               type="button"
               className="ts-day-head"
               onClick={() => toggleItem(i)}
+              aria-expanded={openIndex === i}
             >
               <span className="ts-day-num">
                 {String(i + 1).padStart(2, "0")}

@@ -1,25 +1,42 @@
 import {
-  AuthRegistration,
-  signIn,
-  register,
-  signOut,
-  updateProfile,
-} from "app/store/authSlice"
-import { UserProfile } from "app/data/userData"
-import { useAppDispatch } from "app/hooks/CommonHooks/useAppDispatch"
-import { useAppSelector } from "app/hooks/CommonHooks/useAppSelector"
+  ProfileUpdateRequest,
+  RegisterRequest,
+  useGetProfileQuery,
+  useLoginMutation,
+  useLogoutMutation,
+  useRegisterMutation,
+  useUpdateProfileMutation,
+} from "app/api/authApi"
+import { currentUser } from "app/data/userData"
 
 export function useAuth() {
-  const dispatch = useAppDispatch()
-  const user = useAppSelector(state => state.auth.user)
-  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
+  /* API HOOKS */
+  const profileQuery = useGetProfileQuery()
+  const [loginRequest, loginState] = useLoginMutation()
+  const [registerRequest, registerState] = useRegisterMutation()
+  const [logoutRequest, logoutState] = useLogoutMutation()
+  const [updateProfileRequest, updateState] = useUpdateProfileMutation()
 
-  const login = (email: string) => dispatch(signIn({ email }))
-  const signup = (registration: AuthRegistration) =>
-    dispatch(register(registration))
-  const logout = () => dispatch(signOut())
-  const saveProfile = (profile: Partial<UserProfile>) =>
-    dispatch(updateProfile(profile))
+  /* HANDLERS */
+  const handleLogin = (email: string, password: string) =>
+    loginRequest({ email, password }).unwrap()
+  const handleSignup = (registration: RegisterRequest) =>
+    registerRequest(registration).unwrap()
+  const handleLogout = () => logoutRequest().unwrap()
+  const handleSaveProfile = (profile: ProfileUpdateRequest) =>
+    updateProfileRequest(profile).unwrap()
 
-  return { user, isAuthenticated, login, signup, logout, saveProfile }
+  return {
+    user: profileQuery.data ?? currentUser,
+    isAuthenticated: Boolean(profileQuery.data),
+    isAuthLoading: profileQuery.isLoading,
+    login: handleLogin,
+    signup: handleSignup,
+    logout: handleLogout,
+    saveProfile: handleSaveProfile,
+    loginPending: loginState.isLoading,
+    signupPending: registerState.isLoading,
+    logoutPending: logoutState.isLoading,
+    profileSaving: updateState.isLoading,
+  }
 }

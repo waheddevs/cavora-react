@@ -9,14 +9,29 @@ import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 import "css/tourSingle.css"
 
 export default function TourSinglePage() {
-  const { tour } = useTourDetails()
+  /* HOOKS */
+  const { tour, isLoading, isError, handleRetry } = useTourDetails()
 
-  if (!tour) {
+  if (isLoading) {
+    return (
+      <Box className="tour-single-page">
+        <Container maxWidth={false} className="ts-container">
+          <p className="ts-empty">Loading tour...</p>
+        </Container>
+      </Box>
+    )
+  }
+
+  if (!tour || isError) {
     return (
       <Box className="tour-single-page">
         <Container maxWidth={false} className="ts-container">
           <p className="ts-empty">
-            Tour not found. <NavLink to="/tour">Back to Tours</NavLink>
+            Tour could not be loaded.{" "}
+            <button type="button" onClick={handleRetry}>
+              Try again
+            </button>{" "}
+            or <NavLink to="/tour">back to Tours</NavLink>.
           </p>
         </Container>
       </Box>

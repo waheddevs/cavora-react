@@ -14,6 +14,7 @@ import { weekDays, buildMonthGrid } from "app/utils/calendar"
 import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
 export default function OrderBar() {
+  /* HOOKS */
   const { tour, order } = useTourDetails()
   const {
     date,
@@ -22,18 +23,23 @@ export default function OrderBar() {
     viewMonth,
     saved,
     dateError,
+    availabilityError,
+    availabilityLoading,
+    availableDates,
+    bookingHoldLoading,
+    bookingHoldError,
     total,
     handleBookNow,
-    openCalendar,
-    closeCalendar,
-    decreaseGuests,
-    increaseGuests,
-    toggleSaved,
-    showPreviousMonth,
-    showNextMonth,
-    selectDate,
-    clearDate,
-    selectToday,
+    handleOpenCalendar,
+    handleCloseCalendar,
+    handleDecreaseGuests,
+    handleIncreaseGuests,
+    handleToggleSaved,
+    handlePreviousMonth,
+    handleNextMonth,
+    handleSelectDate,
+    handleClearDate,
+    handleSelectToday,
   } = order
   if (!tour) return null
 
@@ -58,7 +64,7 @@ export default function OrderBar() {
             id="ts-date-btn"
             type="button"
             className={`ts-date-btn${dateError ? " has-error" : ""}`}
-            onClick={openCalendar}
+            onClick={handleOpenCalendar}
           >
             <CalendarMonthOutlinedIcon />
             <span className={date ? "" : "ph"}>
@@ -70,6 +76,16 @@ export default function OrderBar() {
               Please pick a date before booking
             </span>
           )}
+          {availabilityLoading && (
+            <span className="ts-field-error">
+              Checking available departures...
+            </span>
+          )}
+          {availabilityError && (
+            <span className="ts-field-error">
+              Availability could not be loaded.
+            </span>
+          )}
         </Box>
 
         <Box className="ts-field">
@@ -78,7 +94,7 @@ export default function OrderBar() {
             <button
               type="button"
               aria-label="Decrease guests"
-              onClick={decreaseGuests}
+              onClick={handleDecreaseGuests}
             >
               <RemoveRoundedIcon />
             </button>
@@ -86,7 +102,7 @@ export default function OrderBar() {
             <button
               type="button"
               aria-label="Increase guests"
-              onClick={increaseGuests}
+              onClick={handleIncreaseGuests}
             >
               <AddRoundedIcon />
             </button>
@@ -98,14 +114,24 @@ export default function OrderBar() {
           <strong>${total.toLocaleString()}</strong>
         </Box>
 
-        <button type="button" className="ts-book" onClick={handleBookNow}>
+        <button
+          type="button"
+          className="ts-book"
+          onClick={handleBookNow}
+          disabled={bookingHoldLoading || availabilityLoading}
+        >
           <SailingRoundedIcon />
-          Book Now
+          {bookingHoldLoading ? "Reserving..." : "Book Now"}
         </button>
+        {bookingHoldError && (
+          <span className="ts-field-error">
+            Booking could not be reserved. Please try another departure.
+          </span>
+        )}
         <button
           type="button"
           className={`ts-wishlist${saved ? " saved" : ""}`}
-          onClick={toggleSaved}
+          onClick={handleToggleSaved}
         >
           {saved ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
           {saved ? "Saved to Wishlist" : "Add to Wishlist"}
@@ -125,7 +151,7 @@ export default function OrderBar() {
       <Popover
         open={Boolean(calendarAnchor)}
         anchorEl={calendarAnchor}
-        onClose={closeCalendar}
+        onClose={handleCloseCalendar}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
         classes={{ paper: "date-popover-paper" }}
@@ -139,14 +165,14 @@ export default function OrderBar() {
               <IconButton
                 className="cal-nav-btn"
                 aria-label="previous month"
-                onClick={showPreviousMonth}
+                onClick={handlePreviousMonth}
               >
                 <ChevronLeftIcon />
               </IconButton>
               <IconButton
                 className="cal-nav-btn"
                 aria-label="next month"
-                onClick={showNextMonth}
+                onClick={handleNextMonth}
               >
                 <ChevronRightIcon />
               </IconButton>
@@ -164,14 +190,19 @@ export default function OrderBar() {
               const inMonth = day.month() === viewMonth.month()
               const isToday = day.isSame(moment(), "day")
               const isSelected = date && day.isSame(moment(date), "day")
+              const dateValue = day.format("YYYY-MM-DD")
+              const isAvailable = availableDates.has(dateValue)
               return (
                 <button
                   key={day.format("YYYY-MM-DD")}
                   type="button"
                   className={`cal-day${inMonth ? "" : " muted"}${
                     isToday ? " today" : ""
-                  }${isSelected ? " selected" : ""}`}
-                  onClick={() => selectDate(day)}
+                  }${isSelected ? " selected" : ""}${
+                    isAvailable ? "" : " muted"
+                  }`}
+                  disabled={!isAvailable}
+                  onClick={() => handleSelectDate(day)}
                 >
                   {day.date()}
                 </button>
@@ -180,10 +211,18 @@ export default function OrderBar() {
           </Box>
 
           <Box className="calendar-foot">
-            <button type="button" className="cal-action" onClick={clearDate}>
+            <button
+              type="button"
+              className="cal-action"
+              onClick={handleClearDate}
+            >
               Clear
             </button>
-            <button type="button" className="cal-action" onClick={selectToday}>
+            <button
+              type="button"
+              className="cal-action"
+              onClick={handleSelectToday}
+            >
               Today
             </button>
           </Box>

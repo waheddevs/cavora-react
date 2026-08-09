@@ -3,14 +3,8 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
-import { tours as allTours } from "app/data/tourData"
-import { popularTourIds } from "app/data/homeData"
-import { Tour } from "app/types/tour"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
-
-const tours = popularTourIds
-  .map(id => allTours.find(tour => tour.id === id))
-  .filter((tour): tour is Tour => Boolean(tour))
+import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
 
 function renderStars(rating: number) {
   const stars = []
@@ -27,7 +21,17 @@ function renderStars(rating: number) {
 }
 
 export default function PopularTours() {
+  /* HOOKS */
   const { openTour } = useTourNavigation()
+  const {
+    popularTours: tours,
+    isLoading,
+    isError,
+    handleRetry,
+  } = useHomeContent()
+
+  /* HANDLERS */
+  const handleOpenTour = (tourId: number) => openTour(tourId)
 
   return (
     <section className="popular-tours">
@@ -41,11 +45,20 @@ export default function PopularTours() {
         </Box>
 
         <Box className="popular-grid">
+          {isLoading && <p>Loading popular tours...</p>}
+          {isError && (
+            <p>
+              Popular tours could not be loaded.{" "}
+              <button type="button" onClick={handleRetry}>
+                Try again
+              </button>
+            </p>
+          )}
           {tours.map(tour => (
             <Box
               className="popular-card"
               key={tour.id}
-              onClick={() => openTour(tour.id)}
+              onClick={() => handleOpenTour(tour.id)}
               style={{ cursor: "pointer" }}
             >
               <Box className="popular-media">

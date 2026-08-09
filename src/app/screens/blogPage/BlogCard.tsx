@@ -11,7 +11,12 @@ import { Post } from "app/types/blog"
 import { useBlogNavigation } from "app/hooks/BlogHooks/useBlogNavigation"
 
 export default function BlogCard({ post }: { post: Post }) {
+  /* HOOKS */
   const { openBlogPost } = useBlogNavigation()
+
+  /* HANDLERS */
+  const handleReadMore = () => openBlogPost(post.slug ?? post.id)
+
   return (
     <Box className="blog-card">
       <Box className="blog-card-main">
@@ -41,7 +46,7 @@ export default function BlogCard({ post }: { post: Post }) {
           <GoldButton
             className="read-more-btn"
             endIcon={<ArrowForwardRoundedIcon />}
-            onClick={() => openBlogPost(post.id)}
+            onClick={handleReadMore}
           >
             Read More
           </GoldButton>

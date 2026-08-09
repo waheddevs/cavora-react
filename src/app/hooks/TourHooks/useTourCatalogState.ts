@@ -8,12 +8,29 @@ import {
   sortTours,
 } from "app/utils/tourFilters"
 import { tourTypes } from "app/data/tourFilterData"
-import { tours } from "app/data/tourData"
+import { useGetToursQuery } from "app/api/toursApi"
 
 export function useTourCatalogState(toursPerPage = 9) {
-  const priceMin = useMemo(() => Math.min(...tours.map(tour => tour.price)), [])
-  const priceMax = useMemo(() => Math.max(...tours.map(tour => tour.price)), [])
+  /* API HOOKS */
+  const { data, isLoading, isFetching, isError, refetch } = useGetToursQuery({
+    page: 1,
+    limit: 50,
+    sort: "popularity",
+  })
+
+  /* ROUTER HOOKS */
   const [searchParams] = useSearchParams()
+
+  /* DERIVED DATA */
+  const tours = useMemo(() => data?.data ?? [], [data?.data])
+  const priceMin = useMemo(
+    () => (tours.length ? Math.min(...tours.map(tour => tour.price)) : 0),
+    [tours],
+  )
+  const priceMax = useMemo(
+    () => (tours.length ? Math.max(...tours.map(tour => tour.price)) : 5000),
+    [tours],
+  )
   const typeParam = searchParams.get("type")
   const defaultFilters = useMemo(() => {
     const nextFilters = makeDefaultFilters(priceMin, priceMax)
@@ -24,14 +41,18 @@ export function useTourCatalogState(toursPerPage = 9) {
 
     return nextFilters
   }, [priceMin, priceMax, typeParam])
+
+  /* STATE */
   const [filters, setFilters] = useState<TourFilters>(defaultFilters)
   const [sort, setSort] = useState<SortKey>("default")
   const [page, setPage] = useState(1)
   const [showFilters, setShowFilters] = useState(true)
   const topRef = useRef<HTMLDivElement>(null)
+
+  /* FILTERED DATA */
   const filteredTours = useMemo(
     () => sortTours(filterTours(tours, filters), sort),
-    [filters, sort],
+    [filters, sort, tours],
   )
   const totalPages = Math.max(1, Math.ceil(filteredTours.length / toursPerPage))
   const pagedTours = filteredTours.slice(
@@ -39,6 +60,7 @@ export function useTourCatalogState(toursPerPage = 9) {
     page * toursPerPage,
   )
 
+  /* EFFECTS */
   useEffect(() => {
     setFilters(defaultFilters)
   }, [defaultFilters])
@@ -47,26 +69,40 @@ export function useTourCatalogState(toursPerPage = 9) {
     setPage(1)
   }, [filters, sort])
 
-  const toggleFilters = () => setShowFilters(visible => !visible)
-  const goToPage = (nextPage: number) => {
+  /* HANDLERS */
+  const handleToggleFilters = () => setShowFilters(visible => !visible)
+  const handleSortChange = (nextSort: SortKey) => setSort(nextSort)
+  const handlePageChange = (nextPage: number) => {
     setPage(nextPage)
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
+  const handlePreviousPage = () => handlePageChange(page - 1)
+  const handleNextPage = () => handlePageChange(page + 1)
+  const handleRetry = () => {
+    void refetch()
+  }
 
   return {
+    tours,
+    isLoading,
+    isFetching,
+    isError,
+    handleRetry,
     priceMin,
     priceMax,
     filters,
     setFilters,
     sort,
-    setSort,
+    handleSortChange,
     page,
     showFilters,
-    toggleFilters,
+    handleToggleFilters,
     topRef,
     filteredTours,
     pagedTours,
     totalPages,
-    goToPage,
+    handlePageChange,
+    handlePreviousPage,
+    handleNextPage,
   }
 }

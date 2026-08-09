@@ -4,7 +4,14 @@ import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
 export default function TourPagination() {
-  const { page, totalPages, goToPage } = useTourCatalog()
+  /* HOOKS */
+  const {
+    page,
+    totalPages,
+    handlePageChange,
+    handlePreviousPage,
+    handleNextPage,
+  } = useTourCatalog()
 
   if (totalPages <= 1) return null
 
@@ -14,7 +21,7 @@ export default function TourPagination() {
         type="button"
         className="tp-btn arrow"
         disabled={page === 1}
-        onClick={() => goToPage(page - 1)}
+        onClick={handlePreviousPage}
         aria-label="Previous page"
       >
         <ChevronLeftRoundedIcon />
@@ -25,7 +32,7 @@ export default function TourPagination() {
           type="button"
           key={i}
           className={`tp-btn${page === i + 1 ? " active" : ""}`}
-          onClick={() => goToPage(i + 1)}
+          onClick={() => handlePageChange(i + 1)}
         >
           {i + 1}
         </button>
@@ -35,7 +42,7 @@ export default function TourPagination() {
         type="button"
         className="tp-btn arrow"
         disabled={page === totalPages}
-        onClick={() => goToPage(page + 1)}
+        onClick={handleNextPage}
         aria-label="Next page"
       >
         <ChevronRightRoundedIcon />

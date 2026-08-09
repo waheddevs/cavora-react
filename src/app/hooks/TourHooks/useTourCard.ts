@@ -3,15 +3,19 @@ import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 
 export function useTourCard(tourId: number) {
+  /* DOMAIN HOOKS */
   const { openTour } = useTourNavigation()
   const { isWishlisted, toggleWishlist } = useWishlist()
+
+  /* DERIVED DATA */
   const saved = isWishlisted(tourId)
 
-  const open = () => openTour(tourId)
-  const toggleSaved = (event: MouseEvent<HTMLButtonElement>) => {
+  /* HANDLERS */
+  const handleOpen = () => openTour(tourId)
+  const handleToggleSaved = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     toggleWishlist(tourId)
   }
 
-  return { saved, open, toggleSaved }
+  return { saved, handleOpen, handleToggleSaved }
 }

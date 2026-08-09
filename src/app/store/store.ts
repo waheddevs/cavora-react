@@ -1,33 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
-import authReducer from "./authSlice"
-import bookingReducer from "./bookingSlice"
-import wishlistReducer, { synchronizeWishlist } from "./wishlistSlice"
-import {
-  saveWishlistIds,
-  subscribeToWishlistStorage,
-} from "app/services/wishlistStorage"
+import { baseApi } from "app/api/baseApi"
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
-    bookings: bookingReducer,
-    wishlist: wishlistReducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
-})
-
-let persistedWishlistIds = store.getState().wishlist.tourIds
-
-store.subscribe(() => {
-  const wishlistIds = store.getState().wishlist.tourIds
-  if (wishlistIds === persistedWishlistIds) return
-
-  persistedWishlistIds = wishlistIds
-  saveWishlistIds(wishlistIds)
-})
-
-subscribeToWishlistStorage(ids => {
-  persistedWishlistIds = ids
-  store.dispatch(synchronizeWishlist(ids))
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

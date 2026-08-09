@@ -1,6 +1,6 @@
 import { Box } from "@mui/material"
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded"
-import { posts, categories } from "app/data/blogData"
+import { useBlogSidebarData } from "app/hooks/BlogHooks/useBlogSidebarData"
 
 interface Props {
   active: string
@@ -8,8 +8,12 @@ interface Props {
 }
 
 export default function Categories({ active, onSelect }: Props) {
-  const countFor = (label: string) =>
-    posts.filter(post => post.category === label).length
+  /* HOOKS */
+  const { categories, getCategoryCount } = useBlogSidebarData()
+
+  /* HANDLERS */
+  const handleSelectAll = () => onSelect("All Posts")
+  const handleSelectCategory = (category: string) => onSelect(category)
 
   return (
     <Box className="sidebar-widget">
@@ -17,7 +21,7 @@ export default function Categories({ active, onSelect }: Props) {
       <ul className="cat-list">
         <li
           className={`cat-item${active === "All Posts" ? " active" : ""}`}
-          onClick={() => onSelect("All Posts")}
+          onClick={handleSelectAll}
         >
           <span>All Posts</span>
           <span className="cat-icon">
@@ -29,10 +33,10 @@ export default function Categories({ active, onSelect }: Props) {
           <li
             key={label}
             className={`cat-item${active === label ? " active" : ""}`}
-            onClick={() => onSelect(label)}
+            onClick={() => handleSelectCategory(label)}
           >
             <span>{label}</span>
-            <span className="cat-count">{countFor(label)}</span>
+            <span className="cat-count">{getCategoryCount(label)}</span>
           </li>
         ))}
       </ul>

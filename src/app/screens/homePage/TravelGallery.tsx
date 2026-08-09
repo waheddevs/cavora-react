@@ -1,7 +1,10 @@
 import { Box, Container, Typography } from "@mui/material"
-import { galleryImages as images } from "app/data/homeData"
+import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
 
 export default function TravelGallery() {
+  /* HOOKS */
+  const { gallery: images } = useHomeContent()
+
   return (
     <section className="travel-gallery">
       <Container maxWidth={false} className="gallery-container">
@@ -17,9 +20,13 @@ export default function TravelGallery() {
           {images.map(item => (
             <Box
               className={`gallery-item${item.tall ? " tall" : ""}`}
-              key={item.img}
+              key={item.imageUrl}
             >
-              <img src={item.img} alt={item.alt} className="gallery-img" />
+              <img
+                src={item.imageUrl}
+                alt={item.altText}
+                className="gallery-img"
+              />
             </Box>
           ))}
         </Box>

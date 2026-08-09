@@ -1,20 +1,55 @@
-import { MouseEvent, useEffect, useState } from "react"
+import { MouseEvent, useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import moment from "moment"
 import { Tour } from "app/types/tour"
 import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
+import { useGetTourAvailabilityQuery } from "app/api/toursApi"
+import { useCreateBookingHoldMutation } from "app/api/bookingApi"
+import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 export function useOrderBar(tour?: Tour) {
+  /* ROUTER HOOKS */
   const navigate = useNavigate()
+
+  /* DOMAIN HOOKS */
   const { isWishlisted, toggleWishlist } = useWishlist()
+  const { isAuthenticated } = useAuth()
+
+  /* STATE */
   const [date, setDate] = useState("")
   const [guests, setGuests] = useState(1)
   const [calendarAnchor, setCalendarAnchor] = useState<HTMLElement | null>(null)
   const [viewMonth, setViewMonth] = useState(moment())
-  const saved = tour ? isWishlisted(tour.id) : false
   const [dateError, setDateError] = useState(false)
-  const total = (tour?.price ?? 0) * guests
 
+  /* API HOOKS */
+  const [createBookingHold, bookingHoldState] = useCreateBookingHoldMutation()
+  const availabilityQuery = useGetTourAvailabilityQuery(
+    { tourId: tour?.id ?? 0, travelers: guests },
+    { skip: !tour },
+  )
+
+  /* DERIVED DATA */
+  const saved = tour ? isWishlisted(tour.id) : false
+  const departures = useMemo(
+    () => availabilityQuery.data?.departures ?? [],
+    [availabilityQuery.data?.departures],
+  )
+  const availableDates = useMemo(
+    () =>
+      new Set(departures.map(departure => departure.startDate.slice(0, 10))),
+    [departures],
+  )
+  const selectedDeparture = useMemo(
+    () => departures.find(departure => departure.startDate.startsWith(date)),
+    [date, departures],
+  )
+  const unitPrice = selectedDeparture
+    ? selectedDeparture.priceCents / 100
+    : (tour?.price ?? 0)
+  const total = unitPrice * guests
+
+  /* EFFECTS */
   useEffect(() => {
     setDate("")
     setGuests(1)
@@ -23,47 +58,71 @@ export function useOrderBar(tour?: Tour) {
     setDateError(false)
   }, [tour?.id])
 
-  const handleBookNow = () => {
+  /* HANDLERS */
+  const handleBookNow = async () => {
     if (!tour) return
 
-    if (!date) {
+    if (!isAuthenticated) {
+      navigate("/login")
+      return
+    }
+
+    if (!date || !selectedDeparture) {
       setDateError(true)
       setCalendarAnchor(document.getElementById("ts-date-btn"))
       return
     }
 
-    navigate(`/payment?tourId=${tour.id}&date=${date}&guests=${guests}`)
+    try {
+      const booking = await createBookingHold({
+        tourId: tour.id,
+        departureId: selectedDeparture.id,
+        travelers: guests,
+      }).unwrap()
+      navigate(
+        `/payment?bookingId=${booking.id}&tourId=${tour.id}&date=${date}&guests=${guests}`,
+      )
+    } catch {
+      return
+    }
   }
 
-  const openCalendar = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleOpenCalendar = (event: MouseEvent<HTMLButtonElement>) => {
     setDateError(false)
     setCalendarAnchor(event.currentTarget)
   }
-  const closeCalendar = () => setCalendarAnchor(null)
-  const decreaseGuests = () => setGuests(count => Math.max(1, count - 1))
-  const increaseGuests = () => setGuests(count => count + 1)
-  const toggleSaved = () => {
+  const handleCloseCalendar = () => setCalendarAnchor(null)
+  const handleDecreaseGuests = () => setGuests(count => Math.max(1, count - 1))
+  const handleIncreaseGuests = () => setGuests(count => count + 1)
+  const handleToggleSaved = () => {
     if (tour) toggleWishlist(tour.id)
   }
-  const showPreviousMonth = () =>
+  const handlePreviousMonth = () =>
     setViewMonth(month => month.clone().subtract(1, "month"))
-  const showNextMonth = () =>
+  const handleNextMonth = () =>
     setViewMonth(month => month.clone().add(1, "month"))
-  const selectDate = (day: moment.Moment) => {
-    setDate(day.format("YYYY-MM-DD"))
+  const handleSelectDate = (day: moment.Moment) => {
+    const nextDate = day.format("YYYY-MM-DD")
+    if (!availableDates.has(nextDate)) return
+    setDate(nextDate)
     setDateError(false)
-    closeCalendar()
+    handleCloseCalendar()
   }
-  const clearDate = () => {
+  const handleClearDate = () => {
     setDate("")
-    closeCalendar()
+    handleCloseCalendar()
   }
-  const selectToday = () => {
+  const handleSelectToday = () => {
     const today = moment()
-    setDate(today.format("YYYY-MM-DD"))
+    const todayValue = today.format("YYYY-MM-DD")
+    const nextDate = availableDates.has(todayValue)
+      ? todayValue
+      : departures[0]?.startDate.slice(0, 10)
+    if (!nextDate) return
+    setDate(nextDate)
     setDateError(false)
     setViewMonth(today.clone())
-    closeCalendar()
+    handleCloseCalendar()
   }
 
   return {
@@ -73,17 +132,24 @@ export function useOrderBar(tour?: Tour) {
     viewMonth,
     saved,
     dateError,
+    availabilityError: availabilityQuery.isError,
+    availabilityLoading:
+      availabilityQuery.isLoading || availabilityQuery.isFetching,
+    availableDates,
+    selectedDeparture,
+    bookingHoldLoading: bookingHoldState.isLoading,
+    bookingHoldError: bookingHoldState.isError,
     total,
     handleBookNow,
-    openCalendar,
-    closeCalendar,
-    decreaseGuests,
-    increaseGuests,
-    toggleSaved,
-    showPreviousMonth,
-    showNextMonth,
-    selectDate,
-    clearDate,
-    selectToday,
+    handleOpenCalendar,
+    handleCloseCalendar,
+    handleDecreaseGuests,
+    handleIncreaseGuests,
+    handleToggleSaved,
+    handlePreviousMonth,
+    handleNextMonth,
+    handleSelectDate,
+    handleClearDate,
+    handleSelectToday,
   }
 }

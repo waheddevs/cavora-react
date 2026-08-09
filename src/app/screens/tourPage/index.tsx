@@ -7,7 +7,17 @@ import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 import "css/tour.css"
 
 export default function TourPage() {
-  const { page, sort, showFilters, topRef, pagedTours } = useTourCatalog()
+  /* HOOKS */
+  const {
+    page,
+    sort,
+    showFilters,
+    topRef,
+    pagedTours,
+    isLoading,
+    isError,
+    handleRetry,
+  } = useTourCatalog()
 
   return (
     <Box className="tour-page">
@@ -19,7 +29,16 @@ export default function TourPage() {
           {showFilters && <FilterSidebar />}
 
           <Box className="tour-main">
-            {pagedTours.length ? (
+            {isLoading ? (
+              <p className="tour-empty">Loading tours...</p>
+            ) : isError ? (
+              <p className="tour-empty">
+                Tours could not be loaded.{" "}
+                <button type="button" onClick={handleRetry}>
+                  Try again
+                </button>
+              </p>
+            ) : pagedTours.length ? (
               <Box className="tour-grid" key={`${page}-${sort}`}>
                 {pagedTours.map(tour => (
                   <TourCard key={tour.id} tour={tour} />

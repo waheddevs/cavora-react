@@ -170,4 +170,6 @@ export const categories = ["Adventure", "Cultural", "Beach", "City", "Nature"]
 // Featured posts
 
 const featuredIds = [1, 2, 7]
-export const featuredPosts = posts.filter(post => featuredIds.includes(post.id))
+export const featuredPosts = posts.filter(post =>
+  featuredIds.includes(Number(post.id)),
+)

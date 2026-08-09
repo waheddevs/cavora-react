@@ -1,9 +1,14 @@
 import { Box } from "@mui/material"
-import { featuredPosts } from "app/data/blogData"
 import { useBlogNavigation } from "app/hooks/BlogHooks/useBlogNavigation"
+import { useBlogSidebarData } from "app/hooks/BlogHooks/useBlogSidebarData"
 
 export default function FeaturedPost() {
+  /* HOOKS */
   const { openBlogPost } = useBlogNavigation()
+  const { featuredPosts } = useBlogSidebarData()
+
+  /* HANDLERS */
+  const handleOpenPost = (postSlug: string | number) => openBlogPost(postSlug)
   return (
     <Box className="sidebar-widget">
       <h3 className="widget-title">Featured Post</h3>
@@ -12,7 +17,7 @@ export default function FeaturedPost() {
           <Box
             className="feat-item"
             key={post.id}
-            onClick={() => openBlogPost(post.id)}
+            onClick={() => handleOpenPost(post.slug ?? post.id)}
           >
             <img src={post.img} alt={post.title} />
             <Box className="feat-info">

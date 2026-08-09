@@ -10,6 +10,8 @@ import MyBookings from "./MyBookings"
 import Wishlist from "./Wishlist"
 import Support from "./Support"
 import "css/user.css"
+import { Navigate } from "react-router-dom"
+import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
   { key: "profile", label: "Profile", icon: <AccountCircleRoundedIcon /> },
@@ -19,7 +21,11 @@ const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
 ]
 
 export default function UserPage() {
+  const { isAuthenticated, isAuthLoading } = useAuth()
   const { activeTab, setActiveTab } = useUserTabs()
+
+  if (isAuthLoading) return <Box className="user-page">Loading account...</Box>
+  if (!isAuthenticated) return <Navigate to="/login" replace />
 
   return (
     <Box className="user-page">

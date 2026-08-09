@@ -7,14 +7,35 @@ import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import BlogSidebar from "../blogPage/BlogSidebar"
-import { comments } from "app/data/blogDetailsData"
 import { useBlogDetails } from "app/hooks/BlogHooks/useBlogDetails"
 import "css/blog.css"
 
 export default function BlogDetailsPage() {
-  const { post, body, openBlogList, handleCommentSubmit } = useBlogDetails()
+  const {
+    post,
+    body,
+    comments,
+    commentTotal,
+    isLoading,
+    isError,
+    openBlogList,
+    handleCommentSubmit,
+    commentSubmitting,
+    commentSubmitted,
+    commentError,
+  } = useBlogDetails()
 
-  if (!post) {
+  if (isLoading) {
+    return (
+      <Box className="blog-details-page">
+        <Container maxWidth={false} className="blog-container">
+          <p className="details-empty">Loading post...</p>
+        </Container>
+      </Box>
+    )
+  }
+
+  if (!post || isError) {
     return (
       <Box className="blog-details-page">
         <Container maxWidth={false} className="blog-container">
@@ -96,19 +117,19 @@ export default function BlogDetailsPage() {
             </Box>
 
             <Box className="details-comments">
-              <h3 className="details-section-title">
-                {comments.length} Comments
-              </h3>
+              <h3 className="details-section-title">{commentTotal} Comments</h3>
               <Box className="comment-list">
                 {comments.map(comment => (
                   <Box className="comment-item" key={comment.id}>
-                    <img src={comment.avatar} alt={comment.name} />
+                    <img src="/img/team-img/member-1.jpg" alt={comment.name} />
                     <Box className="comment-body">
                       <Box className="comment-head">
                         <h5>{comment.name}</h5>
-                        <span>{comment.date}</span>
+                        <span>
+                          {new Date(comment.createdAt).toLocaleDateString()}
+                        </span>
                       </Box>
-                      <p>{comment.text}</p>
+                      <p>{comment.body}</p>
                     </Box>
                   </Box>
                 ))}
@@ -118,25 +139,39 @@ export default function BlogDetailsPage() {
               <form className="comment-form" onSubmit={handleCommentSubmit}>
                 <Box className="comment-form-row">
                   <input
+                    name="name"
                     type="text"
                     placeholder="Your name"
                     aria-label="Your name"
+                    required
                   />
                   <input
+                    name="email"
                     type="email"
                     placeholder="Your email"
                     aria-label="Your email"
+                    required
                   />
                 </Box>
                 <textarea
+                  name="body"
                   rows={5}
                   placeholder="Write your comment..."
                   aria-label="Your comment"
+                  required
                 />
-                <button type="submit" className="comment-submit">
-                  Post Comment
+                <button
+                  type="submit"
+                  className="comment-submit"
+                  disabled={commentSubmitting}
+                >
+                  {commentSubmitting ? "Submitting..." : "Post Comment"}
                   <ArrowForwardRoundedIcon />
                 </button>
+                {commentSubmitted && (
+                  <p>Your comment was submitted for moderation.</p>
+                )}
+                {commentError && <p>Comment could not be submitted.</p>}
               </form>
             </Box>
           </article>

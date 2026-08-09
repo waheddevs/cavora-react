@@ -76,7 +76,7 @@ export default function NavbarPanel() {
                   className="navbar-login-link"
                   onClick={closeMenu}
                 >
-                  Login
+                  Log in
                 </NavLink>
                 <GoldButton
                   className="login-btn"

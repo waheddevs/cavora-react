@@ -5,12 +5,31 @@ import BlogCard from "./BlogCard"
 import { useBlogPagination } from "app/hooks/BlogHooks/useBlogPagination"
 
 export default function BlogList({ category }: { category: string }) {
-  const { page, totalPages, visiblePosts, goToPage } =
-    useBlogPagination(category)
+  /* HOOKS */
+  const {
+    page,
+    totalPages,
+    visiblePosts,
+    handlePageChange,
+    handlePreviousPage,
+    handleNextPage,
+    isLoading,
+    isError,
+    handleRetry,
+  } = useBlogPagination(category)
 
   return (
     <Box className="blog-list">
       <Box className="blog-cards" key={`${category}-${page}`}>
+        {isLoading && <p>Loading posts...</p>}
+        {isError && (
+          <p>
+            Posts could not be loaded.{" "}
+            <button type="button" onClick={handleRetry}>
+              Try again
+            </button>
+          </p>
+        )}
         {visiblePosts.map(post => (
           <BlogCard key={post.id} post={post} />
         ))}
@@ -23,7 +42,7 @@ export default function BlogList({ category }: { category: string }) {
             className="page-btn arrow"
             aria-label="Previous page"
             disabled={page === 1}
-            onClick={() => goToPage(page - 1)}
+            onClick={handlePreviousPage}
           >
             <KeyboardArrowLeftRoundedIcon />
           </button>
@@ -36,7 +55,7 @@ export default function BlogList({ category }: { category: string }) {
               type="button"
               key={pageNumber}
               className={`page-btn${pageNumber === page ? " active" : ""}`}
-              onClick={() => goToPage(pageNumber)}
+              onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}
             </button>
@@ -47,7 +66,7 @@ export default function BlogList({ category }: { category: string }) {
             className="page-btn arrow"
             aria-label="Next page"
             disabled={page === totalPages}
-            onClick={() => goToPage(page + 1)}
+            onClick={handleNextPage}
           >
             <KeyboardArrowRightRoundedIcon />
           </button>

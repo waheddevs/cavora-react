@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from "react"
 import { TourFilters, makeDefaultFilters } from "app/utils/tourFilters"
-import { tours } from "app/data/tourData"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
 export type TourFilterListKey = "destinations" | "durations" | "types"
 
 export function useTourFilters() {
-  const { priceMin, priceMax, filters, setFilters } = useTourCatalog()
+  const { tours, priceMin, priceMax, filters, setFilters } = useTourCatalog()
   const [draft, setDraft] = useState<TourFilters>(filters)
   const destinations = useMemo(() => {
     const counts: Record<string, number> = {}
@@ -15,7 +14,7 @@ export function useTourFilters() {
     })
 
     return Object.entries(counts).map(([name, count]) => ({ name, count }))
-  }, [])
+  }, [tours])
 
   useEffect(() => {
     setDraft(filters)

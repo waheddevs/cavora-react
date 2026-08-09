@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom"
 
 export interface BlogNavigation {
-  openBlogPost: (postId: number) => void
+  openBlogPost: (postSlug: string | number) => void
   openBlogList: () => void
 }
 
 export function useBlogNavigation(): BlogNavigation {
   const navigate = useNavigate()
 
-  const openBlogPost = (postId: number) =>
-    navigate(`/blog-details?id=${postId}`)
+  const openBlogPost = (postSlug: string | number) =>
+    navigate(`/blog-details?slug=${encodeURIComponent(postSlug)}`)
   const openBlogList = () => navigate("/blog")
 
   return { openBlogPost, openBlogList }

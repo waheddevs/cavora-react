@@ -4,8 +4,17 @@ import { useLoginForm } from "app/hooks/LoginHooks/useLoginForm"
 import "css/login.css"
 
 export default function LoginPage() {
-  const { email, setEmail, password, setPassword, errors, handleSubmit } =
-    useLoginForm()
+  /* HOOKS */
+  const {
+    email,
+    password,
+    handleEmailChange,
+    handlePasswordChange,
+    errors,
+    submitError,
+    isSubmitting,
+    handleSubmit,
+  } = useLoginForm()
 
   return (
     <Box className="login-page">
@@ -55,7 +64,7 @@ export default function LoginPage() {
                 type="email"
                 className={errors.email ? "has-error" : ""}
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 aria-label="Email"
               />
               {errors.email && (
@@ -73,7 +82,7 @@ export default function LoginPage() {
                 type="password"
                 className={errors.password ? "has-error" : ""}
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 aria-label="Password"
               />
               {errors.password && (
@@ -81,8 +90,13 @@ export default function LoginPage() {
               )}
             </Box>
 
-            <button type="submit" className="auth-submit">
-              Log In
+            {submitError && <span className="field-error">{submitError}</span>}
+            <button
+              type="submit"
+              className="auth-submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Logging in..." : "Log In"}
             </button>
           </Box>
 

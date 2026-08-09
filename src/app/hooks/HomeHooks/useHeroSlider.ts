@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
-import { heroSlides } from "app/data/homeData"
-
-export function useHeroSlider(intervalMs = 5000) {
+export function useHeroSlider(slideCount: number, intervalMs = 5000) {
   const [activeSlide, setActiveSlide] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveSlide(previousSlide => (previousSlide + 1) % heroSlides.length)
+      setActiveSlide(previousSlide =>
+        slideCount > 0 ? (previousSlide + 1) % slideCount : 0,
+      )
     }, intervalMs)
 
     return () => clearInterval(timer)
-  }, [intervalMs])
+  }, [intervalMs, slideCount])
+
+  useEffect(() => {
+    if (activeSlide >= slideCount) setActiveSlide(0)
+  }, [activeSlide, slideCount])
 
   return { activeSlide, setActiveSlide }
 }

@@ -6,8 +6,19 @@ import { SortKey } from "app/utils/tourFilters"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
 export default function SortBar() {
-  const { filteredTours, showFilters, toggleFilters, sort, setSort } =
-    useTourCatalog()
+  /* HOOKS */
+  const {
+    filteredTours,
+    showFilters,
+    handleToggleFilters,
+    sort,
+    handleSortChange,
+  } = useTourCatalog()
+
+  /* HANDLERS */
+  const handleSelectChange = (event: { target: { value: unknown } }) =>
+    handleSortChange(event.target.value as SortKey)
+  useTourCatalog()
 
   return (
     <Box className="tour-topbar">
@@ -15,7 +26,7 @@ export default function SortBar() {
         <button
           type="button"
           className="filters-toggle"
-          onClick={toggleFilters}
+          onClick={handleToggleFilters}
         >
           <TuneRoundedIcon />
           {showFilters ? "Hide Filters" : "Show Filters"}
@@ -30,7 +41,7 @@ export default function SortBar() {
         <Select
           className="tour-sort-select"
           value={sort}
-          onChange={event => setSort(event.target.value as SortKey)}
+          onChange={handleSelectChange}
           variant="standard"
           disableUnderline
           IconComponent={KeyboardArrowDownRoundedIcon}

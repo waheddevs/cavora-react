@@ -7,15 +7,10 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
-import { tours as allTours } from "app/data/tourData"
-import { featuredTourIds } from "app/data/homeData"
-import { Tour } from "app/types/tour"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
-
-const tours = featuredTourIds
-  .map(id => allTours.find(tour => tour.id === id))
-  .filter((tour): tour is Tour => Boolean(tour))
+import { MouseEvent } from "react"
+import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
 
 function renderStars(rating: number) {
   const stars = []
@@ -32,8 +27,25 @@ function renderStars(rating: number) {
 }
 
 export default function DiscoverTours() {
+  /* HOOKS */
   const { openTour, openTourList } = useTourNavigation()
   const { isWishlisted, toggleWishlist } = useWishlist()
+  const {
+    featuredTours: tours,
+    isLoading,
+    isError,
+    handleRetry,
+  } = useHomeContent()
+
+  /* HANDLERS */
+  const handleOpenTour = (tourId: number) => openTour(tourId)
+  const handleToggleWishlist = (
+    event: MouseEvent<HTMLButtonElement>,
+    tourId: number,
+  ) => {
+    event.stopPropagation()
+    toggleWishlist(tourId)
+  }
 
   return (
     <section className="discover-tours">
@@ -53,11 +65,20 @@ export default function DiscoverTours() {
         </Box>
 
         <Box className="tours-grid">
+          {isLoading && <p>Loading featured tours...</p>}
+          {isError && (
+            <p>
+              Featured tours could not be loaded.{" "}
+              <button type="button" onClick={handleRetry}>
+                Try again
+              </button>
+            </p>
+          )}
           {tours.map(tour => (
             <Box
               className="tour-card"
               key={tour.id}
-              onClick={() => openTour(tour.id)}
+              onClick={() => handleOpenTour(tour.id)}
               style={{ cursor: "pointer" }}
             >
               <Box className="tour-media">
@@ -71,10 +92,7 @@ export default function DiscoverTours() {
                   type="button"
                   className={`tour-fav${isWishlisted(tour.id) ? " active" : ""}`}
                   aria-label="Save to wishlist"
-                  onClick={event => {
-                    event.stopPropagation()
-                    toggleWishlist(tour.id)
-                  }}
+                  onClick={event => handleToggleWishlist(event, tour.id)}
                 >
                   {isWishlisted(tour.id) ? (
                     <FavoriteRoundedIcon />

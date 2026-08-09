@@ -6,14 +6,25 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 
 export default function Wishlist() {
-  const { wishlist, removeFromWishlist } = useWishlist()
+  /* HOOKS */
+  const { wishlist, removeFromWishlist, isLoading, isError, handleRetry } =
+    useWishlist()
 
   return (
     <Box className="user-panel">
       <h2 className="user-panel-title">Wishlist</h2>
       <p className="user-panel-subtitle">Tours you've saved for later.</p>
 
-      {wishlist.length === 0 && (
+      {isLoading && <Typography>Loading wishlist...</Typography>}
+      {isError && (
+        <Typography>
+          Wishlist could not be loaded.{" "}
+          <button type="button" onClick={handleRetry}>
+            Try again
+          </button>
+        </Typography>
+      )}
+      {!isLoading && !isError && wishlist.length === 0 && (
         <Typography className="wishlist-empty">
           No saved tours yet. Browse tours and tap “Add to Wishlist”.
         </Typography>

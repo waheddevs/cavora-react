@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
@@ -12,8 +12,13 @@ export interface AccountSettingsForm {
 }
 
 export function useAccountSettings() {
+  /* ROUTER HOOKS */
   const navigate = useNavigate()
-  const { user, logout, saveProfile } = useAuth()
+
+  /* DOMAIN HOOKS */
+  const { user, logout, saveProfile, profileSaving, logoutPending } = useAuth()
+
+  /* STATE */
   const [form, setForm] = useState<AccountSettingsForm>({
     firstName: user.firstName,
     lastName: user.lastName,
@@ -22,7 +27,21 @@ export function useAccountSettings() {
     phone: user.phone,
     location: user.location,
   })
+  const [status, setStatus] = useState("")
 
+  /* EFFECTS */
+  useEffect(() => {
+    setForm({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+      phone: user.phone,
+      location: user.location,
+    })
+  }, [user])
+
+  /* HANDLERS */
   const handleChange =
     (key: keyof AccountSettingsForm) =>
     (event: ChangeEvent<HTMLInputElement>) =>
@@ -31,15 +50,32 @@ export function useAccountSettings() {
         [key]: event.target.value,
       }))
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    saveProfile(form)
+    try {
+      setStatus("")
+      await saveProfile(form)
+      setStatus("Profile updated successfully.")
+    } catch {
+      setStatus("Profile could not be updated.")
+    }
   }
 
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
+  const handleLogout = async () => {
+    try {
+      await logout()
+    } finally {
+      navigate("/login")
+    }
   }
 
-  return { form, handleChange, handleSubmit, handleLogout }
+  return {
+    form,
+    handleChange,
+    handleSubmit,
+    handleLogout,
+    status,
+    profileSaving,
+    logoutPending,
+  }
 }

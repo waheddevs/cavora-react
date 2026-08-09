@@ -1,5 +1,6 @@
 export interface Post {
-  id: number
+  id: number | string
+  slug?: string
   img: string
   date: string
   readTime: string

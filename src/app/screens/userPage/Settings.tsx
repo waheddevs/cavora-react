@@ -3,8 +3,15 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
 
 export default function Settings() {
-  const { form, handleChange, handleSubmit, handleLogout } =
-    useAccountSettings()
+  const {
+    form,
+    handleChange,
+    handleSubmit,
+    handleLogout,
+    status,
+    profileSaving,
+    logoutPending,
+  } = useAccountSettings()
 
   return (
     <Box className="user-panel">
@@ -75,9 +82,14 @@ export default function Settings() {
           </Box>
         </Box>
 
-        <button type="submit" className="settings-submit">
-          Save Changes
+        <button
+          type="submit"
+          className="settings-submit"
+          disabled={profileSaving}
+        >
+          {profileSaving ? "Saving..." : "Save Changes"}
         </button>
+        {status && <p>{status}</p>}
       </Box>
 
       <Box className="settings-divider" />
@@ -89,9 +101,14 @@ export default function Settings() {
             Sign out of your Cavora account on this device.
           </p>
         </Box>
-        <button type="button" className="danger-button" onClick={handleLogout}>
+        <button
+          type="button"
+          className="danger-button"
+          onClick={handleLogout}
+          disabled={logoutPending}
+        >
           <LogoutRoundedIcon />
-          Log Out
+          {logoutPending ? "Logging out..." : "Log Out"}
         </button>
       </Box>
     </Box>
