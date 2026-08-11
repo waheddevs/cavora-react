@@ -4,11 +4,22 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded"
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded"
 import { useBookings } from "app/hooks/CommonHooks/useBookings"
+import { useBookingDetails } from "app/hooks/UserHooks/useBookingDetails"
+import BookingDetailsDialog from "./BookingDetailsDialog"
 
 export default function MyBookings() {
   /* HOOKS */
   const { bookings, handleCancelBooking, isLoading, isError, cancelling } =
     useBookings()
+  const {
+    booking: bookingDetails,
+    selectedBooking,
+    isDetailsOpen,
+    isDetailsLoading,
+    isDetailsError,
+    handleOpenBookingDetails,
+    handleCloseBookingDetails,
+  } = useBookingDetails()
 
   return (
     <Box className="user-panel">
@@ -86,6 +97,13 @@ export default function MyBookings() {
                 >
                   View Tour
                 </NavLink>
+                <button
+                  type="button"
+                  className="booking-link"
+                  onClick={() => handleOpenBookingDetails(booking)}
+                >
+                  View Details
+                </button>
                 {canCancel && (
                   <button
                     type="button"
@@ -103,6 +121,15 @@ export default function MyBookings() {
           )
         })}
       </Box>
+
+      <BookingDetailsDialog
+        booking={bookingDetails}
+        selectedBooking={selectedBooking}
+        open={isDetailsOpen}
+        isLoading={isDetailsLoading}
+        isError={isDetailsError}
+        onClose={handleCloseBookingDetails}
+      />
     </Box>
   )
 }

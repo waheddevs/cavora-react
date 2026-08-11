@@ -36,7 +36,19 @@ export interface BookingHold {
   totalCents: number
   currency: string
   holdExpiresAt: string
+  confirmedAt?: string
+  cancelledAt?: string
   createdAt: string
+}
+
+export interface BookingDetails extends Omit<
+  BookingHold,
+  "unitPriceCents" | "subtotalCents" | "serviceFeeCents" | "totalCents"
+> {
+  unitPrice: number
+  subtotal: number
+  serviceFee: number
+  total: number
 }
 
 export interface BookingPagination {

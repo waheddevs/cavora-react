@@ -2,6 +2,7 @@ import { baseApi } from "./baseApi"
 import { adaptTourSummary } from "./tourAdapters"
 import {
   ApiBookingRecord,
+  BookingDetails,
   BookingHold,
   BookingPagination,
   BookingRecord,
@@ -48,9 +49,15 @@ export const bookingApi = baseApi.injectEndpoints({
         "User",
       ],
     }),
-    getBooking: builder.query<BookingHold, string>({
+    getBooking: builder.query<BookingDetails, string>({
       query: bookingId => `/bookings/${bookingId}`,
-      transformResponse: (response: { data: BookingHold }) => response.data,
+      transformResponse: (response: { data: BookingHold }) => ({
+        ...response.data,
+        unitPrice: response.data.unitPriceCents / 100,
+        subtotal: response.data.subtotalCents / 100,
+        serviceFee: response.data.serviceFeeCents / 100,
+        total: response.data.totalCents / 100,
+      }),
       providesTags: (_result, _error, bookingId) => [
         { type: "Booking", id: bookingId },
       ],

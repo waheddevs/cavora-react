@@ -1,0 +1,203 @@
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography,
+} from "@mui/material"
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
+import ConfirmationNumberRoundedIcon from "@mui/icons-material/ConfirmationNumberRounded"
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded"
+import GroupRoundedIcon from "@mui/icons-material/GroupRounded"
+import { NavLink } from "react-router-dom"
+import { BookingDetails, BookingRecord } from "app/types/booking"
+
+interface BookingDetailsDialogProps {
+  booking?: BookingDetails
+  selectedBooking: BookingRecord | null
+  open: boolean
+  isLoading: boolean
+  isError: boolean
+  onClose: () => void
+}
+
+function formatStatus(status: string) {
+  return status
+    .toLowerCase()
+    .split("_")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+}
+
+function formatDate(value?: string) {
+  if (!value) return "Not available"
+  return new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date(value))
+}
+
+function formatMoney(value: number, currency: string) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+  }).format(value)
+}
+
+export default function BookingDetailsDialog({
+  booking,
+  selectedBooking,
+  open,
+  isLoading,
+  isError,
+  onClose,
+}: BookingDetailsDialogProps) {
+  const tour = selectedBooking?.tour
+
+  return (
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="sm"
+      className="booking-details-dialog"
+    >
+      <DialogTitle className="booking-dialog-head">
+        <Box>
+          <Typography className="booking-dialog-kicker">
+            Booking details
+          </Typography>
+          <Typography className="booking-dialog-title">
+            {tour?.title ?? "Your Cavora journey"}
+          </Typography>
+        </Box>
+        <IconButton onClick={onClose} aria-label="Close booking details">
+          <CloseRoundedIcon />
+        </IconButton>
+      </DialogTitle>
+
+      <DialogContent className="booking-dialog-content">
+        {isLoading && (
+          <Box className="booking-dialog-state" aria-live="polite">
+            <span className="booking-dialog-loader" />
+            <Typography>Preparing your booking details...</Typography>
+          </Box>
+        )}
+
+        {isError && !isLoading && (
+          <Box className="booking-dialog-state">
+            <Typography>
+              This booking’s details are taking a short pause. Your journey
+              remains safely listed in My Bookings.
+            </Typography>
+          </Box>
+        )}
+
+        {booking && !isLoading && !isError && (
+          <>
+            <Box className="booking-dialog-summary">
+              <Box className="booking-dialog-tour">
+                {tour?.images[0] && (
+                  <img src={tour.images[0]} alt={tour.title} />
+                )}
+                <Box>
+                  <Typography className="booking-dialog-location">
+                    {tour?.location ?? `Tour #${booking.tourId}`}
+                  </Typography>
+                  <span
+                    className={`booking-dialog-status booking-dialog-status--${booking.status.toLowerCase()}`}
+                  >
+                    {formatStatus(booking.status)}
+                  </span>
+                </Box>
+              </Box>
+            </Box>
+
+            <Box className="booking-dialog-facts">
+              <Box>
+                <ConfirmationNumberRoundedIcon />
+                <span>
+                  <small>Reference</small>
+                  <strong>{booking.reference}</strong>
+                </span>
+              </Box>
+              <Box>
+                <CalendarMonthRoundedIcon />
+                <span>
+                  <small>Departure</small>
+                  <strong>
+                    {selectedBooking?.departureDate
+                      ? formatDate(selectedBooking.departureDate)
+                      : "Schedule unavailable"}
+                  </strong>
+                </span>
+              </Box>
+              <Box>
+                <GroupRoundedIcon />
+                <span>
+                  <small>Travelers</small>
+                  <strong>{booking.travelers}</strong>
+                </span>
+              </Box>
+            </Box>
+
+            <Box className="booking-dialog-prices">
+              <Box>
+                <span>Price per traveler</span>
+                <strong>
+                  {formatMoney(booking.unitPrice, booking.currency)}
+                </strong>
+              </Box>
+              <Box>
+                <span>Subtotal</span>
+                <strong>
+                  {formatMoney(booking.subtotal, booking.currency)}
+                </strong>
+              </Box>
+              <Box>
+                <span>Service fee</span>
+                <strong>
+                  {formatMoney(booking.serviceFee, booking.currency)}
+                </strong>
+              </Box>
+              <Box className="booking-dialog-total">
+                <span>Total</span>
+                <strong>{formatMoney(booking.total, booking.currency)}</strong>
+              </Box>
+            </Box>
+
+            <Box className="booking-dialog-timeline">
+              <Typography>
+                <span>Booked</span> {formatDate(booking.createdAt)}
+              </Typography>
+              {booking.status === "PENDING_PAYMENT" && (
+                <Typography>
+                  <span>Hold expires</span> {formatDate(booking.holdExpiresAt)}
+                </Typography>
+              )}
+              {booking.confirmedAt && (
+                <Typography>
+                  <span>Confirmed</span> {formatDate(booking.confirmedAt)}
+                </Typography>
+              )}
+              {booking.cancelledAt && (
+                <Typography>
+                  <span>Cancelled</span> {formatDate(booking.cancelledAt)}
+                </Typography>
+              )}
+            </Box>
+
+            <NavLink
+              to={`/tour-single?id=${booking.tourId}`}
+              className="booking-dialog-tour-link"
+              onClick={onClose}
+            >
+              Explore this tour
+            </NavLink>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  )
+}
