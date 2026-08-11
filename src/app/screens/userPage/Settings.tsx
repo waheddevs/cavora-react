@@ -1,26 +1,81 @@
 import { Box } from "@mui/material"
+import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded"
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded"
+import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded"
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
 
 export default function Settings() {
+  /* HOOKS */
   const {
+    user,
     form,
-    handleChange,
-    handleSubmit,
+    passwordForm,
+    handleProfileChange,
+    handlePasswordFieldChange,
+    handleProfileSubmit,
+    handlePasswordSubmit,
+    handleAvatarUpload,
+    handleAvatarRemove,
     handleLogout,
     profileSaving,
+    passwordChanging,
+    avatarUploading,
+    avatarRemoving,
     logoutPending,
   } = useAccountSettings()
 
   return (
     <Box className="user-panel">
       <h2 className="user-panel-title">Account Settings</h2>
-      <p className="user-panel-subtitle">Update your personal information.</p>
+      <p className="user-panel-subtitle">
+        Keep your profile and account security up to date.
+      </p>
 
+      <Box className="settings-avatar-section">
+        <img
+          className="settings-avatar-image"
+          src={user.avatar}
+          alt={`${user.firstName} ${user.lastName}`}
+        />
+        <Box className="settings-avatar-content">
+          <h3 className="settings-section-title">Profile photo</h3>
+          <p className="settings-section-subtitle">
+            JPEG, PNG, WebP, or AVIF. Maximum size 5 MB.
+          </p>
+          <Box className="settings-avatar-actions">
+            <label className="settings-avatar-upload" htmlFor="avatar-upload">
+              <CameraAltRoundedIcon />
+              {avatarUploading ? "Uploading..." : "Change photo"}
+            </label>
+            <input
+              id="avatar-upload"
+              className="settings-avatar-input"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/avif"
+              onChange={handleAvatarUpload}
+              disabled={avatarUploading || avatarRemoving}
+            />
+            <button
+              type="button"
+              className="settings-avatar-remove"
+              onClick={handleAvatarRemove}
+              disabled={avatarUploading || avatarRemoving}
+            >
+              <DeleteOutlineRoundedIcon />
+              {avatarRemoving ? "Removing..." : "Remove"}
+            </button>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box className="settings-divider" />
+
+      <h3 className="settings-section-title">Personal information</h3>
       <Box
         component="form"
         className="settings-form"
-        onSubmit={handleSubmit}
+        onSubmit={handleProfileSubmit}
         noValidate
       >
         <Box className="settings-row">
@@ -29,7 +84,7 @@ export default function Settings() {
             <input
               id="set-firstName"
               value={form.firstName}
-              onChange={handleChange("firstName")}
+              onChange={handleProfileChange("firstName")}
             />
           </Box>
           <Box className="form-field">
@@ -37,7 +92,7 @@ export default function Settings() {
             <input
               id="set-lastName"
               value={form.lastName}
-              onChange={handleChange("lastName")}
+              onChange={handleProfileChange("lastName")}
             />
           </Box>
         </Box>
@@ -49,7 +104,7 @@ export default function Settings() {
               id="set-email"
               type="email"
               value={form.email}
-              onChange={handleChange("email")}
+              onChange={handleProfileChange("email")}
             />
           </Box>
           <Box className="form-field">
@@ -57,7 +112,7 @@ export default function Settings() {
             <input
               id="set-username"
               value={form.username}
-              onChange={handleChange("username")}
+              onChange={handleProfileChange("username")}
             />
           </Box>
         </Box>
@@ -68,7 +123,7 @@ export default function Settings() {
             <input
               id="set-phone"
               value={form.phone}
-              onChange={handleChange("phone")}
+              onChange={handleProfileChange("phone")}
             />
           </Box>
           <Box className="form-field">
@@ -76,7 +131,7 @@ export default function Settings() {
             <input
               id="set-location"
               value={form.location}
-              onChange={handleChange("location")}
+              onChange={handleProfileChange("location")}
             />
           </Box>
         </Box>
@@ -87,6 +142,65 @@ export default function Settings() {
           disabled={profileSaving}
         >
           {profileSaving ? "Saving..." : "Save Changes"}
+        </button>
+      </Box>
+
+      <Box className="settings-divider" />
+
+      <h3 className="settings-section-title">Password & security</h3>
+      <p className="settings-section-subtitle">
+        Changing your password signs out your other active sessions.
+      </p>
+      <Box
+        component="form"
+        className="settings-form settings-password-form"
+        onSubmit={handlePasswordSubmit}
+        noValidate
+      >
+        <Box className="form-field">
+          <label htmlFor="set-current-password">Current password</label>
+          <input
+            id="set-current-password"
+            type="password"
+            value={passwordForm.currentPassword}
+            onChange={handlePasswordFieldChange("currentPassword")}
+            maxLength={128}
+            required
+          />
+        </Box>
+        <Box className="settings-row">
+          <Box className="form-field">
+            <label htmlFor="set-new-password">New password</label>
+            <input
+              id="set-new-password"
+              type="password"
+              value={passwordForm.newPassword}
+              onChange={handlePasswordFieldChange("newPassword")}
+              minLength={8}
+              maxLength={128}
+              required
+            />
+          </Box>
+          <Box className="form-field">
+            <label htmlFor="set-confirm-password">Confirm new password</label>
+            <input
+              id="set-confirm-password"
+              type="password"
+              value={passwordForm.confirmPassword}
+              onChange={handlePasswordFieldChange("confirmPassword")}
+              minLength={8}
+              maxLength={128}
+              required
+            />
+          </Box>
+        </Box>
+        <button
+          type="submit"
+          className="settings-submit"
+          disabled={passwordChanging}
+        >
+          <LockResetRoundedIcon />
+          {passwordChanging ? "Updating..." : "Update Password"}
         </button>
       </Box>
 

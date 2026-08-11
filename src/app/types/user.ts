@@ -27,4 +27,10 @@ export interface AccountSettingsForm {
   location: string
 }
 
+export interface PasswordChangeForm {
+  currentPassword: string
+  newPassword: string
+  confirmPassword: string
+}
+
 export type UserTab = "profile" | "bookings" | "wishlist" | "support"

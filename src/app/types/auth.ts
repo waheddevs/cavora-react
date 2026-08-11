@@ -40,6 +40,15 @@ export interface ProfileUpdateRequest {
   avatarUrl?: string
 }
 
+export interface PasswordChangeRequest {
+  currentPassword: string
+  newPassword: string
+}
+
+export interface MessageResponse {
+  message: string
+}
+
 export type LoginValues = LoginRequest
 export type LoginErrors = Partial<Record<keyof LoginValues, string>>
 export type SignupValues = RegisterRequest

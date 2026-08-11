@@ -2,6 +2,8 @@ import { baseApi, resolveApiAssetUrl } from "./baseApi"
 import {
   ApiMember,
   LoginRequest,
+  MessageResponse,
+  PasswordChangeRequest,
   ProfileUpdateRequest,
   RegisterRequest,
 } from "app/types/auth"
@@ -79,6 +81,53 @@ export const authApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["User"],
     }),
+    changePassword: builder.mutation<MessageResponse, PasswordChangeRequest>({
+      query: body => ({
+        url: "/users/me/password",
+        method: "POST",
+        body,
+      }),
+    }),
+    uploadAvatar: builder.mutation<UserProfile, File>({
+      query: image => {
+        const body = new FormData()
+        body.append("image", image)
+
+        return {
+          url: "/users/me/avatar",
+          method: "POST",
+          body,
+        }
+      },
+      transformResponse: (response: { data: ApiMember }) =>
+        adaptMember(response.data),
+      async onQueryStarted(_image, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(authApi.util.upsertQueryData("getProfile", undefined, data))
+        } catch {
+          return
+        }
+      },
+      invalidatesTags: ["User"],
+    }),
+    removeAvatar: builder.mutation<UserProfile, void>({
+      query: () => ({
+        url: "/users/me/avatar",
+        method: "DELETE",
+      }),
+      transformResponse: (response: { data: ApiMember }) =>
+        adaptMember(response.data),
+      async onQueryStarted(_argument, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(authApi.util.upsertQueryData("getProfile", undefined, data))
+        } catch {
+          return
+        }
+      },
+      invalidatesTags: ["User"],
+    }),
     logout: builder.mutation<void, void>({
       query: () => ({ url: "/auth/logout", method: "POST" }),
       async onQueryStarted(_argument, { dispatch, queryFulfilled }) {
@@ -93,10 +142,11 @@ export const authApi = baseApi.injectEndpoints({
   }),
 })
 
-export const {
-  useGetProfileQuery,
-  useLoginMutation,
-  useLogoutMutation,
-  useRegisterMutation,
-  useUpdateProfileMutation,
-} = authApi
+export const useChangePasswordMutation = authApi.useChangePasswordMutation
+export const useGetProfileQuery = authApi.useGetProfileQuery
+export const useLoginMutation = authApi.useLoginMutation
+export const useLogoutMutation = authApi.useLogoutMutation
+export const useRegisterMutation = authApi.useRegisterMutation
+export const useRemoveAvatarMutation = authApi.useRemoveAvatarMutation
+export const useUpdateProfileMutation = authApi.useUpdateProfileMutation
+export const useUploadAvatarMutation = authApi.useUploadAvatarMutation
