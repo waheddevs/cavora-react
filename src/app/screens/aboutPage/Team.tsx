@@ -3,8 +3,12 @@ import FacebookIcon from "@mui/icons-material/Facebook"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import InstagramIcon from "@mui/icons-material/Instagram"
 import { team } from "app/data/aboutData"
+import { useSocialComingSoon } from "app/hooks/CommonHooks/useSocialComingSoon"
 
 export default function Team() {
+  /* DOMAIN HOOKS */
+  const { handleSocialClick } = useSocialComingSoon()
+
   return (
     <section className="team">
       <Container maxWidth={false} className="team-container">
@@ -30,6 +34,7 @@ export default function Team() {
                   type="button"
                   className="team-social"
                   aria-label="Facebook"
+                  onClick={() => handleSocialClick("Facebook")}
                 >
                   <FacebookIcon />
                 </button>
@@ -37,6 +42,7 @@ export default function Team() {
                   type="button"
                   className="team-social"
                   aria-label="Twitter"
+                  onClick={() => handleSocialClick("Twitter")}
                 >
                   <TwitterIcon />
                 </button>
@@ -44,6 +50,7 @@ export default function Team() {
                   type="button"
                   className="team-social"
                   aria-label="Instagram"
+                  onClick={() => handleSocialClick("Instagram")}
                 >
                   <InstagramIcon />
                 </button>

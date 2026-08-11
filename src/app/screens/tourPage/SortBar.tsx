@@ -18,7 +18,6 @@ export default function SortBar() {
   /* HANDLERS */
   const handleSelectChange = (event: { target: { value: unknown } }) =>
     handleSortChange(event.target.value as SortKey)
-  useTourCatalog()
 
   return (
     <Box className="tour-topbar">
@@ -27,6 +26,8 @@ export default function SortBar() {
           type="button"
           className="filters-toggle"
           onClick={handleToggleFilters}
+          aria-controls="tour-filter-panel"
+          aria-expanded={showFilters}
         >
           <TuneRoundedIcon />
           {showFilters ? "Hide Filters" : "Show Filters"}

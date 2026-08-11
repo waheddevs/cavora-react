@@ -9,10 +9,12 @@ import TwitterIcon from "@mui/icons-material/Twitter"
 import PinterestIcon from "@mui/icons-material/Pinterest"
 import { Post } from "app/types/blog"
 import { useBlogNavigation } from "app/hooks/BlogHooks/useBlogNavigation"
+import { useSocialComingSoon } from "app/hooks/CommonHooks/useSocialComingSoon"
 
 export default function BlogCard({ post }: { post: Post }) {
   /* HOOKS */
   const { openBlogPost } = useBlogNavigation()
+  const { handleSocialClick } = useSocialComingSoon()
 
   /* HANDLERS */
   const handleReadMore = () => openBlogPost(post.slug ?? post.id)
@@ -66,13 +68,25 @@ export default function BlogCard({ post }: { post: Post }) {
         </Box>
 
         <Box className="blog-card-socials">
-          <button type="button" aria-label="Share on Facebook">
+          <button
+            type="button"
+            aria-label="Share on Facebook"
+            onClick={() => handleSocialClick("Facebook sharing")}
+          >
             <FacebookIcon />
           </button>
-          <button type="button" aria-label="Share on Twitter">
+          <button
+            type="button"
+            aria-label="Share on Twitter"
+            onClick={() => handleSocialClick("Twitter sharing")}
+          >
             <TwitterIcon />
           </button>
-          <button type="button" aria-label="Share on Pinterest">
+          <button
+            type="button"
+            aria-label="Share on Pinterest"
+            onClick={() => handleSocialClick("Pinterest sharing")}
+          >
             <PinterestIcon />
           </button>
         </Box>

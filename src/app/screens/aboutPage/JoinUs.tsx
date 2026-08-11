@@ -4,6 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram"
 import YouTubeIcon from "@mui/icons-material/YouTube"
 import TwitterIcon from "@mui/icons-material/Twitter"
 import { joinSocials } from "app/data/aboutData"
+import { useSocialComingSoon } from "app/hooks/CommonHooks/useSocialComingSoon"
 
 const icons: Record<string, JSX.Element> = {
   Facebook: <FacebookIcon />,
@@ -13,6 +14,9 @@ const icons: Record<string, JSX.Element> = {
 }
 
 export default function JoinUs() {
+  /* DOMAIN HOOKS */
+  const { handleSocialClick } = useSocialComingSoon()
+
   return (
     <section className="join-us">
       <Container maxWidth={false} className="join-content">
@@ -33,6 +37,7 @@ export default function JoinUs() {
               className="join-social"
               key={label}
               aria-label={label}
+              onClick={() => handleSocialClick(label)}
             >
               {icons[label]}
               <span>{label}</span>

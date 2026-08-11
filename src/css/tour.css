@@ -20,19 +20,27 @@
 
 .tour-page .tour-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
   gap: 32px;
   align-items: start;
+  transition:
+    grid-template-columns 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    gap 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .tour-page .tour-layout.collapsed {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 0) minmax(0, 1fr);
+  gap: 0;
+}
+
+.tour-page .tour-main {
+  min-width: 0;
 }
 
 .tour-page .tour-empty {
   text-align: center;
   padding: 70px 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   color: var(--text-light);
 }
@@ -66,12 +74,14 @@
   border: 1px solid #e5e5e5;
   border-radius: 24px;
   padding: 8px 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--dark);
   cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .tour-page .filters-toggle:hover {
@@ -84,7 +94,7 @@
 }
 
 .tour-page .tours-found {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: var(--text-light);
 }
@@ -101,7 +111,7 @@
 }
 
 .tour-page .tour-sort .sort-label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   color: var(--text-light);
 }
@@ -115,13 +125,14 @@
   transition: border-color 0.25s ease;
 }
 
-.tour-page .tour-sort .tour-sort-select:hover, .tour-page .tour-sort .tour-sort-select.Mui-focused {
+.tour-page .tour-sort .tour-sort-select:hover,
+.tour-page .tour-sort .tour-sort-select.Mui-focused {
   border-color: var(--gold);
 }
 
 .tour-page .tour-sort .tour-sort-select .MuiSelect-select {
   padding: 9px 38px 9px 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: var(--dark);
 }
@@ -147,7 +158,7 @@
 }
 
 .tour-sort-menu .MuiMenuItem-root {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: var(--text);
   padding: 9px 16px;
@@ -173,9 +184,36 @@
    FILTER SIDEBAR
 =========================== */
 
-.tour-page .tour-filters {
+.tour-page .tour-filter-shell {
   position: sticky;
   top: 20px;
+  min-width: 0;
+  max-width: 280px;
+  max-height: 1200px;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition:
+    opacity 0.28s ease,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    max-height 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.tour-page .tour-layout.collapsed .tour-filter-shell {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-18px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.28s ease,
+    max-height 0.28s ease,
+    visibility 0s linear 0.28s;
+}
+
+.tour-page .tour-filters {
   background: #ffffff;
   border: 1px solid #ececec;
   border-radius: 16px;
@@ -192,7 +230,7 @@
 }
 
 .tour-page .tour-filters .tf-head h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--dark);
@@ -202,7 +240,7 @@
   background: none;
   border: none;
   color: var(--gold-dark);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -217,7 +255,7 @@
 }
 
 .tour-page .tour-filters .tf-group h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14.5px;
   font-weight: 600;
   color: var(--dark);
@@ -241,7 +279,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   color: var(--text);
   cursor: pointer;
@@ -271,7 +309,7 @@
 .tour-page .tour-filters .tf-price-labels {
   display: flex;
   justify-content: space-between;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: var(--text-light);
   margin-top: 2px;
@@ -284,7 +322,7 @@
   border: none;
   border-radius: 24px;
   padding: 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14.5px;
   font-weight: 600;
   cursor: pointer;
@@ -325,7 +363,9 @@
   border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .tour-page .tour-card:hover {
@@ -358,7 +398,7 @@
   left: 14px;
   background: var(--gold);
   color: #ffffff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 600;
   padding: 5px 14px;
@@ -379,10 +419,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: color 0.25s ease, background-color 0.25s ease;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
 }
 
-.tour-page .tour-card .tc-fav:hover, .tour-page .tour-card .tc-fav.active {
+.tour-page .tour-card .tc-fav:hover,
+.tour-page .tour-card .tc-fav.active {
   color: var(--gold);
   background: #ffffff;
 }
@@ -418,7 +461,7 @@
 
 .tour-page .tour-card .tc-rating .tc-review-count {
   margin-left: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12.5px;
   color: var(--text-light);
 }
@@ -428,7 +471,7 @@
 }
 
 .tour-page .tour-card .tc-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 17px;
   font-weight: 600;
   line-height: 1.4;
@@ -453,7 +496,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12.5px;
   color: var(--text-light);
 }
@@ -481,20 +524,20 @@
 }
 
 .tour-page .tour-card .tc-price small {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 11.5px;
   color: var(--text-light);
 }
 
 .tour-page .tour-card .tc-price strong {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 19px;
   font-weight: 700;
   color: var(--gold-dark);
 }
 
 .tour-page .tour-card .tc-price span {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 11.5px;
   color: var(--text-light);
 }
@@ -508,12 +551,14 @@
   color: var(--gold-dark);
   border-radius: 24px;
   padding: 8px 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .tour-page .tour-card .tc-btn:hover {
@@ -544,14 +589,16 @@
   border: 1px solid #e5e5e5;
   background: #ffffff;
   color: var(--dark);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
     border-color 0.25s ease;
 }
 
@@ -581,7 +628,15 @@
 
 @media (max-width: 1100px) {
   .tour-page .tour-layout {
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+  }
+
+  .tour-page .tour-layout.collapsed {
+    grid-template-columns: minmax(0, 0) minmax(0, 1fr);
+  }
+
+  .tour-page .tour-filter-shell {
+    max-width: 240px;
   }
 
   .tour-page .tour-grid {
@@ -590,12 +645,27 @@
 }
 
 @media (max-width: 900px) {
-  .tour-page .tour-layout, .tour-page .tour-layout.collapsed {
+  .tour-page .tour-layout,
+  .tour-page .tour-layout.collapsed {
     grid-template-columns: 1fr;
   }
 
-  .tour-page .tour-filters {
+  .tour-page .tour-filter-shell {
     position: static;
+    width: 100%;
+    max-width: none;
+  }
+
+  .tour-page .tour-layout.collapsed .tour-filter-shell {
+    max-height: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tour-page .tour-layout,
+  .tour-page .tour-filter-shell {
+    transition: none;
   }
 }
 

@@ -45,7 +45,7 @@ export function useTourCatalogState(toursPerPage = 9) {
   const [filters, setFilters] = useState<TourFilters>(defaultFilters)
   const [sort, setSort] = useState<SortKey>("default")
   const [page, setPage] = useState(1)
-  const [showFilters, setShowFilters] = useState(true)
+  const [showFilters, setShowFilters] = useState(false)
   const topRef = useRef<HTMLDivElement>(null)
 
   /* FILTERED DATA */

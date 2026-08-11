@@ -12,6 +12,7 @@ import ApiRoundedIcon from "@mui/icons-material/ApiRounded"
 import { NavLink } from "react-router-dom"
 import { quickLinks, tourTypes, contactInfo } from "app/data/footerData"
 import { useSystemEndpoints } from "app/hooks/CommonHooks/useSystemEndpoints"
+import { useSocialComingSoon } from "app/hooks/CommonHooks/useSocialComingSoon"
 
 const contactIcons: Record<string, JSX.Element> = {
   location: <LocationOnIcon className="contact-icon" />,
@@ -22,6 +23,7 @@ const contactIcons: Record<string, JSX.Element> = {
 
 export default function Footer() {
   /* DOMAIN HOOKS */
+  const { handleSocialClick } = useSocialComingSoon()
   const {
     health,
     isOperational,
@@ -53,6 +55,7 @@ export default function Footer() {
                 type="button"
                 aria-label="Facebook"
                 className="social-link"
+                onClick={() => handleSocialClick("Facebook")}
               >
                 <FacebookIcon />
               </button>
@@ -60,6 +63,7 @@ export default function Footer() {
                 type="button"
                 aria-label="Twitter"
                 className="social-link"
+                onClick={() => handleSocialClick("Twitter")}
               >
                 <TwitterIcon />
               </button>
@@ -67,6 +71,7 @@ export default function Footer() {
                 type="button"
                 aria-label="Instagram"
                 className="social-link"
+                onClick={() => handleSocialClick("Instagram")}
               >
                 <InstagramIcon />
               </button>
@@ -74,6 +79,7 @@ export default function Footer() {
                 type="button"
                 aria-label="YouTube"
                 className="social-link"
+                onClick={() => handleSocialClick("YouTube")}
               >
                 <YouTubeIcon />
               </button>

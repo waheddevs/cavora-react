@@ -18,7 +18,13 @@ export default function TourPage() {
         <SortBar />
 
         <Box className={`tour-layout${showFilters ? "" : " collapsed"}`}>
-          {showFilters && <FilterSidebar />}
+          <Box
+            id="tour-filter-panel"
+            className="tour-filter-shell"
+            aria-hidden={!showFilters}
+          >
+            <FilterSidebar />
+          </Box>
 
           <Box className="tour-main">
             {isLoading ? (

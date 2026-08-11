@@ -28,6 +28,7 @@ interface NotificationOptions {
 interface SweetAlertContextValue {
   confirmWithLoading: (options: ConfirmWithLoadingOptions) => Promise<boolean>
   notify: (icon: SweetAlertIcon, options: NotificationOptions) => Promise<void>
+  showComingSoon: (platform: string) => Promise<void>
 }
 
 const SweetAlertContext = createContext<SweetAlertContextValue | null>(null)
@@ -130,9 +131,34 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
     [],
   )
 
+  const showComingSoon = useCallback(async (platform: string) => {
+    await Swal.fire({
+      icon: "info",
+      iconColor: BRAND_GOLD,
+      title: "Coming soon",
+      text: `${platform} integration is on the way. Stay connected with Cavora!`,
+      confirmButtonText: "Got it",
+      buttonsStyling: false,
+      showClass: {
+        popup: "cavora-coming-soon-show",
+      },
+      hideClass: {
+        popup: "cavora-coming-soon-hide",
+      },
+      customClass: {
+        container: "cavora-coming-soon-container",
+        popup: "cavora-coming-soon-popup",
+        icon: "cavora-coming-soon-icon",
+        title: "cavora-coming-soon-title",
+        htmlContainer: "cavora-coming-soon-message",
+        confirmButton: "cavora-coming-soon-confirm",
+      },
+    })
+  }, [])
+
   const value = useMemo(
-    () => ({ confirmWithLoading, notify }),
-    [confirmWithLoading, notify],
+    () => ({ confirmWithLoading, notify, showComingSoon }),
+    [confirmWithLoading, notify, showComingSoon],
   )
 
   return (
@@ -153,8 +179,8 @@ function useSweetAlertContext() {
 }
 
 export function useAlerts() {
-  const { confirmWithLoading } = useSweetAlertContext()
-  return { confirmWithLoading }
+  const { confirmWithLoading, showComingSoon } = useSweetAlertContext()
+  return { confirmWithLoading, showComingSoon }
 }
 
 export function useNotifications() {

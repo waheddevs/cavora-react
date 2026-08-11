@@ -96,6 +96,108 @@
   background: #ffb300 !important;
 }
 
+.swal2-container.cavora-coming-soon-container {
+  background: rgba(12, 12, 12, 0.58) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cavora-coming-soon-popup {
+  width: min(420px, calc(100vw - 32px)) !important;
+  padding: 34px 30px 30px !important;
+  border: 1px solid rgba(255, 179, 0, 0.32);
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 179, 0, 0.13), transparent 42%),
+    #1a1917 !important;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.44),
+    0 0 42px rgba(255, 179, 0, 0.08) !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.cavora-coming-soon-show {
+  animation: cavora-coming-soon-in 0.28s ease-out both;
+}
+
+.cavora-coming-soon-hide {
+  animation: cavora-coming-soon-out 0.2s ease-in both;
+}
+
+@keyframes cavora-coming-soon-in {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cavora-coming-soon-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+.cavora-coming-soon-icon {
+  margin: 0 auto 20px !important;
+  border-color: rgba(255, 179, 0, 0.5) !important;
+}
+
+.cavora-coming-soon-title {
+  padding: 0 !important;
+  color: #ffffff !important;
+  font-size: 27px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em;
+}
+
+.cavora-coming-soon-message {
+  margin: 14px auto 0 !important;
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+.cavora-coming-soon-confirm {
+  min-width: 124px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 26px;
+  background: #ffb300;
+  color: #1a1917;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cavora-coming-soon-confirm:hover {
+  transform: translateY(-1px);
+  background: #ffc02e;
+  box-shadow: 0 9px 24px rgba(255, 179, 0, 0.24);
+}
+
+.cavora-coming-soon-confirm:focus-visible {
+  outline: 3px solid rgba(255, 179, 0, 0.3);
+  outline-offset: 3px;
+}
+
 @media (max-width: 520px) {
   .cavora-swal-popup {
     min-height: 270px;
@@ -105,5 +207,13 @@
   .cavora-swal-confirm,
   .cavora-swal-cancel {
     min-width: 96px;
+  }
+
+  .cavora-coming-soon-popup {
+    padding: 30px 22px 26px !important;
+  }
+
+  .cavora-coming-soon-title {
+    font-size: 24px !important;
   }
 }
