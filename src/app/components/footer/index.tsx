@@ -7,8 +7,11 @@ import LocationOnIcon from "@mui/icons-material/LocationOn"
 import PhoneIcon from "@mui/icons-material/Phone"
 import EmailIcon from "@mui/icons-material/Email"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
+import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded"
+import ApiRoundedIcon from "@mui/icons-material/ApiRounded"
 import { NavLink } from "react-router-dom"
 import { quickLinks, tourTypes, contactInfo } from "app/data/footerData"
+import { useSystemEndpoints } from "app/hooks/CommonHooks/useSystemEndpoints"
 
 const contactIcons: Record<string, JSX.Element> = {
   location: <LocationOnIcon className="contact-icon" />,
@@ -18,6 +21,17 @@ const contactIcons: Record<string, JSX.Element> = {
 }
 
 export default function Footer() {
+  /* DOMAIN HOOKS */
+  const {
+    health,
+    isOperational,
+    serviceStatus,
+    isHealthChecking,
+    isOpenApiLoading,
+    handleOpenApiDocs,
+    handleDownloadOpenApi,
+  } = useSystemEndpoints()
+
   return (
     <footer className="footer">
       <Container className="footer-container" maxWidth={false}>
@@ -116,6 +130,34 @@ export default function Footer() {
           <Typography className="footer-copy">
             © {new Date().getFullYear()} Cavora. All rights reserved.
           </Typography>
+          <Box className="footer-system-links">
+            <span
+              className={`footer-system-status${
+                isOperational ? " is-operational" : ""
+              }`}
+              title={
+                health
+                  ? `${health.service} · Database ${health.checks.database}`
+                  : serviceStatus
+              }
+              aria-live="polite"
+            >
+              <i className={isHealthChecking ? "is-checking" : ""} />
+              {serviceStatus}
+            </span>
+            <button type="button" onClick={handleOpenApiDocs}>
+              <DescriptionRoundedIcon />
+              API Docs
+            </button>
+            <button
+              type="button"
+              onClick={handleDownloadOpenApi}
+              disabled={isOpenApiLoading}
+            >
+              <ApiRoundedIcon />
+              {isOpenApiLoading ? "Preparing..." : "OpenAPI JSON"}
+            </button>
+          </Box>
         </Box>
       </Container>
     </footer>

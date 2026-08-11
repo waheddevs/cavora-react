@@ -6,7 +6,7 @@
   background-color: #1c1a17;
   color: #ccc;
   padding: 64px 0 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .footer .footer-container {
@@ -61,7 +61,10 @@
   padding: 0;
   color: #aaa;
   cursor: pointer;
-  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    border-color 0.25s;
   text-decoration: none;
 }
 
@@ -115,7 +118,9 @@
   color: #aaa;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .footer .footer-link::after {
@@ -166,13 +171,75 @@
 }
 
 .footer .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   padding: 20px 0;
-  text-align: center;
 }
 
 .footer .footer-copy {
   font-size: 13px;
   color: #666;
+}
+
+.footer .footer-system-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer .footer-system-status,
+.footer .footer-system-links button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #777;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+}
+
+.footer .footer-system-status i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8a8a8a;
+}
+
+.footer .footer-system-status.is-operational i {
+  background: #50a773;
+  box-shadow: 0 0 0 3px rgba(80, 167, 115, 0.12);
+}
+
+.footer .footer-system-status i.is-checking {
+  animation: footerStatusPulse 1s ease-in-out infinite;
+}
+
+@keyframes footerStatusPulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.footer .footer-system-links button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer .footer-system-links button:hover:not(:disabled) {
+  color: var(--gold);
+}
+
+.footer .footer-system-links button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.footer .footer-system-links svg {
+  font-size: 15px;
 }
 
 /* ===========================
@@ -198,5 +265,15 @@
 
   .footer .footer-desc {
     max-width: 100%;
+  }
+
+  .footer .footer-bottom,
+  .footer .footer-system-links {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer .footer-system-links {
+    gap: 10px;
   }
 }

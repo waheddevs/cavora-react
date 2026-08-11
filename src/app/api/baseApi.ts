@@ -4,6 +4,11 @@ const API_URL =
   process.env.REACT_APP_API_URL?.replace(/\/$/, "") ??
   "http://localhost:3008/cavora"
 
+export function resolveApiUrl(path: string) {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`
+  return `${API_URL}${normalizedPath}`
+}
+
 function readCookie(name: string) {
   if (typeof document === "undefined") return undefined
 
