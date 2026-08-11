@@ -80,6 +80,7 @@ export default function DiscoverTours() {
                   src={tour.images[0]}
                   alt={tour.title}
                   className="tour-img"
+                  loading="lazy"
                 />
                 <span className="tour-badge">{tour.type}</span>
                 <button

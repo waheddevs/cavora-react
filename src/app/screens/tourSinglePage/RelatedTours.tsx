@@ -28,7 +28,7 @@ export default function RelatedTours() {
             onClick={() => openTour(tour.id)}
           >
             <Box className="ts-related-media">
-              <img src={tour.images[0]} alt={tour.title} />
+              <img src={tour.images[0]} alt={tour.title} loading="lazy" />
               <span className="ts-badge">{tour.type}</span>
             </Box>
             <Box className="ts-related-body">

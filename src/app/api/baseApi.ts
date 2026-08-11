@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 const API_URL =
-  process.env.REACT_APP_API_URL?.replace(/\/$/, "") ??
+  import.meta.env.VITE_API_URL?.replace(/\/$/, "") ??
   "http://localhost:3008/cavora"
 
 export function resolveApiUrl(path: string) {

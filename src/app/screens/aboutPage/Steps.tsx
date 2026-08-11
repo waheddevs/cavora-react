@@ -44,6 +44,7 @@ export default function Steps() {
             <img
               src="/img/about-us-img/about-steps.jpg"
               alt="Trip planning essentials"
+              loading="lazy"
             />
           </Box>
         </Box>

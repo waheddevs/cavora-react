@@ -55,6 +55,7 @@ export default function OurStory() {
                 <img
                   src="/img/about-us-img/about-intro.jpg"
                   alt="Travellers hiking in the mountains"
+                  loading="lazy"
                 />
               </Box>
               <Box className="story-badge">

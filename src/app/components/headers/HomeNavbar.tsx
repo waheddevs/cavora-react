@@ -22,11 +22,19 @@ const featureIcons: Record<string, JSX.Element> = {
 export default function HomeNavbar() {
   /* HOOKS */
   const { slides: heroSlides, isLoading, isError } = useHomeContent()
-  const { activeSlide } = useHeroSlider(heroSlides.length, 5000)
+  const { activeSlide, previousSlide } = useHeroSlider(heroSlides.length, 5000)
   const scrolled = useScrolled(40)
 
   /* DERIVED DATA */
   const active = heroSlides[activeSlide]
+
+  /* Only three slides are ever in the DOM: the one on screen, the one queued
+     up next (so its image is already fetched when it fades in) and the one
+     fading out. That turns a five-image hero into a two-image first paint. */
+  const nextSlide =
+    heroSlides.length > 0 ? (activeSlide + 1) % heroSlides.length : -1
+  const isMounted = (index: number) =>
+    index === activeSlide || index === nextSlide || index === previousSlide
 
   return (
     <>
@@ -35,20 +43,22 @@ export default function HomeNavbar() {
       </Box>
       <Box className="home-hero">
         <Box className="hero-slides">
-          {heroSlides.map((slide, slideIndex) => (
-            <Box
-              key={slide.imageUrl}
-              className={`hero-slide${
-                slideIndex === activeSlide ? " active" : ""
-              }`}
-            >
-              <img
-                src={slide.imageUrl}
-                alt={slide.title}
-                className="hero-slide-img"
-              />
-            </Box>
-          ))}
+          {heroSlides.map((slide, slideIndex) =>
+            isMounted(slideIndex) ? (
+              <Box
+                key={slide.imageUrl}
+                className={`hero-slide${
+                  slideIndex === activeSlide ? " active" : ""
+                }`}
+              >
+                <img
+                  src={slide.imageUrl}
+                  alt={slide.title}
+                  className="hero-slide-img"
+                />
+              </Box>
+            ) : null,
+          )}
         </Box>
         <Box className="hero-overlay" />
 

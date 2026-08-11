@@ -19,7 +19,7 @@ export default function FeaturedPost() {
             key={post.id}
             onClick={() => handleOpenPost(post.slug ?? post.id)}
           >
-            <img src={post.img} alt={post.title} />
+            <img src={post.img} alt={post.title} loading="lazy" />
             <Box className="feat-info">
               <h4>{post.title}</h4>
               <span>{post.date}</span>

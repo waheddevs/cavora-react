@@ -948,7 +948,7 @@
       rgba(15, 18, 20, 0.62),
       rgba(15, 18, 20, 0.68)
     ),
-    url('../../public/img/about-us-img/about-cta-bg.jpg');
+    url('/img/about-us-img/about-cta-bg.jpg');
   background-size: cover;
   background-position: center;
 }

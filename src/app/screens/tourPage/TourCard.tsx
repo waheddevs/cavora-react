@@ -34,7 +34,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
       style={{ cursor: "pointer" }}
     >
       <Box className="tc-media">
-        <img src={tour.images[0]} alt={tour.title} />
+        <img src={tour.images[0]} alt={tour.title} loading="lazy" />
         <span className="tc-badge">{tour.type}</span>
         <button
           type="button"

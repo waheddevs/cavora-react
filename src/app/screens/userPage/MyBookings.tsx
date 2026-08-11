@@ -56,6 +56,7 @@ export default function MyBookings() {
                 <img
                   src={booking.tour?.images[0]}
                   alt={booking.tour?.title ?? "Tour"}
+                  loading="lazy"
                 />
                 <span
                   className={`booking-status booking-status--${booking.status.toLowerCase()}`}

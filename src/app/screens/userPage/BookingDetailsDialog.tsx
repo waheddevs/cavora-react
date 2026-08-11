@@ -99,7 +99,7 @@ export default function BookingDetailsDialog({
             <Box className="booking-dialog-summary">
               <Box className="booking-dialog-tour">
                 {tour?.images[0] && (
-                  <img src={tour.images[0]} alt={tour.title} />
+                  <img src={tour.images[0]} alt={tour.title} loading="lazy" />
                 )}
                 <Box>
                   <Typography className="booking-dialog-location">

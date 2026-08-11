@@ -60,6 +60,7 @@ export default function PopularTours() {
                   src={tour.images[0]}
                   alt={tour.title}
                   className="popular-img"
+                  loading="lazy"
                 />
               </Box>
 

@@ -63,6 +63,7 @@ export default function TravelGallery() {
                 src={item.imageUrl}
                 alt={item.altText}
                 className="gallery-img"
+                loading="lazy"
               />
               <Box className="gallery-overlay">
                 <span className="gallery-category">{item.category}</span>

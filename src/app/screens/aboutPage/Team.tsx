@@ -24,7 +24,7 @@ export default function Team() {
           {team.map(member => (
             <Box className="team-card" key={member.name}>
               <Box className="team-avatar">
-                <img src={member.img} alt={member.name} />
+                <img src={member.img} alt={member.name} loading="lazy" />
               </Box>
               <Typography className="team-name">{member.name}</Typography>
               <Typography className="team-role">{member.role}</Typography>

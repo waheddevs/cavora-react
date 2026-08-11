@@ -105,7 +105,7 @@ export default function BlogDetailsPage() {
             </Box>
 
             <Box className="details-author">
-              <img src={post.authorImg} alt={post.author} />
+              <img src={post.authorImg} alt={post.author} loading="lazy" />
               <Box className="details-author-info">
                 <span className="details-author-label">Written by</span>
                 <h4>{post.author}</h4>
@@ -121,7 +121,11 @@ export default function BlogDetailsPage() {
               <Box className="comment-list">
                 {comments.map(comment => (
                   <Box className="comment-item" key={comment.id}>
-                    <img src="/img/team-img/member-1.jpg" alt={comment.name} />
+                    <img
+                      src="/img/team-img/member-1.jpg"
+                      alt={comment.name}
+                      loading="lazy"
+                    />
                     <Box className="comment-body">
                       <Box className="comment-head">
                         <h5>{comment.name}</h5>

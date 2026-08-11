@@ -48,7 +48,7 @@ export default function Wishlist() {
             onClick={() => openTour(tour.id)}
           >
             <Box className="wishlist-image">
-              <img src={tour.images[0]} alt={tour.title} />
+              <img src={tour.images[0]} alt={tour.title} loading="lazy" />
               <button
                 className="wishlist-remove"
                 aria-label="Remove from wishlist"

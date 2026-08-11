@@ -23,7 +23,7 @@ export default function BlogCard({ post }: { post: Post }) {
     <Box className="blog-card">
       <Box className="blog-card-main">
         <Box className="blog-card-media">
-          <img src={post.img} alt={post.title} />
+          <img src={post.img} alt={post.title} loading="lazy" />
         </Box>
 
         <Box className="blog-card-body">
@@ -61,6 +61,7 @@ export default function BlogCard({ post }: { post: Post }) {
             src={post.authorImg}
             alt={post.author}
             className="author-avatar"
+            loading="lazy"
           />
           <span>
             By <strong>{post.author}</strong>

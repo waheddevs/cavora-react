@@ -32,7 +32,7 @@ export default function AboutTour() {
               className={`ts-thumb${i === activeImageIndex ? " active" : ""}`}
               onClick={() => setActiveImageIndex(i)}
             >
-              <img src={img} alt={`${tour.title} ${i + 1}`} />
+              <img src={img} alt={`${tour.title} ${i + 1}`} loading="lazy" />
             </button>
           ))}
         </Box>

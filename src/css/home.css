@@ -290,7 +290,7 @@
   text-align: center;
   background-image:
     linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)),
-    url("../../public/img/home-page-img/tour-kyoto.jpg");
+    url("/img/home-page-img/tour-kyoto.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -593,7 +593,7 @@
   text-align: center;
   background-image:
     linear-gradient(rgba(15, 15, 18, 0.6), rgba(15, 15, 18, 0.6)),
-    url("../../public/img/home-page-img/newsletter-bg.jpg");
+    url("/img/home-page-img/newsletter-bg.jpg");
   background-size: cover;
   background-position: center;
 }
