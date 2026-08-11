@@ -1,5 +1,6 @@
 import { Box } from "@mui/material"
 import { UserTab } from "app/types/user"
+import UserAvatar from "app/components/ui/UserAvatar"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 interface SidebarTabItem {
@@ -21,7 +22,7 @@ export default function Sidebar({ active, onChange, tabs }: SidebarProps) {
   return (
     <Box className="user-sidebar">
       <Box className="user-sidebar-avatar">
-        <img src={user.avatar} alt={fullName} />
+        <UserAvatar src={user.avatar} name={fullName} />
       </Box>
 
       <p className="user-sidebar-handle">@{user.username}</p>

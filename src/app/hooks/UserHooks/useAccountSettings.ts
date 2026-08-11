@@ -53,6 +53,9 @@ export function useAccountSettings() {
     useState<PasswordChangeForm>(initialPasswordForm)
   const [avatarPreview, setAvatarPreview] = useState("")
 
+  /* DERIVED DATA */
+  const displayedAvatar = avatarPreview || user.avatar
+
   /* EFFECTS */
   useEffect(() => {
     setForm({
@@ -248,7 +251,7 @@ export function useAccountSettings() {
 
   return {
     user,
-    avatarPreview,
+    displayedAvatar,
     form,
     passwordForm,
     handleProfileChange,

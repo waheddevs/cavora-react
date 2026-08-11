@@ -6,7 +6,7 @@ import {
   useMemo,
 } from "react"
 import { createRoot, Root } from "react-dom/client"
-import { Box, CircularProgress } from "@mui/material"
+import { CircularProgress } from "@mui/material"
 import Swal, { SweetAlertIcon } from "sweetalert2"
 import "css/sweetAlert.css"
 
@@ -47,6 +47,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
       onConfirm,
     }: ConfirmWithLoadingOptions) => {
       let loaderRoot: Root | null = null
+      let loaderHost: HTMLElement | null = null
 
       const result = await Swal.fire({
         icon: "question",
@@ -69,28 +70,27 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
         },
         preConfirm: async () => {
           const popup = Swal.getPopup()
-          const icon = Swal.getIcon()
-          const messageContainer = Swal.getHtmlContainer()
-          const actions = Swal.getActions()
 
-          popup?.classList.add("is-loading")
-          icon?.remove()
-          actions?.remove()
+          if (popup) {
+            /* Pin the dialog to the box it already occupies. The icon, message
+               and buttons are only hidden — never removed — so swapping in the
+               spinner cannot reflow the popup and make it jump. */
+            popup.style.height = `${popup.getBoundingClientRect().height}px`
+            popup.classList.add("is-loading")
 
-          if (messageContainer) {
-            messageContainer.replaceChildren()
-            loaderRoot = createRoot(messageContainer)
+            loaderHost = document.createElement("div")
+            loaderHost.className = "cavora-swal-loader"
+            loaderHost.setAttribute("role", "status")
+            loaderHost.setAttribute("aria-label", "Processing")
+            popup.append(loaderHost)
+
+            loaderRoot = createRoot(loaderHost)
             loaderRoot.render(
-              <Box
-                className="cavora-swal-loader"
-                aria-label="Processing payment"
-              >
-                <CircularProgress
-                  size={54}
-                  thickness={4.2}
-                  sx={{ color: BRAND_GOLD }}
-                />
-              </Box>,
+              <CircularProgress
+                size={54}
+                thickness={4.2}
+                sx={{ color: BRAND_GOLD }}
+              />,
             )
           }
 
@@ -98,8 +98,15 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
           return true
         },
         willClose: () => {
+          /* SweetAlert2 reuses the popup element, so undo everything above. */
+          const popup = Swal.getPopup()
+          popup?.classList.remove("is-loading")
+          popup?.style.removeProperty("height")
+
           loaderRoot?.unmount()
           loaderRoot = null
+          loaderHost?.remove()
+          loaderHost = null
         },
       })
 

@@ -5,6 +5,7 @@
 }
 
 .cavora-swal-popup {
+  position: relative;
   width: min(430px, calc(100vw - 32px)) !important;
   min-height: 290px;
   padding: 32px !important;
@@ -15,10 +16,10 @@
   font-family: "Poppins", sans-serif !important;
 }
 
-.cavora-swal-popup.is-loading {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+/* The content keeps its space while the spinner sits on top of it, so entering
+   the loading state leaves the popup's geometry untouched. */
+.cavora-swal-popup.is-loading > *:not(.cavora-swal-loader) {
+  visibility: hidden;
 }
 
 .cavora-swal-icon {
@@ -79,7 +80,8 @@
 }
 
 .cavora-swal-loader {
-  min-height: 226px;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;

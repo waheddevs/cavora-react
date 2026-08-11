@@ -8,6 +8,7 @@ export default function PaymentForm() {
     cardNumber,
     expiry,
     cvv,
+    errors,
     loading,
     total,
     brand,
@@ -35,21 +36,25 @@ export default function PaymentForm() {
           component="form"
           className="payment-form"
           onSubmit={handleSubmit}
-          autoComplete="off"
           noValidate
         >
           <Box className="payment-field">
             <label htmlFor="pay-name">Cardholder Name</label>
             <input
               id="pay-name"
-              name="demo-cardholder"
+              name="ccname"
               type="text"
-              autoComplete="off"
+              autoComplete="cc-name"
               placeholder="e.g. Amelia Carter"
               value={cardholder}
               onChange={handleCardholderChange}
               disabled={loading}
+              className={errors.cardholder ? "has-error" : ""}
+              aria-invalid={Boolean(errors.cardholder)}
             />
+            {errors.cardholder && (
+              <span className="field-error">{errors.cardholder}</span>
+            )}
           </Box>
 
           <Box className="payment-field">
@@ -57,18 +62,23 @@ export default function PaymentForm() {
             <Box className="payment-input-icon">
               <input
                 id="pay-number"
-                name="demo-card-number"
+                name="cardnumber"
                 type="text"
                 inputMode="numeric"
-                autoComplete="off"
+                autoComplete="cc-number"
                 placeholder="0000 0000 0000 0000"
                 value={cardNumber}
                 onChange={handleCardNumberChange}
                 disabled={loading}
                 maxLength={19}
+                className={errors.cardNumber ? "has-error" : ""}
+                aria-invalid={Boolean(errors.cardNumber)}
               />
               <span className={`card-brand card-brand--${brand}`} />
             </Box>
+            {errors.cardNumber && (
+              <span className="field-error">{errors.cardNumber}</span>
+            )}
           </Box>
 
           <Box className="payment-row">
@@ -76,32 +86,40 @@ export default function PaymentForm() {
               <label htmlFor="pay-expiry">Expiry Date</label>
               <input
                 id="pay-expiry"
-                name="demo-card-expiry"
+                name="cc-exp"
                 type="text"
                 inputMode="numeric"
-                autoComplete="off"
+                autoComplete="cc-exp"
                 placeholder="MM/YY"
                 value={expiry}
                 onChange={handleExpiryChange}
                 disabled={loading}
                 maxLength={5}
+                className={errors.expiry ? "has-error" : ""}
+                aria-invalid={Boolean(errors.expiry)}
               />
+              {errors.expiry && (
+                <span className="field-error">{errors.expiry}</span>
+              )}
             </Box>
 
             <Box className="payment-field">
               <label htmlFor="pay-cvv">CVV</label>
               <input
                 id="pay-cvv"
-                name="demo-card-code"
+                name="cvc"
                 type="password"
                 inputMode="numeric"
-                autoComplete="off"
+                autoComplete="cc-csc"
                 placeholder="•••"
                 value={cvv}
                 onChange={handleCvvChange}
                 disabled={loading}
                 maxLength={3}
+                className={errors.cvv ? "has-error" : ""}
+                aria-invalid={Boolean(errors.cvv)}
               />
+              {errors.cvv && <span className="field-error">{errors.cvv}</span>}
             </Box>
           </Box>
 

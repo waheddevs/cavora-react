@@ -7,7 +7,7 @@ import { useCheckout } from "app/hooks/PaymentHooks/useCheckout"
 import "css/payment.css"
 
 export default function PaymentPage() {
-  const { tour, handleClose } = useCheckout()
+  const { tour, shake, handleClose } = useCheckout()
   if (!tour) return <PaymentEmptyState />
 
   return (
@@ -20,7 +20,7 @@ export default function PaymentPage() {
       />
       <Box className="payment-backdrop-overlay" />
 
-      <Box className="payment-shell">
+      <Box className={`payment-shell${shake ? " shake" : ""}`}>
         <button
           type="button"
           className="payment-close"

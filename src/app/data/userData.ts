@@ -8,7 +8,7 @@ export const currentUser: UserProfile = {
   username: "amelia_c",
   phone: "+1 415 902 7788",
   location: "San Francisco, USA",
-  avatar: "/img/team-img/member-5.jpg",
+  avatar: "",
   memberSince: "March 2023",
   role: "MEMBER",
   status: "ACTIVE",

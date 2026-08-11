@@ -4,13 +4,14 @@ import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded"
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded"
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded"
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
+import UserAvatar from "app/components/ui/UserAvatar"
 import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
 
 export default function Settings() {
   /* HOOKS */
   const {
     user,
-    avatarPreview,
+    displayedAvatar,
     form,
     passwordForm,
     handleProfileChange,
@@ -35,26 +36,19 @@ export default function Settings() {
       </p>
 
       <Box className="settings-avatar-card">
-        <Box className="settings-avatar-media">
-          <img
+        <Box
+          component="label"
+          className={`settings-avatar-media${
+            avatarUploading || avatarRemoving ? " is-disabled" : ""
+          }`}
+          htmlFor="avatar-upload"
+          title="Change profile photo"
+        >
+          <UserAvatar
             className="settings-avatar-image"
-            src={avatarPreview || user.avatar}
-            alt={`${user.firstName} ${user.lastName}`}
+            src={displayedAvatar}
+            name={`${user.firstName} ${user.lastName}`}
           />
-          <label
-            className={`settings-avatar-overlay${
-              avatarUploading || avatarRemoving ? " is-disabled" : ""
-            }`}
-            htmlFor="avatar-upload"
-            aria-label="Change profile photo"
-            title="Change profile photo"
-          >
-            {avatarUploading ? (
-              <span className="settings-avatar-spinner" />
-            ) : (
-              <CameraAltRoundedIcon />
-            )}
-          </label>
         </Box>
 
         <Box className="settings-avatar-content">

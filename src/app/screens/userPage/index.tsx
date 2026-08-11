@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
 import LuggageRoundedIcon from "@mui/icons-material/LuggageRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
@@ -25,7 +25,20 @@ export default function UserPage() {
   const { isAuthenticated, isAuthLoading } = useAuth()
   const { activeTab, setActiveTab } = useUserTabs()
 
-  if (isAuthLoading) return <Box className="user-page">Loading account...</Box>
+  if (isAuthLoading) {
+    return (
+      <Box className="user-page">
+        <Box className="user-page-loading" role="status">
+          <CircularProgress
+            size={40}
+            thickness={4.2}
+            sx={{ color: "var(--gold)" }}
+          />
+          <span>Loading account...</span>
+        </Box>
+      </Box>
+    )
+  }
   if (!isAuthenticated) return <Navigate to="/login" replace />
 
   return (

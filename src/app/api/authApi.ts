@@ -21,8 +21,7 @@ function adaptMember(member: ApiMember): UserProfile {
     username: member.username,
     phone: member.phone ?? "",
     location: member.location ?? "",
-    avatar:
-      resolveApiAssetUrl(member.avatarUrl) || "/img/team-img/member-5.jpg",
+    avatar: resolveApiAssetUrl(member.avatarUrl),
     memberSince: new Intl.DateTimeFormat("en-US", {
       month: "long",
       year: "numeric",
@@ -130,12 +129,15 @@ export const authApi = baseApi.injectEndpoints({
       async onQueryStarted(_image, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
-          dispatch(authApi.util.upsertQueryData("getProfile", undefined, data))
+          dispatch(
+            authApi.util.updateQueryData("getProfile", undefined, profile => {
+              Object.assign(profile, data)
+            }),
+          )
         } catch {
           return
         }
       },
-      invalidatesTags: ["User"],
     }),
     removeAvatar: builder.mutation<UserProfile, void>({
       query: () => ({
@@ -147,12 +149,15 @@ export const authApi = baseApi.injectEndpoints({
       async onQueryStarted(_argument, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
-          dispatch(authApi.util.upsertQueryData("getProfile", undefined, data))
+          dispatch(
+            authApi.util.updateQueryData("getProfile", undefined, profile => {
+              Object.assign(profile, data)
+            }),
+          )
         } catch {
           return
         }
       },
-      invalidatesTags: ["User"],
     }),
     logout: builder.mutation<void, void>({
       query: () => ({ url: "/auth/logout", method: "POST" }),

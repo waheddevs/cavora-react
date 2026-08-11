@@ -14,6 +14,16 @@
   margin: 0 auto;
 }
 
+.user-page .user-page-loading {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 14px;
+  min-height: 60vh;
+  color: var(--text-light);
+  font-size: 15px;
+}
+
 /* ===========================
    SHELL (banner + sidebar + content)
 =========================== */
@@ -61,6 +71,21 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Shown instead of the photo while the member has no avatar of their own. */
+.user-page .user-avatar-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--text-light);
+  background: var(--bg-light);
+}
+
+.user-page .user-avatar-fallback svg {
+  width: 56%;
+  height: 56%;
 }
 
 .user-page .user-sidebar-handle {
@@ -725,10 +750,12 @@
   content: "";
 }
 
+/* The whole avatar is the upload trigger, so it carries the pointer cursor. */
 .user-page .settings-avatar-media {
-  position: relative;
+  display: block;
   width: 112px;
   height: 112px;
+  cursor: pointer;
 }
 
 .user-page .settings-avatar-image {
@@ -739,34 +766,14 @@
   outline: 2px solid rgba(255, 179, 0, 0.42);
   object-fit: cover;
   box-shadow: 0 10px 25px rgba(35, 31, 20, 0.16);
-}
-
-.user-page .settings-avatar-overlay {
-  position: absolute;
-  right: -2px;
-  bottom: 2px;
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  color: var(--dark);
-  background: var(--gold);
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(230, 162, 0, 0.3);
   transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
+    outline-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.user-page .settings-avatar-overlay:hover {
-  transform: scale(1.08);
-  background: #ffc02e;
-}
-
-.user-page .settings-avatar-overlay svg {
-  font-size: 18px;
+.user-page .settings-avatar-media:hover .settings-avatar-image {
+  outline-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(230, 162, 0, 0.28);
 }
 
 .user-page .settings-avatar-content {
@@ -900,7 +907,7 @@
 }
 
 .user-page .settings-avatar-upload.is-disabled,
-.user-page .settings-avatar-overlay.is-disabled {
+.user-page .settings-avatar-media.is-disabled {
   pointer-events: none;
   opacity: 0.62;
 }
@@ -1229,7 +1236,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .user-page .settings-avatar-overlay,
+  .user-page .settings-avatar-image,
   .user-page .settings-avatar-spinner {
     animation: none;
     transition: none;
