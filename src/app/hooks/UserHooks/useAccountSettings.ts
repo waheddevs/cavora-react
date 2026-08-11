@@ -51,6 +51,7 @@ export function useAccountSettings() {
   })
   const [passwordForm, setPasswordForm] =
     useState<PasswordChangeForm>(initialPasswordForm)
+  const [avatarPreview, setAvatarPreview] = useState("")
 
   /* EFFECTS */
   useEffect(() => {
@@ -63,6 +64,13 @@ export function useAccountSettings() {
       location: user.location,
     })
   }, [user])
+
+  useEffect(
+    () => () => {
+      if (avatarPreview) URL.revokeObjectURL(avatarPreview)
+    },
+    [avatarPreview],
+  )
 
   /* HANDLERS */
   const handleProfileChange =
@@ -178,6 +186,7 @@ export function useAccountSettings() {
       return
     }
 
+    setAvatarPreview(URL.createObjectURL(image))
     try {
       await uploadAvatar(image)
       await notifySuccess({
@@ -193,6 +202,7 @@ export function useAccountSettings() {
         ),
       })
     } finally {
+      setAvatarPreview("")
       input.value = ""
     }
   }
@@ -238,6 +248,7 @@ export function useAccountSettings() {
 
   return {
     user,
+    avatarPreview,
     form,
     passwordForm,
     handleProfileChange,

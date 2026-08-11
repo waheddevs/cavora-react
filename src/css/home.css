@@ -540,8 +540,10 @@
 }
 
 .popular-tours .popular-price {
+  width: 100%;
   font-family: "Poppins", sans-serif;
-  margin-left: auto;
+  margin-left: 0;
+  text-align: left;
 }
 
 .popular-tours .popular-price span {
@@ -985,7 +987,9 @@
   transform: translateY(-50%);
   cursor: pointer;
   backdrop-filter: blur(8px);
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .gallery-lightbox .gallery-lightbox-nav:hover {
@@ -1078,7 +1082,9 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.45);
   cursor: pointer;
-  transition: width 0.25s ease, background-color 0.25s ease;
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .gallery-lightbox .gallery-lightbox-dots button.active {

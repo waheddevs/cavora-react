@@ -70,14 +70,22 @@
 
 @keyframes payment-shake {
   10%,
-  90% { transform: translateX(-1px); }
+  90% {
+    transform: translateX(-1px);
+  }
   20%,
-  80% { transform: translateX(2px); }
+  80% {
+    transform: translateX(2px);
+  }
   30%,
   50%,
-  70% { transform: translateX(-6px); }
+  70% {
+    transform: translateX(-6px);
+  }
   40%,
-  60% { transform: translateX(6px); }
+  60% {
+    transform: translateX(6px);
+  }
 }
 
 .payment-page .payment-close {
@@ -94,7 +102,10 @@
   background: rgba(20, 20, 20, 0.06);
   color: var(--text);
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
 }
 
 .payment-page .payment-close:hover {
@@ -112,7 +123,7 @@
 =========================== */
 
 .payment-page .payment-col--form {
-  padding: 52px 34px 22px;
+  padding: 36px 34px;
   display: flex;
   flex-direction: column;
 }
@@ -122,7 +133,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .payment-page .payment-panel {
@@ -130,6 +141,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-block: 10px;
 }
 
 .payment-page .payment-brand img {
@@ -167,27 +179,27 @@
 }
 
 .payment-page .payment-subtitle {
-  margin-top: 4px !important;
+  margin-top: 8px !important;
   font-size: 14px;
   color: var(--text);
 }
 
 .payment-page .payment-form {
-  margin-top: 16px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 18px;
 }
 
 .payment-page .payment-field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 7px;
 }
 
 .payment-page .payment-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
 .payment-page .payment-row .payment-field {
@@ -212,7 +224,9 @@
   letter-spacing: 0.3px;
   color: var(--dark);
   outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .payment-page .payment-field input:focus {
@@ -291,7 +305,8 @@
   position: relative;
 }
 
-.payment-page .card-brand--mastercard::before, .payment-page .card-brand--mastercard::after {
+.payment-page .card-brand--mastercard::before,
+.payment-page .card-brand--mastercard::after {
   content: "";
   position: absolute;
   top: 2px;
@@ -327,7 +342,7 @@
 }
 
 .payment-page .payment-submit {
-  margin-top: 2px;
+  margin-top: 4px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -343,11 +358,9 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.05s ease;
-}
-
-.payment-page .payment-submit svg {
-  font-size: 18px;
+  transition:
+    background-color 0.25s ease,
+    transform 0.05s ease;
 }
 
 .payment-page .payment-submit:hover:not(:disabled) {
@@ -365,20 +378,6 @@
 
 .payment-page .payment-submit.loading {
   background: var(--gold-dark);
-}
-
-.payment-page .payment-secure-note {
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-light);
-}
-
-.payment-page .payment-secure-note svg {
-  font-size: 14px;
 }
 
 /* Spinner — used on the dark submit button and the light success screen */
@@ -425,7 +424,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(135deg, var(--dark) 0%, #2b2b2b 55%, var(--gold-dark) 130%);
+  background: linear-gradient(
+    135deg,
+    var(--dark) 0%,
+    #2b2b2b 55%,
+    var(--gold-dark) 130%
+  );
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
   transition: background 0.5s ease;
 }
@@ -447,9 +451,15 @@
 }
 
 @keyframes payment-shimmer {
-  0% { transform: translateX(-40%); }
-  50% { transform: translateX(220%); }
-  100% { transform: translateX(220%); }
+  0% {
+    transform: translateX(-40%);
+  }
+  50% {
+    transform: translateX(220%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
 }
 
 .payment-page .payment-card-visual.card-brand--visa {
@@ -555,8 +565,14 @@
 
 @keyframes payment-pulse {
   0%,
-  100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.15); opacity: 0.7; }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
 }
 
 .payment-page .payment-summary {
@@ -691,8 +707,12 @@
 }
 
 @keyframes payment-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .payment-page .payment-success-circle {
@@ -712,9 +732,17 @@
 }
 
 @keyframes payment-pop {
-  0% { transform: scale(0) rotate(-30deg); opacity: 0; }
-  70% { transform: scale(1.12) rotate(4deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0); }
+  0% {
+    transform: scale(0) rotate(-30deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12) rotate(4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
 }
 
 .payment-page .payment-success-title {
@@ -830,7 +858,8 @@
 }
 
 @media (max-width: 480px) {
-  .payment-page .payment-col--form, .payment-page .payment-col--summary {
+  .payment-page .payment-col--form,
+  .payment-page .payment-col--summary {
     padding: 34px 22px;
   }
 

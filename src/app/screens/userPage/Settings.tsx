@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded"
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded"
+import ImageRoundedIcon from "@mui/icons-material/ImageRounded"
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded"
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
@@ -9,6 +10,7 @@ export default function Settings() {
   /* HOOKS */
   const {
     user,
+    avatarPreview,
     form,
     passwordForm,
     handleProfileChange,
@@ -32,21 +34,55 @@ export default function Settings() {
         Keep your profile and account security up to date.
       </p>
 
-      <Box className="settings-avatar-section">
-        <img
-          className="settings-avatar-image"
-          src={user.avatar}
-          alt={`${user.firstName} ${user.lastName}`}
-        />
-        <Box className="settings-avatar-content">
-          <h3 className="settings-section-title">Profile photo</h3>
-          <p className="settings-section-subtitle">
-            JPEG, PNG, WebP, or AVIF. Maximum size 5 MB.
-          </p>
-          <Box className="settings-avatar-actions">
-            <label className="settings-avatar-upload" htmlFor="avatar-upload">
+      <Box className="settings-avatar-card">
+        <Box className="settings-avatar-media">
+          <img
+            className="settings-avatar-image"
+            src={avatarPreview || user.avatar}
+            alt={`${user.firstName} ${user.lastName}`}
+          />
+          <label
+            className={`settings-avatar-overlay${
+              avatarUploading || avatarRemoving ? " is-disabled" : ""
+            }`}
+            htmlFor="avatar-upload"
+            aria-label="Change profile photo"
+            title="Change profile photo"
+          >
+            {avatarUploading ? (
+              <span className="settings-avatar-spinner" />
+            ) : (
               <CameraAltRoundedIcon />
-              {avatarUploading ? "Uploading..." : "Change photo"}
+            )}
+          </label>
+        </Box>
+
+        <Box className="settings-avatar-content">
+          <Box className="settings-avatar-heading">
+            <Box>
+              <h3 className="settings-section-title">Profile photo</h3>
+              <p className="settings-avatar-description">
+                Personalize your Cavora travel profile.
+              </p>
+            </Box>
+            <span className="settings-avatar-badge">Profile</span>
+          </Box>
+
+          <Box className="settings-avatar-meta">
+            <ImageRoundedIcon />
+            <span>JPEG · PNG · WebP · AVIF</span>
+            <i>Up to 5 MB</i>
+          </Box>
+
+          <Box className="settings-avatar-actions">
+            <label
+              className={`settings-avatar-upload${
+                avatarUploading || avatarRemoving ? " is-disabled" : ""
+              }`}
+              htmlFor="avatar-upload"
+            >
+              <CameraAltRoundedIcon />
+              {avatarUploading ? "Uploading..." : "Upload new photo"}
             </label>
             <input
               id="avatar-upload"
@@ -61,9 +97,14 @@ export default function Settings() {
               className="settings-avatar-remove"
               onClick={handleAvatarRemove}
               disabled={avatarUploading || avatarRemoving}
+              aria-label="Remove profile photo"
+              title="Remove profile photo"
             >
-              <DeleteOutlineRoundedIcon />
-              {avatarRemoving ? "Removing..." : "Remove"}
+              {avatarRemoving ? (
+                <span className="settings-avatar-spinner dark" />
+              ) : (
+                <DeleteOutlineRoundedIcon />
+              )}
             </button>
           </Box>
         </Box>
