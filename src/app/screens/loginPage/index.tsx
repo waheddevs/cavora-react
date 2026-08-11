@@ -75,7 +75,9 @@ export default function LoginPage() {
             <Box className="form-field">
               <Box className="field-head">
                 <label htmlFor="login-password">Password</label>
-                <span className="auth-link">Forgot your password?</span>
+                <Link to="/forgot-password" className="auth-link">
+                  Forgot your password?
+                </Link>
               </Box>
               <input
                 id="login-password"

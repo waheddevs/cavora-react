@@ -15,6 +15,9 @@ import UserPage from "./screens/userPage"
 import HomePage from "./screens/homePage"
 import LoginPage from "./screens/loginPage"
 import SignupPage from "./screens/signupPage"
+import ForgotPasswordPage from "./screens/forgotPasswordPage"
+import ResetPasswordPage from "./screens/resetPasswordPage"
+import VerifyEmailPage from "./screens/verifyEmailPage"
 import PaymentPage from "./screens/paymentPage"
 import PageHero from "./components/headers/PageHero"
 import { pageHeroes } from "./components/headers/pageHeroConfig"
@@ -55,6 +58,9 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/verify-email" element={<VerifyEmailPage />} />
         <Route
           path="/payment"
           element={

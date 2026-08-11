@@ -8,8 +8,17 @@ interface AppLayoutState {
 export function useAppLayout(): AppLayoutState {
   const { pathname } = useLocation()
 
+  const authRoutes = [
+    "/login",
+    "/signup",
+    "/payment",
+    "/forgot-password",
+    "/reset-password",
+    "/verify-email",
+  ]
+
   return {
     pathname,
-    isAuthRoute: ["/login", "/signup", "/payment"].includes(pathname),
+    isAuthRoute: authRoutes.includes(pathname),
   }
 }

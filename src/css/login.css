@@ -190,7 +190,9 @@
   font-size: 14px;
   color: var(--dark);
   outline: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .login-page .form-field input:focus {
@@ -236,15 +238,50 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.05s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.05s ease;
 }
 
-.login-page .auth-submit:hover {
+.login-page .auth-submit:hover:not(:disabled) {
   background: #333333;
 }
 
-.login-page .auth-submit:active {
+.login-page .auth-submit:active:not(:disabled) {
   transform: translateY(1px);
+}
+
+.login-page .auth-submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+/* ---- Recovery states ---- */
+.login-page .recovery-message {
+  padding: 13px 15px;
+  border: 1px solid rgba(183, 127, 0, 0.25);
+  border-radius: 10px;
+  background: rgba(255, 179, 0, 0.08);
+  color: var(--dark);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.login-page .recovery-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.login-page .recovery-state .auth-submit {
+  margin-top: 0;
+}
+
+.login-page .recovery-state-text {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 /* ---- Cross-link switch ---- */

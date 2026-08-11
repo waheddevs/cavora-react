@@ -1,11 +1,14 @@
 import { baseApi, resolveApiAssetUrl } from "./baseApi"
 import {
   ApiMember,
+  ForgotPasswordRequest,
   LoginRequest,
   MessageResponse,
   PasswordChangeRequest,
   ProfileUpdateRequest,
   RegisterRequest,
+  ResetPasswordRequest,
+  VerifyEmailRequest,
 } from "app/types/auth"
 import { UserProfile } from "app/types/user"
 
@@ -66,6 +69,29 @@ export const authApi = baseApi.injectEndpoints({
         }
       },
       invalidatesTags: ["User", "Wishlist", "Booking"],
+    }),
+    forgotPassword: builder.mutation<MessageResponse, ForgotPasswordRequest>({
+      query: body => ({
+        url: "/auth/forgot-password",
+        method: "POST",
+        body,
+      }),
+    }),
+    resetPassword: builder.mutation<MessageResponse, ResetPasswordRequest>({
+      query: body => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User", "Wishlist", "Booking"],
+    }),
+    verifyEmail: builder.mutation<MessageResponse, VerifyEmailRequest>({
+      query: body => ({
+        url: "/auth/verify-email",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["User"],
     }),
     updateProfile: builder.mutation<UserProfile, ProfileUpdateRequest>({
       query: body => ({ url: "/users/me", method: "PATCH", body }),
@@ -143,10 +169,13 @@ export const authApi = baseApi.injectEndpoints({
 })
 
 export const useChangePasswordMutation = authApi.useChangePasswordMutation
+export const useForgotPasswordMutation = authApi.useForgotPasswordMutation
 export const useGetProfileQuery = authApi.useGetProfileQuery
 export const useLoginMutation = authApi.useLoginMutation
 export const useLogoutMutation = authApi.useLogoutMutation
 export const useRegisterMutation = authApi.useRegisterMutation
 export const useRemoveAvatarMutation = authApi.useRemoveAvatarMutation
+export const useResetPasswordMutation = authApi.useResetPasswordMutation
 export const useUpdateProfileMutation = authApi.useUpdateProfileMutation
 export const useUploadAvatarMutation = authApi.useUploadAvatarMutation
+export const useVerifyEmailMutation = authApi.useVerifyEmailMutation

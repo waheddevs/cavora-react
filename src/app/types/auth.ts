@@ -49,6 +49,24 @@ export interface MessageResponse {
   message: string
 }
 
+export interface ForgotPasswordRequest {
+  email: string
+}
+
+export interface ResetPasswordRequest {
+  token: string
+  password: string
+}
+
+export interface VerifyEmailRequest {
+  token: string
+}
+
+export interface ResetPasswordForm {
+  password: string
+  confirmPassword: string
+}
+
 export type LoginValues = LoginRequest
 export type LoginErrors = Partial<Record<keyof LoginValues, string>>
 export type SignupValues = RegisterRequest
