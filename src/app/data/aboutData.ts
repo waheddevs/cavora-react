@@ -83,22 +83,22 @@ export const steps = [
 
 export const team = [
   {
-    img: "/img/about-us-img/team-daniel.jpg",
+    img: "/img/about-us-img/team-daniel.webp",
     name: "Daniel Reeves",
     role: "Founder & CEO",
   },
   {
-    img: "/img/about-us-img/team-priya.jpg",
+    img: "/img/about-us-img/team-priya.webp",
     name: "Priya Sharma",
     role: "Head of Operations",
   },
   {
-    img: "/img/about-us-img/team-marco.jpg",
+    img: "/img/about-us-img/team-marco.webp",
     name: "Marco Bellini",
     role: "Senior Tour Guide",
   },
   {
-    img: "/img/about-us-img/team-aisha.jpg",
+    img: "/img/about-us-img/team-aisha.webp",
     name: "Aisha Okonkwo",
     role: "Client Experience",
   },

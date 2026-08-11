@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useSubmitContactMessageMutation } from "app/api/contactApi"
 import { getApiErrorMessage } from "app/api/apiErrors"
-import { useNotifications } from "app/contexts/SweetAlertContext"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 import { ContactFormValues } from "app/types/contact"
 
 const initialValues: ContactFormValues = {

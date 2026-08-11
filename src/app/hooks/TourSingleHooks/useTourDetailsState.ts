@@ -21,7 +21,7 @@ export function useTourDetailsState() {
   const relatedTours = relatedQuery.data ?? []
 
   /* DOMAIN HOOKS */
-  const gallery = useTourGallery(tour?.id)
+  const gallery = useTourGallery()
   const order = useOrderBar(tour)
 
   return {

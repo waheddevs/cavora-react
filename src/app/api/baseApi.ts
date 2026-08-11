@@ -41,3 +41,10 @@ export function resolveApiAssetUrl(path?: string) {
 
   return `${new URL(API_URL).origin}${path}`
 }
+
+export function resolveImageUrl(path?: string) {
+  const resolved = resolveApiAssetUrl(path)
+  return resolved.startsWith("/img/")
+    ? resolved.replace(/\.jpe?g(?=$|\?)/i, ".webp")
+    : resolved
+}

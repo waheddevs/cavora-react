@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TourCatalogContext } from "app/contexts/TourCatalogContext"
+import { TourCatalogContext } from "app/contexts/tourCatalogContextValue"
 
 export function useTourCatalog() {
   const catalog = useContext(TourCatalogContext)

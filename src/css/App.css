@@ -6,6 +6,14 @@
   font-display: swap;
 }
 
+.route-loading {
+  min-height: 45vh;
+  display: grid;
+  place-items: center;
+  color: #7a6740;
+  font-weight: 500;
+}
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/poppins-400.woff2") format("woff2");

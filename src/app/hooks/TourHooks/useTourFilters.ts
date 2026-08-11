@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { SetStateAction, useMemo, useState } from "react"
 import { makeDefaultFilters } from "app/utils/tourFilters"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 import { TourFilters } from "app/types/tour"
@@ -7,7 +7,11 @@ type TourFilterListKey = "destinations" | "durations" | "types"
 
 export function useTourFilters() {
   const { tours, priceMin, priceMax, filters, setFilters } = useTourCatalog()
-  const [draft, setDraft] = useState<TourFilters>(filters)
+  const [draftState, setDraftState] = useState({
+    source: filters,
+    value: filters,
+  })
+  const draft = draftState.source === filters ? draftState.value : filters
   const destinations = useMemo(() => {
     const counts: Record<string, number> = {}
     tours.forEach(tour => {
@@ -17,9 +21,16 @@ export function useTourFilters() {
     return Object.entries(counts).map(([name, count]) => ({ name, count }))
   }, [tours])
 
-  useEffect(() => {
-    setDraft(filters)
-  }, [filters])
+  const setDraft = (action: SetStateAction<TourFilters>) => {
+    setDraftState(current => {
+      const currentDraft = current.source === filters ? current.value : filters
+      return {
+        source: filters,
+        value:
+          typeof action === "function" ? action(currentDraft) : action,
+      }
+    })
+  }
 
   const toggle = (key: TourFilterListKey, value: string) => {
     setDraft(currentDraft => {

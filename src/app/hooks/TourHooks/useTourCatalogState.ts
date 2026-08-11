@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import {
   filterTours,
@@ -42,7 +42,14 @@ export function useTourCatalogState(toursPerPage = 9) {
   }, [priceMin, priceMax, typeParam])
 
   /* STATE */
-  const [filters, setFilters] = useState<TourFilters>(defaultFilters)
+  const [filterState, setFilterState] = useState({
+    defaults: defaultFilters,
+    value: defaultFilters,
+  })
+  const filters =
+    filterState.defaults === defaultFilters
+      ? filterState.value
+      : defaultFilters
   const [sort, setSort] = useState<SortKey>("default")
   const [page, setPage] = useState(1)
   const [showFilters, setShowFilters] = useState(false)
@@ -54,23 +61,22 @@ export function useTourCatalogState(toursPerPage = 9) {
     [filters, sort, tours],
   )
   const totalPages = Math.max(1, Math.ceil(filteredTours.length / toursPerPage))
+  const currentPage = Math.min(page, totalPages)
   const pagedTours = filteredTours.slice(
-    (page - 1) * toursPerPage,
-    page * toursPerPage,
+    (currentPage - 1) * toursPerPage,
+    currentPage * toursPerPage,
   )
-
-  /* EFFECTS */
-  useEffect(() => {
-    setFilters(defaultFilters)
-  }, [defaultFilters])
-
-  useEffect(() => {
-    setPage(1)
-  }, [filters, sort])
 
   /* HANDLERS */
   const handleToggleFilters = () => setShowFilters(visible => !visible)
-  const handleSortChange = (nextSort: SortKey) => setSort(nextSort)
+  const setFilters = (nextFilters: TourFilters) => {
+    setFilterState({ defaults: defaultFilters, value: nextFilters })
+    setPage(1)
+  }
+  const handleSortChange = (nextSort: SortKey) => {
+    setSort(nextSort)
+    setPage(1)
+  }
   const handlePageChange = (nextPage: number) => {
     setPage(nextPage)
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
@@ -89,7 +95,7 @@ export function useTourCatalogState(toursPerPage = 9) {
     setFilters,
     sort,
     handleSortChange,
-    page,
+    page: currentPage,
     showFilters,
     handleToggleFilters,
     topRef,

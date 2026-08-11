@@ -42,7 +42,7 @@ export default function Steps() {
 
           <Box className="steps-media">
             <img
-              src="/img/about-us-img/about-steps.jpg"
+              src="/img/about-us-img/about-steps.webp"
               alt="Trip planning essentials"
               loading="lazy"
             />

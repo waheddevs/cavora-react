@@ -9,6 +9,7 @@ import theme from "app/MaterialTheme"
 import "css/index.css"
 import { BrowserRouter as Router } from "react-router-dom"
 import { SweetAlertProvider } from "app/contexts/SweetAlertContext"
+import AuthProvider from "app/contexts/AuthProvider"
 
 const container = document.getElementById("root")
 
@@ -21,9 +22,11 @@ if (container) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Router>
-            <SweetAlertProvider>
-              <App />
-            </SweetAlertProvider>
+            <AuthProvider>
+              <SweetAlertProvider>
+                <App />
+              </SweetAlertProvider>
+            </AuthProvider>
           </Router>
         </ThemeProvider>
       </Provider>

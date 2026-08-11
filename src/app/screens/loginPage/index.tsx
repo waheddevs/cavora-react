@@ -20,7 +20,7 @@ export default function LoginPage() {
     <Box className="login-page">
       <Box className="auth-visual">
         <img
-          src="/img/home-page-img/hero.jpg"
+          src="/img/home-page-img/hero.webp"
           className="visual-photo"
           alt=""
           aria-hidden="true"

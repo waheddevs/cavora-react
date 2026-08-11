@@ -5,7 +5,7 @@ import { Post } from "app/types/blog"
 export const posts: Post[] = [
   {
     id: 1,
-    img: "/img/blog-img/post-1.jpg",
+    img: "/img/blog-img/post-1.webp",
     date: "26 Aug 2023",
     readTime: "7 min read",
     comments: 85,
@@ -15,11 +15,11 @@ export const posts: Post[] = [
     excerpt:
       "Nestled between towering marble mountains and a sweeping crescent bay, Da Nang has quickly risen from a wartime memory to one of Southeast Asia's most liveable and loveable cities. From the dazzling...",
     author: "James Carter",
-    authorImg: "/img/blog-img/author-1.jpg",
+    authorImg: "/img/blog-img/author-1.webp",
   },
   {
     id: 2,
-    img: "/img/blog-img/post-2.jpg",
+    img: "/img/blog-img/post-2.webp",
     date: "14 Aug 2023",
     readTime: "6 min read",
     comments: 94,
@@ -28,11 +28,11 @@ export const posts: Post[] = [
     excerpt:
       "When December arrives, certain corners of Europe transform into living fairy tales. Cobblestone streets shimmer under golden lanterns, mulled wine steams from wooden market stalls, and cathedral spires disappear...",
     author: "Sophie Laurent",
-    authorImg: "/img/blog-img/author-2.jpg",
+    authorImg: "/img/blog-img/author-2.webp",
   },
   {
     id: 3,
-    img: "/img/blog-img/post-3.jpg",
+    img: "/img/blog-img/post-3.webp",
     date: "02 Aug 2023",
     readTime: "8 min read",
     comments: 42,
@@ -41,11 +41,11 @@ export const posts: Post[] = [
     excerpt:
       "A sweeping new report ranking the world's greatest cities has stunned travel enthusiasts — with some old favorites slipping down the charts and several rising stars from Asia and South America claiming unexpected...",
     author: "Marco Bianchi",
-    authorImg: "/img/blog-img/author-3.jpg",
+    authorImg: "/img/blog-img/author-3.webp",
   },
   {
     id: 4,
-    img: "/img/blog-img/post-4.jpg",
+    img: "/img/blog-img/post-4.webp",
     date: "18 Jul 2023",
     readTime: "5 min read",
     comments: 31,
@@ -55,11 +55,11 @@ export const posts: Post[] = [
     excerpt:
       "Twelve hours above the Atlantic in Delta's upgraded transatlantic cabin. From the lie-flat seats and noise-cancelling amenity kit to the surprisingly decent wine list and the moment New York's city grid vanishes beneath th...",
     author: "Aisha Nakamura",
-    authorImg: "/img/blog-img/author-4.jpg",
+    authorImg: "/img/blog-img/author-4.webp",
   },
   {
     id: 5,
-    img: "/img/blog-img/post-5.jpg",
+    img: "/img/blog-img/post-5.webp",
     date: "05 Jul 2023",
     readTime: "9 min read",
     comments: 74,
@@ -68,11 +68,11 @@ export const posts: Post[] = [
     excerpt:
       "Beyond the well-worn trails of Bali and Bangkok lies a Southeast Asia most visitors never see. Pristine islands with no resort in sight, ancient hill-tribe villages where electricity only arrived a decade ago, and jungle rivers that...",
     author: "Liam Walker",
-    authorImg: "/img/blog-img/author-5.jpg",
+    authorImg: "/img/blog-img/author-5.webp",
   },
   {
     id: 6,
-    img: "/img/blog-img/post-6.jpg",
+    img: "/img/blog-img/post-6.webp",
     date: "28 Jun 2023",
     readTime: "7 min read",
     comments: 55,
@@ -81,11 +81,11 @@ export const posts: Post[] = [
     excerpt:
       "Two weeks, six islands, infinite shades of blue. From the iconic caldera sunsets of Santorini to the secretive beaches of Milos that look like they belong on another planet, this is the definitive island-hopping route for...",
     author: "Elena Rossi",
-    authorImg: "/img/blog-img/author-6.jpg",
+    authorImg: "/img/blog-img/author-6.webp",
   },
   {
     id: 7,
-    img: "/img/blog-img/post-7.jpg",
+    img: "/img/blog-img/post-7.webp",
     date: "08 Jun 2023",
     readTime: "10 min read",
     comments: 93,
@@ -94,11 +94,11 @@ export const posts: Post[] = [
     excerpt:
       "Japan has a reputation for being expensive — and in some respects it is. But with a JR Pass, a willingness to eat at standing-room ramen counters, and a few insider tricks for free temples and gardens, we managed to live...",
     author: "Kenji Tanaka",
-    authorImg: "/img/blog-img/author-7.jpg",
+    authorImg: "/img/blog-img/author-7.webp",
   },
   {
     id: 8,
-    img: "/img/blog-img/post-8.jpg",
+    img: "/img/blog-img/post-8.webp",
     date: "22 May 2023",
     readTime: "8 min read",
     comments: 48,
@@ -107,11 +107,11 @@ export const posts: Post[] = [
     excerpt:
       "Bali's weather isn't quite as straightforward as the brochures suggest. The difference between arriving in July and arriving in February can mean the difference between a dream holiday and a flooded rice terrace. Here's our...",
     author: "Nadia Hassan",
-    authorImg: "/img/blog-img/author-8.jpg",
+    authorImg: "/img/blog-img/author-8.webp",
   },
   {
     id: 9,
-    img: "/img/blog-img/post-9.jpg",
+    img: "/img/blog-img/post-9.webp",
     date: "10 May 2023",
     readTime: "8 min read",
     comments: 67,
@@ -120,11 +120,11 @@ export const posts: Post[] = [
     excerpt:
       "We drove a 4x4 campervan across Iceland's Ring Road in late October, sleeping under the stars and waking at 2am for every aurora alert on our phones. Some nights brought nothing but clouds and disappointment...",
     author: "Freya Andersen",
-    authorImg: "/img/blog-img/author-9.jpg",
+    authorImg: "/img/blog-img/author-9.webp",
   },
   {
     id: 10,
-    img: "/img/blog-img/post-10.jpg",
+    img: "/img/blog-img/post-10.webp",
     date: "28 Apr 2023",
     readTime: "11 min read",
     comments: 82,
@@ -133,11 +133,11 @@ export const posts: Post[] = [
     excerpt:
       "The Maasai Mara at dawn, when the mist is still low over the savanna and a lioness is watching a herd of zebra with patient, yellow eyes — this is a scene that rearranges something inside you. Our complete guide to...",
     author: "David Okoro",
-    authorImg: "/img/blog-img/author-10.jpg",
+    authorImg: "/img/blog-img/author-10.webp",
   },
   {
     id: 11,
-    img: "/img/blog-img/post-11.jpg",
+    img: "/img/blog-img/post-11.webp",
     date: "15 Apr 2023",
     readTime: "7 min read",
     comments: 35,
@@ -146,11 +146,11 @@ export const posts: Post[] = [
     excerpt:
       "A Mediterranean cruise sounds simple until you start looking at the options: river vs. ocean, all-inclusive vs. not, 7-night vs. 14-night, which ports are actually worth a day's exploration and which are best seen from the deck...",
     author: "Sofia Marino",
-    authorImg: "/img/blog-img/author-11.jpg",
+    authorImg: "/img/blog-img/author-11.webp",
   },
   {
     id: 12,
-    img: "/img/blog-img/post-12.jpg",
+    img: "/img/blog-img/post-12.webp",
     date: "01 Apr 2023",
     readTime: "5 min read",
     comments: 20,
@@ -159,7 +159,7 @@ export const posts: Post[] = [
     excerpt:
       "Whitewashed walls, blue-domed churches, and sunsets that make every other sunset feel like a rehearsal — Santorini has earned its reputation as the most romantic island on earth. Here's how to experience it beyond the...",
     author: "Oliver Bennett",
-    authorImg: "/img/blog-img/author-12.jpg",
+    authorImg: "/img/blog-img/author-12.webp",
   },
 ]
 

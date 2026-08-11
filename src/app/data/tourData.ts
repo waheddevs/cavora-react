@@ -18,9 +18,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/bali-ubud-1.jpg",
-      "/img/tour-single/bali-ubud-2.jpg",
-      "/img/tour-single/bali-ubud-3.jpg",
+      "/img/tour-single/bali-ubud-1.webp",
+      "/img/tour-single/bali-ubud-2.webp",
+      "/img/tour-single/bali-ubud-3.webp",
     ],
     overview:
       "Discover the spiritual heart of Bali in Ubud, where emerald rice terraces cascade down the hillsides and centuries-old temples hide among the jungle. This retreat blends culture, nature and gentle adventure into an unforgettable island escape. You'll wake to the sound of birdsong in a private jungle villa, learn to cook authentic Balinese dishes from a local family, and walk the famous Tegallalang terraces before the crowds arrive. Between temple visits and waterfall treks, there is plenty of time to slow down, breathe, and let the island's calm rhythm work its magic. It is the perfect introduction to the soul of Bali.",
@@ -82,9 +82,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/bali-uluwatu-1.jpg",
-      "/img/tour-single/bali-uluwatu-2.jpg",
-      "/img/tour-single/bali-uluwatu-3.jpg",
+      "/img/tour-single/bali-uluwatu-1.webp",
+      "/img/tour-single/bali-uluwatu-2.webp",
+      "/img/tour-single/bali-uluwatu-3.webp",
     ],
     overview:
       "Perched on dramatic limestone cliffs above the Indian Ocean, Uluwatu is Bali at its most breathtaking. Chase world-class surf breaks, hidden beach clubs and a clifftop temple where the sun melts into the sea. Days here move to the tide — mornings on golden sand, lazy afternoons at cliff-edge pools, and evenings watching the mesmerising Kecak fire dance as the sky turns amber. Seafood is grilled fresh on the beach at Jimbaran, and the surf is legendary whether you're a beginner or a barrel-chasing pro. This is the glamorous, ocean-facing side of Bali.",
@@ -142,9 +142,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/bali-nusapenida-1.jpg",
-      "/img/tour-single/bali-nusapenida-2.jpg",
-      "/img/tour-single/bali-nusapenida-3.jpg",
+      "/img/tour-single/bali-nusapenida-1.webp",
+      "/img/tour-single/bali-nusapenida-2.webp",
+      "/img/tour-single/bali-nusapenida-3.webp",
     ],
     overview:
       "A short boat ride from Bali lies Nusa Penida, an island of jagged cliffs, turquoise coves and the iconic T-Rex-shaped Kelingking Beach. This escape is made for adventurers chasing raw, untouched island beauty. You'll clamber down to hidden beaches, snorkel alongside gentle manta rays in crystal-clear water, and stand at viewpoints that look almost too dramatic to be real. The island is still wonderfully undeveloped, so expect bumpy roads, empty coves and jaw-dropping scenery at every turn. If you crave nature over nightlife, Nusa Penida delivers in spades.",
@@ -198,9 +198,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/bali-batur-1.jpg",
-      "/img/tour-single/bali-batur-2.jpg",
-      "/img/tour-single/bali-batur-3.jpg",
+      "/img/tour-single/bali-batur-1.webp",
+      "/img/tour-single/bali-batur-2.webp",
+      "/img/tour-single/bali-batur-3.webp",
     ],
     overview:
       "Summit an active volcano before dawn and watch the sun rise over Lake Batur and a sea of clouds below. This trek pairs pure adrenaline with Bali's volcanic highlands, natural hot springs and sweeping caldera views. You'll set off by headlamp in the small hours, climb to the 1,717-metre summit, and reach the top just as the first light spills across the horizon — breakfast is even cooked using volcanic steam. Afterwards, soothe tired legs in natural hot springs and sip some of the island's finest coffee at a highland plantation. It's a bucket-list morning you won't forget.",
@@ -256,9 +256,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 14 People",
     images: [
-      "/img/tour-single/france-paris-1.jpg",
-      "/img/tour-single/france-paris-2.jpg",
-      "/img/tour-single/france-paris-3.jpg",
+      "/img/tour-single/france-paris-1.webp",
+      "/img/tour-single/france-paris-2.webp",
+      "/img/tour-single/france-paris-3.webp",
     ],
     overview:
       "Fall in love with Paris, a city where every street corner feels like a postcard and every meal is a small celebration. From the iron lace of the Eiffel Tower to the masterpieces of the Louvre, this tour captures the romance and grandeur of the French capital. You'll cruise the Seine at dusk, wander the artist-filled lanes of Montmartre, and linger in cafés watching the world drift by. There's time for haute-couture window shopping, buttery croissants, and an unforgettable evening beneath the sparkling tower. Paris rewards the curious — and this trip lets you savour every moment of it.",
@@ -320,9 +320,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/france-riviera-1.jpg",
-      "/img/tour-single/france-riviera-2.jpg",
-      "/img/tour-single/france-riviera-3.jpg",
+      "/img/tour-single/france-riviera-1.webp",
+      "/img/tour-single/france-riviera-2.webp",
+      "/img/tour-single/france-riviera-3.webp",
     ],
     overview:
       "The Côte d'Azur has drawn artists, aristocrats and sun-seekers for over a century, and it's easy to see why. Base yourself in Nice, with its pebble beaches and pastel Old Town, then explore the glamorous coastline that curves toward Monaco and Cannes. Days are spent swimming in impossibly blue water, sipping rosé on seaside terraces, and wandering perfumed hilltop villages like Èze. The light here is famous — soft, golden and endlessly flattering. Whether you're chasing glamour or just a perfect stretch of Mediterranean coast, the Riviera delivers effortless elegance.",
@@ -380,9 +380,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/france-provence-1.jpg",
-      "/img/tour-single/france-provence-2.jpg",
-      "/img/tour-single/france-provence-3.jpg",
+      "/img/tour-single/france-provence-1.webp",
+      "/img/tour-single/france-provence-2.webp",
+      "/img/tour-single/france-provence-3.webp",
     ],
     overview:
       "In summer, Provence turns into a rolling canvas of purple, the air thick with the scent of lavender and the hum of bees. This escape takes you deep into the French countryside, through honey-stone villages, sun-drenched vineyards and the vast lavender fields of the Valensole plateau. You'll tour a working distillery, taste local rosé and olive oil, and browse markets piled high with herbs and cheese. Life moves slowly here, dictated by long lunches and golden evening light. It's the France of dreams — rustic, fragrant and utterly relaxing.",
@@ -440,9 +440,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 14 People",
     images: [
-      "/img/tour-single/france-montsaintmichel-1.jpg",
-      "/img/tour-single/france-montsaintmichel-2.jpg",
-      "/img/tour-single/france-montsaintmichel-3.jpg",
+      "/img/tour-single/france-montsaintmichel-1.webp",
+      "/img/tour-single/france-montsaintmichel-2.webp",
+      "/img/tour-single/france-montsaintmichel-3.webp",
     ],
     overview:
       "Rising from the tidal flats of Normandy like something from a fairy tale, Mont Saint-Michel is one of France's most spectacular sights. This medieval abbey-island has crowned its rocky outcrop for over a thousand years, encircled by some of Europe's most dramatic tides. You'll wander its steep cobbled lanes, climb to the soaring Gothic abbey, and watch the sea rush across the bay at extraordinary speed. Time your visit right and the mount becomes a true island, mirrored in the shining sands. It's history, drama and beauty rolled into one unforgettable silhouette.",
@@ -498,9 +498,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/iceland-goldencircle-1.jpg",
-      "/img/tour-single/iceland-goldencircle-2.jpg",
-      "/img/tour-single/iceland-goldencircle-3.jpg",
+      "/img/tour-single/iceland-goldencircle-1.webp",
+      "/img/tour-single/iceland-goldencircle-2.webp",
+      "/img/tour-single/iceland-goldencircle-3.webp",
     ],
     overview:
       "Iceland's Golden Circle packs an astonishing amount of raw nature into a single loop. You'll stand between two continental plates at Þingvellir, feel the ground rumble as the Strokkur geyser erupts, and watch the mighty Gullfoss waterfall thunder into its canyon. This tour adds bubbling hot springs, lava fields and, in the right season, a chance to chase the northern lights across a star-filled sky. Every stop feels otherworldly, like stepping onto another planet. If you want Iceland's greatest hits with time to truly take them in, this is the trip.",
@@ -558,9 +558,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/iceland-bluelagoon-1.jpg",
-      "/img/tour-single/iceland-bluelagoon-2.jpg",
-      "/img/tour-single/iceland-bluelagoon-3.jpg",
+      "/img/tour-single/iceland-bluelagoon-1.webp",
+      "/img/tour-single/iceland-bluelagoon-2.webp",
+      "/img/tour-single/iceland-bluelagoon-3.webp",
     ],
     overview:
       "Few experiences are as surreal as floating in the milky-blue, mineral-rich water of the Blue Lagoon while snow drifts down around you. Set in a moss-covered lava field near Reykjavík, this geothermal spa is Iceland's most famous escape for good reason. This retreat pairs the lagoon with a silica mud mask, an in-water drink, and time to simply unwind in the steaming, healing waters. Around it, the stark volcanic landscape feels almost lunar. It's the ultimate reset — warm, restorative and unlike anywhere else on earth.",
@@ -614,9 +614,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/iceland-jokulsarlon-1.jpg",
-      "/img/tour-single/iceland-jokulsarlon-2.jpg",
-      "/img/tour-single/iceland-jokulsarlon-3.jpg",
+      "/img/tour-single/iceland-jokulsarlon-1.webp",
+      "/img/tour-single/iceland-jokulsarlon-2.webp",
+      "/img/tour-single/iceland-jokulsarlon-3.webp",
     ],
     overview:
       "At Jökulsárlón, great blue icebergs calve from an ancient glacier and drift serenely across a mirror-still lagoon before washing up like diamonds on the black volcanic beach nearby. It is one of the most spellbinding places in all of Iceland. On this tour you'll cruise among the floating ice, walk the glittering shores of Diamond Beach, and travel the epic south coast past thundering waterfalls and towering glaciers. Seals often bob between the icebergs, and the light shifts endlessly across the ice. This is Iceland at its most magical and cinematic.",
@@ -674,9 +674,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/iceland-vik-1.jpg",
-      "/img/tour-single/iceland-vik-2.jpg",
-      "/img/tour-single/iceland-vik-3.jpg",
+      "/img/tour-single/iceland-vik-1.webp",
+      "/img/tour-single/iceland-vik-2.webp",
+      "/img/tour-single/iceland-vik-3.webp",
     ],
     overview:
       "The tiny village of Vík sits beneath green cliffs on Iceland's wild south coast, framed by one of the most dramatic beaches on earth. Reynisfjara's jet-black sand, towering basalt columns and roaring Atlantic waves feel almost supernatural. This tour explores the coast's sea stacks, hidden caves and puffin-dotted cliffs, with the ever-present rumble of the ocean as your soundtrack. Nearby waterfalls and lava fields add to the sense of raw, untamed nature. It's moody, powerful and endlessly photogenic — Iceland's coastline at its most striking.",
@@ -732,9 +732,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 14 People",
     images: [
-      "/img/tour-single/italy-rome-1.jpg",
-      "/img/tour-single/italy-rome-2.jpg",
-      "/img/tour-single/italy-rome-3.jpg",
+      "/img/tour-single/italy-rome-1.webp",
+      "/img/tour-single/italy-rome-2.webp",
+      "/img/tour-single/italy-rome-3.webp",
     ],
     overview:
       "Rome is a city where three thousand years of history live side by side with the buzz of modern Italian life. Walk in the footsteps of gladiators at the Colosseum, toss a coin into the Trevi Fountain, and gaze up at Michelangelo's ceiling in the Vatican. Between the ancient wonders there's espresso to sip, pasta to twirl and piazzas made for people-watching. Every alley reveals a fountain, a ruin or a trattoria that feels untouched by time. This is the Eternal City at its most captivating — grand, delicious and gloriously alive.",
@@ -796,9 +796,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/italy-venice-1.jpg",
-      "/img/tour-single/italy-venice-2.jpg",
-      "/img/tour-single/italy-venice-3.jpg",
+      "/img/tour-single/italy-venice-1.webp",
+      "/img/tour-single/italy-venice-2.webp",
+      "/img/tour-single/italy-venice-3.webp",
     ],
     overview:
       "There is nowhere on earth quite like Venice, a city of canals, bridges and faded palazzos that seems to float on the water. Glide down the Grand Canal by gondola, get gloriously lost in its maze of alleys, and watch St Mark's Square glow at golden hour. This escape includes the glassblowers of Murano and the rainbow houses of Burano, plus quiet corners the day-trippers never find. Every view looks like a painting, and every meal is an excuse to linger. Romantic, timeless and slowly sinking, Venice is a place to savour before it slips away.",
@@ -856,9 +856,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/italy-amalfi-1.jpg",
-      "/img/tour-single/italy-amalfi-2.jpg",
-      "/img/tour-single/italy-amalfi-3.jpg",
+      "/img/tour-single/italy-amalfi-1.webp",
+      "/img/tour-single/italy-amalfi-2.webp",
+      "/img/tour-single/italy-amalfi-3.webp",
     ],
     overview:
       "The Amalfi Coast is Italy's most dazzling stretch of shoreline, where pastel villages tumble down cliffs to a sparkling sea. Wind along the legendary coastal road to Positano, Amalfi and Ravello, past lemon groves and hidden coves. This trip mixes leisurely beach time with boat trips, clifftop gardens and long lunches of fresh seafood and limoncello. The scenery is impossibly romantic, the pace unhurried, and every turn reveals another view worth stopping for. Glamorous yet soulful, it's the Mediterranean dream made real.",
@@ -916,9 +916,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/italy-cinqueterre-1.jpg",
-      "/img/tour-single/italy-cinqueterre-2.jpg",
-      "/img/tour-single/italy-cinqueterre-3.jpg",
+      "/img/tour-single/italy-cinqueterre-1.webp",
+      "/img/tour-single/italy-cinqueterre-2.webp",
+      "/img/tour-single/italy-cinqueterre-3.webp",
     ],
     overview:
       "Five candy-coloured fishing villages cling to the rugged cliffs of the Italian Riviera, linked by scenic hiking trails and a coastal train. Cinque Terre is a place of terraced vineyards, tiny harbours and pastel houses stacked impossibly above the sea. This trip walks the famous cliffside paths between the villages, with plenty of stops for pesto, seafood and cool glasses of local white wine. Swim in hidden coves, ride the little train from town to town, and watch the sunset paint the houses gold. It's active, authentic and endlessly beautiful.",
@@ -974,9 +974,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/japan-tokyo-1.jpg",
-      "/img/tour-single/japan-tokyo-2.jpg",
-      "/img/tour-single/japan-tokyo-3.jpg",
+      "/img/tour-single/japan-tokyo-1.webp",
+      "/img/tour-single/japan-tokyo-2.webp",
+      "/img/tour-single/japan-tokyo-3.webp",
     ],
     overview:
       "Tokyo is a city of thrilling contrasts, where neon-soaked skyscrapers rise above centuries-old temples and hyper-modern tech sits beside serene gardens. Cross the famous Shibuya scramble, feast on the freshest sushi, and find calm at the ancient Senso-ji temple. This tour dives into the city's electric energy and its quiet traditions in equal measure — from robot-filled arcades to peaceful tea ceremonies. Every neighbourhood has its own personality and its own incredible food. Fast, futuristic and endlessly fascinating, Tokyo is a place that rewards the endlessly curious.",
@@ -1038,9 +1038,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/japan-kyoto-1.jpg",
-      "/img/tour-single/japan-kyoto-2.jpg",
-      "/img/tour-single/japan-kyoto-3.jpg",
+      "/img/tour-single/japan-kyoto-1.webp",
+      "/img/tour-single/japan-kyoto-2.webp",
+      "/img/tour-single/japan-kyoto-3.webp",
     ],
     overview:
       "Kyoto is the soul of old Japan, a city of golden temples, moss gardens and geisha-filled lanes that has kept its grace for over a thousand years. Walk beneath the thousand vermilion gates of Fushimi Inari, drift through the ethereal Arashiyama bamboo grove, and watch the light play on the Golden Pavilion. This tour moves at a contemplative pace, with tea ceremonies, kimono strolls and quiet temple courtyards. In spring the cherry blossoms fall like snow; in autumn the maples blaze red. It's a serene, deeply beautiful counterpoint to Japan's bustling cities.",
@@ -1098,9 +1098,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/japan-fuji-1.jpg",
-      "/img/tour-single/japan-fuji-2.jpg",
-      "/img/tour-single/japan-fuji-3.jpg",
+      "/img/tour-single/japan-fuji-1.webp",
+      "/img/tour-single/japan-fuji-2.webp",
+      "/img/tour-single/japan-fuji-3.webp",
     ],
     overview:
       "Snow-capped and perfectly symmetrical, Mount Fuji is Japan's sacred icon and one of the most beautiful mountains on earth. This retreat takes you to its lakeside foothills and the hot-spring valley of Hakone, where you can soak in an onsen while gazing at the peak. Cruise Lake Ashi, ride the scenic ropeway over steaming volcanic vents, and photograph Fuji reflected in still waters at dawn. Traditional inns, kaiseki dinners and mineral baths make this as restful as it is scenic. It's the Japan of woodblock prints, brought vividly to life.",
@@ -1154,9 +1154,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/japan-osaka-1.jpg",
-      "/img/tour-single/japan-osaka-2.jpg",
-      "/img/tour-single/japan-osaka-3.jpg",
+      "/img/tour-single/japan-osaka-1.webp",
+      "/img/tour-single/japan-osaka-2.webp",
+      "/img/tour-single/japan-osaka-3.webp",
     ],
     overview:
       "Loud, friendly and famously food-obsessed, Osaka is Japan's kitchen and its most fun-loving city. Follow the neon glow to the Dotonbori canal, where giant signs tower over stalls sizzling with takoyaki and okonomiyaki. This tour balances the city's non-stop street-food energy with its history at the magnificent Osaka Castle and its serene gardens. Locals are warm and quick to laugh, and the nightlife hums until the early hours. If you travel to eat, Osaka is paradise — every corner offers another must-try bite.",
@@ -1212,9 +1212,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 10 People",
     images: [
-      "/img/tour-single/maldives-male-1.jpg",
-      "/img/tour-single/maldives-male-2.jpg",
-      "/img/tour-single/maldives-male-3.jpg",
+      "/img/tour-single/maldives-male-1.webp",
+      "/img/tour-single/maldives-male-2.webp",
+      "/img/tour-single/maldives-male-3.webp",
     ],
     overview:
       "The colourful capital of Malé is the beating heart of the Maldives and the gateway to its thousand shimmering islands. This trip explores the bustling little city — its fish market, golden mosque and vibrant waterfront — before whisking you out to the turquoise lagoons that made the country famous. Snorkel over living coral, cruise past uninhabited sandbanks, and end each day watching the sun sink into an endless ocean. It's the perfect blend of local culture and postcard-perfect island bliss. The Indian Ocean has rarely looked so inviting.",
@@ -1272,9 +1272,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/maldives-maafushi-1.jpg",
-      "/img/tour-single/maldives-maafushi-2.jpg",
-      "/img/tour-single/maldives-maafushi-3.jpg",
+      "/img/tour-single/maldives-maafushi-1.webp",
+      "/img/tour-single/maldives-maafushi-2.webp",
+      "/img/tour-single/maldives-maafushi-3.webp",
     ],
     overview:
       "Maafushi offers the Maldives' famous beauty at a friendlier pace — a laid-back local island ringed by soft white sand and warm, glassy water. This escape is all about the ocean: snorkelling with sea turtles, drifting over vivid coral gardens, and swimming in a lagoon so clear it barely looks real. Days are spent island-hopping to sandbanks and hidden reefs, with fresh seafood dinners under the stars. It's relaxed, affordable and authentically Maldivian, without a hint of pretension. Just sun, sea and the softest sand you'll ever feel.",
@@ -1332,9 +1332,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 8 People",
     images: [
-      "/img/tour-single/maldives-baa-1.jpg",
-      "/img/tour-single/maldives-baa-2.jpg",
-      "/img/tour-single/maldives-baa-3.jpg",
+      "/img/tour-single/maldives-baa-1.webp",
+      "/img/tour-single/maldives-baa-2.webp",
+      "/img/tour-single/maldives-baa-3.webp",
     ],
     overview:
       "Baa Atoll is a UNESCO Biosphere Reserve and one of the richest marine environments on the planet, home to dazzling coral reefs and seasonal gatherings of manta rays and whale sharks. This diving and snorkelling adventure takes you into that underwater paradise, gliding above technicolour reefs teeming with life. At the famous Hanifaru Bay, dozens of manta rays swirl in a feeding ballet that few travellers ever witness. Above the surface, luxurious island lodges and empty beaches await. For ocean lovers, it simply doesn't get better than this.",
@@ -1396,9 +1396,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 8 People",
     images: [
-      "/img/tour-single/maldives-ari-1.jpg",
-      "/img/tour-single/maldives-ari-2.jpg",
-      "/img/tour-single/maldives-ari-3.jpg",
+      "/img/tour-single/maldives-ari-1.webp",
+      "/img/tour-single/maldives-ari-2.webp",
+      "/img/tour-single/maldives-ari-3.webp",
     ],
     overview:
       "This is the Maldives of your imagination: a private overwater villa perched above a glowing turquoise lagoon, with steps leading straight into the warm sea. Ari Atoll pairs pure barefoot luxury with some of the country's best marine life, from resident whale sharks to vibrant house reefs. Slip from your deck into the ocean at dawn, dine on the beach by candlelight, and let the days blur into an endless rhythm of sun, spa and sea. Butler service, private dinners and total seclusion make this the ultimate escape. It is quite simply paradise, refined.",
@@ -1462,9 +1462,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "5 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/switzerland-zermatt-1.jpg",
-      "/img/tour-single/switzerland-zermatt-2.jpg",
-      "/img/tour-single/switzerland-zermatt-3.jpg",
+      "/img/tour-single/switzerland-zermatt-1.webp",
+      "/img/tour-single/switzerland-zermatt-2.webp",
+      "/img/tour-single/switzerland-zermatt-3.webp",
     ],
     overview:
       "Beneath the unmistakable pyramid of the Matterhorn lies Zermatt, a car-free alpine village of wooden chalets and mountain air so crisp it sparkles. This adventure rides Europe's highest cable car to a glacier paradise, wanders flower-filled trails with the great peak always in view, and soaks up the storybook charm of the town below. Whether you're hiking, riding scenic railways or simply sipping hot chocolate on a sunny terrace, the Matterhorn dominates every horizon. In winter it's a skier's dream; in summer, a hiker's heaven. It's the Alps at their most iconic and pristine.",
@@ -1526,9 +1526,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/switzerland-interlaken-1.jpg",
-      "/img/tour-single/switzerland-interlaken-2.jpg",
-      "/img/tour-single/switzerland-interlaken-3.jpg",
+      "/img/tour-single/switzerland-interlaken-1.webp",
+      "/img/tour-single/switzerland-interlaken-2.webp",
+      "/img/tour-single/switzerland-interlaken-3.webp",
     ],
     overview:
       "Cradled between two brilliant blue lakes and ringed by snow-dusted peaks, Interlaken is Switzerland's adventure capital. This trip mixes heart-pounding thrills with jaw-dropping scenery, from paragliding over the valley to cruising the turquoise waters of Lake Brienz. Ride cogwheel trains up to alpine meadows, marvel at the thundering Trümmelbach Falls, and gaze up at the mighty Eiger, Mönch and Jungfrau. Charming lakeside towns and Swiss chocolate provide the gentler moments. Whether you crave adrenaline or postcard views, Interlaken delivers both in spectacular fashion.",
@@ -1583,9 +1583,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "3 Days",
     group: "Max 14 People",
     images: [
-      "/img/tour-single/switzerland-lucerne-1.jpg",
-      "/img/tour-single/switzerland-lucerne-2.jpg",
-      "/img/tour-single/switzerland-lucerne-3.jpg",
+      "/img/tour-single/switzerland-lucerne-1.webp",
+      "/img/tour-single/switzerland-lucerne-2.webp",
+      "/img/tour-single/switzerland-lucerne-3.webp",
     ],
     overview:
       "With its covered wooden bridge, frescoed old town and shimmering lake framed by mountains, Lucerne is Switzerland at its most postcard-perfect. This relaxed tour wanders the medieval streets, cruises the tranquil Lake Lucerne, and rides up nearby Mount Pilatus for panoramic alpine views. There's time for lakeside cafés, Swiss watch shops and the moving Lion Monument carved into the cliff. The pace is gentle and the scenery sublime, making it ideal for those who want beauty without the strenuous hikes. It's a graceful, romantic slice of the Swiss heartland.",
@@ -1639,9 +1639,9 @@ const staticTours: Array<Omit<Tour, "viewCount">> = [
     days: "4 Days",
     group: "Max 12 People",
     images: [
-      "/img/tour-single/switzerland-jungfraujoch-1.jpg",
-      "/img/tour-single/switzerland-jungfraujoch-2.jpg",
-      "/img/tour-single/switzerland-jungfraujoch-3.jpg",
+      "/img/tour-single/switzerland-jungfraujoch-1.webp",
+      "/img/tour-single/switzerland-jungfraujoch-2.webp",
+      "/img/tour-single/switzerland-jungfraujoch-3.webp",
     ],
     overview:
       "Ride one of the world's most extraordinary railways to Jungfraujoch, the 'Top of Europe', where a glittering world of glaciers and eternal snow awaits at 3,454 metres. The journey climbs through tunnels bored into the Eiger itself, emerging into a dazzling alpine wonderland of ice palaces and endless white peaks. This tour also explores the flower-strewn villages of the Jungfrau valley below, from Grindelwald to the cliffside hamlet of Mürren. Standing on the roof of the Alps, surrounded by the great Aletsch Glacier, is a memory that lasts a lifetime. It's Switzerland's grandest high-altitude adventure.",

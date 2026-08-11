@@ -1,4 +1,5 @@
 import { baseApi } from "./baseApi"
+import { resolveImageUrl } from "./baseApi"
 import {
   ApiBlogPostDetail,
   ApiBlogPostSummary,
@@ -12,7 +13,7 @@ function adaptPost(post: ApiBlogPostSummary): Post {
   return {
     id: post.id,
     slug: post.slug,
-    img: post.imageUrl,
+    img: resolveImageUrl(post.imageUrl),
     date: new Intl.DateTimeFormat("en-GB", {
       day: "2-digit",
       month: "short",
@@ -24,7 +25,9 @@ function adaptPost(post: ApiBlogPostSummary): Post {
     title: post.title,
     excerpt: post.excerpt,
     author: post.authorName,
-    authorImg: post.authorImageUrl ?? "/img/team-img/member-1.jpg",
+    authorImg: resolveImageUrl(
+      post.authorImageUrl ?? "/img/team-img/member-1.webp",
+    ),
   }
 }
 

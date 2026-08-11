@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Post } from "app/types/blog"
 import { useGetPostsQuery } from "app/api/blogApi"
 
@@ -30,11 +30,6 @@ export function useBlogPagination(
   /* DERIVED DATA */
   const totalPages = Math.max(1, postsQuery.data?.meta.totalPages ?? 1)
   const visiblePosts = postsQuery.data?.data ?? []
-
-  /* EFFECTS */
-  useEffect(() => {
-    setPage(1)
-  }, [category])
 
   /* HANDLERS */
   const handlePageChange = (nextPage: number) => {

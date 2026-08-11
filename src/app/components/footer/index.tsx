@@ -30,6 +30,7 @@ export default function Footer() {
     serviceStatus,
     isHealthChecking,
     isOpenApiLoading,
+    handleCheckHealth,
     handleOpenApiDocs,
     handleDownloadOpenApi,
   } = useSystemEndpoints()
@@ -137,10 +138,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Cavora. All rights reserved.
           </Typography>
           <Box className="footer-system-links">
-            <span
+            <button
+              type="button"
               className={`footer-system-status${
                 isOperational ? " is-operational" : ""
               }`}
+              onClick={handleCheckHealth}
+              disabled={isHealthChecking}
               title={
                 health
                   ? `${health.service} · Database ${health.checks.database}`
@@ -150,7 +154,7 @@ export default function Footer() {
             >
               <i className={isHealthChecking ? "is-checking" : ""} />
               {serviceStatus}
-            </span>
+            </button>
             <button type="button" onClick={handleOpenApiDocs}>
               <DescriptionRoundedIcon />
               API Docs

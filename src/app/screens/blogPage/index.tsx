@@ -11,7 +11,7 @@ export default function BlogPage() {
     <Box className="blog-page">
       <Container maxWidth={false} className="blog-container">
         <Box className="blog-layout">
-          <BlogList category={activeCategory} />
+          <BlogList key={activeCategory} category={activeCategory} />
           <BlogSidebar
             activeCategory={activeCategory}
             onSelectCategory={setActiveCategory}

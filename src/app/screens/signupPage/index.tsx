@@ -26,7 +26,7 @@ export default function SignupPage() {
     <Box className="signup-page">
       <Box className="auth-visual">
         <img
-          src="/img/home-page-img/spotlight-machu-picchu.jpg"
+          src="/img/home-page-img/spotlight-machu-picchu.webp"
           className="visual-photo"
           alt=""
           aria-hidden="true"

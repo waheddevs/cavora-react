@@ -122,7 +122,7 @@ export default function BlogDetailsPage() {
                 {comments.map(comment => (
                   <Box className="comment-item" key={comment.id}>
                     <img
-                      src="/img/team-img/member-1.jpg"
+                      src="/img/team-img/member-1.webp"
                       alt={comment.name}
                       loading="lazy"
                     />

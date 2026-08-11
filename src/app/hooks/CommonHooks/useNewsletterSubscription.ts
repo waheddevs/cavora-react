@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useSubscribeToNewsletterMutation } from "app/api/newsletterApi"
 import { getApiErrorMessage } from "app/api/apiErrors"
-import { useNotifications } from "app/contexts/SweetAlertContext"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 import { NewsletterSource } from "app/types/newsletter"
 
 export function useNewsletterSubscription(source: NewsletterSource) {

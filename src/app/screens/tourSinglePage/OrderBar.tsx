@@ -1,4 +1,3 @@
-import moment from "moment"
 import { Box, IconButton, Popover, Typography } from "@mui/material"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined"
@@ -10,7 +9,15 @@ import SailingRoundedIcon from "@mui/icons-material/SailingRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded"
 import HeadsetMicRoundedIcon from "@mui/icons-material/HeadsetMicRounded"
-import { weekDays, buildMonthGrid } from "app/utils/calendar"
+import {
+  weekDays,
+  buildMonthGrid,
+  formatDisplayDate,
+  formatMonthYear,
+  isSameDay,
+  parseDateValue,
+  toDateValue,
+} from "app/utils/calendar"
 import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
 export default function OrderBar() {
@@ -68,7 +75,7 @@ export default function OrderBar() {
           >
             <CalendarMonthOutlinedIcon />
             <span className={date ? "" : "ph"}>
-              {date ? moment(date).format("DD MMM YYYY") : "Select a date"}
+              {date ? formatDisplayDate(date) : "Select a date"}
             </span>
           </button>
           {dateError && (
@@ -159,7 +166,7 @@ export default function OrderBar() {
         <Box className="calendar">
           <Box className="calendar-head">
             <Typography className="calendar-title">
-              {viewMonth.format("MMMM YYYY")}
+              {formatMonthYear(viewMonth)}
             </Typography>
             <Box className="calendar-nav">
               <IconButton
@@ -187,14 +194,14 @@ export default function OrderBar() {
 
           <Box className="calendar-grid">
             {buildMonthGrid(viewMonth).map(day => {
-              const inMonth = day.month() === viewMonth.month()
-              const isToday = day.isSame(moment(), "day")
-              const isSelected = date && day.isSame(moment(date), "day")
-              const dateValue = day.format("YYYY-MM-DD")
+              const inMonth = day.getMonth() === viewMonth.getMonth()
+              const isToday = isSameDay(day, new Date())
+              const isSelected = date && isSameDay(day, parseDateValue(date))
+              const dateValue = toDateValue(day)
               const isAvailable = availableDates.has(dateValue)
               return (
                 <button
-                  key={day.format("YYYY-MM-DD")}
+                  key={dateValue}
                   type="button"
                   className={`cal-day${inMonth ? "" : " muted"}${
                     isToday ? " today" : ""
@@ -204,7 +211,7 @@ export default function OrderBar() {
                   disabled={!isAvailable}
                   onClick={() => handleSelectDate(day)}
                 >
-                  {day.date()}
+                  {day.getDate()}
                 </button>
               )
             })}

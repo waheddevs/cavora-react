@@ -53,7 +53,7 @@ export default function OurStory() {
               <Box className="story-ring" />
               <Box className="story-image">
                 <img
-                  src="/img/about-us-img/about-intro.jpg"
+                  src="/img/about-us-img/about-intro.webp"
                   alt="Travellers hiking in the mountains"
                   loading="lazy"
                 />

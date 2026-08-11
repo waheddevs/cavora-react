@@ -1,40 +1,29 @@
 import {
   ReactNode,
-  createContext,
   useCallback,
-  useContext,
   useMemo,
 } from "react"
 import { createRoot, Root } from "react-dom/client"
 import { CircularProgress } from "@mui/material"
-import Swal, { SweetAlertIcon } from "sweetalert2"
-import "css/sweetAlert.css"
+import type { SweetAlertIcon } from "sweetalert2"
+import {
+  ConfirmWithLoadingOptions,
+  NotificationOptions,
+  SweetAlertContext,
+} from "./sweetAlertContextValue"
 
 const BRAND_GOLD = "#FFB300"
 
-interface ConfirmWithLoadingOptions {
-  message: string
-  confirmText?: string
-  cancelText?: string
-  loadingMs?: number
-  onConfirm?: () => void | Promise<void>
-}
-
-interface NotificationOptions {
-  title: string
-  message?: string
-}
-
-interface SweetAlertContextValue {
-  confirmWithLoading: (options: ConfirmWithLoadingOptions) => Promise<boolean>
-  notify: (icon: SweetAlertIcon, options: NotificationOptions) => Promise<void>
-  showComingSoon: (platform: string) => Promise<void>
-}
-
-const SweetAlertContext = createContext<SweetAlertContextValue | null>(null)
-
 const wait = (milliseconds: number) =>
   new Promise(resolve => window.setTimeout(resolve, milliseconds))
+
+async function loadSweetAlert() {
+  const [{ default: Swal }] = await Promise.all([
+    import("sweetalert2"),
+    import("css/sweetAlert.css"),
+  ])
+  return Swal
+}
 
 export function SweetAlertProvider({ children }: { children: ReactNode }) {
   /* ALERT HANDLERS */
@@ -46,6 +35,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
       loadingMs = 3000,
       onConfirm,
     }: ConfirmWithLoadingOptions) => {
+      const Swal = await loadSweetAlert()
       let loaderRoot: Root | null = null
       let loaderHost: HTMLElement | null = null
 
@@ -118,6 +108,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
   /* NOTIFICATION HANDLERS */
   const notify = useCallback(
     async (icon: SweetAlertIcon, { title, message }: NotificationOptions) => {
+      const Swal = await loadSweetAlert()
       await Swal.fire({
         icon,
         iconColor: icon === "error" ? "#E5484D" : BRAND_GOLD,
@@ -139,6 +130,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
   )
 
   const showComingSoon = useCallback(async (platform: string) => {
+    const Swal = await loadSweetAlert()
     await Swal.fire({
       icon: "info",
       iconColor: BRAND_GOLD,
@@ -173,30 +165,4 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
       {children}
     </SweetAlertContext.Provider>
   )
-}
-
-function useSweetAlertContext() {
-  const context = useContext(SweetAlertContext)
-
-  if (!context) {
-    throw new Error("SweetAlert hooks require SweetAlertProvider")
-  }
-
-  return context
-}
-
-export function useAlerts() {
-  const { confirmWithLoading, showComingSoon } = useSweetAlertContext()
-  return { confirmWithLoading, showComingSoon }
-}
-
-export function useNotifications() {
-  const { notify } = useSweetAlertContext()
-
-  return {
-    notifySuccess: (options: NotificationOptions) => notify("success", options),
-    notifyError: (options: NotificationOptions) => notify("error", options),
-    notifyInfo: (options: NotificationOptions) => notify("info", options),
-    notifyWarning: (options: NotificationOptions) => notify("warning", options),
-  }
 }

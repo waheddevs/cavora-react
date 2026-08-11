@@ -3,7 +3,7 @@ import {
   useGetBookingHistoryQuery,
 } from "app/api/bookingApi"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
-import { useNotifications } from "app/contexts/SweetAlertContext"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 
 export function useBookings() {
   /* DOMAIN HOOKS */

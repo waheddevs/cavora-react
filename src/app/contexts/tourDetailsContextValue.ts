@@ -1,0 +1,7 @@
+import { createContext } from "react"
+import { useTourDetailsState } from "app/hooks/TourSingleHooks/useTourDetailsState"
+
+export type TourDetailsContextValue = ReturnType<typeof useTourDetailsState>
+
+export const TourDetailsContext =
+  createContext<TourDetailsContextValue | null>(null)

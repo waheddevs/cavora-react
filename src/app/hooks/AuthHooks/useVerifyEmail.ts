@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 import { useVerifyEmailMutation } from "app/api/authApi"
 import { getApiErrorMessage } from "app/api/apiErrors"
-import { useNotifications } from "app/contexts/SweetAlertContext"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 
 export function useVerifyEmail() {
   /* ROUTER HOOKS */

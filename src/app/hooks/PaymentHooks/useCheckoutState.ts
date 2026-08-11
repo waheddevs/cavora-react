@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
-import moment from "moment"
 import {
   detectCardBrand,
   formatCardNumber,
@@ -10,7 +9,8 @@ import {
 import { PaymentErrors, PaymentValues } from "app/types/payment"
 import { getTourById } from "app/data/tourData"
 import { useBookings } from "app/hooks/CommonHooks/useBookings"
-import { useAlerts } from "app/contexts/SweetAlertContext"
+import { useAlerts } from "app/hooks/CommonHooks/useSweetAlert"
+import { formatBookingDate, formatDisplayDate } from "app/utils/calendar"
 
 export function useCheckoutState() {
   /* ROUTER HOOKS */
@@ -33,7 +33,7 @@ export function useCheckoutState() {
   const [expiry, setExpiry] = useState("")
   const [cvv, setCvv] = useState("")
   const [errors, setErrors] = useState<PaymentErrors>({})
-  const [shake, setShake] = useState(false)
+  const shake = false
   const [loading, setLoading] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(10 * 60)
 
@@ -43,7 +43,7 @@ export function useCheckoutState() {
   const total = subtotal + serviceFee
   const brand = detectCardBrand(cardNumber.replace(/\D/g, ""))
   const formattedDate = date
-    ? moment(date).format("DD MMM YYYY")
+    ? formatDisplayDate(date)
     : "Flexible date"
   const minutesLeft = String(Math.floor(secondsLeft / 60)).padStart(2, "0")
   const secondsRemaining = String(secondsLeft % 60).padStart(2, "0")
@@ -112,7 +112,7 @@ export function useCheckoutState() {
       onConfirm: async () => {
         await addBooking(
           tour.id,
-          moment(date || undefined).format("MMM DD, YYYY"),
+          date ? formatBookingDate(date) : "Flexible date",
           guests,
           total,
         )

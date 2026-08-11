@@ -17,6 +17,6 @@ export const systemApi = baseApi.injectEndpoints({
   }),
 })
 
-export const useGetSystemHealthQuery = systemApi.useGetSystemHealthQuery
+export const useLazyGetSystemHealthQuery = systemApi.useLazyGetSystemHealthQuery
 export const useLazyGetOpenApiDocumentQuery =
   systemApi.useLazyGetOpenApiDocumentQuery

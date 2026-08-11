@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TourDetailsContext } from "app/contexts/TourDetailsContext"
+import { TourDetailsContext } from "app/contexts/tourDetailsContextValue"
 
 export function useTourDetails() {
   const details = useContext(TourDetailsContext)

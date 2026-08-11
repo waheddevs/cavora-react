@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Box, Container, Typography } from "@mui/material"
 import { NavLink } from "react-router-dom"
 import GoldButton from "../ui/GoldButton"
@@ -19,6 +20,18 @@ const featureIcons: Record<string, JSX.Element> = {
   support: <SupportAgentOutlinedIcon className="feature-icon" />,
 }
 
+function getHeroSrcSet(imageUrl: string) {
+  if (!imageUrl.startsWith("/img/slide-img/") || !imageUrl.endsWith(".webp")) {
+    return undefined
+  }
+
+  return [
+    `${imageUrl.replace(".webp", "-640.webp")} 640w`,
+    `${imageUrl.replace(".webp", "-1280.webp")} 1280w`,
+    `${imageUrl} 1920w`,
+  ].join(", ")
+}
+
 export default function HomeNavbar() {
   /* HOOKS */
   const { slides: heroSlides, isLoading, isError } = useHomeContent()
@@ -28,13 +41,25 @@ export default function HomeNavbar() {
   /* DERIVED DATA */
   const active = heroSlides[activeSlide]
 
-  /* Only three slides are ever in the DOM: the one on screen, the one queued
-     up next (so its image is already fetched when it fades in) and the one
-     fading out. That turns a five-image hero into a two-image first paint. */
   const nextSlide =
     heroSlides.length > 0 ? (activeSlide + 1) % heroSlides.length : -1
   const isMounted = (index: number) =>
-    index === activeSlide || index === nextSlide || index === previousSlide
+    index === activeSlide || index === previousSlide
+
+  useEffect(() => {
+    const nextImage = heroSlides[nextSlide]?.imageUrl
+    if (!nextImage) return
+
+    const preloadTimer = window.setTimeout(() => {
+      const image = new Image()
+      image.decoding = "async"
+      image.srcset = getHeroSrcSet(nextImage) ?? ""
+      image.sizes = "100vw"
+      image.src = nextImage
+    }, 1200)
+
+    return () => window.clearTimeout(preloadTimer)
+  }, [heroSlides, nextSlide])
 
   return (
     <>
@@ -53,8 +78,13 @@ export default function HomeNavbar() {
               >
                 <img
                   src={slide.imageUrl}
+                  srcSet={getHeroSrcSet(slide.imageUrl)}
+                  sizes="100vw"
                   alt={slide.title}
                   className="hero-slide-img"
+                  loading={slideIndex === activeSlide ? "eager" : "lazy"}
+                  fetchPriority={slideIndex === activeSlide ? "high" : "auto"}
+                  decoding="async"
                 />
               </Box>
             ) : null,

@@ -1,4 +1,5 @@
 import { ApiTourDetail, ApiTourSummary, Tour } from "app/types/tour"
+import { resolveImageUrl } from "./baseApi"
 
 export function adaptTourSummary(tour: ApiTourSummary): Tour {
   return {
@@ -15,7 +16,7 @@ export function adaptTourSummary(tour: ApiTourSummary): Tour {
     viewCount: tour.viewCount,
     days: `${tour.durationDays} Days`,
     group: `Max ${tour.maxGroupSize} People`,
-    images: tour.images.map(image => image.url),
+    images: tour.images.map(image => resolveImageUrl(image.url)),
     overview: "",
     highlights: [],
     itinerary: [],

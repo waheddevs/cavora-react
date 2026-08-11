@@ -1,11 +1,6 @@
-import { ReactNode, createContext } from "react"
+import { ReactNode } from "react"
 import { useTourCatalogState } from "app/hooks/TourHooks/useTourCatalogState"
-
-export type TourCatalogContextValue = ReturnType<typeof useTourCatalogState>
-
-export const TourCatalogContext = createContext<TourCatalogContextValue | null>(
-  null,
-)
+import { TourCatalogContext } from "./tourCatalogContextValue"
 
 export function TourCatalogProvider({ children }: { children: ReactNode }) {
   const catalog = useTourCatalogState()

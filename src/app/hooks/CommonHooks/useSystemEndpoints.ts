@@ -1,18 +1,14 @@
 import {
-  useGetSystemHealthQuery,
+  useLazyGetSystemHealthQuery,
   useLazyGetOpenApiDocumentQuery,
 } from "app/api/systemApi"
 import { resolveApiUrl } from "app/api/baseApi"
 import { getApiErrorMessage } from "app/api/apiErrors"
-import { useNotifications } from "app/contexts/SweetAlertContext"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 
 export function useSystemEndpoints() {
   /* API HOOKS */
-  const healthQuery = useGetSystemHealthQuery(undefined, {
-    pollingInterval: 60_000,
-    refetchOnFocus: true,
-    refetchOnReconnect: true,
-  })
+  const [getSystemHealth, healthQuery] = useLazyGetSystemHealthQuery()
   const [getOpenApiDocument, openApiState] = useLazyGetOpenApiDocumentQuery()
 
   /* DOMAIN HOOKS */
@@ -20,17 +16,23 @@ export function useSystemEndpoints() {
 
   /* DERIVED DATA */
   const isOperational = healthQuery.data?.status === "ok"
-  const serviceStatus = healthQuery.isLoading
+  const serviceStatus = healthQuery.isFetching
     ? "Checking service..."
     : isOperational
       ? "All systems operational"
       : healthQuery.data?.status === "degraded"
         ? "Service is degraded"
-        : "Service status unavailable"
+        : healthQuery.isError
+          ? "Service status unavailable"
+          : "Check service status"
 
   /* HANDLERS */
   const handleOpenApiDocs = () => {
     window.open(resolveApiUrl("/docs"), "_blank", "noopener,noreferrer")
+  }
+
+  const handleCheckHealth = () => {
+    void getSystemHealth()
   }
 
   const handleDownloadOpenApi = async () => {
@@ -62,6 +64,7 @@ export function useSystemEndpoints() {
     serviceStatus,
     isHealthChecking: healthQuery.isFetching,
     isOpenApiLoading: openApiState.isFetching,
+    handleCheckHealth,
     handleOpenApiDocs,
     handleDownloadOpenApi,
   }

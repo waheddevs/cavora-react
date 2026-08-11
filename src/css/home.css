@@ -290,7 +290,7 @@
   text-align: center;
   background-image:
     linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)),
-    url("/img/home-page-img/tour-kyoto.jpg");
+    url("/img/home-page-img/tour-kyoto.webp");
   background-size: cover;
   background-position: center;
 }
@@ -593,7 +593,7 @@
   text-align: center;
   background-image:
     linear-gradient(rgba(15, 15, 18, 0.6), rgba(15, 15, 18, 0.6)),
-    url("/img/home-page-img/newsletter-bg.jpg");
+    url("/img/home-page-img/newsletter-bg.webp");
   background-size: cover;
   background-position: center;
 }
@@ -965,7 +965,6 @@
   height: 42px;
   background: rgba(15, 16, 20, 0.58);
   color: #ffffff;
-  backdrop-filter: blur(8px);
 }
 
 .gallery-lightbox .gallery-lightbox-close:hover {
@@ -986,7 +985,6 @@
   color: #ffffff;
   transform: translateY(-50%);
   cursor: pointer;
-  backdrop-filter: blur(8px);
   transition:
     background-color 0.25s ease,
     border-color 0.25s ease;

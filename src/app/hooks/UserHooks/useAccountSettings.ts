@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
-import { useAlerts, useNotifications } from "app/contexts/SweetAlertContext"
+import { useAlerts, useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 import { getApiErrorMessage } from "app/api/apiErrors"
 import { AccountSettingsForm, PasswordChangeForm } from "app/types/user"
 
@@ -57,17 +57,6 @@ export function useAccountSettings() {
   const displayedAvatar = avatarPreview || user.avatar
 
   /* EFFECTS */
-  useEffect(() => {
-    setForm({
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      username: user.username,
-      phone: user.phone,
-      location: user.location,
-    })
-  }, [user])
-
   useEffect(
     () => () => {
       if (avatarPreview) URL.revokeObjectURL(avatarPreview)

@@ -367,26 +367,19 @@ a {
   padding: 26px 0;
   display: flex;
   justify-content: center;
-  /* Top state: original translucent glass look */
-  background: rgba(255, 255, 255, 0.08);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  background: rgba(16, 18, 24, 0.58);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   transition:
     background 0.35s ease,
     padding 0.35s ease,
     box-shadow 0.35s ease,
-    border-color 0.35s ease,
-    -webkit-backdrop-filter 0.35s ease,
-    backdrop-filter 0.35s ease;
+    border-color 0.35s ease;
 }
 
 /* Scrolled state: solid blurred dark bar */
 .home-navbar.scrolled {
   padding: 14px 0;
-  background: rgba(16, 18, 24, 0.92);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: rgba(16, 18, 24, 0.96);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
 }
@@ -575,7 +568,6 @@ a {
   transition:
     opacity 1.8s ease-in-out,
     transform 8s ease-out;
-  will-change: opacity, transform;
 }
 
 .home-hero .hero-slide-img {
@@ -630,7 +622,7 @@ a {
 .home-hero .hero-text .hero-location,
 .home-hero .hero-text .hero-title,
 .home-hero .hero-text .hero-subtitle {
-  animation: hero-blur-in 1s ease both;
+  animation: hero-content-in 0.7s ease both;
 }
 
 .home-hero .hero-text .hero-location {
@@ -645,16 +637,14 @@ a {
   animation-delay: 0.34s;
 }
 
-@keyframes hero-blur-in {
+@keyframes hero-content-in {
   from {
     opacity: 0;
-    filter: blur(12px);
-    transform: scale(1.04);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -729,8 +719,7 @@ a {
   border: 1.5px solid rgba(255, 255, 255, 0.78);
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 16, 20, 0.72);
 }
 
 .home-hero .hero-actions .hero-secondary:hover {
