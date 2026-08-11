@@ -511,6 +511,14 @@
   background: var(--gold-dark);
 }
 
+.blog-page .blog-sidebar .sub-form input:disabled,
+.blog-details-page .blog-sidebar .sub-form input:disabled,
+.blog-page .blog-sidebar .sub-btn:disabled,
+.blog-details-page .blog-sidebar .sub-btn:disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+
 .blog-page .blog-sidebar .sub-btn svg, .blog-details-page .blog-sidebar .sub-btn svg {
   font-size: 17px;
 }

@@ -8,7 +8,9 @@ import {
   PaginatedTours,
   Tour,
   TourListQuery,
+  TourViewResult,
 } from "app/types/tour"
+import { homeApi } from "./homeApi"
 
 export const toursApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -36,6 +38,8 @@ export const toursApi = baseApi.injectEndpoints({
       query: tourId => `/tours/${tourId}/related`,
       transformResponse: (response: { data: ApiTourSummary[] }) =>
         response.data.map(adaptTourSummary),
+      providesTags: result =>
+        result?.map(tour => ({ type: "Tour" as const, id: tour.id })) ?? [],
     }),
     getTourAvailability: builder.query<
       AvailabilityResult,
@@ -51,6 +55,43 @@ export const toursApi = baseApi.injectEndpoints({
         { type: "Tour", id: `AVAILABILITY-${query.tourId}` },
       ],
     }),
+    recordTourView: builder.mutation<
+      TourViewResult,
+      { tourId: number; visitorId: string }
+    >({
+      query: ({ tourId, visitorId }) => ({
+        url: `/tours/${tourId}/views`,
+        method: "POST",
+        body: { visitorId },
+      }),
+      transformResponse: (response: { data: TourViewResult }) => response.data,
+      async onQueryStarted({ tourId }, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(
+            homeApi.util.updateQueryData("getHome", undefined, draft => {
+              const homeTours = [...draft.featuredTours, ...draft.popularTours]
+              homeTours.forEach(tour => {
+                if (tour.id === tourId) tour.viewCount = data.viewCount
+              })
+              if (draft.spotlight.tour?.id === tourId) {
+                draft.spotlight.tour.viewCount = data.viewCount
+              }
+            }),
+          )
+        } catch {
+          // Navigation must remain available if the analytics request fails.
+        }
+      },
+      invalidatesTags: (result, _error, { tourId }) =>
+        result?.counted
+          ? [
+              { type: "Tour", id: tourId },
+              { type: "Tour", id: "LIST" },
+              { type: "Wishlist", id: tourId },
+            ]
+          : [],
+    }),
   }),
 })
 
@@ -59,4 +100,5 @@ export const {
   useGetTourAvailabilityQuery,
   useGetTourQuery,
   useGetToursQuery,
+  useRecordTourViewMutation,
 } = toursApi

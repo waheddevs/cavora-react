@@ -2,7 +2,7 @@
 
 import { Tour } from "app/types/tour"
 
-export const tours: Tour[] = [
+const staticTours: Array<Omit<Tour, "viewCount">> = [
   // Indonesia
   {
     id: 1,
@@ -1686,6 +1686,11 @@ export const tours: Tour[] = [
     ],
   },
 ]
+
+export const tours: Tour[] = staticTours.map(tour => ({
+  ...tour,
+  viewCount: 240 + tour.reviews * 11 + (tour.id % 7) * 73,
+}))
 
 // Lookups
 

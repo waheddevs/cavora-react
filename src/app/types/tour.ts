@@ -14,6 +14,7 @@ export interface Tour {
   oldPrice: number
   rating: number
   reviews: number
+  viewCount: number
   days: string
   group: string
   images: string[]
@@ -69,6 +70,7 @@ export interface ApiTourSummary {
   currency: string
   ratingAverage: number
   reviewCount: number
+  viewCount: number
   durationDays: number
   maxGroupSize: number
   images: ApiTourImage[]
@@ -98,6 +100,12 @@ export interface AvailabilityResult {
   tourId: number
   travelers: number
   departures: AvailableDeparture[]
+}
+
+export interface TourViewResult {
+  counted: boolean
+  tourId: number
+  viewCount: number
 }
 
 export interface TourFilters {

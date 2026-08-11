@@ -9,6 +9,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import { Tour } from "app/types/tour"
 import { useTourCard } from "app/hooks/TourHooks/useTourCard"
+import TourViewCount from "app/components/ui/TourViewCount"
 
 function renderStars(rating: number) {
   const stars = []
@@ -48,9 +49,10 @@ export default function TourCard({ tour }: { tour: Tour }) {
       <Box className="tc-body">
         <Box className="tc-rating">
           {renderStars(tour.rating)}
-          <span>
-            {tour.rating.toFixed(1)} ({tour.reviews} reviews)
+          <span className="tc-review-count">
+            {tour.rating.toFixed(1)} ({tour.reviews})
           </span>
+          <TourViewCount count={tour.viewCount} />
         </Box>
 
         <h3 className="tc-title">{tour.title}</h3>
@@ -76,7 +78,14 @@ export default function TourCard({ tour }: { tour: Tour }) {
             <strong>${tour.price.toLocaleString()}</strong>
             <span>/person</span>
           </Box>
-          <button type="button" className="tc-btn" onClick={handleOpen}>
+          <button
+            type="button"
+            className="tc-btn"
+            onClick={event => {
+              event.stopPropagation()
+              handleOpen()
+            }}
+          >
             View Tour
             <ArrowForwardRoundedIcon />
           </button>

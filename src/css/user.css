@@ -548,6 +548,7 @@
   border: 1px solid #eee;
   border-radius: 12px;
   transition: box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 .user-page .wishlist-card:hover {
@@ -609,9 +610,14 @@
   color: var(--gold);
 }
 
-.user-page .wishlist-rating span {
+.user-page .wishlist-rating .wishlist-reviews {
   font-weight: 400;
   color: var(--text-light);
+}
+
+.user-page .wishlist-rating {
+  flex-wrap: wrap;
+  row-gap: 6px;
 }
 
 .user-page .wishlist-title {

@@ -12,6 +12,7 @@ export function adaptTourSummary(tour: ApiTourSummary): Tour {
     oldPrice: (tour.oldPriceCents ?? tour.priceCents) / 100,
     rating: tour.ratingAverage,
     reviews: tour.reviewCount,
+    viewCount: tour.viewCount,
     days: `${tour.durationDays} Days`,
     group: `Max ${tour.maxGroupSize} People`,
     images: tour.images.map(image => image.url),

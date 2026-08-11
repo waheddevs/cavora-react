@@ -5,6 +5,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
+import TourViewCount from "app/components/ui/TourViewCount"
 
 function renderStars(rating: number) {
   const stars = []
@@ -84,6 +85,7 @@ export default function PopularTours() {
                     <span className="rating-value">
                       ({tour.rating.toFixed(1)})
                     </span>
+                    <TourViewCount count={tour.viewCount} />
                   </Box>
                   <Box className="popular-price">
                     <span>From </span>

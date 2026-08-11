@@ -401,6 +401,8 @@
 .tour-page .tour-card .tc-rating {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 2px;
   margin-bottom: 10px;
 }
@@ -414,11 +416,15 @@
   color: var(--gold);
 }
 
-.tour-page .tour-card .tc-rating span {
+.tour-page .tour-card .tc-rating .tc-review-count {
   margin-left: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 12.5px;
   color: var(--text-light);
+}
+
+.tour-page .tour-card .tc-rating .tour-view-count {
+  margin-inline-start: 8px;
 }
 
 .tour-page .tour-card .tc-title {
@@ -605,5 +611,25 @@
   .tour-page .tour-topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .tour-page .tour-card .tc-body {
+    padding: 18px;
+  }
+
+  .tour-page .tour-card .tc-foot {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .tour-page .tour-card .tc-foot {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tour-page .tour-card .tc-btn {
+    justify-content: center;
+    width: 100%;
   }
 }

@@ -5,6 +5,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
 import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
+import TourViewCount from "app/components/ui/TourViewCount"
 
 export default function RelatedTours() {
   const { openTour } = useTourNavigation()
@@ -43,10 +44,13 @@ export default function RelatedTours() {
               </Box>
               <Typography className="ts-related-name">{tour.title}</Typography>
               <Box className="ts-related-foot">
-                <span className="ts-related-rating">
-                  <StarRoundedIcon />
-                  {tour.rating.toFixed(1)}
-                </span>
+                <Box className="ts-related-engagement">
+                  <span className="ts-related-rating">
+                    <StarRoundedIcon />
+                    {tour.rating.toFixed(1)}
+                  </span>
+                  <TourViewCount count={tour.viewCount} />
+                </Box>
                 <span className="ts-related-price">
                   <small>From</small> ${tour.price.toLocaleString()}
                 </span>
@@ -54,7 +58,10 @@ export default function RelatedTours() {
               <button
                 type="button"
                 className="ts-related-btn"
-                onClick={() => openTour(tour.id)}
+                onClick={event => {
+                  event.stopPropagation()
+                  openTour(tour.id)
+                }}
               >
                 View Now
                 <ArrowForwardRoundedIcon />

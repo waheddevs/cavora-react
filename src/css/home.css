@@ -23,7 +23,7 @@
 }
 
 .discover-tours .section-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -32,7 +32,7 @@
 }
 
 .discover-tours .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
@@ -48,8 +48,11 @@
   padding: 8px 24px;
   font-weight: 500;
   letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease;
 }
 
 .discover-tours .view-all-btn:hover {
@@ -75,12 +78,16 @@
 }
 
 .discover-tours .tour-card {
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .discover-tours .tour-card:hover {
@@ -111,7 +118,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -136,7 +143,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .discover-tours .tour-fav:hover,
@@ -151,6 +160,9 @@
 
 /* Card body */
 .discover-tours .tour-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 18px 20px 20px;
 }
 
@@ -165,7 +177,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: var(--text-light);
 }
@@ -176,7 +188,7 @@
 }
 
 .discover-tours .tour-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: var(--dark);
@@ -186,12 +198,17 @@
 .discover-tours .tour-foot {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
+  row-gap: 10px;
+  margin-top: auto;
 }
 
 .discover-tours .tour-rating {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 1px;
 }
 
@@ -205,14 +222,17 @@
 }
 
 .discover-tours .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   color: var(--text-light);
   margin-left: 5px;
 }
 
 .discover-tours .tour-price {
-  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  margin-left: 0;
+  text-align: left;
 }
 
 .discover-tours .tour-price span {
@@ -268,11 +288,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(
-      rgba(18, 20, 24, 0.5),
-      rgba(18, 20, 24, 0.62)
-    ),
-    url('../../public/img/home-page-img/tour-kyoto.jpg');
+  background-image:
+    linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)),
+    url("../../public/img/home-page-img/tour-kyoto.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -288,7 +306,7 @@
 }
 
 .explore .explore-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -297,7 +315,7 @@
 }
 
 .explore .explore-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 64px;
   font-weight: 700;
   line-height: 1.05;
@@ -307,7 +325,7 @@
 }
 
 .explore .explore-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.7;
@@ -325,8 +343,11 @@
   padding: 6px 26px;
   font-weight: 500;
   letter-spacing: 0.6px;
-  transition: color 0.35s ease, border-color 0.35s ease,
-    box-shadow 0.35s ease, transform 0.25s ease;
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease;
 }
 
 .explore .explore-btn:hover {
@@ -377,7 +398,7 @@
 }
 
 .popular-tours .section-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -386,7 +407,7 @@
 }
 
 .popular-tours .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
@@ -395,7 +416,7 @@
 }
 
 .popular-tours .popular-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   color: var(--text-light);
   max-width: 560px;
@@ -418,7 +439,9 @@
   padding: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .popular-tours .popular-card:hover {
@@ -465,7 +488,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12.5px;
   color: var(--text-light);
   white-space: nowrap;
@@ -477,7 +500,7 @@
 }
 
 .popular-tours .popular-card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 17px;
   font-weight: 600;
   color: var(--dark);
@@ -487,12 +510,16 @@
 .popular-tours .popular-foot {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
+  row-gap: 10px;
 }
 
 .popular-tours .popular-rating {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 1px;
 }
 
@@ -506,14 +533,15 @@
 }
 
 .popular-tours .rating-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   color: var(--text-light);
   margin-left: 4px;
 }
 
 .popular-tours .popular-price {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
+  margin-left: auto;
 }
 
 .popular-tours .popular-price span {
@@ -561,11 +589,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(
-      rgba(15, 15, 18, 0.6),
-      rgba(15, 15, 18, 0.6)
-    ),
-    url('../../public/img/home-page-img/newsletter-bg.jpg');
+  background-image:
+    linear-gradient(rgba(15, 15, 18, 0.6), rgba(15, 15, 18, 0.6)),
+    url("../../public/img/home-page-img/newsletter-bg.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -581,7 +607,7 @@
 }
 
 .subscribe .subscribe-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -590,7 +616,7 @@
 }
 
 .subscribe .subscribe-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 46px;
   font-weight: 700;
   line-height: 1.1;
@@ -600,7 +626,7 @@
 }
 
 .subscribe .subscribe-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.7;
@@ -629,7 +655,7 @@
   outline: none;
   background: transparent;
   padding: 0 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: #333333;
 }
@@ -660,6 +686,17 @@
   background-color: var(--gold-dark);
   color: #ffffff;
   box-shadow: none;
+}
+
+.subscribe .subscribe-input:disabled,
+.subscribe .subscribe-btn.Mui-disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+
+.subscribe .subscribe-btn.Mui-disabled {
+  background-color: var(--gold);
+  color: #ffffff;
 }
 
 .subscribe .subscribe-btn .MuiButton-endIcon {
@@ -707,7 +744,7 @@
 }
 
 .travel-gallery .section-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 27px;
   font-weight: 700;
   line-height: 1;
@@ -716,7 +753,7 @@
 }
 
 .travel-gallery .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
@@ -725,7 +762,7 @@
 }
 
 .travel-gallery .gallery-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   color: var(--text-light);
   max-width: 560px;

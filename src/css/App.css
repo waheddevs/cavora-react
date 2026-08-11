@@ -47,3 +47,34 @@
 .app-layout > .footer {
   margin-top: auto;
 }
+
+/* Shared engagement metric used by every tour card. */
+.tour-view-count {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 4px;
+  margin-inline-start: 8px;
+  padding-inline-start: 8px;
+  border-inline-start: 1px solid #dddddd;
+  color: var(--text-light);
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tour-view-count svg {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--gold);
+}
+
+@media (max-width: 480px) {
+  .tour-view-count {
+    gap: 3px;
+    margin-inline-start: 6px;
+    padding-inline-start: 6px;
+  }
+}

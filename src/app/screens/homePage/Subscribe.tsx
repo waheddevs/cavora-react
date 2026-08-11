@@ -1,8 +1,13 @@
 import { Box, Container, Typography } from "@mui/material"
 import GoldButton from "../../components/ui/GoldButton"
 import SendRoundedIcon from "@mui/icons-material/SendRounded"
+import { useNewsletterSubscription } from "app/hooks/CommonHooks/useNewsletterSubscription"
 
 export default function Subscribe() {
+  /* HOOKS */
+  const { email, isSubmitting, handleEmailChange, handleSubmit } =
+    useNewsletterSubscription("HOMEPAGE")
+
   return (
     <section className="subscribe">
       <Container maxWidth={false} className="subscribe-content">
@@ -18,21 +23,25 @@ export default function Subscribe() {
         <Box
           component="form"
           className="subscribe-form"
-          onSubmit={e => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
           <input
             type="email"
             className="subscribe-input"
             placeholder="Enter your email address"
             aria-label="Email address"
+            value={email}
+            onChange={handleEmailChange}
+            disabled={isSubmitting}
             required
           />
           <GoldButton
             type="submit"
             className="subscribe-btn"
             endIcon={<SendRoundedIcon />}
+            disabled={isSubmitting}
           >
-            Subscribe
+            {isSubmitting ? "Subscribing..." : "Subscribe"}
           </GoldButton>
         </Box>
       </Container>
