@@ -3,12 +3,11 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
 import PaymentEmptyState from "./PaymentEmptyState"
 import PaymentForm from "./PaymentForm"
 import PaymentSummary from "./PaymentSummary"
-import PaymentSuccess from "./PaymentSuccess"
 import { useCheckout } from "app/hooks/PaymentHooks/useCheckout"
 import "css/payment.css"
 
 export default function PaymentPage() {
-  const { tour, shake, handleClose } = useCheckout()
+  const { tour, handleClose } = useCheckout()
   if (!tour) return <PaymentEmptyState />
 
   return (
@@ -21,7 +20,7 @@ export default function PaymentPage() {
       />
       <Box className="payment-backdrop-overlay" />
 
-      <Box className={`payment-shell ${shake ? "shake" : ""}`}>
+      <Box className="payment-shell">
         <button
           type="button"
           className="payment-close"
@@ -33,7 +32,6 @@ export default function PaymentPage() {
 
         <PaymentForm />
         <PaymentSummary />
-        <PaymentSuccess />
       </Box>
     </Box>
   )

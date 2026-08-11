@@ -8,7 +8,6 @@ export default function Settings() {
     handleChange,
     handleSubmit,
     handleLogout,
-    status,
     profileSaving,
     logoutPending,
   } = useAccountSettings()
@@ -89,7 +88,6 @@ export default function Settings() {
         >
           {profileSaving ? "Saving..." : "Save Changes"}
         </button>
-        {status && <p>{status}</p>}
       </Box>
 
       <Box className="settings-divider" />

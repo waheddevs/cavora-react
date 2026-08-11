@@ -12,7 +12,7 @@ import { useGetToursQuery } from "app/api/toursApi"
 
 export function useTourCatalogState(toursPerPage = 9) {
   /* API HOOKS */
-  const { data, isLoading, isFetching, isError, refetch } = useGetToursQuery({
+  const { data, isLoading, isFetching, isError } = useGetToursQuery({
     page: 1,
     limit: 50,
     sort: "popularity",
@@ -78,16 +78,12 @@ export function useTourCatalogState(toursPerPage = 9) {
   }
   const handlePreviousPage = () => handlePageChange(page - 1)
   const handleNextPage = () => handlePageChange(page + 1)
-  const handleRetry = () => {
-    void refetch()
-  }
 
   return {
     tours,
     isLoading,
     isFetching,
     isError,
-    handleRetry,
     priceMin,
     priceMax,
     filters,

@@ -15,7 +15,6 @@ export default function BlogList({ category }: { category: string }) {
     handleNextPage,
     isLoading,
     isError,
-    handleRetry,
   } = useBlogPagination(category)
 
   return (
@@ -24,10 +23,8 @@ export default function BlogList({ category }: { category: string }) {
         {isLoading && <p>Loading posts...</p>}
         {isError && (
           <p>
-            Posts could not be loaded.{" "}
-            <button type="button" onClick={handleRetry}>
-              Try again
-            </button>
+            Our travel stories are temporarily off the map. More inspiration
+            will be back shortly.
           </p>
         )}
         {visiblePosts.map(post => (

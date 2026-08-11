@@ -3,14 +3,13 @@ import LockRoundedIcon from "@mui/icons-material/LockRounded"
 import { useCheckout } from "app/hooks/PaymentHooks/useCheckout"
 
 export default function PaymentForm() {
+  /* HOOKS */
   const {
     cardholder,
     cardNumber,
     expiry,
     cvv,
-    errors,
     loading,
-    success,
     total,
     brand,
     handleCardholderChange,
@@ -24,13 +23,13 @@ export default function PaymentForm() {
     <Box className="payment-col payment-col--form">
       <Box className="payment-brand">
         <img src="/icons/logo.svg" alt="Cavora" />
-        <span>Secure Checkout</span>
+        <span>Demo Checkout</span>
       </Box>
 
       <Box className="payment-panel">
         <Typography className="payment-title">Payment Details</Typography>
         <Typography className="payment-subtitle">
-          Enter your card information to confirm this booking.
+          This is a demo payment. Any card details will be accepted.
         </Typography>
 
         <Box
@@ -45,14 +44,10 @@ export default function PaymentForm() {
               id="pay-name"
               type="text"
               placeholder="e.g. Amelia Carter"
-              className={errors.cardholder ? "has-error" : ""}
               value={cardholder}
               onChange={handleCardholderChange}
-              disabled={loading || success}
+              disabled={loading}
             />
-            {errors.cardholder && (
-              <span className="field-error">{errors.cardholder}</span>
-            )}
           </Box>
 
           <Box className="payment-field">
@@ -63,17 +58,13 @@ export default function PaymentForm() {
                 type="text"
                 inputMode="numeric"
                 placeholder="0000 0000 0000 0000"
-                className={errors.cardNumber ? "has-error" : ""}
                 value={cardNumber}
                 onChange={handleCardNumberChange}
-                disabled={loading || success}
+                disabled={loading}
                 maxLength={19}
               />
               <span className={`card-brand card-brand--${brand}`} />
             </Box>
-            {errors.cardNumber && (
-              <span className="field-error">{errors.cardNumber}</span>
-            )}
           </Box>
 
           <Box className="payment-row">
@@ -84,15 +75,11 @@ export default function PaymentForm() {
                 type="text"
                 inputMode="numeric"
                 placeholder="MM/YY"
-                className={errors.expiry ? "has-error" : ""}
                 value={expiry}
                 onChange={handleExpiryChange}
-                disabled={loading || success}
+                disabled={loading}
                 maxLength={5}
               />
-              {errors.expiry && (
-                <span className="field-error">{errors.expiry}</span>
-              )}
             </Box>
 
             <Box className="payment-field">
@@ -102,20 +89,18 @@ export default function PaymentForm() {
                 type="password"
                 inputMode="numeric"
                 placeholder="•••"
-                className={errors.cvv ? "has-error" : ""}
                 value={cvv}
                 onChange={handleCvvChange}
-                disabled={loading || success}
+                disabled={loading}
                 maxLength={4}
               />
-              {errors.cvv && <span className="field-error">{errors.cvv}</span>}
             </Box>
           </Box>
 
           <button
             type="submit"
             className={`payment-submit ${loading ? "loading" : ""}`}
-            disabled={loading || success}
+            disabled={loading}
           >
             {loading ? (
               <span className="payment-spinner" />
@@ -127,7 +112,7 @@ export default function PaymentForm() {
 
           <p className="payment-secure-note">
             <LockRoundedIcon />
-            Payments are encrypted and processed securely.
+            Demo mode — no real payment will be charged.
           </p>
         </Box>
       </Box>

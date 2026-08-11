@@ -2,34 +2,38 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import moment from "moment"
 import {
-  PaymentErrors,
   detectCardBrand,
   formatCardNumber,
   formatExpiry,
-  validatePayment,
 } from "app/utils/paymentValidation"
-import { submitPayment } from "app/services/paymentService"
 import { getTourById } from "app/data/tourData"
 import { useBookings } from "app/hooks/CommonHooks/useBookings"
+import { useAlerts } from "app/contexts/SweetAlertContext"
 
 export function useCheckoutState() {
+  /* ROUTER HOOKS */
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
+
+  /* DOMAIN HOOKS */
   const { addBooking } = useBookings()
+  const { confirmWithLoading } = useAlerts()
+
+  /* ROUTE DATA */
   const tourId = searchParams.get("tourId")
   const date = searchParams.get("date") ?? ""
   const guests = Math.max(1, Number(searchParams.get("guests") ?? 1))
   const tour = useMemo(() => getTourById(tourId ?? ""), [tourId])
+
+  /* STATE */
   const [cardholder, setCardholder] = useState("")
   const [cardNumber, setCardNumber] = useState("")
   const [expiry, setExpiry] = useState("")
   const [cvv, setCvv] = useState("")
-  const [errors, setErrors] = useState<PaymentErrors>({})
-  const [shake, setShake] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [transactionId, setTransactionId] = useState("")
   const [secondsLeft, setSecondsLeft] = useState(10 * 60)
+
+  /* DERIVED DATA */
   const subtotal = (tour?.price ?? 0) * guests
   const serviceFee = Math.round(subtotal * 0.02)
   const total = subtotal + serviceFee
@@ -40,71 +44,57 @@ export function useCheckoutState() {
   const minutesLeft = String(Math.floor(secondsLeft / 60)).padStart(2, "0")
   const secondsRemaining = String(secondsLeft % 60).padStart(2, "0")
 
+  /* EFFECTS */
   useEffect(() => {
-    if (success) return
-
-    const timer = setInterval(() => {
+    const timer = window.setInterval(() => {
       setSecondsLeft(seconds => (seconds > 0 ? seconds - 1 : 0))
     }, 1000)
 
-    return () => clearInterval(timer)
-  }, [success])
+    return () => window.clearInterval(timer)
+  }, [])
 
-  const clearError = (field: keyof PaymentErrors) => {
-    setErrors(currentErrors => ({
-      ...currentErrors,
-      [field]: undefined,
-    }))
-  }
+  /* HANDLERS */
   const handleCardholderChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCardholder(event.target.value)
-    clearError("cardholder")
   }
+
   const handleCardNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCardNumber(formatCardNumber(event.target.value))
-    clearError("cardNumber")
   }
+
   const handleExpiryChange = (event: ChangeEvent<HTMLInputElement>) => {
     setExpiry(formatExpiry(event.target.value))
-    clearError("expiry")
   }
+
   const handleCvvChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCvv(event.target.value.replace(/\D/g, "").slice(0, 4))
-    clearError("cvv")
   }
+
   const handleClose = () => {
     if (tour) navigate(`/tour-single?id=${tour.id}`)
   }
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    if (!tour || loading || success) return
-
-    const values = { cardholder, cardNumber, expiry, cvv }
-    const nextErrors = validatePayment(values)
-    setErrors(nextErrors)
-
-    if (Object.keys(nextErrors).length > 0) {
-      setShake(true)
-      window.setTimeout(() => setShake(false), 500)
-      return
-    }
+    if (!tour || loading) return
 
     setLoading(true)
-    const result = await submitPayment(values, total)
+    const confirmed = await confirmWithLoading({
+      message: "Do you want to proceed the payment?",
+      loadingMs: 3000,
+      onConfirm: async () => {
+        await addBooking(
+          tour.id,
+          moment(date || undefined).format("MMM DD, YYYY"),
+          guests,
+          total,
+        )
+      },
+    })
     setLoading(false)
 
-    if (result.success) {
-      setTransactionId(result.transactionId)
-      addBooking(
-        tour.id,
-        moment(date || undefined).format("MMM DD, YYYY"),
-        guests,
-        total,
-      )
-      setSuccess(true)
-      window.setTimeout(() => {
-        navigate("/user", { state: { tab: "bookings" } })
-      }, 2200)
+    if (confirmed) {
+      navigate("/user", { replace: true, state: { tab: "bookings" } })
     }
   }
 
@@ -115,11 +105,7 @@ export function useCheckoutState() {
     cardNumber,
     expiry,
     cvv,
-    errors,
-    shake,
     loading,
-    success,
-    transactionId,
     subtotal,
     serviceFee,
     total,

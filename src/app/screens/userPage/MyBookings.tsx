@@ -7,14 +7,8 @@ import { useBookings } from "app/hooks/CommonHooks/useBookings"
 
 export default function MyBookings() {
   /* HOOKS */
-  const {
-    bookings,
-    handleCancelBooking,
-    isLoading,
-    isError,
-    handleRetry,
-    cancelling,
-  } = useBookings()
+  const { bookings, handleCancelBooking, isLoading, isError, cancelling } =
+    useBookings()
 
   return (
     <Box className="user-panel">
@@ -26,10 +20,8 @@ export default function MyBookings() {
       {isLoading && <Typography>Loading bookings...</Typography>}
       {isError && (
         <Typography>
-          Bookings could not be loaded.{" "}
-          <button type="button" onClick={handleRetry}>
-            Try again
-          </button>
+          Your booking journey is taking a short pause. Please return in a
+          moment.
         </Typography>
       )}
       {!isLoading && !isError && bookings.length === 0 && (

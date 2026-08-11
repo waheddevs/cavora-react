@@ -3,10 +3,12 @@ import {
   useGetBookingHistoryQuery,
 } from "app/api/bookingApi"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
+import { useNotifications } from "app/contexts/SweetAlertContext"
 
 export function useBookings() {
   /* DOMAIN HOOKS */
   const { isAuthenticated } = useAuth()
+  const { notifyError, notifySuccess } = useNotifications()
 
   /* API HOOKS */
   const bookingQuery = useGetBookingHistoryQuery(
@@ -19,13 +21,16 @@ export function useBookings() {
   const handleCancelBooking = async (bookingId: string, tourId: number) => {
     try {
       await cancelRequest({ bookingId, tourId }).unwrap()
+      await notifySuccess({
+        title: "Booking cancelled",
+        message: "This journey has been removed from your upcoming plans.",
+      })
     } catch {
-      return
+      await notifyError({
+        title: "Cancellation paused",
+        message: "Your booking is still protected. Please return in a moment.",
+      })
     }
-  }
-
-  const handleRetry = () => {
-    void bookingQuery.refetch()
   }
 
   // Payment is intentionally still mocked. The real booking hold is already
@@ -35,7 +40,10 @@ export function useBookings() {
     _date: string,
     _travelers: number,
     _total: number,
-  ) => bookingQuery.refetch()
+  ): Promise<void> => {
+    if (!isAuthenticated) return Promise.resolve()
+    return bookingQuery.refetch().then(() => undefined)
+  }
 
   return {
     bookings: bookingQuery.data?.data ?? [],
@@ -43,7 +51,6 @@ export function useBookings() {
     handleCancelBooking,
     isLoading: bookingQuery.isLoading,
     isError: bookingQuery.isError || cancelState.isError,
-    handleRetry,
     cancelling: cancelState.isLoading,
   }
 }

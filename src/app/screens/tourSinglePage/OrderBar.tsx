@@ -83,7 +83,7 @@ export default function OrderBar() {
           )}
           {availabilityError && (
             <span className="ts-field-error">
-              Availability could not be loaded.
+              Departure dates are temporarily beyond the horizon.
             </span>
           )}
         </Box>
@@ -125,7 +125,7 @@ export default function OrderBar() {
         </button>
         {bookingHoldError && (
           <span className="ts-field-error">
-            Booking could not be reserved. Please try another departure.
+            This departure slipped away. Choose another available date.
           </span>
         )}
         <button

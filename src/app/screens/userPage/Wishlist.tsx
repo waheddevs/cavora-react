@@ -7,8 +7,7 @@ import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 
 export default function Wishlist() {
   /* HOOKS */
-  const { wishlist, removeFromWishlist, isLoading, isError, handleRetry } =
-    useWishlist()
+  const { wishlist, removeFromWishlist, isLoading, isError } = useWishlist()
 
   return (
     <Box className="user-panel">
@@ -18,10 +17,8 @@ export default function Wishlist() {
       {isLoading && <Typography>Loading wishlist...</Typography>}
       {isError && (
         <Typography>
-          Wishlist could not be loaded.{" "}
-          <button type="button" onClick={handleRetry}>
-            Try again
-          </button>
+          Your saved adventures are temporarily off the map. Please check back
+          shortly.
         </Typography>
       )}
       {!isLoading && !isError && wishlist.length === 0 && (

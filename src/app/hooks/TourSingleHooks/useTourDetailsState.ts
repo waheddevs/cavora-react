@@ -24,11 +24,6 @@ export function useTourDetailsState() {
   const gallery = useTourGallery(tour?.id)
   const order = useOrderBar(tour)
 
-  /* HANDLERS */
-  const handleRetry = () => {
-    void tourQuery.refetch()
-  }
-
   return {
     tour,
     relatedTours,
@@ -36,6 +31,5 @@ export function useTourDetailsState() {
     order,
     isLoading: tourQuery.isLoading,
     isError: tourId === 0 || tourQuery.isError,
-    handleRetry,
   }
 }

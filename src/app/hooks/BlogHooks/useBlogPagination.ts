@@ -11,7 +11,6 @@ export interface BlogPaginationState {
   handleNextPage: () => void
   isLoading: boolean
   isError: boolean
-  handleRetry: () => void
 }
 
 export function useBlogPagination(
@@ -44,9 +43,6 @@ export function useBlogPagination(
   }
   const handlePreviousPage = () => handlePageChange(page - 1)
   const handleNextPage = () => handlePageChange(page + 1)
-  const handleRetry = () => {
-    void postsQuery.refetch()
-  }
 
   return {
     page,
@@ -57,6 +53,5 @@ export function useBlogPagination(
     handleNextPage,
     isLoading: postsQuery.isLoading,
     isError: postsQuery.isError,
-    handleRetry,
   }
 }

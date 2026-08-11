@@ -8,6 +8,7 @@ import { ThemeProvider } from "@emotion/react"
 import theme from "app/MaterialTheme"
 import "css/index.css"
 import { BrowserRouter as Router } from "react-router-dom"
+import { SweetAlertProvider } from "app/contexts/SweetAlertContext"
 
 const container = document.getElementById("root")
 
@@ -20,7 +21,9 @@ if (container) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Router>
-            <App />
+            <SweetAlertProvider>
+              <App />
+            </SweetAlertProvider>
           </Router>
         </ThemeProvider>
       </Provider>

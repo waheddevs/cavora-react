@@ -23,12 +23,7 @@ function renderStars(rating: number) {
 export default function PopularTours() {
   /* HOOKS */
   const { openTour } = useTourNavigation()
-  const {
-    popularTours: tours,
-    isLoading,
-    isError,
-    handleRetry,
-  } = useHomeContent()
+  const { popularTours: tours, isLoading, isError } = useHomeContent()
 
   /* HANDLERS */
   const handleOpenTour = (tourId: number) => openTour(tourId)
@@ -48,10 +43,8 @@ export default function PopularTours() {
           {isLoading && <p>Loading popular tours...</p>}
           {isError && (
             <p>
-              Popular tours could not be loaded.{" "}
-              <button type="button" onClick={handleRetry}>
-                Try again
-              </button>
+              Our most-loved escapes are briefly out exploring. They will return
+              shortly.
             </p>
           )}
           {tours.map(tour => (

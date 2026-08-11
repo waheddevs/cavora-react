@@ -8,16 +8,8 @@ import "css/tour.css"
 
 export default function TourPage() {
   /* HOOKS */
-  const {
-    page,
-    sort,
-    showFilters,
-    topRef,
-    pagedTours,
-    isLoading,
-    isError,
-    handleRetry,
-  } = useTourCatalog()
+  const { page, sort, showFilters, topRef, pagedTours, isLoading, isError } =
+    useTourCatalog()
 
   return (
     <Box className="tour-page">
@@ -33,10 +25,8 @@ export default function TourPage() {
               <p className="tour-empty">Loading tours...</p>
             ) : isError ? (
               <p className="tour-empty">
-                Tours could not be loaded.{" "}
-                <button type="button" onClick={handleRetry}>
-                  Try again
-                </button>
+                Our tour map is refreshing. New adventures will be visible
+                shortly.
               </p>
             ) : pagedTours.length ? (
               <Box className="tour-grid" key={`${page}-${sort}`}>
@@ -46,7 +36,8 @@ export default function TourPage() {
               </Box>
             ) : (
               <p className="tour-empty">
-                No tours match your filters. Try adjusting them.
+                No adventures match this route yet. Adjust the filters to
+                uncover more journeys.
               </p>
             )}
 

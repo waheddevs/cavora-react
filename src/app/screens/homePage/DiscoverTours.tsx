@@ -30,12 +30,7 @@ export default function DiscoverTours() {
   /* HOOKS */
   const { openTour, openTourList } = useTourNavigation()
   const { isWishlisted, toggleWishlist } = useWishlist()
-  const {
-    featuredTours: tours,
-    isLoading,
-    isError,
-    handleRetry,
-  } = useHomeContent()
+  const { featuredTours: tours, isLoading, isError } = useHomeContent()
 
   /* HANDLERS */
   const handleOpenTour = (tourId: number) => openTour(tourId)
@@ -68,10 +63,8 @@ export default function DiscoverTours() {
           {isLoading && <p>Loading featured tours...</p>}
           {isError && (
             <p>
-              Featured tours could not be loaded.{" "}
-              <button type="button" onClick={handleRetry}>
-                Try again
-              </button>
+              Featured adventures are taking a quick detour. Fresh journeys will
+              appear shortly.
             </p>
           )}
           {tours.map(tour => (

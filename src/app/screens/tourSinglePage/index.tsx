@@ -10,7 +10,7 @@ import "css/tourSingle.css"
 
 export default function TourSinglePage() {
   /* HOOKS */
-  const { tour, isLoading, isError, handleRetry } = useTourDetails()
+  const { tour, isLoading, isError } = useTourDetails()
 
   if (isLoading) {
     return (
@@ -27,11 +27,8 @@ export default function TourSinglePage() {
       <Box className="tour-single-page">
         <Container maxWidth={false} className="ts-container">
           <p className="ts-empty">
-            Tour could not be loaded.{" "}
-            <button type="button" onClick={handleRetry}>
-              Try again
-            </button>{" "}
-            or <NavLink to="/tour">back to Tours</NavLink>.
+            This adventure is temporarily beyond reach. Discover another route
+            in <NavLink to="/tour">Tours</NavLink>.
           </p>
         </Container>
       </Box>

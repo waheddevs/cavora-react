@@ -47,7 +47,7 @@ export function useSignupForm() {
         setSubmitError(
           getApiErrorMessage(
             error,
-            "Account creation failed. Please try again.",
+            "Your Cavora account could not be prepared right now. Please return shortly.",
           ),
         )
       }

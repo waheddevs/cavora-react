@@ -35,7 +35,10 @@ export function useLoginForm() {
         navigate("/user")
       } catch (error) {
         setSubmitError(
-          getApiErrorMessage(error, "Login failed. Please try again."),
+          getApiErrorMessage(
+            error,
+            "We could not open your travel account right now. Please return shortly.",
+          ),
         )
       }
     }

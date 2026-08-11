@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
+import { useNotifications } from "app/contexts/SweetAlertContext"
 
 export interface AccountSettingsForm {
   firstName: string
@@ -17,6 +18,7 @@ export function useAccountSettings() {
 
   /* DOMAIN HOOKS */
   const { user, logout, saveProfile, profileSaving, logoutPending } = useAuth()
+  const { notifyError, notifySuccess } = useNotifications()
 
   /* STATE */
   const [form, setForm] = useState<AccountSettingsForm>({
@@ -27,7 +29,6 @@ export function useAccountSettings() {
     phone: user.phone,
     location: user.location,
   })
-  const [status, setStatus] = useState("")
 
   /* EFFECTS */
   useEffect(() => {
@@ -53,11 +54,16 @@ export function useAccountSettings() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     try {
-      setStatus("")
       await saveProfile(form)
-      setStatus("Profile updated successfully.")
+      await notifySuccess({
+        title: "Profile updated",
+        message: "Your Cavora travel profile is ready for the next journey.",
+      })
     } catch {
-      setStatus("Profile could not be updated.")
+      await notifyError({
+        title: "Profile update paused",
+        message: "Your details are safe. Please return in a moment.",
+      })
     }
   }
 
@@ -74,7 +80,6 @@ export function useAccountSettings() {
     handleChange,
     handleSubmit,
     handleLogout,
-    status,
     profileSaving,
     logoutPending,
   }

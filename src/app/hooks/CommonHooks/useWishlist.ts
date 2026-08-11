@@ -39,10 +39,6 @@ export function useWishlist() {
   const handleRemoveFromWishlist = (tourId: number) => {
     if (isAuthenticated) void removeTour(tourId)
   }
-  const handleRetry = () => {
-    void wishlistQuery.refetch()
-  }
-
   return {
     wishlist,
     isWishlisted,
@@ -50,6 +46,5 @@ export function useWishlist() {
     removeFromWishlist: handleRemoveFromWishlist,
     isLoading: wishlistQuery.isLoading,
     isError: wishlistQuery.isError || addState.isError || removeState.isError,
-    handleRetry,
   }
 }

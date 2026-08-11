@@ -7,11 +7,6 @@ export function useHomeContent() {
   /* DERIVED DATA */
   const home = homeQuery.data
 
-  /* HANDLERS */
-  const handleRetry = () => {
-    void homeQuery.refetch()
-  }
-
   return {
     home,
     slides: home?.slides ?? [],
@@ -21,6 +16,5 @@ export function useHomeContent() {
     gallery: home?.gallery ?? [],
     isLoading: homeQuery.isLoading,
     isError: homeQuery.isError,
-    handleRetry,
   }
 }
