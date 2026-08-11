@@ -3,19 +3,7 @@ import { Box, Typography } from "@mui/material"
 import { NavLink } from "react-router-dom"
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded"
 import NavbarPanel from "./NavbarPanel"
-
-export interface Crumb {
-  label: string
-  to?: string
-}
-
-export interface PageHeroProps {
-  navbarClass: string
-  heroClass?: string
-  tagline: string
-  title: string
-  crumbs: Crumb[]
-}
+import { PageHeroProps } from "app/types/layout"
 
 export default function PageHero({
   navbarClass,

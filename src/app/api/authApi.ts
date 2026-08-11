@@ -1,47 +1,11 @@
 import { baseApi, resolveApiAssetUrl } from "./baseApi"
-import { UserProfile } from "app/data/userData"
-
-interface ApiMember {
-  id: string
-  email: string
-  username: string
-  firstName: string
-  lastName: string
-  phone?: string
-  location?: string
-  avatarUrl?: string
-  role: string
-  status: string
-  emailVerified: boolean
-  createdAt: string
-  lastSignInAt?: string
-  stats?: {
-    activeSessions: number
-    bookings: number
-    wishlist: number
-  }
-}
-
-export interface LoginRequest {
-  email: string
-  password: string
-}
-
-export interface RegisterRequest extends LoginRequest {
-  username: string
-  firstName: string
-  lastName: string
-}
-
-export interface ProfileUpdateRequest {
-  email?: string
-  username?: string
-  firstName?: string
-  lastName?: string
-  phone?: string
-  location?: string
-  avatarUrl?: string
-}
+import {
+  ApiMember,
+  LoginRequest,
+  ProfileUpdateRequest,
+  RegisterRequest,
+} from "app/types/auth"
+import { UserProfile } from "app/types/user"
 
 function adaptMember(member: ApiMember): UserProfile {
   return {

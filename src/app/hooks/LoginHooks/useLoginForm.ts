@@ -1,8 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { LoginErrors, validateLogin } from "app/utils/loginValidation"
+import { validateLogin } from "app/utils/loginValidation"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 import { getApiErrorMessage } from "app/api/apiErrors"
+import { LoginErrors } from "app/types/auth"
 
 export function useLoginForm() {
   /* ROUTER HOOKS */

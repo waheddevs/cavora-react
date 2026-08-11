@@ -18,3 +18,40 @@ export interface ArticleBlock {
   author?: string
   items?: string[]
 }
+
+export interface ApiBlogPostSummary {
+  id: string
+  slug: string
+  title: string
+  excerpt: string
+  category: string
+  imageUrl: string
+  authorName: string
+  authorImageUrl?: string
+  commentCount: number
+  publishedAt: string
+}
+
+export interface ApiBlogPostDetail extends ApiBlogPostSummary {
+  body: ArticleBlock[]
+  updatedAt: string
+}
+
+export interface BlogPostDetail extends Post {
+  body: ArticleBlock[]
+}
+
+export interface BlogComment {
+  id: string
+  memberId?: string
+  name: string
+  body: string
+  createdAt: string
+}
+
+export interface PaginationMeta {
+  page: number
+  limit: number
+  total: number
+  totalPages: number
+}

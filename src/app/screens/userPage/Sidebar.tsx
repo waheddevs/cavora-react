@@ -1,5 +1,5 @@
 import { Box } from "@mui/material"
-import { UserTab } from "app/hooks/UserHooks/useUserTabs"
+import { UserTab } from "app/types/user"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 interface SidebarTabItem {

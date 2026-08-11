@@ -1,4 +1,4 @@
-import { SortKey } from "app/utils/tourFilters"
+import { SortKey } from "app/types/tour"
 
 export const sortOptions: { value: SortKey; label: string }[] = [
   { value: "default", label: "Default" },

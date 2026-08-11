@@ -1,6 +1,4 @@
 import {
-  ProfileUpdateRequest,
-  RegisterRequest,
   useGetProfileQuery,
   useLoginMutation,
   useLogoutMutation,
@@ -8,6 +6,7 @@ import {
   useUpdateProfileMutation,
 } from "app/api/authApi"
 import { currentUser } from "app/data/userData"
+import { ProfileUpdateRequest, RegisterRequest } from "app/types/auth"
 
 export function useAuth() {
   /* API HOOKS */

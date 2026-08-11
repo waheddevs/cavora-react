@@ -1,4 +1,4 @@
-export type CardBrand = "visa" | "mastercard" | "amex" | "unknown"
+import { CardBrand } from "app/types/payment"
 
 export const detectCardBrand = (digits: string): CardBrand => {
   if (/^4/.test(digits)) return "visa"

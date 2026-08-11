@@ -1,42 +1,12 @@
 import { baseApi } from "./baseApi"
-import { ArticleBlock, Post } from "app/types/blog"
-
-interface ApiBlogPostSummary {
-  id: string
-  slug: string
-  title: string
-  excerpt: string
-  category: string
-  imageUrl: string
-  authorName: string
-  authorImageUrl?: string
-  commentCount: number
-  publishedAt: string
-}
-
-interface ApiBlogPostDetail extends ApiBlogPostSummary {
-  body: ArticleBlock[]
-  updatedAt: string
-}
-
-export interface BlogPostDetail extends Post {
-  body: ArticleBlock[]
-}
-
-export interface BlogComment {
-  id: string
-  memberId?: string
-  name: string
-  body: string
-  createdAt: string
-}
-
-interface PaginationMeta {
-  page: number
-  limit: number
-  total: number
-  totalPages: number
-}
+import {
+  ApiBlogPostDetail,
+  ApiBlogPostSummary,
+  BlogComment,
+  BlogPostDetail,
+  PaginationMeta,
+  Post,
+} from "app/types/blog"
 
 function adaptPost(post: ApiBlogPostSummary): Post {
   return {

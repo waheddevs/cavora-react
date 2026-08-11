@@ -1,15 +1,4 @@
-import { Tour } from "app/types/tour"
-
-export interface TourFilters {
-  destinations: string[]
-  price: [number, number]
-  durations: string[]
-  types: string[]
-  minRating: number
-}
-
-export type SortKey =
-  "default" | "price-asc" | "price-desc" | "rating" | "days-asc" | "days-desc"
+import { SortKey, Tour, TourFilters } from "app/types/tour"
 
 const getDayCount = (days: string) => parseInt(days, 10) || 0
 

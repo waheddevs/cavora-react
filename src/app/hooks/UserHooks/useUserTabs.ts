@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
-
-export type UserTab = "profile" | "bookings" | "wishlist" | "support"
+import { UserTab } from "app/types/user"
 
 export function useUserTabs() {
   const location = useLocation()

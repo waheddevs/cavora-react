@@ -1,49 +1,11 @@
 import { baseApi } from "./baseApi"
-import { ApiTourSummary, adaptTourSummary } from "./tourAdapters"
-import { Tour } from "app/types/tour"
-
-export interface BookingRecord {
-  id: string
-  reference: string
-  tourId: number
-  tour: Tour | null
-  departureId: string
-  departureDate?: string
-  status: string
-  travelers: number
-  total: number
-  currency: string
-  holdExpiresAt: string
-  createdAt: string
-}
-
-interface ApiBookingRecord extends Omit<BookingRecord, "tour" | "total"> {
-  tour: ApiTourSummary | null
-  totalCents: number
-}
-
-export interface BookingHold {
-  id: string
-  reference: string
-  tourId: number
-  departureId: string
-  status: string
-  travelers: number
-  unitPriceCents: number
-  subtotalCents: number
-  serviceFeeCents: number
-  totalCents: number
-  currency: string
-  holdExpiresAt: string
-  createdAt: string
-}
-
-interface BookingPagination {
-  page: number
-  limit: number
-  total: number
-  totalPages: number
-}
+import { adaptTourSummary } from "./tourAdapters"
+import {
+  ApiBookingRecord,
+  BookingHold,
+  BookingPagination,
+  BookingRecord,
+} from "app/types/booking"
 
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: builder => ({

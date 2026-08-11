@@ -1,55 +1,14 @@
 import { baseApi } from "./baseApi"
+import { adaptTourDetail, adaptTourSummary } from "./tourAdapters"
 import {
+  ApiPaginatedTours,
   ApiTourDetail,
   ApiTourSummary,
-  adaptTourDetail,
-  adaptTourSummary,
-} from "./tourAdapters"
-import { Tour } from "app/types/tour"
-
-export type ApiTourSort =
-  "price-asc" | "price-desc" | "rating" | "duration" | "popularity"
-
-export interface TourListQuery {
-  page?: number
-  limit?: number
-  query?: string
-  destination?: string
-  type?: string
-  minPrice?: number
-  maxPrice?: number
-  duration?: "short" | "medium" | "long"
-  minRating?: number
-  sort?: ApiTourSort
-}
-
-export interface PaginatedTours {
-  data: Tour[]
-  meta: {
-    page: number
-    limit: number
-    total: number
-    totalPages: number
-  }
-}
-
-interface ApiPaginatedTours extends Omit<PaginatedTours, "data"> {
-  data: ApiTourSummary[]
-}
-
-export interface AvailableDeparture {
-  id: string
-  startDate: string
-  availableSeats: number
-  priceCents: number
-  currency: string
-}
-
-export interface AvailabilityResult {
-  tourId: number
-  travelers: number
-  departures: AvailableDeparture[]
-}
+  AvailabilityResult,
+  PaginatedTours,
+  Tour,
+  TourListQuery,
+} from "app/types/tour"
 
 export const toursApi = baseApi.injectEndpoints({
   endpoints: builder => ({

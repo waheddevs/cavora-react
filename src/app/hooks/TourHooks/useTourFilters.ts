@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react"
-import { TourFilters, makeDefaultFilters } from "app/utils/tourFilters"
+import { makeDefaultFilters } from "app/utils/tourFilters"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
+import { TourFilters } from "app/types/tour"
 
-export type TourFilterListKey = "destinations" | "durations" | "types"
+type TourFilterListKey = "destinations" | "durations" | "types"
 
 export function useTourFilters() {
   const { tours, priceMin, priceMax, filters, setFilters } = useTourCatalog()

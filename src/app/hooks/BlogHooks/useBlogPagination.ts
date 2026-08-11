@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Post } from "app/types/blog"
 import { useGetPostsQuery } from "app/api/blogApi"
 
-export interface BlogPaginationState {
+interface BlogPaginationState {
   page: number
   totalPages: number
   visiblePosts: Post[]

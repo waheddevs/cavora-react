@@ -1,12 +1,4 @@
-export interface SignupValues {
-  firstName: string
-  lastName: string
-  email: string
-  username: string
-  password: string
-}
-
-export type SignupErrors = Partial<Record<keyof SignupValues, string>>
+import { SignupErrors, SignupValues } from "app/types/auth"
 
 const isEmail = (v: string): boolean =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())

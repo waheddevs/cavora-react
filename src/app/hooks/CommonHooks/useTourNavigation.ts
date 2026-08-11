@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-export interface TourNavigation {
+interface TourNavigation {
   openTour: (tourId: number) => void
   openTourList: () => void
 }

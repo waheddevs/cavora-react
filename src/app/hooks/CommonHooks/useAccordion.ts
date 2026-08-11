@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export interface AccordionState {
+interface AccordionState {
   openIndex: number | null
   toggleItem: (index: number) => void
 }

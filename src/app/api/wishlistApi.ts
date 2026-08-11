@@ -1,6 +1,6 @@
 import { baseApi } from "./baseApi"
-import { ApiTourSummary, adaptTourSummary } from "./tourAdapters"
-import { Tour } from "app/types/tour"
+import { adaptTourSummary } from "./tourAdapters"
+import { ApiTourSummary, Tour } from "app/types/tour"
 
 export const wishlistApi = baseApi.injectEndpoints({
   endpoints: builder => ({

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-export interface BlogNavigation {
+interface BlogNavigation {
   openBlogPost: (postSlug: string | number) => void
   openBlogList: () => void
 }

@@ -51,7 +51,7 @@
 =========================== */
 
 .get-in-touch .contact-info .contact-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 26px;
   font-weight: 700;
   color: var(--gold);
@@ -59,7 +59,7 @@
 }
 
 .get-in-touch .contact-info .contact-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 34px;
   font-weight: 700;
   line-height: 1.25;
@@ -68,7 +68,7 @@
 }
 
 .get-in-touch .contact-info .contact-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14.5px;
   line-height: 1.85;
   color: var(--text-light);
@@ -112,7 +112,7 @@
 }
 
 .get-in-touch .contact-info .info-label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -120,7 +120,7 @@
 }
 
 .get-in-touch .contact-info .info-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--dark);
@@ -336,7 +336,11 @@
 
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .get-in-touch .support-scene .ring, .get-in-touch .support-scene .orbit, .get-in-touch .support-scene .agent, .get-in-touch .support-scene .agent-status, .get-in-touch .support-scene .bubble {
+  .get-in-touch .support-scene .ring,
+  .get-in-touch .support-scene .orbit,
+  .get-in-touch .support-scene .agent,
+  .get-in-touch .support-scene .agent-status,
+  .get-in-touch .support-scene .bubble {
     animation: none;
   }
   .get-in-touch .support-scene .ring {
@@ -381,14 +385,14 @@
 }
 
 .get-in-touch .contact-media .badge-tx strong {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 15px;
   font-weight: 600;
   color: var(--dark);
 }
 
 .get-in-touch .contact-media .badge-tx span {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 12px;
   color: var(--text-light);
 }
@@ -408,7 +412,7 @@
 }
 
 .contact-form-section .section-tagline {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-size: 26px;
   font-weight: 700;
   color: var(--gold);
@@ -416,7 +420,7 @@
 }
 
 .contact-form-section .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 34px;
   font-weight: 700;
   color: var(--dark);
@@ -424,7 +428,7 @@
 }
 
 .contact-form-section .form-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14.5px;
   line-height: 1.7;
   color: var(--text-light);
@@ -454,26 +458,28 @@
 }
 
 .contact-form-section .contact-form .form-field label {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--dark);
 }
 
-.contact-form-section .contact-form .form-field input, .contact-form-section .contact-form .form-field textarea {
+.contact-form-section .contact-form .form-field input,
+.contact-form-section .contact-form .form-field textarea {
   width: 100%;
   border: 1px solid #e2e2e2;
   border-radius: 10px;
   background: #ffffff;
   padding: 13px 16px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: var(--dark);
   outline: none;
   transition: border-color 0.25s ease;
 }
 
-.contact-form-section .contact-form .form-field input:focus, .contact-form-section .contact-form .form-field textarea:focus {
+.contact-form-section .contact-form .form-field input:focus,
+.contact-form-section .contact-form .form-field textarea:focus {
   border-color: var(--gold);
 }
 
@@ -486,17 +492,26 @@
   width: 8px;
 }
 
-.contact-form-section .contact-form .form-field textarea::-webkit-scrollbar-track {
+.contact-form-section
+  .contact-form
+  .form-field
+  textarea::-webkit-scrollbar-track {
   background: transparent;
   margin: 6px 0;
 }
 
-.contact-form-section .contact-form .form-field textarea::-webkit-scrollbar-thumb {
+.contact-form-section
+  .contact-form
+  .form-field
+  textarea::-webkit-scrollbar-thumb {
   background: var(--gold);
   border-radius: 8px;
 }
 
-.contact-form-section .contact-form .form-field textarea::-webkit-scrollbar-thumb:hover {
+.contact-form-section
+  .contact-form
+  .form-field
+  textarea::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dark);
 }
 
@@ -511,17 +526,24 @@
   color: var(--gold-dark);
   border-radius: 24px;
   padding: 10px 26px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.4px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-.contact-form-section .contact-form .form-submit:hover {
+.contact-form-section .contact-form .form-submit:hover:not(:disabled) {
   background: var(--gold);
   color: #ffffff;
+}
+
+.contact-form-section .contact-form .form-submit:disabled {
+  cursor: wait;
+  opacity: 0.65;
 }
 
 .contact-form-section .contact-form .form-submit svg {
@@ -548,7 +570,8 @@
     padding: 0 24px;
   }
 
-  .get-in-touch .contact-info .contact-title, .contact-form-section .section-title {
+  .get-in-touch .contact-info .contact-title,
+  .contact-form-section .section-title {
     font-size: 27px;
   }
 

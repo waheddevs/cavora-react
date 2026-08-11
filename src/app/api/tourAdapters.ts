@@ -1,36 +1,4 @@
-import { Tour } from "app/types/tour"
-
-export interface ApiTourImage {
-  altText: string
-  position: number
-  url: string
-}
-
-export interface ApiTourSummary {
-  id: number
-  slug: string
-  country: string
-  place: string
-  title: string
-  location: string
-  type: string
-  priceCents: number
-  oldPriceCents?: number
-  currency: string
-  ratingAverage: number
-  reviewCount: number
-  durationDays: number
-  maxGroupSize: number
-  images: ApiTourImage[]
-}
-
-export interface ApiTourDetail extends ApiTourSummary {
-  overview: string
-  highlights: string[]
-  itinerary: Array<{ day: number; title: string; description: string }>
-  included: string[]
-  notIncluded: string[]
-}
+import { ApiTourDetail, ApiTourSummary, Tour } from "app/types/tour"
 
 export function adaptTourSummary(tour: ApiTourSummary): Tour {
   return {

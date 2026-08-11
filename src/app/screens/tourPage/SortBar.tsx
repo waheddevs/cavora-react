@@ -2,7 +2,7 @@ import { Box, MenuItem, Select } from "@mui/material"
 import TuneRoundedIcon from "@mui/icons-material/TuneRounded"
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded"
 import { sortOptions } from "app/data/tourFilterData"
-import { SortKey } from "app/utils/tourFilters"
+import { SortKey } from "app/types/tour"
 import { useTourCatalog } from "app/hooks/TourHooks/useTourCatalog"
 
 export default function SortBar() {

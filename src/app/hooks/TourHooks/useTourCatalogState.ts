@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import {
-  SortKey,
-  TourFilters,
   filterTours,
   makeDefaultFilters,
   sortTours,
 } from "app/utils/tourFilters"
+import { SortKey, TourFilters } from "app/types/tour"
 import { tourTypes } from "app/data/tourFilterData"
 import { useGetToursQuery } from "app/api/toursApi"
 

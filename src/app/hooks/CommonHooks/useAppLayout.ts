@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom"
 
-export interface AppLayoutState {
+interface AppLayoutState {
   pathname: string
   isAuthRoute: boolean
 }

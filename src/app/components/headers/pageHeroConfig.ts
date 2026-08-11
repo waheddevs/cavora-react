@@ -1,4 +1,4 @@
-import { PageHeroProps } from "./PageHero"
+import { PageHeroProps } from "app/types/layout"
 
 export const pageHeroes: Record<string, PageHeroProps> = {
   "/about": {

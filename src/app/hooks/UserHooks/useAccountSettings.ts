@@ -2,15 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 import { useNotifications } from "app/contexts/SweetAlertContext"
-
-export interface AccountSettingsForm {
-  firstName: string
-  lastName: string
-  email: string
-  username: string
-  phone: string
-  location: string
-}
+import { AccountSettingsForm } from "app/types/user"
 
 export function useAccountSettings() {
   /* ROUTER HOOKS */
