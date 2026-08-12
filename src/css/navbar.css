@@ -988,12 +988,17 @@ a {
     opacity 1.8s ease-in-out,
     transform 8s ease-out;
   will-change: opacity, transform;
+  /* Zooms away from the slide's subject rather than the frame's centre, so the
+     Ken Burns move can't crop out what the shot is actually of. Set per slide in
+     HomeNavbar; the fallback keeps a stray slide behaving as before. */
+  transform-origin: var(--hero-focal, 50% 50%);
 }
 
 .home-hero .hero-slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--hero-focal, 50% 50%);
   display: block;
 }
 
@@ -1042,29 +1047,31 @@ a {
 .home-hero .hero-text .hero-location,
 .home-hero .hero-text .hero-title,
 .home-hero .hero-text .hero-subtitle {
-  animation: hero-content-in 0.7s ease both;
+  /* Opacity only, and deliberately so: any transform on the copy — or on an
+     ancestor of it — rasterises the glyphs off the pixel grid and softens them
+     for as long as it runs. The slide crossfade carries the motion; the text
+     only changes in place. Duration and easing track that crossfade. */
+  animation: hero-content-in 1.2s ease-in-out both;
 }
 
 .home-hero .hero-text .hero-location {
-  animation-delay: 0.05s;
+  animation-delay: 0.1s;
 }
 
 .home-hero .hero-text .hero-title {
-  animation-delay: 0.18s;
+  animation-delay: 0.25s;
 }
 
 .home-hero .hero-text .hero-subtitle {
-  animation-delay: 0.34s;
+  animation-delay: 0.4s;
 }
 
 @keyframes hero-content-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 

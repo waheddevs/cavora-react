@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { CSSProperties, useEffect } from "react"
 import { Box, Container, Typography } from "@mui/material"
 import { NavLink } from "react-router-dom"
 import GoldButton from "../ui/GoldButton"
@@ -18,6 +18,26 @@ const featureIcons: Record<string, JSX.Element> = {
   secure: <ShieldOutlinedIcon className="feature-icon" />,
   curated: <TravelExploreOutlinedIcon className="feature-icon" />,
   support: <SupportAgentOutlinedIcon className="feature-icon" />,
+}
+
+/* The hero is a 100vh band, far wider than these 3:2 photos, so `cover` throws
+   away about a quarter of each one's height — and slide-4 is a portrait shot,
+   which loses closer to two thirds. Each entry names the point that has to
+   survive that crop (the Eiffel spire, the Bali pagoda). It anchors the Ken
+   Burns origin as well, so the zoom can't walk the subject back out of frame.
+   Keyed by file stem, so API-served slides pointing at the same assets match. */
+const heroFocalPoints: Record<string, string> = {
+  "slide-1": "50% 45%",
+  "slide-2": "50% 50%",
+  "slide-3": "62% 8%",
+  "slide-4": "50% 10%",
+  "slide-5": "50% 55%",
+}
+
+function getHeroFocalPoint(imageUrl: string) {
+  const stem = imageUrl.split("/").pop()?.replace(/\.[^.]+$/, "") ?? ""
+
+  return heroFocalPoints[stem] ?? "50% 50%"
 }
 
 function getHeroSrcSet(imageUrl: string) {
@@ -75,6 +95,11 @@ export default function HomeNavbar() {
                 className={`hero-slide${
                   slideIndex === activeSlide ? " active" : ""
                 }`}
+                style={
+                  {
+                    "--hero-focal": getHeroFocalPoint(slide.imageUrl),
+                  } as CSSProperties
+                }
               >
                 <img
                   src={slide.imageUrl}
