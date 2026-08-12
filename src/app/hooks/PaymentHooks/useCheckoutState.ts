@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import {
   detectCardBrand,
@@ -7,7 +7,7 @@ import {
   validatePayment,
 } from "app/utils/paymentValidation"
 import { PaymentErrors, PaymentValues } from "app/types/payment"
-import { getTourById } from "app/data/tourData"
+import { useGetTourQuery } from "app/api/toursApi"
 import { useBookings } from "app/hooks/CommonHooks/useBookings"
 import { useAlerts } from "app/hooks/CommonHooks/useSweetAlert"
 import { formatBookingDate, formatDisplayDate } from "app/utils/calendar"
@@ -21,11 +21,16 @@ export function useCheckoutState() {
   const { addBooking } = useBookings()
   const { confirmWithLoading } = useAlerts()
 
-  /* ROUTE DATA */
-  const tourId = searchParams.get("tourId")
+  /* ROUTE DATA
+     The tour is fetched rather than read from a bundled catalogue: this screen
+     prices the booking, so it has to reflect what the tour actually costs now. */
+  const tourIdParam = Number(searchParams.get("tourId"))
+  const tourId = Number.isInteger(tourIdParam) && tourIdParam > 0 ? tourIdParam : undefined
   const date = searchParams.get("date") ?? ""
   const guests = Math.max(1, Number(searchParams.get("guests") ?? 1))
-  const tour = useMemo(() => getTourById(tourId ?? ""), [tourId])
+  const { data: tour, isLoading: tourLoading } = useGetTourQuery(tourId ?? 0, {
+    skip: tourId === undefined,
+  })
 
   /* STATE */
   const [cardholder, setCardholder] = useState("")
@@ -126,6 +131,7 @@ export function useCheckoutState() {
 
   return {
     tour,
+    tourLoading,
     guests,
     cardholder,
     cardNumber,

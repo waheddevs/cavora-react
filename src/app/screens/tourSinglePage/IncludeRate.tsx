@@ -3,7 +3,6 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded"
 import StarRoundedIcon from "@mui/icons-material/StarRounded"
 import CountUp from "../../components/CountUp"
-import { ratingDistribution as distribution } from "app/data/tourData"
 import { useInViewOnce } from "app/hooks/CommonHooks/useInViewOnce"
 import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 
@@ -55,25 +54,11 @@ export default function IncludeRate() {
             </span>
           </Box>
 
-          <Box className="ts-review-bars">
-            {distribution.map((pct, i) => (
-              <Box className="ts-review-bar" key={i}>
-                <span className="ts-bar-label">{5 - i} star</span>
-                <Box className="ts-bar-track">
-                  <Box
-                    className="ts-bar-fill"
-                    style={{
-                      width: run ? `${pct}%` : "0%",
-                      transitionDelay: `${i * 0.12}s`,
-                    }}
-                  />
-                </Box>
-                <span className="ts-bar-pct">
-                  <CountUp end={pct} run={run} />%
-                </span>
-              </Box>
-            ))}
-          </Box>
+          {/* A per-star breakdown used to be drawn here from a fixed
+              [78, 15, 4, 2, 1], shown identically for every tour whatever its
+              rating. Reviews carry no star value in the schema, so there is
+              nothing real to plot; the average and review count above are the
+              only figures the API can back. */}
         </Box>
       </Box>
     </>

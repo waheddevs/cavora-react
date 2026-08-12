@@ -10,12 +10,32 @@ import {
   useUpdateProfileMutation,
   useUploadAvatarMutation,
 } from "app/api/authApi"
-import { currentUser } from "app/data/userData"
 import {
   PasswordChangeRequest,
   ProfileUpdateRequest,
   RegisterRequest,
 } from "app/types/auth"
+import { UserProfile } from "app/types/user"
+
+/* Signed-out and failed-request states used to fall back to a fabricated
+   person, which showed a stranger's name and email as though it were yours.
+   The blanks keep the shape consumers expect without inventing an identity;
+   `isAuthenticated` remains the flag to branch on. */
+const emptyProfile: UserProfile = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  username: "",
+  phone: "",
+  location: "",
+  avatar: "",
+  memberSince: "",
+  role: "",
+  status: "",
+  emailVerified: false,
+  stats: { activeSessions: 0, bookings: 0, wishlist: 0 },
+}
 
 const sessionlessRoutes = new Set([
   "/login",
@@ -71,7 +91,7 @@ export function useAuthState() {
 
   return useMemo(
     () => ({
-      user: profileQuery.data ?? currentUser,
+      user: profileQuery.data ?? emptyProfile,
       isAuthenticated: Boolean(profileQuery.data),
       isAuthLoading: profileQuery.isLoading,
       login: handleLogin,

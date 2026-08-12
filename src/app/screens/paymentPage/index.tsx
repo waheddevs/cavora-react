@@ -7,7 +7,11 @@ import { useCheckout } from "app/hooks/PaymentHooks/useCheckout"
 import "css/payment.css"
 
 export default function PaymentPage() {
-  const { tour, shake, handleClose } = useCheckout()
+  const { tour, tourLoading, shake, handleClose } = useCheckout()
+
+  /* The tour arrives over the network, so the empty state must wait for the
+     request to settle or it flashes before every checkout. */
+  if (tourLoading) return null
   if (!tour) return <PaymentEmptyState />
 
   return (
