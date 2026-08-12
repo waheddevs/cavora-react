@@ -9,6 +9,12 @@ import { useHomeContent } from "app/hooks/HomeHooks/useHomeContent"
 import { useTravelGallery } from "app/hooks/HomeHooks/useTravelGallery"
 import GoldButton from "app/components/ui/GoldButton"
 
+function getGallerySrcSet(imageUrl: string) {
+  if (!imageUrl.startsWith("/img/home-page-img/gallery-hq-")) return undefined
+
+  return `${imageUrl.replace(".webp", "-960.webp")} 960w, ${imageUrl} 1680w`
+}
+
 export default function TravelGallery() {
   /* HOOKS */
   const { gallery: images } = useHomeContent()
@@ -61,9 +67,12 @@ export default function TravelGallery() {
             >
               <img
                 src={item.imageUrl}
+                srcSet={getGallerySrcSet(item.imageUrl)}
+                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 33vw"
                 alt={item.altText}
                 className="gallery-img"
                 loading="lazy"
+                decoding="async"
               />
               <Box className="gallery-overlay">
                 <span className="gallery-category">{item.category}</span>

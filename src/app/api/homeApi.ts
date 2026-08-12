@@ -1,7 +1,37 @@
 import { baseApi } from "./baseApi"
 import { adaptTourSummary } from "./tourAdapters"
 import { resolveImageUrl } from "./baseApi"
-import { ApiHomeData, HomeData } from "app/types/home"
+import { ApiHomeData, GalleryImage, HomeData } from "app/types/home"
+
+const galleryImageOverrides: Record<string, string> = {
+  "/img/home-page-img/hero.webp":
+    "/img/home-page-img/gallery-hq-jungfrau.webp",
+  "/img/home-page-img/gallery-1.webp":
+    "/img/home-page-img/gallery-hq-rome.webp",
+  "/img/tour-single/japan-kyoto-1.webp":
+    "/img/home-page-img/gallery-hq-kyoto.webp",
+  "/img/home-page-img/tour-safari.webp":
+    "/img/home-page-img/gallery-hq-lucerne.webp",
+  "/img/tour-single/maldives-ari-1.webp":
+    "/img/home-page-img/gallery-hq-maldives.webp",
+}
+
+const galleryTourReplacements: Record<number, GalleryImage> = {
+  24: {
+    altText: "Gondolas along a quiet Venice canal",
+    category: "Cultural",
+    imageUrl: "/img/tour-single/italy-venice-1.webp",
+    location: "Venice, Italy",
+    tall: false,
+    title: "Venetian Canal Stories",
+    tourId: 14,
+  },
+}
+
+function resolveGalleryImageUrl(path: string) {
+  const resolved = resolveImageUrl(path)
+  return galleryImageOverrides[resolved] ?? resolved
+}
 
 export const homeApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -22,10 +52,14 @@ export const homeApi = baseApi.injectEndpoints({
             ? adaptTourSummary(response.data.spotlight.tour)
             : null,
         },
-        gallery: response.data.gallery.map(image => ({
-          ...image,
-          imageUrl: resolveImageUrl(image.imageUrl),
-        })),
+        gallery: response.data.gallery.map(image => {
+          const galleryItem = galleryTourReplacements[image.tourId] ?? image
+
+          return {
+            ...galleryItem,
+            imageUrl: resolveGalleryImageUrl(galleryItem.imageUrl),
+          }
+        }),
       }),
       providesTags: ["Home"],
       keepUnusedDataFor: 300,

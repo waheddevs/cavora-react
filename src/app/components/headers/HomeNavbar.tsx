@@ -44,7 +44,7 @@ export default function HomeNavbar() {
   const nextSlide =
     heroSlides.length > 0 ? (activeSlide + 1) % heroSlides.length : -1
   const isMounted = (index: number) =>
-    index === activeSlide || index === previousSlide
+    index === activeSlide || index === previousSlide || index === nextSlide
 
   useEffect(() => {
     const nextImage = heroSlides[nextSlide]?.imageUrl
@@ -129,8 +129,19 @@ export default function HomeNavbar() {
               className="hero-secondary"
               component={NavLink}
               to="/contact"
+              onPointerMove={event => {
+                const bounds = event.currentTarget.getBoundingClientRect()
+                event.currentTarget.style.setProperty(
+                  "--hero-pointer-x",
+                  `${event.clientX - bounds.left}px`,
+                )
+                event.currentTarget.style.setProperty(
+                  "--hero-pointer-y",
+                  `${event.clientY - bounds.top}px`,
+                )
+              }}
             >
-              Plan Your Trip
+              <span className="hero-secondary-label">Plan Your Trip</span>
             </GoldButton>
           </Box>
 

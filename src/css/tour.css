@@ -202,6 +202,7 @@
 }
 
 .tour-page .tour-layout.collapsed .tour-filter-shell {
+  max-height: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -340,7 +341,7 @@
 
 .tour-page .tour-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 26px;
   animation: tour-fade 0.4s ease;
 }
@@ -359,6 +360,7 @@
 .tour-page .tour-card {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   border: 1px solid #ececec;
   border-radius: 16px;
   overflow: hidden;
@@ -444,7 +446,10 @@
 .tour-page .tour-card .tc-rating {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  min-width: 0;
+  min-height: 22px;
+  overflow: hidden;
   row-gap: 6px;
   gap: 2px;
   margin-bottom: 10px;
@@ -460,6 +465,7 @@
 }
 
 .tour-page .tour-card .tc-rating .tc-review-count {
+  flex-shrink: 0;
   margin-left: 6px;
   font-family: "Poppins", sans-serif;
   font-size: 12.5px;
@@ -467,10 +473,16 @@
 }
 
 .tour-page .tour-card .tc-rating .tour-view-count {
+  flex-shrink: 0;
   margin-inline-start: 8px;
 }
 
 .tour-page .tour-card .tc-title {
+  display: -webkit-box;
+  height: calc(1.4em * 2);
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-family: "Poppins", sans-serif;
   font-size: 17px;
   font-weight: 600;
@@ -495,6 +507,9 @@
 .tour-page .tour-card .tc-meta span {
   display: flex;
   align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
   gap: 6px;
   font-family: "Poppins", sans-serif;
   font-size: 12.5px;
@@ -519,7 +534,10 @@
 .tour-page .tour-card .tc-price {
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
+  min-width: 0;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   gap: 4px;
 }
 
@@ -545,6 +563,7 @@
 .tour-page .tour-card .tc-btn {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   gap: 6px;
   background: transparent;
   border: 1.4px solid var(--gold);
@@ -559,6 +578,35 @@
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+@media (min-width: 1101px) {
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-body {
+    padding-inline: 16px;
+  }
+
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-foot {
+    gap: 6px;
+  }
+
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-price {
+    gap: 3px;
+  }
+
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-price small,
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-price span {
+    font-size: 10.5px;
+  }
+
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-price strong {
+    font-size: 18px;
+  }
+
+  .tour-page .tour-layout:not(.collapsed) .tour-card .tc-btn {
+    gap: 4px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+  }
 }
 
 .tour-page .tour-card .tc-btn:hover {
@@ -640,7 +688,7 @@
   }
 
   .tour-page .tour-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -660,6 +708,11 @@
     max-height: 0;
     transform: translateY(-12px);
   }
+
+  .tour-page .tour-layout {
+    transition: none;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

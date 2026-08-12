@@ -11,6 +11,7 @@ import {
   TourViewResult,
 } from "app/types/tour"
 import { homeApi } from "./homeApi"
+import { BlogComment, PaginationMeta } from "app/types/blog"
 
 export const toursApi = baseApi.injectEndpoints({
   endpoints: builder => ({
@@ -53,6 +54,34 @@ export const toursApi = baseApi.injectEndpoints({
         response.data,
       providesTags: (_result, _error, query) => [
         { type: "Tour", id: `AVAILABILITY-${query.tourId}` },
+      ],
+    }),
+    getTourComments: builder.query<
+      { data: BlogComment[]; meta: PaginationMeta },
+      { tourId: number; page?: number; limit?: number }
+    >({
+      query: ({ tourId, ...params }) => ({
+        url: `/tours/${tourId}/comments`,
+        params,
+      }),
+      providesTags: (_result, _error, query) => [
+        { type: "Comment", id: `tour-${query.tourId}` },
+      ],
+    }),
+    submitTourComment: builder.mutation<
+      { id: string; message: string; status: string },
+      { tourId: number; name: string; email: string; body: string }
+    >({
+      query: ({ tourId, ...body }) => ({
+        url: `/tours/${tourId}/comments`,
+        method: "POST",
+        body,
+      }),
+      transformResponse: (response: {
+        data: { id: string; message: string; status: string }
+      }) => response.data,
+      invalidatesTags: (_result, _error, { tourId }) => [
+        { type: "Comment", id: `tour-${tourId}` },
       ],
     }),
     recordTourView: builder.mutation<
@@ -98,7 +127,9 @@ export const toursApi = baseApi.injectEndpoints({
 export const {
   useGetRelatedToursQuery,
   useGetTourAvailabilityQuery,
+  useGetTourCommentsQuery,
   useGetTourQuery,
   useGetToursQuery,
   useRecordTourViewMutation,
+  useSubmitTourCommentMutation,
 } = toursApi

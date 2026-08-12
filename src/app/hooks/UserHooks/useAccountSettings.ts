@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 import { useAlerts, useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 import { getApiErrorMessage } from "app/api/apiErrors"
@@ -20,13 +19,9 @@ const allowedAvatarTypes = new Set([
 const maxAvatarBytes = 5 * 1024 * 1024
 
 export function useAccountSettings() {
-  /* ROUTER HOOKS */
-  const navigate = useNavigate()
-
   /* DOMAIN HOOKS */
   const {
     user,
-    logout,
     saveProfile,
     changePassword,
     uploadAvatar,
@@ -35,7 +30,6 @@ export function useAccountSettings() {
     passwordChanging,
     avatarUploading,
     avatarRemoving,
-    logoutPending,
   } = useAuth()
   const { confirmWithLoading } = useAlerts()
   const { notifyError, notifySuccess, notifyWarning } = useNotifications()
@@ -230,14 +224,6 @@ export function useAccountSettings() {
     })
   }
 
-  const handleLogout = async () => {
-    try {
-      await logout()
-    } finally {
-      navigate("/login")
-    }
-  }
-
   return {
     user,
     displayedAvatar,
@@ -249,11 +235,9 @@ export function useAccountSettings() {
     handlePasswordSubmit,
     handleAvatarUpload,
     handleAvatarRemove,
-    handleLogout,
     profileSaving,
     passwordChanging,
     avatarUploading,
     avatarRemoving,
-    logoutPending,
   }
 }

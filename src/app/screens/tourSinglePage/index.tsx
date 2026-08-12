@@ -5,6 +5,7 @@ import Itinerary from "./Itinerary"
 import IncludeRate from "./IncludeRate"
 import OrderBar from "./OrderBar"
 import RelatedTours from "./RelatedTours"
+import TourComments from "./TourComments"
 import { useTourDetails } from "app/hooks/TourSingleHooks/useTourDetails"
 import "css/tourSingle.css"
 
@@ -43,6 +44,7 @@ export default function TourSinglePage() {
             <AboutTour />
             <Itinerary />
             <IncludeRate />
+            <TourComments />
           </Box>
           <OrderBar />
         </Box>

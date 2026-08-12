@@ -5,9 +5,9 @@ import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded"
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded"
 import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import BlogSidebar from "../blogPage/BlogSidebar"
 import { useBlogDetails } from "app/hooks/BlogHooks/useBlogDetails"
+import CommentSection from "app/components/comments/CommentSection"
 import "css/blog.css"
 
 export default function BlogDetailsPage() {
@@ -16,12 +16,13 @@ export default function BlogDetailsPage() {
     body,
     comments,
     commentTotal,
+    commentsLoading,
+    loadMoreComments,
     isLoading,
     isError,
     openBlogList,
     handleCommentSubmit,
     commentSubmitting,
-    commentSubmitted,
     commentError,
   } = useBlogDetails()
 
@@ -117,66 +118,15 @@ export default function BlogDetailsPage() {
             </Box>
 
             <Box className="details-comments">
-              <h3 className="details-section-title">{commentTotal} Comments</h3>
-              <Box className="comment-list">
-                {comments.map(comment => (
-                  <Box className="comment-item" key={comment.id}>
-                    <img
-                      src="/img/team-img/member-1.webp"
-                      alt={comment.name}
-                      loading="lazy"
-                    />
-                    <Box className="comment-body">
-                      <Box className="comment-head">
-                        <h5>{comment.name}</h5>
-                        <span>
-                          {new Date(comment.createdAt).toLocaleDateString()}
-                        </span>
-                      </Box>
-                      <p>{comment.body}</p>
-                    </Box>
-                  </Box>
-                ))}
-              </Box>
-
-              <h3 className="details-section-title">Leave a Comment</h3>
-              <form className="comment-form" onSubmit={handleCommentSubmit}>
-                <Box className="comment-form-row">
-                  <input
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    aria-label="Your name"
-                    required
-                  />
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="Your email"
-                    aria-label="Your email"
-                    required
-                  />
-                </Box>
-                <textarea
-                  name="body"
-                  rows={5}
-                  placeholder="Write your comment..."
-                  aria-label="Your comment"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="comment-submit"
-                  disabled={commentSubmitting}
-                >
-                  {commentSubmitting ? "Submitting..." : "Post Comment"}
-                  <ArrowForwardRoundedIcon />
-                </button>
-                {commentSubmitted && (
-                  <p>Your comment was submitted for moderation.</p>
-                )}
-                {commentError && <p>Comment could not be submitted.</p>}
-              </form>
+              <CommentSection
+                comments={comments}
+                total={commentTotal}
+                isLoading={commentsLoading}
+                onLoadMore={loadMoreComments}
+                onSubmit={handleCommentSubmit}
+                submitting={commentSubmitting}
+                hasError={commentError}
+              />
             </Box>
           </article>
 

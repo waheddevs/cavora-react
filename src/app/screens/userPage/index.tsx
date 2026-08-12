@@ -1,5 +1,5 @@
 import { Box, CircularProgress } from "@mui/material"
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded"
 import LuggageRoundedIcon from "@mui/icons-material/LuggageRounded"
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded"
@@ -15,7 +15,7 @@ import { Navigate } from "react-router-dom"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
 const tabs: { key: UserTab; label: string; icon: React.ReactNode }[] = [
-  { key: "profile", label: "Profile", icon: <AccountCircleRoundedIcon /> },
+  { key: "profile", label: "Settings", icon: <SettingsRoundedIcon /> },
   { key: "bookings", label: "My Bookings", icon: <LuggageRoundedIcon /> },
   { key: "wishlist", label: "Wishlist", icon: <FavoriteRoundedIcon /> },
   { key: "support", label: "Support", icon: <SupportAgentRoundedIcon /> },

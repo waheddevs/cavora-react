@@ -3,7 +3,6 @@ import CameraAltRoundedIcon from "@mui/icons-material/CameraAltRounded"
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded"
 import ImageRoundedIcon from "@mui/icons-material/ImageRounded"
 import LockResetRoundedIcon from "@mui/icons-material/LockResetRounded"
-import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded"
 import UserAvatar from "app/components/ui/UserAvatar"
 import { useAccountSettings } from "app/hooks/UserHooks/useAccountSettings"
 
@@ -20,12 +19,10 @@ export default function Settings() {
     handlePasswordSubmit,
     handleAvatarUpload,
     handleAvatarRemove,
-    handleLogout,
     profileSaving,
     passwordChanging,
     avatarUploading,
     avatarRemoving,
-    logoutPending,
   } = useAccountSettings()
 
   return (
@@ -239,25 +236,6 @@ export default function Settings() {
         </button>
       </Box>
 
-      <Box className="settings-divider" />
-
-      <Box className="settings-danger-zone">
-        <Box>
-          <h3 className="settings-danger-title">Log Out</h3>
-          <p className="settings-danger-subtitle">
-            Sign out of your Cavora account on this device.
-          </p>
-        </Box>
-        <button
-          type="button"
-          className="danger-button"
-          onClick={handleLogout}
-          disabled={logoutPending}
-        >
-          <LogoutRoundedIcon />
-          {logoutPending ? "Logging out..." : "Log Out"}
-        </button>
-      </Box>
     </Box>
   )
 }

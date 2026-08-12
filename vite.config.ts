@@ -3,6 +3,12 @@ import react from "@vitejs/plugin-react"
 
 export default defineConfig({
   plugins: [react()],
+  legacy: {
+    /* MUI v5 publishes its icon entry points as CommonJS modules. Vite 8's
+       stricter interop otherwise exposes the module object instead of the
+       default React component and crashes the app at runtime. */
+    inconsistentCjsInterop: true,
+  },
   resolve: {
     /* Keeps the `app/...` and `css/...` imports resolving off the
        `baseUrl: "src"` already declared in tsconfig.json. */

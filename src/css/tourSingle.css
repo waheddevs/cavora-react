@@ -4,7 +4,7 @@
 
 .tour-single-navbar {
   width: 100%;
-  padding: 32px 0 20px;
+  padding: 26px 0;
   display: flex;
   justify-content: center;
   background: var(--bg-light);

@@ -15,16 +15,7 @@ export default function Explore() {
   }
 
   return (
-    <section
-      className="explore"
-      style={
-        spotlight?.imageUrl
-          ? {
-              backgroundImage: `linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)), url('${spotlight.imageUrl}')`,
-            }
-          : undefined
-      }
-    >
+    <section className="explore">
       <Container maxWidth={false} className="explore-content">
         <Typography className="explore-tagline">
           {spotlight?.tagline ?? "Hidden Gem"}

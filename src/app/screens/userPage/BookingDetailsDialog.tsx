@@ -10,8 +10,10 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
 import ConfirmationNumberRoundedIcon from "@mui/icons-material/ConfirmationNumberRounded"
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded"
 import GroupRoundedIcon from "@mui/icons-material/GroupRounded"
+import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded"
 import { NavLink } from "react-router-dom"
 import { BookingDetails, BookingRecord } from "app/types/booking"
+import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
 
 interface BookingDetailsDialogProps {
   booking?: BookingDetails
@@ -53,7 +55,23 @@ export default function BookingDetailsDialog({
   isError,
   onClose,
 }: BookingDetailsDialogProps) {
+  const { notifyError, notifySuccess } = useNotifications()
   const tour = selectedBooking?.tour
+
+  const handleCopyReference = async (reference: string) => {
+    try {
+      await navigator.clipboard.writeText(reference)
+      await notifySuccess({
+        title: "Reference copied",
+        message: "The booking reference is ready to paste.",
+      })
+    } catch {
+      await notifyError({
+        title: "Copy paused",
+        message: "Select the reference and copy it manually.",
+      })
+    }
+  }
 
   return (
     <Dialog
@@ -115,12 +133,21 @@ export default function BookingDetailsDialog({
             </Box>
 
             <Box className="booking-dialog-facts">
-              <Box>
+              <Box className="booking-dialog-reference">
                 <ConfirmationNumberRoundedIcon />
                 <span>
                   <small>Reference</small>
-                  <strong>{booking.reference}</strong>
+                  <strong title={booking.reference}>{booking.reference}</strong>
                 </span>
+                <button
+                  type="button"
+                  className="booking-dialog-copy"
+                  aria-label="Copy booking reference"
+                  title="Copy reference"
+                  onClick={() => void handleCopyReference(booking.reference)}
+                >
+                  <ContentCopyRoundedIcon />
+                </button>
               </Box>
               <Box>
                 <CalendarMonthRoundedIcon />

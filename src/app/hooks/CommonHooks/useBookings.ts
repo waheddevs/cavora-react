@@ -3,11 +3,15 @@ import {
   useGetBookingHistoryQuery,
 } from "app/api/bookingApi"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
-import { useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
+import {
+  useAlerts,
+  useNotifications,
+} from "app/hooks/CommonHooks/useSweetAlert"
 
 export function useBookings() {
   /* DOMAIN HOOKS */
   const { isAuthenticated } = useAuth()
+  const { confirmWithLoading } = useAlerts()
   const { notifyError, notifySuccess } = useNotifications()
 
   /* API HOOKS */
@@ -19,18 +23,34 @@ export function useBookings() {
 
   /* HANDLERS */
   const handleCancelBooking = async (bookingId: string, tourId: number) => {
-    try {
-      await cancelRequest({ bookingId, tourId }).unwrap()
+    let cancellationSucceeded = true
+    const confirmed = await confirmWithLoading({
+      message: "Cancel this booking? Your reserved place will be released.",
+      confirmText: "Cancel booking",
+      cancelText: "Keep booking",
+      loadingMs: 700,
+      onConfirm: async () => {
+        try {
+          await cancelRequest({ bookingId, tourId }).unwrap()
+        } catch {
+          cancellationSucceeded = false
+        }
+      },
+    })
+
+    if (!confirmed) return
+    if (cancellationSucceeded) {
       await notifySuccess({
         title: "Booking cancelled",
         message: "This journey has been removed from your upcoming plans.",
       })
-    } catch {
-      await notifyError({
-        title: "Cancellation paused",
-        message: "Your booking is still protected. Please return in a moment.",
-      })
+      return
     }
+
+    await notifyError({
+      title: "Cancellation paused",
+      message: "Your booking is still protected. Please return in a moment.",
+    })
   }
 
   // Payment is intentionally still mocked. The real booking hold is already

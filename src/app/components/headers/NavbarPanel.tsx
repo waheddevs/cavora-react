@@ -1,9 +1,9 @@
 import { Box, Container, IconButton, Stack } from "@mui/material"
 import { NavLink } from "react-router-dom"
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded"
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded"
 import GoldButton from "../ui/GoldButton"
+import NavbarMemberTools from "./NavbarMemberTools"
 import { useNavbarMenu } from "app/hooks/CommonHooks/useNavbarMenu"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
 
@@ -61,14 +61,7 @@ export default function NavbarPanel() {
 
           <Box className="btn">
             {isAuthenticated ? (
-              <NavLink
-                to="/user"
-                className="navbar-user-icon"
-                aria-label="My account"
-                onClick={closeMenu}
-              >
-                <PersonRoundedIcon />
-              </NavLink>
+              <NavbarMemberTools onNavigate={closeMenu} />
             ) : (
               <>
                 <NavLink

@@ -82,6 +82,11 @@ export const blogApi = baseApi.injectEndpoints({
       transformResponse: (response: {
         data: { id: string; message: string; status: string }
       }) => response.data,
+      invalidatesTags: (_result, _error, { postId }) => [
+        { type: "Comment", id: postId },
+        { type: "Post", id: postId },
+        { type: "Post", id: "LIST" },
+      ],
     }),
   }),
 })

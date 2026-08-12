@@ -289,8 +289,8 @@
   justify-content: center;
   text-align: center;
   background-image:
-    linear-gradient(rgba(18, 20, 24, 0.5), rgba(18, 20, 24, 0.62)),
-    url("/img/home-page-img/tour-kyoto.webp");
+    linear-gradient(rgba(18, 20, 24, 0.32), rgba(18, 20, 24, 0.5)),
+    url("/img/home-page-img/kyoto-explore-v2.webp");
   background-size: cover;
   background-position: center;
 }
@@ -798,7 +798,7 @@
 @keyframes gallery-reveal {
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
