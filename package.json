@@ -9,18 +9,14 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.15.6",
     "@reduxjs/toolkit": "^2",
-    "@testing-library/jest-dom": "^6",
-    "@testing-library/react": "^13",
-    "@testing-library/user-event": "^14",
     "react": "^18.2.0",
     "react-dom": "^18.0.0",
     "react-redux": "^9",
-    "react-router-dom": "^6",
+    "react-router-dom": "^7.18.2",
     "sweetalert2": "^11.4.23"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/jest": "^27.5.2",
     "@types/node": "^17.0.45",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
@@ -43,7 +39,6 @@
     "images:responsive": "node scripts/generate-responsive-images.mjs",
     "images:verify": "node scripts/verify-images.mjs",
     "report:size": "node scripts/report-build-size.mjs",
-    "preview": "vite preview",
-    "start:prod": "serve -s build -l 3000"
+    "preview": "vite preview"
   }
 }

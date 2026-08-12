@@ -87,40 +87,51 @@
   justify-content: center;
 }
 
+.swal2-container.cavora-toast-container {
+  background: rgba(26, 26, 26, 0.42) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 .cavora-toast-popup {
-  width: min(340px, calc(100vw - 28px)) !important;
-  padding: 12px 14px !important;
-  border-left: 3px solid #ffb300 !important;
-  border-radius: 10px !important;
+  width: min(390px, calc(100vw - 32px)) !important;
+  padding: 30px 28px 26px !important;
+  border: 1px solid rgba(255, 179, 0, 0.28) !important;
+  border-radius: 20px !important;
+  background: #ffffff !important;
   font-family: "Poppins", sans-serif !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16) !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3) !important;
 }
 
-.cavora-toast-popup .swal2-icon {
-  width: 34px !important;
-  min-width: 34px !important;
-  height: 34px !important;
-  margin: 0 10px 0 0 !important;
-  border-width: 3px !important;
+.cavora-toast-icon {
+  /* SweetAlert draws every icon detail in em units. Scale the complete icon
+     instead of shrinking only its outer circle, otherwise success/error
+     strokes keep their default 80px geometry and spill outside the ring. */
+  width: 5em !important;
+  min-width: 5em !important;
+  height: 5em !important;
+  margin: 0 auto 18px !important;
+  border-width: 0.25em !important;
+  font-size: 12px !important;
 }
 
-.cavora-toast-popup .swal2-title {
+.cavora-toast-title {
   margin: 0 !important;
   padding: 0 !important;
   color: var(--dark) !important;
   font-family: "Poppins", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  line-height: 1.35 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
 }
 
-.cavora-toast-popup .swal2-html-container {
-  margin: 3px 0 0 !important;
+.cavora-toast-message {
+  margin: 9px auto 0 !important;
   padding: 0 !important;
   color: var(--text-light) !important;
   font-family: "Poppins", sans-serif !important;
-  font-size: 12.5px !important;
-  line-height: 1.45 !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
 }
 
 .cavora-toast-progress {

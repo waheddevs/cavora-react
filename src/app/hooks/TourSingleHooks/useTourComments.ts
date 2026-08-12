@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import {
   useGetTourCommentsQuery,
   useSubmitTourCommentMutation,
@@ -11,8 +11,6 @@ export function useTourComments(tourId?: number) {
     { skip: !tourId },
   )
   const [submitComment, submitState] = useSubmitTourCommentMutation()
-
-  useEffect(() => setCommentLimit(4), [tourId])
 
   const handleCommentSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

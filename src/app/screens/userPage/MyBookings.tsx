@@ -7,6 +7,7 @@ import GroupRoundedIcon from "@mui/icons-material/GroupRounded"
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded"
 import { useBookings } from "app/hooks/CommonHooks/useBookings"
 import { useBookingDetails } from "app/hooks/UserHooks/useBookingDetails"
+import { useClearBookings } from "app/hooks/UserHooks/useClearBookings"
 import BookingDetailsDialog from "./BookingDetailsDialog"
 
 type BookingFilter = "all" | "reserved" | "past" | "cancelled"
@@ -42,6 +43,7 @@ export default function MyBookings() {
   const [activeFilter, setActiveFilter] = useState<BookingFilter>("all")
   const { bookings, handleCancelBooking, isLoading, isError, cancelling } =
     useBookings()
+  const { clearBookings, isClearing } = useClearBookings()
   const {
     booking: bookingDetails,
     selectedBooking,
@@ -81,6 +83,10 @@ export default function MyBookings() {
       ),
     [activeFilter, visibleBookings],
   )
+  const clearableFilter =
+    activeFilter === "past" || activeFilter === "cancelled"
+      ? activeFilter
+      : null
 
   return (
     <Box className="user-panel">
@@ -92,25 +98,38 @@ export default function MyBookings() {
           </p>
         </Box>
 
-        <Box
-          className="booking-filter"
-          role="group"
-          aria-label="Filter bookings by status"
-        >
-          {bookingFilters.map(filter => (
+        <Box className="booking-filter-tools">
+          <Box
+            className="booking-filter"
+            role="group"
+            aria-label="Filter bookings by status"
+          >
+            {bookingFilters.map(filter => (
+              <button
+                type="button"
+                key={filter.key}
+                className={`booking-filter-button${
+                  activeFilter === filter.key ? " active" : ""
+                }`}
+                aria-pressed={activeFilter === filter.key}
+                onClick={() => setActiveFilter(filter.key)}
+              >
+                {filter.label}
+                <span>{filterCounts[filter.key]}</span>
+              </button>
+            ))}
+          </Box>
+
+          {clearableFilter && filterCounts[clearableFilter] > 0 && (
             <button
               type="button"
-              key={filter.key}
-              className={`booking-filter-button${
-                activeFilter === filter.key ? " active" : ""
-              }`}
-              aria-pressed={activeFilter === filter.key}
-              onClick={() => setActiveFilter(filter.key)}
+              className="booking-filter-clear"
+              disabled={isClearing}
+              onClick={() => void clearBookings(clearableFilter)}
             >
-              {filter.label}
-              <span>{filterCounts[filter.key]}</span>
+              {isClearing ? "Clearing..." : "Clear all"}
             </button>
-          ))}
+          )}
         </Box>
       </Box>
 

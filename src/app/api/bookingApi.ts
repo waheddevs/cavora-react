@@ -8,6 +8,8 @@ import {
   BookingRecord,
 } from "app/types/booking"
 
+export type BookingArchiveGroup = "past" | "cancelled"
+
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     getBookingHistory: builder.query<
@@ -78,10 +80,27 @@ export const bookingApi = baseApi.injectEndpoints({
         "User",
       ],
     }),
+    archiveBookingHistory: builder.mutation<
+      { archivedCount: number },
+      { group: BookingArchiveGroup }
+    >({
+      query: body => ({
+        url: "/users/me/bookings/archive",
+        method: "PATCH",
+        body,
+      }),
+      transformResponse: (response: { data: { archivedCount: number } }) =>
+        response.data,
+      invalidatesTags: [
+        { type: "Booking", id: "LIST" },
+        "User",
+      ],
+    }),
   }),
 })
 
 export const {
+  useArchiveBookingHistoryMutation,
   useCancelBookingMutation,
   useCreateBookingHoldMutation,
   useGetBookingHistoryQuery,

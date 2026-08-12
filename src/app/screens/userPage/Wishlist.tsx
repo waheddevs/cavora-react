@@ -5,6 +5,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded"
 import { useWishlist } from "app/hooks/CommonHooks/useWishlist"
 import { useTourNavigation } from "app/hooks/CommonHooks/useTourNavigation"
+import { useClearWishlist } from "app/hooks/UserHooks/useClearWishlist"
 import TourViewCount from "app/components/ui/TourViewCount"
 import { MouseEvent } from "react"
 
@@ -12,6 +13,7 @@ export default function Wishlist() {
   /* HOOKS */
   const { wishlist, removeFromWishlist, isLoading, isError } = useWishlist()
   const { openTour } = useTourNavigation()
+  const { clearWishlist, isClearing } = useClearWishlist()
 
   /* HANDLERS */
   const handleRemove = (
@@ -25,7 +27,19 @@ export default function Wishlist() {
   return (
     <Box className="user-panel">
       <h2 className="user-panel-title">Wishlist</h2>
-      <p className="user-panel-subtitle">Tours you've saved for later.</p>
+      <Box className="wishlist-heading-row">
+        <p className="user-panel-subtitle">Tours you've saved for later.</p>
+        {wishlist.length > 0 && !isLoading && !isError && (
+          <button
+            type="button"
+            className="booking-filter-clear wishlist-clear"
+            disabled={isClearing}
+            onClick={() => void clearWishlist()}
+          >
+            {isClearing ? "Clearing..." : "Clear all"}
+          </button>
+        )}
+      </Box>
 
       {isLoading && <Typography>Loading wishlist...</Typography>}
       {isError && (

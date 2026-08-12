@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { useBlogNavigation } from "./useBlogNavigation"
 import {
@@ -8,7 +8,7 @@ import {
 } from "app/api/blogApi"
 
 export function useBlogDetails() {
-  const [commentLimit, setCommentLimit] = useState(4)
+  const [commentPage, setCommentPage] = useState({ postId: "", limit: 4 })
   /* ROUTER HOOKS */
   const [searchParams] = useSearchParams()
 
@@ -19,13 +19,13 @@ export function useBlogDetails() {
   const slug = searchParams.get("slug") ?? ""
   const postQuery = useGetPostQuery(slug, { skip: !slug })
   const post = postQuery.data
+  const postId = String(post?.id ?? "")
+  const commentLimit = commentPage.postId === postId ? commentPage.limit : 4
   const commentsQuery = useGetCommentsQuery(
-    { postId: String(post?.id ?? ""), page: 1, limit: commentLimit },
+    { postId, page: 1, limit: commentLimit },
     { skip: !post },
   )
   const [submitComment, submitState] = useSubmitCommentMutation()
-
-  useEffect(() => setCommentLimit(4), [post?.id])
 
   /* HANDLERS */
   const handleCommentSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -53,7 +53,11 @@ export function useBlogDetails() {
     comments: commentsQuery.data?.data ?? [],
     commentTotal: commentsQuery.data?.meta.total ?? 0,
     commentsLoading: commentsQuery.isFetching,
-    loadMoreComments: () => setCommentLimit(current => current + 4),
+    loadMoreComments: () =>
+      setCommentPage(current => ({
+        postId,
+        limit: current.postId === postId ? current.limit + 4 : 8,
+      })),
     isLoading: postQuery.isLoading,
     isError: !slug || postQuery.isError,
     openBlogList,

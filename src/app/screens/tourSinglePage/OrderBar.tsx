@@ -83,11 +83,6 @@ export default function OrderBar() {
               Please pick a date before booking
             </span>
           )}
-          {availabilityLoading && (
-            <span className="ts-field-error">
-              Checking available departures...
-            </span>
-          )}
           {availabilityError && (
             <span className="ts-field-error">
               Departure dates are temporarily beyond the horizon.

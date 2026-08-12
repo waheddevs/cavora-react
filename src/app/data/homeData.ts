@@ -1,27 +1,3 @@
-export const featuredTourIds: number[] = [1, 13, 17, 24]
-
-export const popularTourIds: number[] = [5, 19, 25]
-
-// Gallery
-
-export const galleryImages = [
-  {
-    img: "/img/home-page-img/hero.webp",
-    alt: "Snowy peaks above the clouds",
-    tall: true,
-  },
-  { img: "/img/home-page-img/gallery-1.webp", alt: "Aerial view of Rome" },
-  {
-    img: "/img/home-page-img/gallery-2.webp",
-    alt: "Taj Mahal through an archway",
-  },
-  {
-    img: "/img/home-page-img/tour-safari.webp",
-    alt: "Wooden boat on an alpine lake",
-  },
-  { img: "/img/home-page-img/tour-santorini.webp", alt: "Pyramids of Giza" },
-]
-
 export const heroFeatures = [
   { label: "Verified Guides", icon: "verified" },
   { label: "Secure Booking", icon: "secure" },

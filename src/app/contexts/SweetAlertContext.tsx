@@ -46,9 +46,16 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
         confirmButtonText: confirmText,
         cancelButtonText: cancelText,
         showCancelButton: true,
+        position: "center",
         allowOutsideClick: false,
         allowEscapeKey: false,
         buttonsStyling: false,
+        showClass: {
+          popup: "cavora-coming-soon-show",
+        },
+        hideClass: {
+          popup: "cavora-coming-soon-hide",
+        },
         customClass: {
           container: "cavora-swal-container",
           popup: "cavora-swal-popup",
@@ -117,11 +124,19 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
         timer: 2600,
         timerProgressBar: true,
         showConfirmButton: false,
-        toast: true,
-        position: "top-end",
+        position: "center",
+        showClass: {
+          popup: "cavora-coming-soon-show",
+        },
+        hideClass: {
+          popup: "cavora-coming-soon-hide",
+        },
         customClass: {
           container: "cavora-toast-container",
           popup: "cavora-toast-popup",
+          icon: "cavora-toast-icon",
+          title: "cavora-toast-title",
+          htmlContainer: "cavora-toast-message",
           timerProgressBar: "cavora-toast-progress",
         },
       })

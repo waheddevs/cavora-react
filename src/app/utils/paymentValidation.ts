@@ -22,26 +22,6 @@ export const formatExpiry = (raw: string): string => {
   return `${digits.slice(0, 2)}/${digits.slice(2)}`
 }
 
-function expiryError(expiry: string): string | undefined {
-  if (!expiry) return "Expiry date is required"
-
-  const match = /^(\d{2})\/(\d{2})$/.exec(expiry)
-  if (!match) return "Use MM/YY format"
-
-  const month = Number(match[1])
-  const year = Number(match[2])
-  if (month < 1 || month > 12) return "Enter a valid month"
-
-  const now = new Date()
-  const currentYear = now.getFullYear() % 100
-  const currentMonth = now.getMonth() + 1
-  if (year < currentYear || (year === currentYear && month < currentMonth)) {
-    return "Card has expired"
-  }
-
-  return undefined
-}
-
 export function validatePayment({
   cardholder,
   cardNumber,
@@ -52,18 +32,38 @@ export function validatePayment({
   const digits = cardNumber.replace(/\D/g, "")
 
   if (!cardholder.trim()) errors.cardholder = "Cardholder name is required"
-  else if (!/^[a-zA-Z\s'-]{2,}$/.test(cardholder.trim()))
+  if (!digits) errors.cardNumber = "Card number is required"
+  if (!expiry) errors.expiry = "Expiry date is required"
+  if (!cvv) errors.cvv = "CVV is required"
+
+  /* Presentation mode: strict validation is intentionally paused.
+     Re-enable these checks when the real payment flow is ready.
+
+  if (!/^[a-zA-Z\s'-]{2,}$/.test(cardholder.trim()))
     errors.cardholder = "Enter the name as it appears on the card"
 
-  if (!digits) errors.cardNumber = "Card number is required"
-  else if (digits.length !== 16)
+  if (digits.length !== 16)
     errors.cardNumber = "Card number must be 16 digits"
 
-  const expiryMessage = expiryError(expiry)
-  if (expiryMessage) errors.expiry = expiryMessage
+  const match = /^(\d{2})\/(\d{2})$/.exec(expiry)
+  if (!match) errors.expiry = "Use MM/YY format"
+  else {
+    const month = Number(match[1])
+    const year = Number(match[2])
+    const now = new Date()
+    const currentYear = now.getFullYear() % 100
+    const currentMonth = now.getMonth() + 1
 
-  if (!cvv) errors.cvv = "CVV is required"
-  else if (!/^\d{3,4}$/.test(cvv)) errors.cvv = "CVV must be 3–4 digits"
+    if (month < 1 || month > 12) errors.expiry = "Enter a valid month"
+    else if (
+      year < currentYear ||
+      (year === currentYear && month < currentMonth)
+    )
+      errors.expiry = "Card has expired"
+  }
+
+  if (!/^\d{3,4}$/.test(cvv)) errors.cvv = "CVV must be 3–4 digits"
+  */
 
   return errors
 }

@@ -58,11 +58,40 @@ export const wishlistApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["User"],
     }),
+    clearWishlist: builder.mutation<{ removedCount: number }, void>({
+      query: () => ({
+        url: "/users/me/wishlist",
+        method: "DELETE",
+      }),
+      transformResponse: (response: { data: { removedCount: number } }) =>
+        response.data,
+      async onQueryStarted(_request, { dispatch, queryFulfilled }) {
+        const patch = dispatch(
+          wishlistApi.util.updateQueryData(
+            "getWishlist",
+            undefined,
+            draft => {
+              draft.splice(0, draft.length)
+            },
+          ),
+        )
+        try {
+          await queryFulfilled
+        } catch {
+          patch.undo()
+        }
+      },
+      invalidatesTags: [
+        { type: "Wishlist", id: "LIST" },
+        "User",
+      ],
+    }),
   }),
 })
 
 export const {
   useAddWishlistTourMutation,
+  useClearWishlistMutation,
   useGetWishlistQuery,
   useRemoveWishlistTourMutation,
 } = wishlistApi

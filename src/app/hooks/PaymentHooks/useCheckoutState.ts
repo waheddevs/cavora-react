@@ -4,7 +4,7 @@ import {
   detectCardBrand,
   formatCardNumber,
   formatExpiry,
-  // validatePayment,
+  validatePayment,
 } from "app/utils/paymentValidation"
 import { PaymentErrors, PaymentValues } from "app/types/payment"
 import { getTourById } from "app/data/tourData"
@@ -33,7 +33,7 @@ export function useCheckoutState() {
   const [expiry, setExpiry] = useState("")
   const [cvv, setCvv] = useState("")
   const [errors, setErrors] = useState<PaymentErrors>({})
-  const shake = false
+  const [shake, setShake] = useState(false)
   const [loading, setLoading] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(10 * 60)
 
@@ -42,9 +42,7 @@ export function useCheckoutState() {
   const serviceFee = Math.round(subtotal * 0.02)
   const total = subtotal + serviceFee
   const brand = detectCardBrand(cardNumber.replace(/\D/g, ""))
-  const formattedDate = date
-    ? formatDisplayDate(date)
-    : "Flexible date"
+  const formattedDate = date ? formatDisplayDate(date) : "Flexible date"
   const minutesLeft = String(Math.floor(secondsLeft / 60)).padStart(2, "0")
   const secondsRemaining = String(secondsLeft % 60).padStart(2, "0")
 
@@ -94,16 +92,14 @@ export function useCheckoutState() {
     event.preventDefault()
     if (!tour || loading) return
 
-    /* TEMPORARILY DISABLED — card validation is off so the checkout flow can be
-       walked through with an empty form. Restore before shipping. */
-    // const nextErrors = validatePayment({ cardholder, cardNumber, expiry, cvv })
-    // setErrors(nextErrors)
-    //
-    // if (Object.keys(nextErrors).length > 0) {
-    //   setShake(true)
-    //   window.setTimeout(() => setShake(false), 500)
-    //   return
-    // }
+    const nextErrors = validatePayment({ cardholder, cardNumber, expiry, cvv })
+    setErrors(nextErrors)
+
+    if (Object.keys(nextErrors).length > 0) {
+      setShake(true)
+      window.setTimeout(() => setShake(false), 500)
+      return
+    }
 
     setLoading(true)
     const confirmed = await confirmWithLoading({

@@ -1697,16 +1697,5 @@ export const tours: Tour[] = staticTours.map(tour => ({
 export const getTourById = (id: number | string) =>
   tours.find(t => t.id === Number(id))
 
-export const getRelatedTours = (id: number | string, count = 3) => {
-  const current = tours.find(t => t.id === Number(id))
-  const sameCountry = tours.filter(
-    t => t.id !== Number(id) && t.country === current?.country,
-  )
-  const others = tours.filter(
-    t => t.id !== Number(id) && t.country !== current?.country,
-  )
-  return [...sameCountry, ...others].slice(0, count)
-}
-
 // Ratings from 5 to 1 stars
 export const ratingDistribution = [78, 15, 4, 2, 1]
