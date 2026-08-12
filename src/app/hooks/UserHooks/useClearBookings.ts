@@ -9,17 +9,19 @@ import {
 
 const groupCopy: Record<
   BookingArchiveGroup,
-  { label: string; message: string }
+  { label: string; title: string; message: string }
 > = {
   past: {
     label: "Past Trips",
+    title: "Clear past trips?",
     message:
-      "Clear all past trips from My Bookings? Your booking records will remain safely archived.",
+      "These trips will disappear from My Bookings, but their records will remain safely archived.",
   },
   cancelled: {
     label: "Cancelled",
+    title: "Clear cancelled bookings?",
     message:
-      "Clear all cancelled bookings from My Bookings? Your booking records will remain safely archived.",
+      "These bookings will disappear from My Bookings, but their records will remain safely archived.",
   },
 }
 
@@ -33,6 +35,7 @@ export function useClearBookings() {
     let archiveSucceeded = true
     const copy = groupCopy[group]
     const confirmed = await confirmWithLoading({
+      title: copy.title,
       message: copy.message,
       confirmText: `Clear ${copy.label}`,
       cancelText: "Keep history",

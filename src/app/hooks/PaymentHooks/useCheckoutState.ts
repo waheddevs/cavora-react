@@ -103,7 +103,10 @@ export function useCheckoutState() {
 
     setLoading(true)
     const confirmed = await confirmWithLoading({
-      message: "Do you want to proceed the payment?",
+      title: "Confirm payment?",
+      message: "Review your payment details before completing this booking.",
+      confirmText: "Pay now",
+      cancelText: "Review details",
       loadingMs: 3000,
       onConfirm: async () => {
         await addBooking(

@@ -14,7 +14,9 @@ export function useConfirmedLogout() {
   const handleLogout = async () => {
     let logoutSucceeded = true
     const confirmed = await confirmWithLoading({
-      message: "Are you sure you want to log out of your Cavora account?",
+      title: "Log out of Cavora?",
+      message:
+        "Your current session will end, and you will need to sign in again.",
       confirmText: "Log out",
       cancelText: "Stay signed in",
       loadingMs: 600,

@@ -25,8 +25,9 @@ export function useBookings() {
   const handleCancelBooking = async (bookingId: string, tourId: number) => {
     const cancellation = { succeeded: true, status: "" }
     const confirmed = await confirmWithLoading({
+      title: "Cancel this booking?",
       message:
-        "Cancel this booking? Payment holds are released immediately, while confirmed bookings are sent for cancellation review.",
+        "Payment holds are released immediately. Confirmed bookings are sent for cancellation review.",
       confirmText: "Cancel booking",
       cancelText: "Keep booking",
       loadingMs: 700,

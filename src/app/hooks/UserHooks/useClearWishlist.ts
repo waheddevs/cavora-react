@@ -12,8 +12,9 @@ export function useClearWishlist() {
   const clearWishlist = async () => {
     let clearSucceeded = true
     const confirmed = await confirmWithLoading({
+      title: "Clear your wishlist?",
       message:
-        "Clear every saved tour from your wishlist? You can save them again at any time.",
+        "Every saved tour will be removed. You can save any of them again later.",
       confirmText: "Clear wishlist",
       cancelText: "Keep tours",
       loadingMs: 600,

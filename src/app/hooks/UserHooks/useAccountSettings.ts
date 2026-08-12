@@ -1,6 +1,9 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
-import { useAlerts, useNotifications } from "app/hooks/CommonHooks/useSweetAlert"
+import {
+  useAlerts,
+  useNotifications,
+} from "app/hooks/CommonHooks/useSweetAlert"
 import { getApiErrorMessage } from "app/api/apiErrors"
 import { AccountSettingsForm, PasswordChangeForm } from "app/types/user"
 
@@ -196,7 +199,8 @@ export function useAccountSettings() {
   const handleAvatarRemove = async () => {
     let removalSucceeded = true
     const confirmed = await confirmWithLoading({
-      message: "Do you want to remove your profile photo?",
+      title: "Remove profile photo?",
+      message: "Your default Cavora profile image will be restored.",
       confirmText: "Remove",
       cancelText: "Keep photo",
       loadingMs: 700,

@@ -1,8 +1,4 @@
-import {
-  ReactNode,
-  useCallback,
-  useMemo,
-} from "react"
+import { ReactNode, useCallback, useMemo } from "react"
 import { createRoot, Root } from "react-dom/client"
 import { CircularProgress } from "@mui/material"
 import type { SweetAlertIcon } from "sweetalert2"
@@ -29,6 +25,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
   /* ALERT HANDLERS */
   const confirmWithLoading = useCallback(
     async ({
+      title,
       message,
       confirmText = "Yes",
       cancelText = "No",
@@ -42,6 +39,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
       const result = await Swal.fire({
         icon: "question",
         iconColor: BRAND_GOLD,
+        title,
         text: message,
         confirmButtonText: confirmText,
         cancelButtonText: cancelText,
@@ -60,6 +58,7 @@ export function SweetAlertProvider({ children }: { children: ReactNode }) {
           container: "cavora-swal-container",
           popup: "cavora-swal-popup",
           icon: "cavora-swal-icon",
+          title: "cavora-swal-title",
           htmlContainer: "cavora-swal-message",
           actions: "cavora-swal-actions",
           confirmButton: "cavora-swal-confirm",

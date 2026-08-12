@@ -396,33 +396,33 @@
 =========================== */
 
 .user-page .booking-heading-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
+  display: grid;
+  grid-template-areas:
+    "title filters"
+    "subtitle clear";
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 6px;
   margin-bottom: 26px;
   padding-bottom: 14px;
   border-bottom: 1px solid #eeeeee;
 }
 
-.user-page .booking-filter-tools {
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 7px;
+.user-page .booking-heading-title {
+  grid-area: title;
+  line-height: 1.2;
 }
 
-.user-page .booking-heading-copy {
-  min-width: 0;
-}
-
-.user-page .booking-heading-copy .user-panel-subtitle {
-  margin-bottom: 0;
+.user-page .booking-heading-subtitle {
+  grid-area: subtitle;
+  margin: 0;
 }
 
 .user-page .booking-filter {
+  grid-area: filters;
   display: inline-flex;
+  justify-self: end;
   flex-shrink: 0;
   gap: 3px;
   max-width: 100%;
@@ -432,6 +432,14 @@
   border-radius: 13px;
   background: #f7f7f7;
   scrollbar-width: none;
+}
+
+.user-page .booking-filter-clear-slot {
+  grid-area: clear;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 18px;
 }
 
 .user-page .booking-filter::-webkit-scrollbar {
@@ -1669,22 +1677,24 @@
 
 @media (max-width: 900px) {
   .user-page .booking-heading-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
+    grid-template-areas:
+      "title"
+      "subtitle"
+      "filters"
+      "clear";
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    row-gap: 6px;
   }
 
   .user-page .booking-filter {
+    justify-self: stretch;
     width: 100%;
+    margin-top: 12px;
   }
 
-  .user-page .booking-filter-tools {
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .user-page .booking-filter-clear {
-    align-self: flex-end;
+  .user-page .booking-filter-clear-slot {
+    min-height: 18px;
   }
 
   .user-page .booking-card {

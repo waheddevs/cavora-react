@@ -2,6 +2,7 @@ import { createContext } from "react"
 import type { SweetAlertIcon } from "sweetalert2"
 
 export interface ConfirmWithLoadingOptions {
+  title: string
   message: string
   confirmText?: string
   cancelText?: string
@@ -20,5 +21,6 @@ export interface SweetAlertContextValue {
   showComingSoon: (platform: string) => Promise<void>
 }
 
-export const SweetAlertContext =
-  createContext<SweetAlertContextValue | null>(null)
+export const SweetAlertContext = createContext<SweetAlertContextValue | null>(
+  null,
+)

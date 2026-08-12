@@ -90,36 +90,34 @@ export default function MyBookings() {
 
   return (
     <Box className="user-panel">
-      <Box className="booking-heading-row">
-        <Box className="booking-heading-copy">
-          <h2 className="user-panel-title">My Bookings</h2>
-          <p className="user-panel-subtitle">
-            Your upcoming adventures and past journeys.
-          </p>
+      <Box component="header" className="booking-heading-row">
+        <h2 className="user-panel-title booking-heading-title">My Bookings</h2>
+        <p className="user-panel-subtitle booking-heading-subtitle">
+          Your upcoming adventures and past journeys.
+        </p>
+
+        <Box
+          className="booking-filter"
+          role="group"
+          aria-label="Filter bookings by status"
+        >
+          {bookingFilters.map(filter => (
+            <button
+              type="button"
+              key={filter.key}
+              className={`booking-filter-button${
+                activeFilter === filter.key ? " active" : ""
+              }`}
+              aria-pressed={activeFilter === filter.key}
+              onClick={() => setActiveFilter(filter.key)}
+            >
+              {filter.label}
+              <span>{filterCounts[filter.key]}</span>
+            </button>
+          ))}
         </Box>
 
-        <Box className="booking-filter-tools">
-          <Box
-            className="booking-filter"
-            role="group"
-            aria-label="Filter bookings by status"
-          >
-            {bookingFilters.map(filter => (
-              <button
-                type="button"
-                key={filter.key}
-                className={`booking-filter-button${
-                  activeFilter === filter.key ? " active" : ""
-                }`}
-                aria-pressed={activeFilter === filter.key}
-                onClick={() => setActiveFilter(filter.key)}
-              >
-                {filter.label}
-                <span>{filterCounts[filter.key]}</span>
-              </button>
-            ))}
-          </Box>
-
+        <Box className="booking-filter-clear-slot">
           {clearableFilter && filterCounts[clearableFilter] > 0 && (
             <button
               type="button"
