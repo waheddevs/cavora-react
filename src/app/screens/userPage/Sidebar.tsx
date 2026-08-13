@@ -49,10 +49,7 @@ export default function Sidebar({ active, onChange, tabs }: SidebarProps) {
         })[0],
     [bookings],
   )
-  const bookingCount = bookingsLoading
-    ? user.stats.bookings
-    : bookings.filter(booking => booking.status.toUpperCase() !== "EXPIRED")
-        .length
+  const bookingCount = bookingsLoading ? user.stats.bookings : bookings.length
   const wishlistCount = wishlistLoading ? user.stats.wishlist : wishlist.length
   const nextTripDate = nextTrip?.departureDate ?? nextTrip?.createdAt
   const nextTripDateLabel = nextTripDate

@@ -11,7 +11,6 @@ export interface BookingRecord {
   travelers: number
   total: number
   currency: string
-  holdExpiresAt: string
   createdAt: string
 }
 
@@ -35,7 +34,6 @@ export interface BookingHold {
   serviceFeeCents: number
   totalCents: number
   currency: string
-  holdExpiresAt: string
   confirmedAt?: string
   cancelledAt?: string
   createdAt: string

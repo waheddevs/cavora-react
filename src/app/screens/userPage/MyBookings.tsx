@@ -54,34 +54,28 @@ export default function MyBookings() {
     handleCloseBookingDetails,
   } = useBookingDetails()
 
-  const visibleBookings = useMemo(
-    () =>
-      bookings.filter(booking => booking.status.toUpperCase() !== "EXPIRED"),
-    [bookings],
-  )
-
   const filterCounts = useMemo(
     () => ({
-      all: visibleBookings.length,
-      reserved: visibleBookings.filter(booking =>
+      all: bookings.length,
+      reserved: bookings.filter(booking =>
         matchesBookingFilter(booking.status, "reserved"),
       ).length,
-      past: visibleBookings.filter(booking =>
+      past: bookings.filter(booking =>
         matchesBookingFilter(booking.status, "past"),
       ).length,
-      cancelled: visibleBookings.filter(booking =>
+      cancelled: bookings.filter(booking =>
         matchesBookingFilter(booking.status, "cancelled"),
       ).length,
     }),
-    [visibleBookings],
+    [bookings],
   )
 
   const filteredBookings = useMemo(
     () =>
-      visibleBookings.filter(booking =>
+      bookings.filter(booking =>
         matchesBookingFilter(booking.status, activeFilter),
       ),
-    [activeFilter, visibleBookings],
+    [activeFilter, bookings],
   )
   const clearableFilter =
     activeFilter === "past" || activeFilter === "cancelled"
@@ -138,12 +132,12 @@ export default function MyBookings() {
           moment.
         </Typography>
       )}
-      {!isLoading && !isError && visibleBookings.length === 0 && (
+      {!isLoading && !isError && bookings.length === 0 && (
         <Typography>No bookings yet. Choose a tour to begin.</Typography>
       )}
       {!isLoading &&
         !isError &&
-        visibleBookings.length > 0 &&
+        bookings.length > 0 &&
         filteredBookings.length === 0 && (
           <Box className="booking-filter-empty" role="status">
             <Typography>No bookings match this status yet.</Typography>
@@ -167,7 +161,7 @@ export default function MyBookings() {
           const totalLabel =
             normalizedStatus === "PENDING_PAYMENT"
               ? "Amount due"
-              : ["CANCELLED", "EXPIRED"].includes(normalizedStatus)
+              : normalizedStatus === "CANCELLED"
                 ? "Booking total"
                 : "Total paid"
           const formattedTotal = new Intl.NumberFormat("en-US", {

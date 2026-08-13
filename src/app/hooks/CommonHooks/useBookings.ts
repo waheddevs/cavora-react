@@ -71,15 +71,6 @@ export function useBookings() {
       return
     }
 
-    if (cancellation.status === "EXPIRED") {
-      await notifyInfo({
-        title: "Booking hold expired",
-        message:
-          "The payment hold had already ended, so the reserved place was released.",
-      })
-      return
-    }
-
     await notifyInfo({
       title: "Booking updated",
       message: "The latest booking status is now visible in My Bookings.",

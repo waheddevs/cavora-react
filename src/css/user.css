@@ -648,8 +648,7 @@
   background: #c77616;
 }
 
-.user-page .booking-status--cancelled,
-.user-page .booking-status--expired {
+.user-page .booking-status--cancelled {
   background: #8a8a8a;
 }
 

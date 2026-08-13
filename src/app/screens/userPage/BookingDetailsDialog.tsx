@@ -198,11 +198,6 @@ export default function BookingDetailsDialog({
               <Typography>
                 <span>Booked</span> {formatDate(booking.createdAt)}
               </Typography>
-              {booking.status === "PENDING_PAYMENT" && (
-                <Typography>
-                  <span>Hold expires</span> {formatDate(booking.holdExpiresAt)}
-                </Typography>
-              )}
               {booking.confirmedAt && (
                 <Typography>
                   <span>Confirmed</span> {formatDate(booking.confirmedAt)}
