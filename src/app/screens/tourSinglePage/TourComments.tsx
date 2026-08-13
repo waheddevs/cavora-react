@@ -19,6 +19,7 @@ export default function TourComments() {
         submitting={comments.commentSubmitting}
         hasError={comments.commentError}
         title="Traveler Comments"
+        withRating
       />
     </Box>
   )

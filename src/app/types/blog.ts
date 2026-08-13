@@ -46,6 +46,8 @@ export interface BlogComment {
   memberId?: string
   name: string
   body: string
+  /** Stars given by the guest. Tour reviews carry one; blog comments do not. */
+  rating?: number
   createdAt: string
 }
 

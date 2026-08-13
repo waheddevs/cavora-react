@@ -70,7 +70,13 @@ export const toursApi = baseApi.injectEndpoints({
     }),
     submitTourComment: builder.mutation<
       { id: string; message: string; status: string },
-      { tourId: number; name: string; email: string; body: string }
+      {
+        tourId: number
+        name: string
+        email: string
+        body: string
+        rating: number
+      }
     >({
       query: ({ tourId, ...body }) => ({
         url: `/tours/${tourId}/comments`,
@@ -80,8 +86,10 @@ export const toursApi = baseApi.injectEndpoints({
       transformResponse: (response: {
         data: { id: string; message: string; status: string }
       }) => response.data,
+      // The review moves the tour's score and star breakdown, so refetch the tour too.
       invalidatesTags: (_result, _error, { tourId }) => [
         { type: "Comment", id: `tour-${tourId}` },
+        { type: "Tour", id: tourId },
       ],
     }),
     recordTourView: builder.mutation<

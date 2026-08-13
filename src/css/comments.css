@@ -125,6 +125,81 @@
   gap: 16px;
 }
 
+/* Stars already given, shown above the comment text */
+.community-comment-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.community-comment-stars svg {
+  font-size: 16px;
+  color: #dddddd;
+}
+
+.community-comment-stars svg.on {
+  color: var(--gold);
+}
+
+/* Star picker: the radios stay in the form so a reset clears them, while the
+   reversed row lets `~` light up every star up to the one under the pointer. */
+.community-rating-field {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.community-rating-caption {
+  color: var(--dark);
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.community-rating-stars {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.community-comment-form .community-rating-stars input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.community-rating-stars label {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.community-rating-stars label svg {
+  font-size: 26px;
+  color: #dddddd;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.community-rating-stars label:hover svg,
+.community-rating-stars label:hover ~ label svg,
+.community-rating-stars input:checked ~ label svg {
+  color: var(--gold);
+}
+
+.community-rating-stars label:hover svg {
+  transform: scale(1.12);
+}
+
+.community-rating-stars input:focus-visible + label {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
 .community-comment-form input,
 .community-comment-form textarea {
   width: 100%;

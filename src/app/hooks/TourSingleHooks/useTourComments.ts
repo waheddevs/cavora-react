@@ -18,12 +18,16 @@ export function useTourComments(tourId?: number) {
 
     const form = event.currentTarget
     const values = new FormData(form)
+    const rating = Number(values.get("rating"))
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5) return
+
     try {
       await submitComment({
         tourId,
         name: String(values.get("name") ?? ""),
         email: String(values.get("email") ?? ""),
         body: String(values.get("body") ?? ""),
+        rating,
       }).unwrap()
       form.reset()
     } catch {
