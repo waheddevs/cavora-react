@@ -3,24 +3,21 @@ import { adaptTourSummary } from "./tourAdapters"
 import { resolveImageUrl } from "./baseApi"
 import { ApiHomeData, GalleryImage, HomeData } from "app/types/home"
 
+// Swaps the thumbnail the home endpoint returns for the high-resolution
+// gallery crop. Keys are API values, not local files.
 const galleryImageOverrides: Record<string, string> = {
-  "/img/home-page-img/hero.webp":
-    "/img/home-page-img/gallery-hq-jungfrau.webp",
+  "/img/home-page-img/hero.webp": "/img/home-page-img/gallery-hq-jungfrau.webp",
   "/img/home-page-img/gallery-1.webp":
     "/img/home-page-img/gallery-hq-rome.webp",
-  "/img/tour-single/japan-kyoto-1.webp":
-    "/img/home-page-img/gallery-hq-kyoto.webp",
   "/img/home-page-img/tour-safari.webp":
     "/img/home-page-img/gallery-hq-lucerne.webp",
-  "/img/tour-single/maldives-ari-1.webp":
-    "/img/home-page-img/gallery-hq-maldives.webp",
 }
 
 const galleryTourReplacements: Record<number, GalleryImage> = {
   24: {
     altText: "Gondolas along a quiet Venice canal",
     category: "Cultural",
-    imageUrl: "/img/tour-single/italy-venice-1.webp",
+    imageUrl: "/img/home-page-img/gallery-venice.webp",
     location: "Venice, Italy",
     tall: false,
     title: "Venetian Canal Stories",
