@@ -14,6 +14,8 @@ export interface Tour {
   oldPrice: number
   rating: number
   reviews: number
+  /** Reviews per star, five stars first. Only the detail endpoint fills this in. */
+  ratingBreakdown: number[]
   viewCount: number
   days: string
   group: string
@@ -77,6 +79,7 @@ export interface ApiTourSummary {
 }
 
 export interface ApiTourDetail extends ApiTourSummary {
+  ratingBreakdown: number[]
   overview: string
   highlights: string[]
   itinerary: Array<{ day: number; title: string; description: string }>

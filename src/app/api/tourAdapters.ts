@@ -13,6 +13,8 @@ export function adaptTourSummary(tour: ApiTourSummary): Tour {
     oldPrice: (tour.oldPriceCents ?? tour.priceCents) / 100,
     rating: tour.ratingAverage,
     reviews: tour.reviewCount,
+    // Listings carry the average only; the per-star counts arrive with the detail.
+    ratingBreakdown: [],
     viewCount: tour.viewCount,
     days: `${tour.durationDays} Days`,
     group: `Max ${tour.maxGroupSize} People`,
@@ -28,6 +30,7 @@ export function adaptTourSummary(tour: ApiTourSummary): Tour {
 export function adaptTourDetail(tour: ApiTourDetail): Tour {
   return {
     ...adaptTourSummary(tour),
+    ratingBreakdown: tour.ratingBreakdown ?? [],
     overview: tour.overview,
     highlights: tour.highlights,
     itinerary: tour.itinerary.map(item => ({

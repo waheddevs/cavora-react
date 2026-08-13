@@ -12,6 +12,9 @@ export default function IncludeRate() {
     useInViewOnce<HTMLDivElement>(0.4)
   if (!tour) return null
 
+  // Counts arrive five stars first and always add up to the review count above.
+  const ratedReviews = tour.ratingBreakdown.reduce((sum, count) => sum + count, 0)
+
   return (
     <>
       <Box className="ts-card">
@@ -54,11 +57,34 @@ export default function IncludeRate() {
             </span>
           </Box>
 
-          {/* A per-star breakdown used to be drawn here from a fixed
-              [78, 15, 4, 2, 1], shown identically for every tour whatever its
-              rating. Reviews carry no star value in the schema, so there is
-              nothing real to plot; the average and review count above are the
-              only figures the API can back. */}
+          {ratedReviews > 0 ? (
+            <Box className="ts-review-bars">
+              {tour.ratingBreakdown.map((count, index) => {
+                const percentage = Math.round((count / ratedReviews) * 100)
+                return (
+                  <Box className="ts-review-bar" key={5 - index}>
+                    <span className="ts-bar-label">{5 - index} star</span>
+                    <Box className="ts-bar-track">
+                      <Box
+                        className="ts-bar-fill"
+                        style={{
+                          width: run ? `${percentage}%` : "0%",
+                          transitionDelay: `${index * 0.12}s`,
+                        }}
+                      />
+                    </Box>
+                    <span className="ts-bar-pct">
+                      <CountUp end={percentage} run={run} />%
+                    </span>
+                  </Box>
+                )
+              })}
+            </Box>
+          ) : (
+            <p className="ts-review-empty">
+              No ratings yet. Be the first traveler to review this tour.
+            </p>
+          )}
         </Box>
       </Box>
     </>

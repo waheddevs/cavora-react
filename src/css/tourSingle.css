@@ -494,6 +494,13 @@
   color: var(--text-light);
 }
 
+.tour-single-page .ts-review-empty {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-light);
+}
+
 /* ===========================
    ORDER BAR (sticky)
 =========================== */
