@@ -6,7 +6,8 @@ import { TourFilters } from "app/types/tour"
 type TourFilterListKey = "destinations" | "durations" | "types"
 
 export function useTourFilters() {
-  const { tours, priceMin, priceMax, filters, setFilters } = useTourCatalog()
+  const { tours, priceMin, priceMax, filters, setFilters, topRef } =
+    useTourCatalog()
   const [draftState, setDraftState] = useState({
     source: filters,
     value: filters,
@@ -50,7 +51,10 @@ export function useTourFilters() {
     setFilters(resetFilters)
   }
 
-  const applyFilters = () => setFilters(draft)
+  const applyFilters = () => {
+    setFilters(draft)
+    topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   return {
     priceMin,

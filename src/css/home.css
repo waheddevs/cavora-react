@@ -171,20 +171,37 @@
   align-items: center;
   gap: 18px;
   margin-bottom: 10px;
+  min-width: 0;
 }
 
 .discover-tours .meta-item {
   display: flex;
   align-items: center;
   gap: 5px;
+  min-width: 0;
   font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: var(--text-light);
 }
 
+.discover-tours .meta-location {
+  overflow: hidden;
+}
+
+.discover-tours .meta-duration {
+  flex-shrink: 0;
+}
+
+.discover-tours .meta-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .discover-tours .meta-icon {
   font-size: 16px !important;
   color: var(--gold);
+  flex-shrink: 0;
 }
 
 .discover-tours .tour-title {
@@ -482,16 +499,32 @@
   align-items: center;
   gap: 14px;
   margin-bottom: 8px;
+  min-width: 0;
 }
 
 .popular-tours .meta-item {
   display: flex;
   align-items: center;
   gap: 4px;
+  min-width: 0;
   font-family: "Poppins", sans-serif;
   font-size: 12.5px;
   color: var(--text-light);
   white-space: nowrap;
+}
+
+.popular-tours .meta-location {
+  overflow: hidden;
+}
+
+.popular-tours .meta-duration {
+  flex-shrink: 0;
+}
+
+.popular-tours .meta-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .popular-tours .meta-icon {

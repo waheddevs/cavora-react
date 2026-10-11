@@ -66,13 +66,15 @@ export default function PopularTours() {
 
               <Box className="popular-body">
                 <Box className="popular-meta">
-                  <span className="meta-item">
+                  <span className="meta-item meta-location">
                     <LocationOnRoundedIcon className="meta-icon" />
-                    {tour.location}
+                    <span className="meta-text" title={tour.location}>
+                      {tour.location}
+                    </span>
                   </span>
-                  <span className="meta-item">
+                  <span className="meta-item meta-duration">
                     <AccessTimeRoundedIcon className="meta-icon" />
-                    {tour.days}
+                    <span className="meta-text">{tour.days}</span>
                   </span>
                 </Box>
 
