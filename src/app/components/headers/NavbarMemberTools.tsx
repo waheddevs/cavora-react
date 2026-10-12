@@ -1,73 +1,40 @@
 import { Box, Typography } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded"
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded"
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded"
-import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded"
-import ExploreRoundedIcon from "@mui/icons-material/ExploreRounded"
 import UserAvatar from "app/components/ui/UserAvatar"
 import { useAuth } from "app/hooks/AuthHooks/useAuth"
+import {
+  formatNotificationTime,
+  MemberNotificationType,
+  useMemberNotifications,
+} from "app/hooks/CommonHooks/useMemberNotifications"
 
 interface NavbarMemberToolsProps {
   onNavigate: () => void
 }
 
-const memberNotifications = [
-  {
-    id: 1,
-    type: "booking",
-    title: "Booking confirmed",
-    message: "Your next Cavora adventure is officially reserved.",
-    time: "5 min",
-    unread: true,
-  },
-  {
-    id: 2,
-    type: "calendar",
-    title: "Departure reminder",
-    message: "Your upcoming trip begins in just a few days.",
-    time: "2 hr",
-    unread: true,
-  },
-  {
-    id: 3,
-    type: "offer",
-    title: "Member-only escape",
-    message: "A handpicked destination now includes a special rate.",
-    time: "Yesterday",
-    unread: true,
-  },
-  {
-    id: 4,
-    type: "explore",
-    title: "Fresh inspiration",
-    message: "New cultural journeys have arrived in the tour collection.",
-    time: "3 days",
-    unread: false,
-  },
-] as const
-
-function NotificationIcon({ type }: { type: string }) {
-  if (type === "booking") return <CheckCircleRoundedIcon />
+function NotificationIcon({ type }: { type: MemberNotificationType }) {
   if (type === "calendar") return <CalendarMonthRoundedIcon />
-  if (type === "offer") return <LocalOfferRoundedIcon />
-  return <ExploreRoundedIcon />
+  return <CheckCircleRoundedIcon />
 }
 
 export default function NavbarMemberTools({
   onNavigate,
 }: NavbarMemberToolsProps) {
   const { user, isAuthenticated } = useAuth()
+  const navigate = useNavigate()
+  const {
+    notifications,
+    unreadIds,
+    markAsRead,
+    markAllAsRead,
+    isLoading,
+    isError,
+  } = useMemberNotifications()
   const [notificationsOpen, setNotificationsOpen] = useState(false)
-  const [unreadIds, setUnreadIds] = useState<Set<number>>(
-    () =>
-      new Set(
-        memberNotifications
-          .filter(notification => notification.unread)
-          .map(notification => notification.id),
-      ),
-  )
   const toolsRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -93,13 +60,13 @@ export default function NavbarMemberTools({
   if (!isAuthenticated) return null
 
   const fullName = `${user.firstName} ${user.lastName}`.trim()
-  const markAsRead = (notificationId: number) => {
-    setUnreadIds(current => {
-      const next = new Set(current)
-      next.delete(notificationId)
-      return next
-    })
-  }
+  const notificationSummary = isLoading
+    ? "Loading updates..."
+    : isError
+      ? "Notifications unavailable"
+      : unreadIds.size === 0
+        ? "No unread updates"
+        : `${unreadIds.size} unread update${unreadIds.size === 1 ? "" : "s"}`
 
   return (
     <Box
@@ -158,17 +125,35 @@ export default function NavbarMemberTools({
           <Box className="navbar-notifications-head">
             <Box>
               <Typography component="h3">Notifications</Typography>
-              <span>{unreadIds.size} unread updates</span>
+              <span>{notificationSummary}</span>
             </Box>
             {unreadIds.size > 0 && (
-              <button type="button" onClick={() => setUnreadIds(new Set())}>
+              <button type="button" onClick={markAllAsRead}>
                 Mark all read
               </button>
             )}
           </Box>
 
           <Box className="navbar-notifications-list">
-            {memberNotifications.map(notification => {
+            {!isLoading && !isError && notifications.length === 0 && (
+              <Box className="navbar-notifications-state">
+                <NotificationsNoneRoundedIcon />
+                <strong>You&apos;re all caught up</strong>
+                <span>
+                  Booking updates and departure reminders appear here.
+                </span>
+              </Box>
+            )}
+
+            {isError && (
+              <Box className="navbar-notifications-state" role="alert">
+                <span>
+                  We couldn&apos;t load your updates. Please try again.
+                </span>
+              </Box>
+            )}
+
+            {notifications.map(notification => {
               const isUnread = unreadIds.has(notification.id)
 
               return (
@@ -178,7 +163,12 @@ export default function NavbarMemberTools({
                   className={`navbar-notification-item${
                     isUnread ? " unread" : ""
                   }`}
-                  onClick={() => markAsRead(notification.id)}
+                  onClick={() => {
+                    markAsRead(notification.id)
+                    setNotificationsOpen(false)
+                    onNavigate()
+                    navigate("/user", { state: { tab: "bookings" } })
+                  }}
                 >
                   <span className="navbar-notification-icon">
                     <NotificationIcon type={notification.type} />
@@ -188,7 +178,7 @@ export default function NavbarMemberTools({
                     <span>{notification.message}</span>
                   </span>
                   <span className="navbar-notification-time">
-                    {notification.time}
+                    {formatNotificationTime(notification.occurredAt)}
                   </span>
                 </button>
               )

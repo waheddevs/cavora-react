@@ -468,6 +468,33 @@ a {
   padding-top: 6px;
 }
 
+.navbar-notifications-state {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 24px 18px;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.navbar-notifications-state svg {
+  margin-bottom: 2px;
+  color: var(--gold-dark);
+  font-size: 24px;
+}
+
+.navbar-notifications-state strong {
+  color: var(--dark);
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+}
+
+.navbar-notifications-state span {
+  max-width: 240px;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
 .navbar-notification-item {
   position: relative;
   display: grid;
