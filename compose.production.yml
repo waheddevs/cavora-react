@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+    restart: unless-stopped
+    ports:
+      - '${FRONTEND_BIND_HOST:-0.0.0.0}:${FRONTEND_PUBLISHED_PORT:-3101}:80'
+    networks:
+      edge:
+        aliases:
+          - cavora-frontend
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1/ >/dev/null || exit 1']
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging:
+      options:
+        max-size: '10m'
+        max-file: '3'
+
+networks:
+  edge:
+    external: true
+    name: edge
+
