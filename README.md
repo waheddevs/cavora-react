@@ -28,15 +28,17 @@ docker compose -p cavora-frontend -f compose.production.yml up -d --build
 docker compose -p cavora-frontend -f compose.production.yml ps
 ```
 
-For the domainless VPS deployment, terminate HTTPS for the public server IP at
-the shared edge proxy, route it to `cavora-frontend:80`, and set:
+For the domainless VPS deployment, Nginx terminates HTTPS directly on the
+frontend's dedicated public port. Mount the complete Certbot directory so the
+`live/` symlinks continue to resolve after certificate renewal, and set:
 
 ```dotenv
-VITE_API_URL=https://201.18.217.140/cavora
-FRONTEND_BIND_HOST=127.0.0.1
+VITE_API_URL=https://201.18.217.140:3101/cavora
+FRONTEND_BIND_HOST=0.0.0.0
 FRONTEND_PUBLISHED_PORT=3101
+CAVORA_LETSENCRYPT_DIR=/home/deploy/gadgetly/gadgetly2-api/deploy/edge/sites/cavora-letsencrypt
 ```
 
-The loopback port is for server-side health checks only. Users access the site
-through the public HTTPS address, and Nginx proxies `/cavora` and `/uploads` to
-the backend over the shared Docker network.
+Users access `https://201.18.217.140:3101`. Nginx proxies `/cavora` and
+`/uploads` to the backend over the shared Docker network. The backend remains
+bound to `127.0.0.1:3100`; it is not exposed directly to the internet.

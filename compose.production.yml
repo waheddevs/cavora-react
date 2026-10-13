@@ -7,7 +7,9 @@ services:
         VITE_API_URL: ${VITE_API_URL}
     restart: unless-stopped
     ports:
-      - '${FRONTEND_BIND_HOST:-0.0.0.0}:${FRONTEND_PUBLISHED_PORT:-3101}:80'
+      - "${FRONTEND_BIND_HOST:-0.0.0.0}:${FRONTEND_PUBLISHED_PORT:-3101}:443"
+    volumes:
+      - "${CAVORA_LETSENCRYPT_DIR:?set CAVORA_LETSENCRYPT_DIR}:/etc/letsencrypt:ro"
     networks:
       edge:
         aliases:
@@ -15,18 +17,17 @@ services:
     security_opt:
       - no-new-privileges:true
     healthcheck:
-      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1/ >/dev/null || exit 1']
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 5
       start_period: 10s
     logging:
       options:
-        max-size: '10m'
-        max-file: '3'
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   edge:
     external: true
     name: edge
-
